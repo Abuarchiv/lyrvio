@@ -1,4 +1,109 @@
-export function ExtensionMockup() {
+interface ExtensionMockupProps {
+  compact?: boolean;
+}
+
+export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
+  if (compact) {
+    return (
+      <div className="relative w-full">
+        {/* Compact: popup only, no browser frame — ~300×420 viewBox */}
+        <svg
+          viewBox="0 0 300 420"
+          width="300"
+          height="420"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ maxWidth: "100%", height: "auto", display: "block", margin: "0 auto" }}
+          aria-label="Mockup: Lyrvio Extension-Popup"
+        >
+          {/* Shadow */}
+          <rect x="4" y="4" width="292" height="412" rx="8" fill="rgba(0,0,0,0.22)" />
+          {/* Main popup body */}
+          <rect x="0" y="0" width="292" height="412" rx="8" fill="#f3efe6" stroke="#0c0a08" strokeWidth="2" />
+
+          {/* ── Popup Header ── */}
+          <rect x="0" y="0" width="292" height="52" rx="8" fill="#0c0a08" />
+          <rect x="0" y="38" width="292" height="14" fill="#0c0a08" />
+
+          {/* Logo mark */}
+          <rect x="14" y="11" width="26" height="26" fill="#c8201c" rx="2" />
+          <text x="27" y="28" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="15" fill="white" textAnchor="middle" fontWeight="bold">L</text>
+
+          {/* Wordmark */}
+          <text x="48" y="24" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="13" fill="white" fontWeight="bold" letterSpacing="1">LYRVIO</text>
+          <text x="48" y="35" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="6.5" fill="#9a9486" letterSpacing="1.5">WOHNUNGS-BOT</text>
+
+          {/* Settings gear */}
+          <text x="278" y="30" fontFamily="ui-monospace, monospace" fontSize="12" fill="#6f6a5e" textAnchor="middle">⚙</text>
+
+          {/* ── Status Badge ── */}
+          <rect x="10" y="62" width="272" height="30" rx="4" fill="#f8f4ea" stroke="#0c0a08" strokeWidth="1.5" />
+          <circle cx="23" cy="77" r="4" fill="#1a8a1a" />
+          <circle cx="23" cy="77" r="2.2" fill="#2dbd2d" />
+          <text x="34" y="81" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="9.5" fill="#0c0a08" fontWeight="bold">AKTIV — Suche läuft</text>
+          <text x="278" y="81" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7.5" fill="#6f6a5e" textAnchor="end">07:24:13</text>
+
+          {/* ── Live Log Section ── */}
+          <text x="10" y="112" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7.5" fill="#6f6a5e" letterSpacing="1.5">AKTIVITÄT · LIVE</text>
+          <line x1="10" y1="117" x2="282" y2="117" stroke="#0c0a08" strokeWidth="1" />
+
+          {/* Log box */}
+          <rect x="10" y="122" width="272" height="102" rx="3" fill="#f8f4ea" />
+
+          {/* Log line 1 */}
+          <text x="17" y="138" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:23:45]</text>
+          <text x="70" y="138" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">Inserat erkannt:</text>
+          <text x="17" y="149" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">2-Zi · Friedrichshain · 1.150€</text>
+
+          {/* Log line 2 */}
+          <text x="17" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:23:48]</text>
+          <text x="70" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">Anschreiben erstellt (3,2s)</text>
+
+          {/* Log line 3 — success highlight */}
+          <rect x="10" y="172" width="272" height="17" fill="rgba(200,32,28,0.07)" />
+          <text x="17" y="184" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:24:13]</text>
+          <text x="70" y="184" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#c8201c" fontWeight="bold">✓ Gesendet — Pos. 02</text>
+
+          {/* Log line 4 */}
+          <text x="17" y="201" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#9a9486">[14:24:31]  Nächstes Inserat…</text>
+
+          {/* Cursor */}
+          <rect x="17" y="208" width="5" height="7" fill="#c8201c" opacity="0.7" />
+
+          {/* ── Divider ── */}
+          <line x1="10" y1="238" x2="282" y2="238" stroke="#0c0a08" strokeWidth="1" />
+
+          {/* ── Stats Section ── */}
+          <text x="10" y="254" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7.5" fill="#6f6a5e" letterSpacing="1.5">HEUTE</text>
+
+          <rect x="10" y="260" width="126" height="50" rx="3" fill="#f8f4ea" stroke="#0c0a08" strokeWidth="1.5" />
+          <text x="73" y="281" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="20" fill="#0c0a08" fontWeight="bold" textAnchor="middle">12</text>
+          <text x="73" y="294" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7.5" fill="#6f6a5e" textAnchor="middle">Bewerbungen</text>
+          <text x="73" y="303" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="6.5" fill="#9a9486" textAnchor="middle">gesendet</text>
+
+          <rect x="154" y="260" width="128" height="50" rx="3" fill="#f8f4ea" stroke="#0c0a08" strokeWidth="1.5" />
+          <text x="218" y="281" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="20" fill="#c8201c" fontWeight="bold" textAnchor="middle">4</text>
+          <text x="218" y="294" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7.5" fill="#6f6a5e" textAnchor="middle">Antworten</text>
+          <text x="218" y="303" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="6.5" fill="#9a9486" textAnchor="middle">von Vermietern</text>
+
+          {/* ── Divider ── */}
+          <line x1="10" y1="326" x2="282" y2="326" stroke="#d5d0c7" strokeWidth="1" />
+
+          {/* ── Stamp watermark ── */}
+          <rect x="90" y="338" width="116" height="36" rx="3" fill="none" stroke="#c8201c" strokeWidth="2" strokeDasharray="3,2" opacity="0.4" transform="rotate(-2, 148, 356)" />
+          <text x="148" y="354" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#c8201c" textAnchor="middle" opacity="0.45" transform="rotate(-2, 148, 356)" letterSpacing="2" fontWeight="bold">BETA · MAI 2026</text>
+          <text x="148" y="364" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="6.5" fill="#c8201c" textAnchor="middle" opacity="0.4" transform="rotate(-2, 148, 356)" letterSpacing="1">MOCKUP · VORSCHAU</text>
+
+          {/* ── Toggle Button ── */}
+          <rect x="10" y="382" width="272" height="22" rx="4" fill="#0c0a08" />
+          <rect x="20" y="388" width="28" height="12" rx="6" fill="#2dbd2d" />
+          <circle cx="41" cy="394" r="5" fill="white" />
+          <text x="56" y="398" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="9" fill="white">Bot aktiv</text>
+          <text x="278" y="398" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e" textAnchor="end">Pause →</text>
+        </svg>
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full overflow-x-auto">
       <svg

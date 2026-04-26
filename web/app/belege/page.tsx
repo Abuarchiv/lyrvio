@@ -195,6 +195,18 @@ export default function BelegePage() {
               ))}
             </ol>
 
+            <div className="mt-12 p-5 border border-rule-soft bg-paper-2 flex flex-wrap items-center justify-between gap-4">
+              <p className="font-mono text-[13px] text-ash leading-[1.6]">
+                Du willst sehen was Lyrvio wirklich schreibt?
+              </p>
+              <Link
+                href="/protokoll#beispiele"
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-stamp hover:underline underline-offset-4 transition-all"
+              >
+                Echte Anschreiben-Beispiele ansehen ↗
+              </Link>
+            </div>
+
             <div className="mt-16 pt-8 border-t-2 border-ink flex flex-wrap items-center justify-between gap-6">
               <p className="font-display text-[24px] sm:text-[32px] tracking-[-0.02em] text-ink max-w-[28ch]">
                 Belege gelesen.

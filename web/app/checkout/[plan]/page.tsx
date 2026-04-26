@@ -237,10 +237,8 @@ export default async function CheckoutPlanPage({
                 <span className="font-mono text-[10.5px] text-ash">
                   Du wirst zur sicheren Zahlung bei Stripe weitergeleitet
                 </span>
-                <span className="font-mono text-[10px] text-ash max-w-[36ch] text-right leading-[1.5]">
-                  Mit Klick stimmst du der Widerrufsbelehrung zu und dass
-                  Lyrvio sofort startet — dein Widerrufsrecht erlischt
-                  damit (§ 356 Abs. 5 BGB).
+                <span className="font-mono text-[10px] text-ash max-w-[44ch] text-right leading-[1.5]">
+                  Mit Klick bestätige ich, die Widerrufsbelehrung gelesen zu haben, und stimme ausdrücklich zu, dass Lyrvio sofort mit der Leistungserbringung beginnt — mein Widerrufsrecht erlischt damit gemäß § 356 Abs. 5 BGB.
                 </span>
               </div>
             </div>

@@ -35,7 +35,7 @@ export default function AgbPage() {
           </p>
           <ul className="space-y-2 mb-6">
             {[
-              "Automatisches Monitoring von Wohnungsinserat-Plattformen (ImmoScout24, Immowelt, eBay Kleinanzeigen, Immonet, Wunderflats)",
+              "Automatisches Monitoring von Wohnungsinserat-Plattformen (ImmoScout24, Immowelt, eBay Kleinanzeigen, Immonet, wg-gesucht.de)",
               "Automatisiertes Versenden von Bewerbungsschreiben im Namen des Nutzers auf Basis des hinterlegten Profils",
               "Benachrichtigung des Nutzers bei Antworten von Vermietern",
               "Dashboard zur Verwaltung und Nachverfolgung der Bewerbungen",
@@ -88,7 +88,7 @@ export default function AgbPage() {
                   "Zusagen oder Vertragsabschlüsse jeder Art",
                   "Verhandlungen über Mietkonditionen",
                   "Weitergabe der Daten an andere Plattformen oder Dritte",
-                  "Nutzung außerhalb der genannten 5 Plattformen",
+                  "Nutzung außerhalb der genannten Plattformen (ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen, wg-gesucht.de)",
                 ].map((item, i) => (
                   <li key={i} className="font-mono text-[13px] leading-[1.75] text-ink flex gap-3">
                     <span className="text-stamp mt-1 flex-shrink-0">→</span>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BerlinMap } from "./BerlinMap";
+import { ExtensionMockup } from "./ExtensionMockup";
 
 type Event = {
   ts: string;
@@ -115,6 +116,26 @@ export function Hero() {
               <span className="tag -yellow">14 Tage Geld-zurück</span>
               <span className="tag -outline">Chrome + Firefox</span>
               <span className="tag -outline">DSGVO · DE-Hosting</span>
+            </div>
+
+            {/* Extension Mockup — compact, nur >768px */}
+            <div className="hidden md:block mt-10 max-w-[320px]">
+              <ExtensionMockup compact />
+              <p
+                style={{
+                  fontFamily: "ui-monospace, 'SF Mono', monospace",
+                  fontSize: "10px",
+                  color: "#6f6a5e",
+                  textAlign: "center",
+                  marginTop: "8px",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                Mockup · So sieht die Extension nach Beta-Start aus ·{" "}
+                <Link href="/extension" className="link-underline" style={{ color: "#6f6a5e" }}>
+                  Volle Vorschau auf /extension →
+                </Link>
+              </p>
             </div>
 
             {/* Klare Plain-Sprech-Trio */}

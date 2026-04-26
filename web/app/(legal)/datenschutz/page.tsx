@@ -18,7 +18,8 @@ export default function DatenschutzPage() {
           <div className="label mb-4">1. Verantwortlicher</div>
           <p className="font-mono text-[14px] leading-[1.75] text-ink">
             Verantwortlicher im Sinne der DSGVO ist:<br />
-            Lyrvio (in Gründung)<br />
+            Lyrvio · Inhaber: Abubakar Abdi<br />
+            76131 Karlsruhe<br />
             Deutschland<br />
             E-Mail: datenschutz@lyrvio.com
           </p>
@@ -103,6 +104,7 @@ export default function DatenschutzPage() {
               { title: "Resend (USA):", desc: "Transaktions-E-Mails (Bestätigungen, Benachrichtigungen)" },
               { title: "Cloudflare Inc. (USA):", desc: "Hosting, DNS, CDN. Angemessenheitsbeschluss vorhanden." },
               { title: "Plausible Analytics (EU):", desc: "Anonymisiertes Webanalytics ohne Cookies" },
+              { title: "formsubmit.co (Form-Backend):", desc: "Anbieter: formsubmit.co — Static Form Service. Verarbeitete Daten: E-Mail-Adresse + ggf. weitere Formularfelder bei Wartelisten-Anmeldung. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertraglicher Kontakt). Drittstaatentransfer: USA. Übermittlung erfolgt auf Basis des EU-US Data Privacy Framework (Adequacy Decision der EU-Kommission). Speicherdauer: bis zur Bearbeitung der Anfrage, max. 6 Monate. Widerspruch: jederzeit per E-Mail an hallo@lyrvio.com" },
             ].map((item, i) => (
               <li key={i} className="font-mono text-[14px] leading-[1.75] text-ink flex gap-3">
                 <span className="text-stamp mt-1 flex-shrink-0">■</span>

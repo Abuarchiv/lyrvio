@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { WAITLIST_COUNT, WAITLIST_TOTAL, WAITLIST_LAST_UPDATE } from "@/lib/waitlist";
 
 export function Waitlist() {
   const [submitted, setSubmitted] = useState(false);
@@ -92,13 +93,47 @@ export function Waitlist() {
           </button>
         </form>
 
-        {/* Honest status + privacy */}
-        <div className="mt-8 flex flex-col gap-3 max-w-[520px]">
+        {/* Counter + progress + privacy */}
+        <div className="mt-8 flex flex-col gap-4 max-w-[520px]">
+          {/* Counter block */}
           <div className="border-l-2 border-ink pl-4">
-            <p className="font-mono text-[12px] text-ash">
-              50 Plätze · Mai 2026 · Beta
-            </p>
+            {WAITLIST_COUNT === 0 ? (
+              <p className="font-mono text-[13px] text-ink font-bold">
+                Sei der Erste —{" "}
+                <span className="font-normal text-ash">
+                  {WAITLIST_TOTAL} Beta-Plätze verfügbar · Mai 2026
+                </span>
+              </p>
+            ) : (
+              <p className="font-mono text-[13px] text-ink">
+                <span className="font-bold">{WAITLIST_COUNT} von {WAITLIST_TOTAL}</span>{" "}
+                <span className="text-ash">Beta-Plätzen vergeben · Stand {WAITLIST_LAST_UPDATE}</span>
+              </p>
+            )}
           </div>
+
+          {/* Progress bar — nur wenn > 0 */}
+          {WAITLIST_COUNT > 0 && (
+            <div className="w-full h-[3px] bg-paper border border-ink/20">
+              <div
+                className="h-full bg-ink transition-all"
+                style={{ width: `${Math.min((WAITLIST_COUNT / WAITLIST_TOTAL) * 100, 100)}%` }}
+              />
+            </div>
+          )}
+
+          {/* FOMO — nur wenn fast voll */}
+          {WAITLIST_COUNT > 40 && (
+            <p className="font-mono text-[12px] text-stamp font-bold tracking-[0.05em]">
+              Nur noch wenige Plätze frei.
+            </p>
+          )}
+
+          {/* Update cadence note */}
+          <p className="font-mono text-[11px] text-ash leading-[1.6]">
+            Wir aktualisieren die Zahl wöchentlich aus den eingegangenen E-Mails.
+          </p>
+
           <p className="font-mono text-[11px] text-ash leading-[1.6]">
             Nur E-Mail. Keine Werbung. Du kannst jederzeit löschen.
           </p>

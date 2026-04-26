@@ -117,6 +117,171 @@ export default function ProtokollPage() {
           </div>
         </section>
 
+        {/* BEISPIEL-ANSCHREIBEN */}
+        <section id="beispiele" className="border-b border-rule-soft bg-paper-2">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28">
+            <div className="flex items-center gap-4 mb-10 flex-wrap">
+              <span className="stamp-rotated">Beispiele</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
+                Drei echte Beispiel-Anschreiben · anonymisiert · KI-generiert
+              </span>
+            </div>
+
+            <h2 className="font-display text-[36px] sm:text-[52px] tracking-[-0.025em] text-ink mb-4 max-w-[24ch]">
+              Drei echte
+              <br />
+              <em>Beispiel-Anschreiben.</em>
+            </h2>
+            <p className="font-mono text-[13px] leading-[1.7] text-ash mb-16 max-w-[64ch] border-l-2 border-stamp/40 pl-4">
+              Diese Anschreiben wurden von Lyrvio generiert — auf Basis fiktiver
+              Profile. Namen und Daten sind erfunden. Die Stilunterschiede zwischen
+              den drei Beispielen sind real: Lyrvio passt Ton und Länge an das
+              Inserat an.
+            </p>
+
+            <div className="space-y-12">
+
+              {/* Beispiel 1 */}
+              <article className="border border-rule-soft">
+                <div className="grid grid-cols-12">
+                  <header className="col-span-12 border-b border-rule-soft px-6 py-4 flex flex-wrap items-center justify-between gap-4 bg-paper">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-stamp font-bold">Beispiel #1</span>
+                      <span className="font-mono text-[11px] text-ash">Berlin · 2-Zi · 1.150 € warm · Friedrichshain</span>
+                    </div>
+                    <div className="label">Profil: A.B.</div>
+                  </header>
+                  <div className="col-span-12 lg:col-span-9 px-6 py-6">
+                    <pre className="font-mono text-[13px] leading-[1.85] text-ink whitespace-pre-wrap break-words">
+{`Hallo,
+
+das Inserat passt zu mir: ruhige 2-Zi in Friedrichshain, ca. 60 m² mit
+Balkon — genau das was ich seit 3 Wochen suche.
+
+Kurz zu mir: Anna Becker, 28, Marketing-Managerin bei Native Instruments
+in Kreuzberg (3.400 € netto, unbefristet). Kein Hund, keine Kinder, keine
+Vorstrafen. Schufa-Score 96/100, alle Belege liegen bereit.
+
+Ich kann gerne diese Woche zur Besichtigung kommen — wann passt es Ihnen?
+
+Anna Becker · 0152-XXXXXXXX`}
+                    </pre>
+                  </div>
+                  <aside className="col-span-12 lg:col-span-3 border-t lg:border-t-0 lg:border-l border-rule-soft px-6 py-6 bg-paper">
+                    <div className="label mb-3">Anmerkung</div>
+                    <p className="font-mono text-[11.5px] leading-[1.6] text-ash">
+                      Stilebene: knapp / persönlich
+                      <br />Länge: 68 Wörter
+                      <br />Generiert in 2,8 Sek.
+                    </p>
+                  </aside>
+                </div>
+              </article>
+
+              {/* Beispiel 2 */}
+              <article className="border border-rule-soft">
+                <div className="grid grid-cols-12">
+                  <header className="col-span-12 border-b border-rule-soft px-6 py-4 flex flex-wrap items-center justify-between gap-4 bg-paper">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-stamp font-bold">Beispiel #2</span>
+                      <span className="font-mono text-[11px] text-ash">München · 1-Zi · 980 € warm · Schwabing</span>
+                    </div>
+                    <div className="label">Profil: M.V.</div>
+                  </header>
+                  <div className="col-span-12 lg:col-span-9 px-6 py-6">
+                    <pre className="font-mono text-[13px] leading-[1.85] text-ink whitespace-pre-wrap break-words">
+{`Sehr geehrte Damen und Herren,
+
+mit Interesse habe ich Ihr Inserat einer 1-Zimmer-Wohnung in München-
+Schwabing (38 m², 980 € warm) gelesen und möchte mich hiermit als Mieter
+bewerben.
+
+Mein Name ist Marcus Voss, 34, Diplom-Ingenieur bei BMW (Festanstellung
+seit 2021, Bruttogehalt 5.200 €, Nettoeinkommen 3.150 €). Ich bin
+Nichtraucher, halte keine Haustiere und beziehe die Wohnung als alleiniger
+Mieter.
+
+Anbei alle relevanten Bewerbungsunterlagen:
+— Schufa-Bonitätsauskunft (BonitätsCheck, Score 98)
+— 3 letzte Gehaltsabrechnungen
+— Mietschuldenfreiheitsbescheinigung des bisherigen Vermieters
+— Kopie Personalausweis
+
+Für Rückfragen oder eine Besichtigung stehe ich Ihnen jederzeit gern zur
+Verfügung.
+
+Mit freundlichen Grüßen
+Marcus Voss`}
+                    </pre>
+                  </div>
+                  <aside className="col-span-12 lg:col-span-3 border-t lg:border-t-0 lg:border-l border-rule-soft px-6 py-6 bg-paper">
+                    <div className="label mb-3">Anmerkung</div>
+                    <p className="font-mono text-[11.5px] leading-[1.6] text-ash">
+                      Stilebene: formal / ausführlich
+                      <br />Länge: 112 Wörter
+                      <br />Generiert in 3,4 Sek.
+                    </p>
+                  </aside>
+                </div>
+              </article>
+
+              {/* Beispiel 3 */}
+              <article className="border border-rule-soft">
+                <div className="grid grid-cols-12">
+                  <header className="col-span-12 border-b border-rule-soft px-6 py-4 flex flex-wrap items-center justify-between gap-4 bg-paper">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-stamp font-bold">Beispiel #3</span>
+                      <span className="font-mono text-[11px] text-ash">Hamburg · 3-Zi · 1.420 € warm · Eppendorf</span>
+                    </div>
+                    <div className="label">Profil: L.+T.H.</div>
+                  </header>
+                  <div className="col-span-12 lg:col-span-9 px-6 py-6">
+                    <pre className="font-mono text-[13px] leading-[1.85] text-ink whitespace-pre-wrap break-words">
+{`Liebe Vermieterin, lieber Vermieter,
+
+wir haben Ihre wunderschöne 3-Zimmer-Wohnung in Eppendorf entdeckt und
+sind direkt verliebt — die Lage am Klosterstern, der Altbau-Charme, der
+Garten ist genau das was wir für unsere kleine Familie suchen.
+
+Wer wir sind: Lisa und Tom Hansen, Mitte 30, mit unserem Sohn Leon (4).
+Lisa ist Kinderärztin am UKE, Tom ist Software-Entwickler bei Otto. Wir
+verdienen zusammen netto 6.800 € — das ist mehr als das 3,5-Fache der
+Warmmiete.
+
+Was Sie noch über uns wissen sollten: keine Tiere, keine Raucher, beide
+mit Schufa-Score 95+, beide unbefristet angestellt seit über 5 Jahren.
+Unsere bisherige Vermieterin in Winterhude (4 Jahre) gibt uns gerne eine
+Referenz.
+
+Wir würden uns sehr über die Möglichkeit zur Besichtigung freuen und sind
+zeitlich völlig flexibel.
+
+Herzliche Grüße
+Lisa & Tom Hansen`}
+                    </pre>
+                  </div>
+                  <aside className="col-span-12 lg:col-span-3 border-t lg:border-t-0 lg:border-l border-rule-soft px-6 py-6 bg-paper">
+                    <div className="label mb-3">Anmerkung</div>
+                    <p className="font-mono text-[11.5px] leading-[1.6] text-ash">
+                      Stilebene: herzlich / Familie
+                      <br />Länge: 134 Wörter
+                      <br />Generiert in 4,1 Sek.
+                    </p>
+                  </aside>
+                </div>
+              </article>
+
+            </div>
+
+            <p className="mt-12 font-mono text-[13px] leading-[1.75] text-ash max-w-[68ch] border-l-2 border-ink/20 pl-4">
+              Lyrvio analysiert das Inserat (Wortwahl, Länge, Tonalität) und passt
+              jeden Brief an. Bei großen Hausverwaltungen wird formaler geschrieben,
+              bei privaten Vermieter-Inseraten persönlicher. Drei Briefe für drei
+              Inserate sehen nie gleich aus.
+            </p>
+          </div>
+        </section>
+
         <SlamCounter />
 
         <section>

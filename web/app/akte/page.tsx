@@ -12,7 +12,7 @@ export const metadata = {
 const fragen = [
   {
     q: "Ist das überhaupt erlaubt?",
-    a: "Ja. Lyrvio macht im Browser exakt das, was du selbst tun würdest — schneller. Es gibt keinen Verstoß gegen Plattform-Regeln, kein Scraping über fremde Server, keine Identitäts-Übergabe. Du erteilst eine schriftliche Vollmacht, dass Lyrvio in deinem Namen Bewerbungen versendet. Das ist seit dem BGB-Vollmachtsrecht völlig legitim.",
+    a: "Die rechtliche Lage ist nuanciert. Lyrvio läuft in deinem eigenen Browser mit deinen Cookies — aus deutscher Vertragssicht agierst rechtlich du, mit Lyrvio als technischer Hilfe (vergleichbar einer Aushilfe die für dich schreibt). Plattformen wie ImmoScout24 verbieten in ihren AGB 'automatisierte Anfragen' — wir argumentieren dass Lyrvio diese Definition nicht erfüllt, weil keine Server-Automation dahintersteht. Diese Sicht teilen alle DACH-Plattformen aber nicht zwingend. Wenn du unsicher bist: prüfe die AGB der Plattformen die du nutzen willst. Mehr Details zur Kontingenz im FAQ 'Was passiert wenn ImmoScout24 Lyrvio blockiert?'",
   },
   {
     q: "Werden meine Daten an einen Server geschickt?",
