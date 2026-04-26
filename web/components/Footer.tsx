@@ -2,136 +2,136 @@ import Link from "next/link";
 import { cityList } from "@/lib/cities";
 
 export function Footer() {
-  const sortedCities = [...cityList].sort((a, b) => b.population - a.population);
+  const sortedCities = [...cityList].sort(
+    (a, b) => b.population - a.population,
+  );
 
   return (
-    <footer className="border-t border-slate-800 bg-[#0a0a0f] py-16">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Cities grid */}
-        <div className="mb-12 pb-12 border-b border-slate-800">
-          <p className="text-xs text-slate-600 uppercase tracking-wider mb-4">Lyrvio aktiv in</p>
-          <div className="flex flex-wrap gap-2">
-            {sortedCities.map((city) => (
-              <Link
-                key={city.slug}
-                href={`/wohnung-finden/${city.slug}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-slate-500 border border-slate-800 hover:border-slate-600 hover:text-slate-300 transition-colors"
-              >
-                <span className="h-1 w-1 rounded-full bg-emerald-500" />
-                {city.name}
-              </Link>
+    <footer className="border-t border-line bg-ink-2">
+      <div className="mx-auto max-w-[1280px] px-6 py-20">
+        {/* Big serif sign-off */}
+        <div className="mb-16">
+          <p className="font-display text-[44px] sm:text-[60px] lg:text-[80px] leading-[0.95] tracking-[-0.025em] text-bone max-w-[14ch]">
+            Sei der&nbsp;
+            <span className="text-bone-2">Erste,</span>
+            <br />
+            nicht der&nbsp;
+            <span className="lime-underline">Achte.</span>
+          </p>
+          <Link href="/#preise" className="btn-lime mt-10 inline-flex">
+            Bot aktivieren · 79&nbsp;€/Monat
+          </Link>
+        </div>
+
+        {/* Columns */}
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pt-12 border-t border-line">
+          <div className="col-span-2 lg:col-span-4">
+            <Link
+              href="/"
+              className="font-display text-[28px] tracking-[-0.02em] text-bone hover:text-lime transition-colors"
+            >
+              Lyrvio<span className="text-lime">.</span>
+            </Link>
+            <p className="mt-4 max-w-[36ch] text-[14px] leading-[1.6] text-bone-2">
+              Der 24/7-Browser-Bot für Wohnungsbewerbungen in deutschen
+              Großstädten.
+            </p>
+            <a
+              href="mailto:support@lyrvio.com"
+              className="mt-4 inline-block text-[13px] text-ash hover:text-bone transition-colors"
+            >
+              support@lyrvio.com
+            </a>
+          </div>
+
+          <FooterCol
+            title="Produkt"
+            items={[
+              { href: "/#wie", label: "Wie es läuft" },
+              { href: "/#preise", label: "Preis" },
+              { href: "/extension", label: "Extension" },
+              { href: "/#faq", label: "FAQ" },
+            ]}
+          />
+          <FooterCol
+            title="Konto"
+            items={[
+              { href: "/dashboard", label: "Dashboard" },
+              { href: "/profile", label: "Profil" },
+              { href: "/checkout", label: "Abo" },
+              { href: "/hilfe", label: "Hilfe-Center" },
+            ]}
+          />
+          <FooterCol
+            title="Rechtliches"
+            items={[
+              { href: "/agb", label: "AGB" },
+              { href: "/datenschutz", label: "Datenschutz" },
+              { href: "/impressum", label: "Impressum" },
+              { href: "/presse", label: "Presse" },
+            ]}
+          />
+        </div>
+
+        {/* Cities */}
+        <div className="mt-16 pt-8 border-t border-line">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-dust mb-4">
+            Aktiv in
+          </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 font-display text-[18px] tracking-[-0.005em] text-bone-2">
+            {sortedCities.map((city, i) => (
+              <span key={city.slug} className="contents">
+                <Link
+                  href={`/wohnung-finden/${city.slug}`}
+                  className="hover:text-lime transition-colors"
+                >
+                  {city.name}
+                </Link>
+                {i < sortedCities.length - 1 && (
+                  <span className="text-dust select-none">·</span>
+                )}
+              </span>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <div className="col-span-2 sm:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <svg
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7"
-              >
-                <path d="M16 2 L16 30" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" />
-                <path d="M8 6 L8 26" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-                <path d="M24 6 L24 26" stroke="#4f46e5" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-                <path d="M8 6 Q16 2 24 6" stroke="#818cf8" strokeWidth="2" fill="none" strokeLinecap="round" />
-                <path d="M8 26 Q16 30 24 26" stroke="#818cf8" strokeWidth="2" fill="none" strokeLinecap="round" />
-                <circle cx="16" cy="14" r="2" fill="#818cf8" />
-              </svg>
-              <span className="text-white font-bold">Lyrvio</span>
-            </div>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              Der 24/7-Bot für Wohnungsbewerbungen in deutschen Großstädten.
-            </p>
-            <div className="mt-4">
-              <a
-                href="mailto:support@lyrvio.com"
-                className="text-slate-500 text-sm hover:text-slate-300 transition-colors"
-              >
-                support@lyrvio.com
-              </a>
-            </div>
-          </div>
-
-          {/* Produkt */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Produkt</h4>
-            <ul className="space-y-3">
-              {[
-                { href: "/#wie-es-funktioniert", label: "Wie es funktioniert" },
-                { href: "/#preise", label: "Preise" },
-                { href: "/extension", label: "Extension installieren" },
-                { href: "/#faq", label: "FAQ" },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-500 text-sm hover:text-slate-300 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Konto */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Konto</h4>
-            <ul className="space-y-3">
-              {[
-                { href: "/dashboard", label: "Dashboard" },
-                { href: "/profile", label: "Profil anlegen" },
-                { href: "/checkout", label: "Abonnement" },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-500 text-sm hover:text-slate-300 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Rechtliches */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Rechtliches</h4>
-            <ul className="space-y-3">
-              {[
-                { href: "/agb", label: "AGB" },
-                { href: "/datenschutz", label: "Datenschutz" },
-                { href: "/impressum", label: "Impressum" },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-slate-500 text-sm hover:text-slate-300 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom */}
-        <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-slate-600 text-sm">
-            © {new Date().getFullYear()} Lyrvio. Alle Rechte vorbehalten.
-          </p>
-          <div className="flex items-center gap-2 text-slate-600 text-sm">
-            <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            Bot-Status: Aktiv
-          </div>
+        {/* Bottom strip */}
+        <div className="mt-12 pt-6 border-t border-line flex flex-col sm:flex-row items-baseline justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-dust">
+          <span>© {new Date().getFullYear()} Lyrvio · Berlin</span>
+          <span className="flex items-center gap-2">
+            <span className="ticker-dot" />
+            Bot aktiv
+          </span>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterCol({
+  title,
+  items,
+}: {
+  title: string;
+  items: { href: string; label: string }[];
+}) {
+  return (
+    <div className="lg:col-span-2">
+      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash mb-4">
+        {title}
+      </p>
+      <ul className="space-y-2.5 text-[14px]">
+        {items.map((it) => (
+          <li key={it.href}>
+            <Link
+              href={it.href}
+              className="text-bone-2 hover:text-bone transition-colors"
+            >
+              {it.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

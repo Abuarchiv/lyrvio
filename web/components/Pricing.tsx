@@ -1,171 +1,139 @@
 import Link from "next/link";
-import { Check, Zap, Trophy } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 const tiers = [
   {
+    id: "aktiv",
     name: "Aktiv-Suche",
     price: "79",
-    period: "pro Monat",
-    description:
-      "Der Bot läuft 24/7 für dich. Scannt 5 Plattformen, bewirbt sich auf passende Wohnungen, alarmiert bei Antworten.",
-    highlight: false,
-    badge: null,
-    icon: Zap,
-    paymentLink:
-      process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_AKTIV || "/checkout?plan=aktiv",
-    cta: "Jetzt aktivieren",
-    features: [
-      "24/7 Bot auf 5 Plattformen",
-      "Personalisierte Bewerbungen mit deinem Profil",
-      "Push + Email-Benachrichtigung bei Antwort",
-      "Dashboard mit Bewerbungs-Pipeline",
-      "Chrome + Firefox Extension",
-      "Bis zu 50 Bewerbungen/Tag",
-      "Suchalgorithmus nach deinen Kriterien",
-      "Monatlich kündbar",
+    suffix: "/Mo",
+    body:
+      "Der Bot läuft 24/7 in deinem Browser. 5 Plattformen, ø 28 Sek. Reaktion, persönliche Anschreiben. Monatlich kündbar — keine Mindestlaufzeit.",
+    inc: [
+      "5 Plattformen parallel",
+      "Anschreiben pro Inserat individuell",
+      "Push + E-Mail bei Antwort",
+      "Pipeline-Dashboard",
+      "Chrome + Firefox",
     ],
+    cta: "Aktivieren",
+    href: "/checkout?plan=aktiv",
+    accent: false,
   },
   {
-    name: "Aktiv-Suche + Erfolgs-Bonus",
+    id: "erfolg",
+    name: "Aktiv + Erfolgs-Bonus",
     price: "79",
-    period: "pro Monat",
-    oneTime: "+ 299€ bei Erfolg",
-    description:
-      "Wie Aktiv-Suche — aber du zahlst nur dann 299€ extra, wenn Lyrvio dir tatsächlich zu einer Wohnung verhilft.",
-    highlight: true,
-    badge: "Beliebteste Wahl",
-    icon: Trophy,
-    paymentLink:
-      process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_PREMIUM || "/checkout?plan=premium",
-    cta: "Premium starten",
-    features: [
+    suffix: "/Mo",
+    extra: "+ 299 € einmal — nur bei Mietvertrag",
+    body:
+      "Wie Aktiv. Plus: 299 € bezahlst du einmalig, wenn du eine Wohnung unterschrieben hast — bei der Lyrvio die Bewerbung versandt hat. Sonst nichts.",
+    inc: [
       "Alles aus Aktiv-Suche",
-      "Priorität-Scanning (schnellste Reaktion)",
-      "KI-optimierte Bewerbungstexte",
-      "Vermieter-Analyse & Profil-Matching",
-      "Persönliche Onboarding-Session",
-      "Priority-Support (Antwort in 2h)",
-      "299€ Erfolgs-Bonus nur bei Mietvertrag",
-      "Volle Transparenz — Nachweis-Protokoll",
+      "Priorisiertes Scanning (kürzere Polling-Zyklen)",
+      "Vermieter-Profil-Matching",
+      "Persönliches Onboarding",
+      "Priority-Support · Antwort < 2 h",
     ],
+    cta: "Premium starten",
+    href: "/checkout?plan=erfolg",
+    accent: true,
   },
 ];
 
 export function Pricing() {
   return (
-    <section id="preise" className="py-24 bg-slate-950/50">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="preise" className="border-y border-line bg-ink-2">
+      <div className="mx-auto max-w-[1280px] px-6 py-24 lg:py-32">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-4 py-1.5 text-sm text-slate-400 mb-4">
-            <span>Transparent & fair</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+          <div className="lg:col-span-3">
+            <div className="eyebrow">
+              <span className="dot" />
+              Preis
+            </div>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Ein Preis.{" "}
-            <span className="gradient-text">Kein Bullshit.</span>
-          </h2>
-          <p className="text-lg text-slate-400 max-w-xl mx-auto">
-            79€/Monat für den Bot. Beim Erfolgsmodell zahlst du 299€ extra —
-            aber nur wenn du wirklich eine Wohnung findest.
-          </p>
+          <div className="lg:col-span-9">
+            <h2 className="font-display text-[40px] sm:text-[56px] lg:text-[64px] leading-[1] tracking-[-0.02em] text-bone">
+              Ein Preis. Ehrlich.
+              <br />
+              <span className="text-bone-2">
+                Oder nur, wenn es klappt.
+              </span>
+            </h2>
+          </div>
         </div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {tiers.map((tier, i) => {
-            const Icon = tier.icon;
-            return (
-              <div
-                key={i}
-                className={`relative flex flex-col rounded-2xl border p-8 ${
-                  tier.highlight
-                    ? "border-indigo-500/50 bg-slate-900 card-glow"
-                    : "border-slate-800 bg-slate-900/50"
-                }`}
-              >
-                {tier.badge && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-indigo-600 text-white border-0 px-3 py-1 text-xs font-semibold">
-                      {tier.badge}
-                    </Badge>
-                  </div>
+        {/* Tiers */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-line border border-line">
+          {tiers.map((t) => (
+            <div
+              key={t.id}
+              className={`bg-ink p-8 lg:p-10 flex flex-col ${
+                t.accent ? "lime-shadow" : ""
+              }`}
+            >
+              <div className="flex items-baseline justify-between mb-8">
+                <h3 className="font-display text-[26px] tracking-[-0.015em] text-bone">
+                  {t.name}
+                </h3>
+                {t.accent && (
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-lime">
+                    Empfohlen
+                  </span>
                 )}
-
-                {/* Icon + Name */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className={`h-10 w-10 rounded-xl flex items-center justify-center ${
-                      tier.highlight
-                        ? "bg-indigo-600"
-                        : "bg-slate-800"
-                    }`}
-                  >
-                    <Icon
-                      className={`h-5 w-5 ${
-                        tier.highlight ? "text-white" : "text-indigo-400"
-                      }`}
-                    />
-                  </div>
-                  <h3 className="text-lg font-bold text-white">{tier.name}</h3>
-                </div>
-
-                {/* Price */}
-                <div className="mb-2">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-5xl font-bold text-white">{tier.price}€</span>
-                    <span className="text-slate-400 text-sm">/{tier.period}</span>
-                  </div>
-                  {tier.oneTime && (
-                    <div className="mt-1 text-sm text-emerald-400 font-medium">
-                      {tier.oneTime}
-                    </div>
-                  )}
-                </div>
-
-                <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                  {tier.description}
-                </p>
-
-                {/* CTA */}
-                <Link href={tier.paymentLink} className="mb-8">
-                  <Button
-                    size="lg"
-                    className={`w-full ${
-                      tier.highlight
-                        ? "bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-600/30"
-                        : "bg-slate-800 hover:bg-slate-700 text-slate-200"
-                    }`}
-                  >
-                    {tier.cta}
-                  </Button>
-                </Link>
-
-                {/* Features */}
-                <ul className="space-y-3">
-                  {tier.features.map((feature, j) => (
-                    <li key={j} className="flex items-start gap-3 text-sm">
-                      <Check
-                        className={`h-4 w-4 mt-0.5 flex-shrink-0 ${
-                          tier.highlight ? "text-indigo-400" : "text-slate-500"
-                        }`}
-                      />
-                      <span className="text-slate-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            );
-          })}
+
+              <div className="mb-2">
+                <span className="font-display text-[64px] sm:text-[80px] leading-none tracking-[-0.025em] text-bone">
+                  {t.price}&nbsp;€
+                </span>
+                <span className="font-mono text-[14px] tracking-[0.12em] text-ash ml-2">
+                  {t.suffix}
+                </span>
+              </div>
+              {t.extra && (
+                <div className="font-mono text-[12px] uppercase tracking-[0.14em] text-amber mb-4">
+                  {t.extra}
+                </div>
+              )}
+
+              <p className="text-[15px] leading-[1.6] text-bone-2 mt-4 max-w-[44ch]">
+                {t.body}
+              </p>
+
+              <ul className="mt-8 space-y-3 text-[14px] text-bone-2">
+                {t.inc.map((line, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-[8px] inline-block w-3 h-px bg-lime flex-shrink-0" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 pt-8 border-t border-line">
+                <Link
+                  href={t.href}
+                  className={t.accent ? "btn-lime w-full" : "btn-ghost w-full"}
+                >
+                  {t.cta} →
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Guarantee */}
-        <div className="mt-12 text-center">
-          <p className="text-slate-600 text-sm">
-            Monatlich kündbar · Keine versteckten Kosten · DSGVO-konform ·
-            Zahlung via Stripe
-          </p>
+        {/* Foot-note */}
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-dust">
+              Kleingedrucktes
+            </span>
+          </div>
+          <div className="lg:col-span-9 max-w-[60ch] text-[13px] leading-[1.6] text-ash">
+            Monatlich kündbar. Keine Setup-Gebühr. Keine versteckten Kosten.
+            Stripe-gesichert. Kein Erfolg → kein Bonus. Wir verkaufen kein
+            Versprechen, wir verkaufen Geschwindigkeit.
+          </div>
         </div>
       </div>
     </section>

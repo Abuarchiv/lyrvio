@@ -1,153 +1,159 @@
 import Link from "next/link";
-import { ArrowRight, Zap, Clock, TrendingUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 hero-gradient">
-      {/* Background geometry */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-indigo-600/5 blur-3xl" />
-        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-violet-600/10 blur-2xl" />
-        <div className="absolute bottom-20 left-10 w-48 h-48 rounded-full bg-indigo-500/10 blur-2xl" />
+    <section className="relative hero-wash">
+      <span className="scan-line" aria-hidden />
+      <div className="mx-auto max-w-[1280px] px-6 pt-14 pb-24 lg:pt-24 lg:pb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* LEFT — Editorial Headline */}
+          <div className="lg:col-span-7">
+            <div className="eyebrow mb-6">
+              <span className="dot" />
+              Wohnungsmarkt · Berlin / München · 2026
+            </div>
 
-        {/* Grid pattern */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-[0.03]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
+            <h1 className="font-display text-[44px] sm:text-[60px] lg:text-[84px] leading-[0.96] tracking-[-0.025em] text-bone">
+              Eine Wohnung in Berlin
+              <br />
+              ist <em className="not-italic"><span className="lime-underline">4&nbsp;Minuten</span></em> online.
+              <br />
+              <span className="text-bone-2">Du schreibst in der 5.</span>
+            </h1>
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Badge */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-300">
-            <Zap className="h-3.5 w-3.5 fill-indigo-400 text-indigo-400" />
-            <span>Jetzt in Beta — limitierte Plätze</span>
-          </div>
-        </div>
+            <p className="mt-10 max-w-[58ch] text-[18px] sm:text-[19px] leading-[1.55] text-bone-2">
+              Bei jedem Inserat melden sich 200 bis 800 Leute. Vermieter laden
+              acht ein — die ersten acht. Lyrvio ist der Browser-Bot, der für
+              dich schreibt, sobald die Anzeige live geht. Auch um 03:14 Uhr.
+              Auch im Meeting. Auch wenn du gerade nicht kannst.
+            </p>
 
-        {/* Headline */}
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
-            <span className="text-white">Lass den Bot</span>
-            <br />
-            <span className="gradient-text">bewerben.</span>
-            <br />
-            <span className="text-white">Sei der erste.</span>
-          </h1>
-
-          <p className="text-xl sm:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            In Berlin und München laufen{" "}
-            <span className="text-slate-200 font-medium">800 Bewerbungen</span>{" "}
-            pro Wohnung ein. Vermieter laden die ersten 8 ein. Lyrvio läuft{" "}
-            <span className="text-slate-200 font-medium">24/7 in deinem Browser</span>{" "}
-            und bewirbt sich sobald ein passendes Inserat live geht.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Link href="/#preise">
-              <Button
-                size="xl"
-                className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/30 w-full sm:w-auto"
+            <div className="mt-12 flex flex-wrap items-center gap-5">
+              <Link href="/#preise" className="btn-lime">
+                Bot aktivieren · 79&nbsp;€/Monat
+              </Link>
+              <Link
+                href="/#wie"
+                className="inline-flex items-center gap-2 text-[15px] text-bone-2 hover:text-lime transition-colors"
               >
-                Bot aktivieren — 79€/Mo
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/#wie-es-funktioniert">
-              <Button
-                size="xl"
-                variant="outline"
-                className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white w-full sm:w-auto"
-              >
-                Wie funktioniert das?
-              </Button>
-            </Link>
+                Wie er funktioniert
+                <ArrowDown className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <p className="mt-10 max-w-[60ch] font-mono text-[11px] uppercase tracking-[0.16em] text-dust">
+              Quelle: ImmoScout24 Public Insights · Q1&nbsp;2026 · Median über
+              Berlin-Mitte, Friedrichshain, Prenzlauer&nbsp;Berg
+            </p>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
-            <div className="flex flex-col items-center gap-1 p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-              <div className="flex items-center gap-1.5 text-indigo-400">
-                <Clock className="h-4 w-4" />
-              </div>
-              <div className="text-2xl font-bold text-white">&lt; 30s</div>
-              <div className="text-xs text-slate-500 text-center">Reaktionszeit nach Inserat</div>
-            </div>
-            <div className="flex flex-col items-center gap-1 p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-              <div className="flex items-center gap-1.5 text-emerald-400">
-                <TrendingUp className="h-4 w-4" />
-              </div>
-              <div className="text-2xl font-bold text-white">5×</div>
-              <div className="text-xs text-slate-500 text-center">mehr Besichtigungs-Einladungen</div>
-            </div>
-            <div className="flex flex-col items-center gap-1 p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-              <div className="flex items-center gap-1.5 text-violet-400">
-                <Zap className="h-4 w-4" />
-              </div>
-              <div className="text-2xl font-bold text-white">5</div>
-              <div className="text-xs text-slate-500 text-center">Plattformen gleichzeitig</div>
-            </div>
-          </div>
-        </div>
-
-        {/* UI Preview / Abstract Visual */}
-        <div className="mt-20 relative max-w-3xl mx-auto">
-          <div className="animate-float rounded-2xl border border-slate-800 bg-slate-900/80 p-6 card-glow">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-2.5 w-2.5 rounded-full bg-red-500" />
-              <div className="h-2.5 w-2.5 rounded-full bg-yellow-500" />
-              <div className="h-2.5 w-2.5 rounded-full bg-green-500" />
-              <div className="ml-2 h-2 w-48 rounded-full bg-slate-700" />
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="h-8 w-8 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                  <Zap className="h-4 w-4 text-emerald-400" />
-                </div>
-                <div>
-                  <div className="text-sm font-medium text-emerald-300">Neues Inserat gefunden</div>
-                  <div className="text-xs text-slate-500">Prenzlauer Berg • 62m² • 1.150€ kalt</div>
-                </div>
-                <div className="ml-auto text-xs text-emerald-400 font-medium">vor 12s</div>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-                <div className="h-8 w-8 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
-                  <ArrowRight className="h-4 w-4 text-indigo-400" />
-                </div>
-                <div>
-                  <div className="text-sm font-medium text-indigo-300">Bewerbung gesendet</div>
-                  <div className="text-xs text-slate-500">Personalisiert mit deinem Profil</div>
-                </div>
-                <div className="ml-auto text-xs text-indigo-400 font-medium">vor 8s</div>
-              </div>
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
-                <div className="h-8 w-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-4 w-4 text-slate-400" />
-                </div>
-                <div>
-                  <div className="text-sm font-medium text-slate-300">Warte auf Antwort</div>
-                  <div className="text-xs text-slate-500">ImmoScout24 • Mitte</div>
-                </div>
-                <div className="ml-auto">
-                  <div className="h-1.5 w-16 rounded-full bg-slate-700 overflow-hidden">
-                    <div className="h-full w-2/3 rounded-full bg-indigo-500 animate-pulse" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* RIGHT — Live Activity */}
+          <aside className="lg:col-span-5 lg:mt-2">
+            <LiveActivity />
+          </aside>
         </div>
       </div>
     </section>
+  );
+}
+
+function LiveActivity() {
+  return (
+    <div className="card editorial-shadow overflow-hidden">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
+        <div className="flex items-center gap-2.5">
+          <span className="ticker-dot" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-bone-2">
+            Live · Bot-Aktivität
+          </span>
+        </div>
+        <span className="font-mono text-[10px] tracking-[0.14em] text-dust">
+          BERLIN
+        </span>
+      </div>
+
+      {/* Stream */}
+      <div className="divide-y divide-line">
+        <ActivityRow
+          when="vor 12 Sek."
+          tag="Inserat erkannt"
+          tagTone="lime"
+          title="2-Zi · Prenzlauer Berg · 62 m² · 1.150 €"
+          line="Helle Altbauwohnung, 2. OG, Balkon nach Hof. Selbstauskunft + Schufa erwünscht."
+        />
+        <ActivityRow
+          when="vor 8 Sek."
+          tag="Bewerbung versandt"
+          tagTone="amber"
+          title="Anschreiben generiert in 3,2 Sek."
+          line="Persönliche Vorstellung · Beruf · Einzugsdatum · Ihre Anforderungen abgehakt."
+        />
+        <ActivityRow
+          when="vor 4 Sek."
+          tag="Wartet auf Antwort"
+          tagTone="bone"
+          title="ImmoScout24 · Mitte"
+          line="Bewerbungs-ID #4781 · Position: 2 von vermutl. 600+"
+          progress
+        />
+      </div>
+
+      {/* Footer */}
+      <div className="border-t border-line bg-ink-3 px-5 py-3 flex items-center justify-between">
+        <span className="font-mono text-[10px] tracking-[0.14em] text-ash">
+          Heute: <span className="text-bone-2">47 Bewerbungen versandt</span>
+        </span>
+        <span className="font-mono text-[10px] tracking-[0.14em] text-ash">
+          ⌀ Reaktion: <span className="text-lime">28 s</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+type Tone = "lime" | "amber" | "bone";
+
+function ActivityRow({
+  when,
+  tag,
+  tagTone,
+  title,
+  line,
+  progress,
+}: {
+  when: string;
+  tag: string;
+  tagTone: Tone;
+  title: string;
+  line: string;
+  progress?: boolean;
+}) {
+  const toneClass: Record<Tone, string> = {
+    lime: "text-lime",
+    amber: "text-amber",
+    bone: "text-bone-2",
+  };
+  return (
+    <div className="ticker-row px-5 py-4">
+      <div className="flex items-center justify-between mb-1.5">
+        <span
+          className={`font-mono text-[10px] uppercase tracking-[0.18em] ${toneClass[tagTone]}`}
+        >
+          {tag}
+        </span>
+        <span className="font-mono text-[10px] tracking-[0.14em] text-dust">
+          {when}
+        </span>
+      </div>
+      <div className="text-[14px] text-bone leading-snug">{title}</div>
+      <div className="mt-0.5 text-[12.5px] text-ash leading-snug">{line}</div>
+      {progress && (
+        <div className="mt-3 h-[2px] bg-line overflow-hidden">
+          <div className="h-full w-2/3 bg-lime" />
+        </div>
+      )}
+    </div>
   );
 }

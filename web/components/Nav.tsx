@@ -2,154 +2,81 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-slate-800/60 bg-[#0a0a0f]/80 backdrop-blur-md">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-line bg-ink/85 backdrop-blur-xl">
+      <div className="mx-auto max-w-[1280px] px-6">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative flex h-8 w-8 items-center justify-center">
-              <svg
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8"
-              >
-                {/* Stilisierte Lyra */}
-                <path
-                  d="M16 2 L16 30"
-                  stroke="#4f46e5"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M8 6 L8 26"
-                  stroke="#4f46e5"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  opacity="0.7"
-                />
-                <path
-                  d="M24 6 L24 26"
-                  stroke="#4f46e5"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  opacity="0.7"
-                />
-                <path
-                  d="M8 6 Q16 2 24 6"
-                  stroke="#818cf8"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M8 26 Q16 30 24 26"
-                  stroke="#818cf8"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-                <circle cx="16" cy="14" r="2" fill="#818cf8" />
-                <circle cx="16" cy="20" r="1.5" fill="#4f46e5" opacity="0.8" />
-              </svg>
-            </div>
-            <span className="text-lg font-bold tracking-tight text-white">
-              Lyrvio
-            </span>
+          <Link
+            href="/"
+            className="font-display text-[26px] leading-none tracking-[-0.02em] text-bone hover:text-lime transition-colors"
+            aria-label="Lyrvio · Startseite"
+          >
+            Lyrvio<span className="text-lime">.</span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-            <Link href="/#wie-es-funktioniert" className="hover:text-white transition-colors">
-              Wie es funktioniert
+          <nav className="hidden md:flex items-center gap-8 text-[14px] text-bone-2">
+            <Link href="/#wie" className="hover:text-bone transition-colors">
+              Wie es läuft
             </Link>
-            <Link href="/#preise" className="hover:text-white transition-colors">
-              Preise
+            <Link href="/#preise" className="hover:text-bone transition-colors">
+              Preis
             </Link>
-            <Link href="/#faq" className="hover:text-white transition-colors">
-              FAQ
+            <Link href="/wohnung-finden/berlin" className="hover:text-bone transition-colors">
+              Städte
             </Link>
-            <Link href="/extension" className="hover:text-white transition-colors">
-              Extension
+            <Link href="/hilfe" className="hover:text-bone transition-colors">
+              Hilfe
             </Link>
           </nav>
 
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link href="/dashboard">
-              <Button variant="ghost" size="sm">
-                Login
-              </Button>
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              href="/dashboard"
+              className="text-[14px] text-ash hover:text-bone transition-colors"
+            >
+              Login
             </Link>
-            <Link href="/#preise">
-              <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700">
-                <Star className="h-3.5 w-3.5" />
-                Jetzt starten
-              </Button>
+            <Link href="/#preise" className="btn-lime !py-2 !px-4 !text-[13px]">
+              Bot aktivieren
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-slate-400 hover:text-white"
+            className="md:hidden p-2 text-bone-2 hover:text-bone"
             onClick={() => setOpen(!open)}
-            aria-label="Menu"
+            aria-label="Menü"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden border-t border-slate-800 bg-[#0a0a0f] px-4 py-4 space-y-3">
-          <Link
-            href="/#wie-es-funktioniert"
-            className="block text-slate-400 hover:text-white py-2"
-            onClick={() => setOpen(false)}
-          >
-            Wie es funktioniert
-          </Link>
-          <Link
-            href="/#preise"
-            className="block text-slate-400 hover:text-white py-2"
-            onClick={() => setOpen(false)}
-          >
-            Preise
-          </Link>
-          <Link
-            href="/#faq"
-            className="block text-slate-400 hover:text-white py-2"
-            onClick={() => setOpen(false)}
-          >
-            FAQ
-          </Link>
-          <Link
-            href="/extension"
-            className="block text-slate-400 hover:text-white py-2"
-            onClick={() => setOpen(false)}
-          >
-            Extension installieren
-          </Link>
-          <div className="pt-2 flex gap-3">
-            <Link href="/dashboard" className="flex-1">
-              <Button variant="outline" size="sm" className="w-full">
-                Login
-              </Button>
+        <div className="md:hidden border-t border-line bg-ink px-6 py-6 space-y-4">
+          {[
+            { href: "/#wie", label: "Wie es läuft" },
+            { href: "/#preise", label: "Preis" },
+            { href: "/wohnung-finden/berlin", label: "Städte" },
+            { href: "/hilfe", label: "Hilfe" },
+            { href: "/dashboard", label: "Login" },
+          ].map((it) => (
+            <Link
+              key={it.href}
+              href={it.href}
+              onClick={() => setOpen(false)}
+              className="block text-bone-2 hover:text-bone py-1"
+            >
+              {it.label}
             </Link>
-            <Link href="/#preise" className="flex-1">
-              <Button size="sm" className="w-full bg-indigo-600 hover:bg-indigo-700">
-                Starten
-              </Button>
-            </Link>
-          </div>
+          ))}
+          <Link href="/#preise" onClick={() => setOpen(false)} className="btn-lime w-full">
+            Bot aktivieren
+          </Link>
         </div>
       )}
     </header>

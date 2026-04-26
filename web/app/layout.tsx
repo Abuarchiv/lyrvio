@@ -1,28 +1,47 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
+  variable: "--font-geist",
   display: "swap",
 });
 
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  axes: ["opsz"],
+});
+
 export const metadata: Metadata = {
-  title: "Lyrvio — Der Wohnungs-Bot für schnelle Bewerbungen",
+  metadataBase: new URL("https://lyrvio.pages.dev"),
+  title: {
+    default: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
+    template: "%s · Lyrvio",
+  },
   description:
-    "In Berlin und München laufen 800 Bewerbungen pro Wohnung ein. Lyrvio läuft 24/7 in deinem Browser und sendet Bewerbungen sobald passende Wohnungen online gehen. Sei der Erste.",
+    "In Berlin werden Wohnungen 4 Minuten nach dem Inserat bereits ausgebucht. Lyrvio läuft 24/7 in deinem Browser und schreibt für dich, wenn du gerade nicht kannst.",
   keywords: [
     "Wohnungssuche",
+    "Wohnungs-Bot",
+    "ImmoScout24 Bot",
+    "automatische Bewerbung",
     "Berlin Wohnung",
     "München Wohnung",
-    "automatische Bewerbung",
-    "Wohnungs-Bot",
     "Lyrvio",
   ],
   openGraph: {
-    title: "Lyrvio — Sei der Erste. Immer.",
+    title: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
     description:
-      "24/7-Bot sendet Wohnungsbewerbungen sobald neue Inserate live gehen. 5× mehr Besichtigungs-Einladungen.",
+      "In Berlin werden Wohnungen 4 Minuten nach dem Inserat bereits ausgebucht. Lyrvio läuft 24/7 in deinem Browser.",
     url: "https://lyrvio.pages.dev",
     siteName: "Lyrvio",
     locale: "de_DE",
@@ -30,13 +49,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lyrvio — Wohnungs-Bot",
-    description: "24/7 automatische Wohnungsbewerbungen. Sei der Erste.",
+    title: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
+    description:
+      "In Berlin werden Wohnungen 4 Minuten nach dem Inserat ausgebucht. Lyrvio läuft 24/7.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -45,17 +62,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${inter.className} h-full`}>
+    <html
+      lang="de"
+      className={`${geist.variable} ${geistMono.variable} ${fraunces.variable}`}
+    >
       <head>
-        {/* Cloudflare Web Analytics — kostenlos, DSGVO-konform, kein Cookie-Banner */}
-        {/* Token: ed3d170682404aa2a3aa21f928f7f31b | Site: lyrvio.pages.dev */}
+        {/* Cloudflare Web Analytics — DSGVO-konform, kein Cookie-Banner */}
         <script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "ed3d170682404aa2a3aa21f928f7f31b"}'
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#0a0a0f] text-slate-50 antialiased">
+      <body className="min-h-screen bg-ink text-bone antialiased grain">
         {children}
       </body>
     </html>

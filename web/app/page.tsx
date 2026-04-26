@@ -5,12 +5,14 @@ import { Pricing } from "@/components/Pricing";
 import { SocialProof } from "@/components/SocialProof";
 import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
+import { IssueHeader } from "@/components/IssueHeader";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0f]">
+    <>
+      <IssueHeader />
       <Nav />
-      <main className="flex-1">
+      <main>
         <Hero />
         <HowItWorks />
         <SocialProof />
@@ -18,6 +20,6 @@ export default function HomePage() {
         <Faq />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
