@@ -89,37 +89,43 @@ export function Hero() {
           <span className="korr-replace">verlierst.</span>
         </h1>
 
-        {/* Untertitel-Zeile + Berlin-Map */}
-        <div className="grid grid-cols-12 gap-6 lg:gap-12 mb-12 reveal reveal-1">
+        {/* Plain-Sprech: Was Lyrvio konkret macht */}
+        <div className="grid grid-cols-12 gap-6 lg:gap-12 mb-10 reveal reveal-1">
           <div className="col-span-12 lg:col-span-7">
-            <p className="font-mono text-[15px] leading-[1.7] text-ink max-w-[58ch]">
-              200 bis 800 Bewerbungen pro Inserat. Vermieter laden die ersten
-              acht ein. Wer nicht innerhalb von Minuten schreibt, wird nicht
-              gelesen. Lyrvio ist kein Helfer. Lyrvio ist die{" "}
-              <span className="marker">Waffe</span>, die für dich schießt —
-              auch um 03:14&nbsp;Uhr, auch im Meeting, auch wenn du nicht kannst.
+            <p className="font-mono text-[16px] sm:text-[17px] leading-[1.6] text-ink max-w-[58ch]">
+              <strong className="text-stamp">Lyrvio ist eine Browser-Extension.</strong>{" "}
+              Sie scannt 24/7 ImmoScout24, Immowelt, Immonet und
+              eBay-Kleinanzeigen. Bei einem passenden Inserat schreibt sie in
+              deinem Namen — <span className="marker">in 28 Sekunden, persönlich, mit deinem Profil.</span>{" "}
+              Du landest auf Position 2 statt 487.
             </p>
+          </div>
+        </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+        {/* Sub-Sektion mit CTA + Map */}
+        <div className="grid grid-cols-12 gap-6 lg:gap-12 mb-12 reveal reveal-2">
+          <div className="col-span-12 lg:col-span-7">
+            <div className="flex flex-wrap items-center gap-4">
               <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp">
                 Bot beauftragen · 79 €/Mo
               </Link>
               <Link href="/protokoll" className="btn-secondary">
-                Protokoll lesen →
+                So funktioniert's →
               </Link>
             </div>
 
-            <div className="mt-8 flex items-center gap-3 flex-wrap">
+            <div className="mt-6 flex items-center gap-3 flex-wrap">
               <span className="tag -outline">Monatlich kündbar</span>
-              <span className="tag -yellow">299 € erst bei Mietvertrag</span>
+              <span className="tag -yellow">14 Tage Geld-zurück</span>
               <span className="tag -outline">Chrome + Firefox</span>
+              <span className="tag -outline">DSGVO · DE-Hosting</span>
             </div>
 
-            {/* § Befund - Folge - Eingriff in horizontaler Reihe */}
-            <div className="mt-12 grid grid-cols-3 gap-5 border-t-2 border-ink pt-6">
-              <Para n="01" titel="Befund" body="487 Bewerbungen im Median pro 2-Zi-Inserat in Berlin-Mitte." />
-              <Para n="02" titel="Folge"  body="Wer nach 60 Min schreibt, hat unter 1,6 % Einladungs-Chance." />
-              <Para n="03" titel="Eingriff" body="Lyrvio reagiert in 28 s. Nicht der Erste — lange vor dem Achten." />
+            {/* Klare Plain-Sprech-Trio */}
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-5 border-t-2 border-ink pt-7">
+              <Para n="01" titel="Das Problem"   body="487 Bewerbungen im Median pro 2-Zi-Inserat in Berlin-Mitte." />
+              <Para n="02" titel="Die Folge"     body="Wer nach 60 Min schreibt, hat unter 1,6 % Einladungs-Chance." />
+              <Para n="03" titel="Lyrvio macht das" body="Reagiert in 28 s — nicht der Erste, aber lange vor dem Achten." />
             </div>
           </div>
 
@@ -142,6 +148,50 @@ export function Hero() {
               </span>
             </div>
           </aside>
+        </div>
+      </div>
+
+      {/* SO GEHT'S — 3 klare Schritte in Plain-Sprech */}
+      <div className="border-t-2 border-ink bg-paper">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 lg:py-20">
+          <div className="grid grid-cols-12 gap-8 mb-10">
+            <div className="col-span-12 lg:col-span-5">
+              <div className="label mb-3">§ Einrichtung</div>
+              <h2 className="font-display text-[36px] sm:text-[52px] leading-[0.95] tracking-[-0.03em] text-ink">
+                In 7&nbsp;Minuten
+                <br />
+                <em>einsatzbereit.</em>
+              </h2>
+            </div>
+            <div className="col-span-12 lg:col-span-7 flex items-end">
+              <p className="font-mono text-[14px] sm:text-[15px] leading-[1.6] text-ink max-w-[58ch]">
+                Du musst kein Tech-Genie sein. Drei Schritte, sieben Minuten,
+                dann läuft der Bot.{" "}
+                <span className="marker">Du machst nichts mehr — er schreibt.</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <Step
+              num="01"
+              dauer="2 Min"
+              titel="Extension installieren"
+              body="Chrome Web Store oder Firefox AMO. Ein Klick. Lyrvio läuft im eigenen Browser, niemals serverseitig."
+            />
+            <Step
+              num="02"
+              dauer="5 Min"
+              titel="Profil + Vollmacht"
+              body="Du legst dein Mieter-Profil an (Beruf, Einkommen, Schufa) und unterschreibst digital die Vollmacht."
+            />
+            <Step
+              num="03"
+              dauer="läuft 24/7"
+              titel="Bot scant + bewirbt sich"
+              body="ImmoScout, Immowelt, Immonet, eBay-K. Bei Treffer: Anschreiben generieren, versenden, dich informieren."
+            />
+          </div>
         </div>
       </div>
 
@@ -186,14 +236,39 @@ export function Hero() {
 function Para({ n, titel, body }: { n: string; titel: string; body: string }) {
   return (
     <div>
-      <div className="flex items-baseline gap-2 mb-2">
+      <div className="flex items-baseline gap-2 mb-2 flex-wrap">
         <span className="font-display text-[28px] text-stamp leading-none">§ {n}</span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ash">
+        <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink font-bold">
           {titel}
         </span>
       </div>
       <p className="font-mono text-[12.5px] leading-[1.65] text-ink">{body}</p>
     </div>
+  );
+}
+
+function Step({
+  num,
+  dauer,
+  titel,
+  body,
+}: {
+  num: string;
+  dauer: string;
+  titel: string;
+  body: string;
+}) {
+  return (
+    <article className="border-2 border-ink bg-paper-warm p-6 lg:p-7 relative">
+      <div className="flex items-baseline justify-between mb-4">
+        <span className="step-num">{num}</span>
+        <span className="tag -outline">{dauer}</span>
+      </div>
+      <h3 className="font-display text-[22px] sm:text-[26px] leading-[1.15] tracking-[-0.02em] text-ink mb-3">
+        {titel}
+      </h3>
+      <p className="font-mono text-[13px] leading-[1.65] text-ink">{body}</p>
+    </article>
   );
 }
 

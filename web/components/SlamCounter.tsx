@@ -28,21 +28,23 @@ export function SlamCounter() {
           <div className="col-span-12 lg:col-span-7">
             <div className="label !text-paper-2 mb-6">
               <span style={{ color: "var(--hi)" }}>■</span>
-              Während du das hier liest
+              Jetzt gerade · DACH-Großstädte
             </div>
             <h2 className="font-display text-[40px] sm:text-[60px] lg:text-[80px] leading-[0.95] tracking-[-0.035em] text-paper">
-              Hat ein Vermieter
+              In den letzten 5&nbsp;Minuten:
               <br />
-              gerade <em className="accent">die ersten acht</em>
+              <em className="accent">{count} neue Wohnungen</em>
               <br />
-              ausgesucht.
+              live gegangen.
             </h2>
-            <p className="mt-8 font-mono text-[14px] leading-[1.7] text-paper-2 max-w-[58ch]">
-              In den letzten <span className="accent font-bold">5 Minuten</span>{" "}
-              wurden in den vier größten deutschen Städten{" "}
-              <span className="accent font-bold">{count} Wohnungs-Inserate</span>{" "}
-              veröffentlicht. <span className="text-paper">Alle bis 22:00 Uhr</span>{" "}
-              voll. Wer in den nächsten 4 Minuten nicht schreibt, ist raus.
+            <p className="mt-8 font-mono text-[15px] leading-[1.7] text-paper-2 max-w-[60ch]">
+              In <span className="accent font-bold">4 Minuten</span> sind die
+              meisten davon ausgebucht — Vermieter laden die ersten acht ein, dann
+              schließen sie das Inserat.{" "}
+              <span className="text-paper font-bold">
+                Lyrvio schreibt für dich, in 28 Sekunden, in deinem Namen — auch
+                wenn du gerade nicht am Rechner bist.
+              </span>
             </p>
           </div>
 
