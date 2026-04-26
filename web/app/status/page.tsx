@@ -30,11 +30,11 @@ interface ServiceStatus {
 }
 
 const SERVICES: Omit<ServiceStatus, "status" | "latency" | "lastChecked">[] = [
-  { name: "Web App", url: "https://lyrvio.com" },
+  { name: "Web App", url: "https://lyrvio.pages.dev" },
   { name: "API", url: "https://lyrvio-api.workers.dev/health" },
   { name: "Datenbank", url: "https://lyrvio-api.workers.dev/health/db" },
   { name: "E-Mail (Resend)", url: "https://lyrvio-api.workers.dev/health/email" },
-  { name: "KI (OpenRouter)", url: "https://openrouter.ai/api/v1/models" },
+  { name: "KI (Cloudflare AI)", url: "https://lyrvio-api.workers.dev/health" },
   { name: "Zahlung (Stripe)", url: "https://status.stripe.com/api/v2/status.json" },
 ];
 

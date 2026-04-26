@@ -124,31 +124,30 @@ oder: Grafana + Prometheus-Exporter (wenn Hetzner-Server steht)
 | Trial → Paid | Conversion | >15% |
 | Paid → 3-Monats-Retention | Retention | >70% |
 
-**Datenquelle:** Plausible Analytics (Next.js, DSGVO-konform, EU-gehostet)
-Setup: `NEXT_PUBLIC_PLAUSIBLE_DOMAIN=lyrvio.com`
+**Datenquelle:** Cloudflare Web Analytics (kostenlos, DSGVO-konform, kein Cookie-Banner)
+Aktivierung: Cloudflare Dashboard → Web Analytics → Add Site → lyrvio.pages.dev
+Kein Script-Tag nötig (automatisch injiziert wenn über CF Pages deployed).
 
-Custom Events in Next.js:
+Custom Events via Cloudflare Analytics Engine (kostenlos 100K Events/Tag):
 ```typescript
-// Plausible Custom Events
-declare const plausible: (event: string, options?: { props?: Record<string, string> }) => void;
-
-// Nach erstem Bewerbungs-Send:
-plausible('Application Sent', { props: { platform: 'is24' } });
-
-// Nach Kauf:
-plausible('Subscription Started', { props: { plan: 'aktiv' } });
+// In Cloudflare Worker (env.METRICS ist das Analytics Engine Binding)
+env.METRICS.writeDataPoint({
+  blobs: ['application_sent', 'is24'],
+  doubles: [1],
+  indexes: ['event'],
+});
 ```
 
 ### Dashboard C: Error-Rate
 
 | Metrik | Quelle | SLO |
 |---|---|---|
-| Error-Rate API (5xx) | GlitchTip | <0,1% |
-| Error-Rate Web (JS-Errors) | GlitchTip | <0,5% |
-| Error-Rate Bot (Extension) | GlitchTip | <1% |
-| Neue unique Errors/Tag | GlitchTip | <5 |
+| Error-Rate API (5xx) | Sentry Free | <0,1% |
+| Error-Rate Web (JS-Errors) | Sentry Free | <0,5% |
+| Error-Rate Bot (Extension) | Sentry Free | <1% |
+| Neue unique Errors/Tag | Sentry Free | <5 |
 
-GlitchTip hat eingebautes Dashboard — direkt unter https://errors.lyrvio.com verfügbar.
+Sentry Free Tier hat eingebautes Dashboard — direkt unter https://sentry.io verfügbar.
 
 ### Dashboard D: P95-Latenz
 
@@ -166,9 +165,9 @@ Abfrage via Workers Analytics Query API (kostenlos).
 
 ## 4. Alerting-Konfiguration
 
-### GlitchTip → Telegram (Abu's Bot)
+### Sentry → Telegram (Abu's Bot)
 
-GlitchTip Webhook → Abu's Telegram-Bot:
+Sentry Webhook → Abu's Telegram-Bot:
 
 ```json
 {
@@ -181,7 +180,7 @@ GlitchTip Webhook → Abu's Telegram-Bot:
 }
 ```
 
-Setup: GlitchTip → Project → Alerts → Add Alert Rule:
+Setup: Sentry → Project → Alerts → Add Alert Rule:
 - Trigger: Neue Issue ODER Error-Rate > 10/5min
 - Notification: Webhook (Telegram)
 
@@ -205,7 +204,7 @@ Cloudflare Dashboard → Notifications → Add:
 **Production:** 
 - Cloudflare Workers Logs: 7 Tage kostenlos in Dashboard
 - Strukturierte Logs via `console.log(JSON.stringify({...}))` im Worker
-- GlitchTip sammelt alle Error-Logs automatisch
+- Sentry Free sammelt alle Error-Logs automatisch
 
 **Log-Format im API-Worker:**
 ```typescript
@@ -239,5 +238,5 @@ console.log(JSON.stringify({
 
 **SLO-Monitoring:**
 - UptimeRobot: Uptime-Tracking automatisch
-- GlitchTip: Error-Rate-Tracking automatisch  
+- Sentry Free: Error-Rate-Tracking automatisch  
 - Cloudflare Analytics: Latenz-Tracking automatisch

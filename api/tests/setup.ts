@@ -7,6 +7,13 @@ import { vi } from 'vitest'
 // ── Globale ENV-Werte für Tests ────────────────────────────────────────────
 process.env.NODE_ENV = 'test'
 
+// Mock AI-Binding für Tests
+const mockAI = {
+  run: async (_model: string, _input: unknown) => ({
+    response: 'Mock KI-Antwort: Sehr geehrte Frau Müller, ich bewerbe mich herzlich.',
+  }),
+};
+
 // Mock-Env-Objekt das als c.env genutzt wird
 export const TEST_ENV = {
   TURSO_DATABASE_URL: 'libsql://test.turso.io',
@@ -17,7 +24,8 @@ export const TEST_ENV = {
   BETTER_AUTH_SECRET: 'test-better-auth-secret-32chars!!',
   BETTER_AUTH_URL: 'http://localhost:8787',
   ALLOWED_ORIGINS: 'http://localhost:3000,chrome-extension://test',
-  OPENROUTER_API_KEY: 'sk-or-test-mock',
+  AI: mockAI,
+  METRICS: { writeDataPoint: () => undefined },
 }
 
 // Globales fetch-Mock-Setup

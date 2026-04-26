@@ -53,7 +53,8 @@ wrangler secret put STRIPE_SECRET_KEY
 wrangler secret put STRIPE_WEBHOOK_SECRET
 wrangler secret put RESEND_API_KEY
 wrangler secret put BETTER_AUTH_SECRET   # openssl rand -base64 32
-wrangler secret put OPENROUTER_API_KEY
+wrangler secret put SENTRY_DSN          # Sentry Free Tier DSN (optional)
+# KEIN OPENROUTER_API_KEY — Workers AI läuft via [ai] Binding (kostenlos)
 ```
 
 ## 6. Schema deployen
@@ -88,11 +89,23 @@ Auto-Deploy bei push zu main aktiv.
 - Domain `lyrvio.com` verifizieren (DNS-Records bei Cloudflare DNS)
 - API-Key in wrangler-Secret eintragen
 
-## 10. Plausible-Analytics (optional, später)
+## 10. Cloudflare Web Analytics (kostenlos, kein Code nötig)
 
-- Self-hosted oder Cloud (9€/Mo)
-- Domain-Setup
-- Script-Tag in `web/app/layout.tsx` einbauen
+- Cloudflare Dashboard → Web Analytics → Add Site → lyrvio.pages.dev
+- Wird automatisch injiziert wenn über CF Pages deployed
+- DSGVO-konform: kein Cookie-Banner nötig (kein User-Tracking)
+- Für Custom-Events: Cloudflare Analytics Engine via `env.METRICS.writeDataPoint()` im Worker
+
+## 10b. Domain-Migration (später, wenn lyrvio.com registriert)
+
+MVP läuft auf `https://lyrvio.pages.dev` (kostenlos, sofort verfügbar).
+Wenn eigene Domain registriert:
+```bash
+# Custom-Domain hinzufügen
+wrangler pages domain add lyrvio.com --project-name=lyrvio
+# DNS-Record in Cloudflare setzen: CNAME lyrvio.com → lyrvio.pages.dev
+```
+Dann `web/app/layout.tsx` metadataBase auf `https://lyrvio.com` aktualisieren.
 
 ## Verifikation nach Deployment
 
@@ -101,15 +114,25 @@ Auto-Deploy bei push zu main aktiv.
 - Magic-Link-Flow durchspielen → Login + Email-Empfang prüfen
 - Stripe-Test-Subscription anlegen → Webhook in DB ankommen sehen
 
-## Total Year-1-Cost
+## Total Year-1-Cost — 100% Free Stack
 
 | Service | Plan | Cost |
 |---|---|---|
 | Cloudflare Pages | Free | 0€ |
 | Cloudflare Workers | Free (100K Req/Tag) | 0€ |
+| Cloudflare Workers AI | Free (10K Neurons/Tag) | 0€ |
+| Cloudflare Web Analytics | Free | 0€ |
+| Cloudflare Analytics Engine | Free (100K Events/Tag) | 0€ |
 | Turso | Starter (9GB DB) | 0€ |
-| Resend | Free Tier (3K/Mo) | 0€ — bei Skalierung 20€/Mo |
-| OpenRouter | Pay-per-use | ~50-200€/Mo bei 1000 Kunden |
+| Resend | Free Tier (3K/Mo) | 0€ |
+| Sentry | Free Tier (5K Errors/Mo) | 0€ |
 | Stripe | Transaktional | 1,5% + 0,25€ pro Tx |
-| Domain | Cloudflare Registrar | ~30€/Jahr |
-| **Total Fix Year-1** | | **~30€ + 50-200€/Mo Variable** |
+| Domain MVP | lyrvio.pages.dev | 0€ (kostenlos forever) |
+| Domain Custom | lyrvio.com (optional) | ~12€/Jahr (Cloudflare Registrar) |
+| **Total Fix Year-1 (ohne Domain)** | | **0€** |
+| **Total Fix Year-1 (mit lyrvio.com)** | | **~12€/Jahr** |
+
+**Skalierungs-Schwellen:**
+- CF Workers AI > 10K/Tag: BYOK via User-eigenem OpenRouter-Key
+- Resend > 3K/Mo: Resend Pro 20$/Mo ODER SendGrid Free (100/Tag) als Fallback
+- Sentry > 5K Errors/Mo: Sentry Team 26$/Mo ODER GlitchTip self-hosted ~4€/Mo

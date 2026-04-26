@@ -4,7 +4,7 @@ Dieses Runbook deckt die häufigsten Produktionsvorfälle ab.
 Alle Schritte sind so formuliert dass sie auch unter Stress ausführbar sind.
 
 **Kontakt bei Eskalation:** Telegram-Bot von Abu meldet Incidents automatisch.
-**GlitchTip:** https://errors.lyrvio.com
+**Sentry:** https://sentry.io
 **UptimeRobot:** https://dashboard.uptimerobot.com
 
 ---
@@ -45,7 +45,7 @@ wrangler tail --env production
    wrangler tail --env production --format json | grep '"level":"error"'
    ```
 
-5. GlitchTip öffnen: Neue Error-Spikes seit Incident-Beginn?
+5. Sentry öffnen: Neue Error-Spikes seit Incident-Beginn?
 
 **Recovery-Test:**
 ```bash
@@ -53,13 +53,13 @@ curl https://lyrvio-api.workers.dev/health
 # Expected: {"status":"ok","timestamp":"...","version":"..."}
 ```
 
-**Post-Incident:** GlitchTip-Errors exportieren, in `docs/incidents/` archivieren.
+**Post-Incident:** Sentry-Errors exportieren, in `docs/incidents/` archivieren.
 
 ---
 
 ## 2. Turso DB unreachable
 
-**Symptome:** API gibt 500er, `/health/db` antwortet mit Fehler, GlitchTip zeigt DB-Errors
+**Symptome:** API gibt 500er, `/health/db` antwortet mit Fehler, Sentry zeigt DB-Errors
 
 **Diagnose:**
 ```bash
@@ -118,7 +118,7 @@ curl https://lyrvio-api.workers.dev/health/db
    stripe trigger checkout.session.completed
    ```
 6. Stripe-Logs prüfen: Alle Webhooks mit 200 beantwortet?
-7. In GlitchTip: Keine neuen Stripe-Errors?
+7. In Sentry: Keine neuen Stripe-Errors?
 
 **Wenn neues Secret NICHT funktioniert:**
 ```bash
@@ -146,7 +146,7 @@ wrangler tail --env production | grep stripe
 
 2. **Scope eingrenzen:**
    ```bash
-   # GlitchTip: Welche Email-Typen wurden zuletzt gesendet?
+   # Sentry: Welche Email-Typen wurden zuletzt gesendet?
    # API-Logs: Welche Endpoints haben Email-Sends ausgelöst?
    wrangler tail --env production | grep resend
    ```
@@ -176,7 +176,7 @@ wrangler tail --env production | grep stripe
 
 **Monitoring nach Incident:**
 ```bash
-# Bounce-Rate-Monitoring via Resend Webhook → GlitchTip
+# Bounce-Rate-Monitoring via Resend Webhook → Sentry
 # Ziel: Bounce-Rate dauerhaft <2%
 ```
 
@@ -283,6 +283,6 @@ curl https://lyrvio-api.workers.dev/stats
 ```
 
 ### Post-Restore
-1. GlitchTip: Neue Errors nach Restore?
+1. Sentry: Neue Errors nach Restore?
 2. Stripe: Ausstehende Payments korrekt?
 3. User-Sessions: Ggf. alle Sessions invalidieren (Cookie-Secret rotieren)

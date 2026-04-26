@@ -1,11 +1,17 @@
 /**
- * Bewerbungs-Generator — ruft OpenRouter/Claude Haiku auf
- * und erzeugt eine personalisierte Wohnungsbewerbung.
+ * Bewerbungs-Generator — ruft Cloudflare Workers AI via API-Endpoint auf.
+ * Der Worker besitzt das AI-Binding (env.AI) und exponiert es als POST /ai/generate.
+ *
+ * Warum kein direkter CF-AI-Call aus der Extension?
+ * - CF Workers AI braucht das env.AI-Binding → nur im Worker verfügbar
+ * - Extension ruft den eigenen Lyrvio-API-Worker auf, der AI intern nutzt
+ * - Kein OpenRouter-API-Key beim User notwendig
+ *
+ * BYOK-Fallback (Premium):
+ * Falls CF-AI-Free-Tier (10K Neurons/Tag) erschöpft → BYOK via OpenRouter
+ * mit User-eigenem Key als Premium-Feature.
  */
 import type { UserProfile, ListingRecord } from './storage.ts';
-
-const OPENROUTER_BASE = 'https://openrouter.ai/api/v1';
-const MODEL = 'anthropic/claude-haiku-4.5';
 
 // Style-Variation-Templates für Bot-Detection-Avoidance
 const STYLE_VARIANTS = [
@@ -21,7 +27,6 @@ function getStyleVariant(counter: number): string {
 }
 
 function extractLastName(vermieterText: string): string {
-  // Try to extract "Herr/Frau <Name>" pattern
   const match = vermieterText.match(/(?:Herr|Frau)\s+([A-ZÄÖÜa-zäöüß-]+)/);
   if (match?.[1]) return match[1];
   return 'Vermieter';
@@ -87,46 +92,37 @@ Regeln:
 - Nur reinen Bewerbungstext ausgeben, keine Überschriften, keine Markdown-Formatierung`;
 }
 
+// Lyrvio API-Endpoint für KI-Generierung (Worker nutzt intern env.AI)
+const LYRVIO_AI_ENDPOINT = `${import.meta.env.VITE_BACKEND_API_URL ?? 'https://api.lyrvio.de'}/ai/generate`;
+
 export async function generateApplication(
   profile: UserProfile,
   listing: ListingRecord,
-  openRouterApiKey: string,
+  _apiKey?: string, // beibehalten für BYOK-Kompatibilität, wird ignoriert wenn nicht gesetzt
 ): Promise<string> {
   const styleVariant = getStyleVariant(profile.applicationStyleCounter);
-
   const prompt = buildPrompt(profile, listing, styleVariant);
 
-  const response = await fetch(`${OPENROUTER_BASE}/chat/completions`, {
+  const response = await fetch(LYRVIO_AI_ENDPOINT, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${openRouterApiKey}`,
       'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://lyrvio.de',
-      'X-Title': 'Lyrvio Extension',
     },
     body: JSON.stringify({
-      model: MODEL,
-      messages: [
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
+      prompt,
       max_tokens: 400,
-      temperature: 0.7 + (profile.applicationStyleCounter % 5) * 0.04, // Slight variation
+      temperature: 0.7 + (profile.applicationStyleCounter % 5) * 0.04,
     }),
   });
 
   if (!response.ok) {
     const err = await response.text();
-    throw new Error(`OpenRouter API error ${response.status}: ${err}`);
+    throw new Error(`Lyrvio AI API error ${response.status}: ${err}`);
   }
 
-  const data = (await response.json()) as {
-    choices: Array<{ message: { content: string } }>;
-  };
+  const data = (await response.json()) as { text: string };
 
-  const text = data.choices[0]?.message?.content?.trim();
+  const text = data.text?.trim();
   if (!text) throw new Error('Empty response from LLM');
 
   return text;

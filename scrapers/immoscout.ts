@@ -518,37 +518,27 @@ export async function sendApplicationViaUI(
   }
 }
 
+// Lyrvio AI-Endpoint (Cloudflare Worker mit Workers AI binding)
+const LYRVIO_AI_BASE = typeof globalThis.location !== 'undefined'
+  ? (typeof import.meta !== 'undefined' && (import.meta as Record<string, unknown>).env
+    ? ((import.meta as { env: Record<string, string> }).env['VITE_BACKEND_API_URL'] ?? 'https://api.lyrvio.de')
+    : 'https://api.lyrvio.de')
+  : 'https://api.lyrvio.de'
+
 // ---------------------------------------------------------------------------
-// LLM-Extraktion: Anforderungen aus Beschreibung
+// LLM-Extraktion: Anforderungen aus Beschreibung via Lyrvio Worker (CF AI)
 // ---------------------------------------------------------------------------
 export async function extractRequirements(
   beschreibung_text: string,
-  openrouter_api_key: string,
-  model = 'anthropic/claude-haiku-4-5',
+  // BYOK optional — wenn nicht gesetzt → Lyrvio Worker mit CF-AI kostenlos
+  _openrouter_api_key?: string,
 ): Promise<string[]> {
   if (!beschreibung_text.trim()) return []
 
-  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  const response = await fetch(`${LYRVIO_AI_BASE}/ai/extract-requirements`, {
     method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${openrouter_api_key}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://lyrvio.com',
-      'X-Title': 'Lyrvio Requirements Extractor',
-    },
-    body: JSON.stringify({
-      model,
-      max_tokens: 200,
-      temperature: 0,
-      system: `Du extrahierst Vermieter-Anforderungen aus deutschen Wohnungsannoncen.
-Antworte NUR mit einer JSON-Liste von Strings, keine Erklärungen.
-Format: ["SCHUFA", "3 Gehaltsabrechnungen", "Selbstauskunft"]
-Erkenne: SCHUFA, Gehaltsabrechnungen (Anzahl), Bürgschaft, Selbstauskunft, Personalausweis-Kopie, Kaution-Höhe, Nichtraucher-Pflicht, Haustierverbot, Einkommens-Grenze (z.B. "3x Kaltmiete"), Studentenverbot, etc.
-Wenn keine: []`,
-      messages: [
-        { role: 'user', content: `Annoncen-Text:\n\n${beschreibung_text.slice(0, 1200)}` },
-      ],
-    }),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: beschreibung_text.slice(0, 1200) }),
   })
 
   if (!response.ok) {
@@ -556,57 +546,24 @@ Wenn keine: []`,
     return []
   }
 
-  const data = await response.json() as { choices: Array<{ message: { content: string } }> }
-  const content = data.choices[0]?.message?.content?.trim() ?? '[]'
-
-  try {
-    const parsed = JSON.parse(content)
-    if (Array.isArray(parsed)) {
-      return parsed.filter((item): item is string => typeof item === 'string')
-    }
-  } catch {
-    // JSON parse failed — try regex fallback
-    const matches = content.match(/"([^"]+)"/g)
-    if (matches) return matches.map(m => m.replace(/"/g, ''))
-  }
-
-  return []
+  const data = await response.json() as { requirements: string[] }
+  return data.requirements ?? []
 }
 
 // ---------------------------------------------------------------------------
-// LLM-Klassifizierung: Vermieter-Typ aus Text
+// LLM-Klassifizierung: Vermieter-Typ aus Text via Lyrvio Worker (CF AI)
 // ---------------------------------------------------------------------------
 export async function classifyLandlordType(
   beschreibung_text: string,
-  openrouter_api_key: string,
-  model = 'anthropic/claude-haiku-4-5',
+  // BYOK optional — wird ignoriert (CF AI wird intern verwendet)
+  _openrouter_api_key?: string,
 ): Promise<LandlordType | 'unknown'> {
   if (!beschreibung_text.trim()) return 'unknown'
 
-  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  const response = await fetch(`${LYRVIO_AI_BASE}/ai/classify-landlord`, {
     method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${openrouter_api_key}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://lyrvio.com',
-      'X-Title': 'Lyrvio Landlord Classifier',
-    },
-    body: JSON.stringify({
-      model,
-      max_tokens: 20,
-      temperature: 0,
-      system: `Klassifiziere den Vermieter-Typ aus deutschen Wohnungsannoncen.
-Antworte NUR mit einem dieser Werte (kein anderer Text, keine Anführungszeichen):
-private_senior
-verwaltung
-private_young
-makler
-wg
-unknown`,
-      messages: [
-        { role: 'user', content: `Annoncen-Text:\n\n${beschreibung_text.slice(0, 800)}` },
-      ],
-    }),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: beschreibung_text.slice(0, 800) }),
   })
 
   if (!response.ok) {
@@ -614,8 +571,8 @@ unknown`,
     return 'unknown'
   }
 
-  const data = await response.json() as { choices: Array<{ message: { content: string } }> }
-  const content = data.choices[0]?.message?.content?.trim().toLowerCase() ?? ''
+  const data = await response.json() as { landlord_type: string }
+  const content = (data.landlord_type ?? '').toLowerCase()
 
   const valid: Array<LandlordType | 'unknown'> = ['private_senior', 'verwaltung', 'private_young', 'makler', 'wg', 'unknown']
   for (const t of valid) {

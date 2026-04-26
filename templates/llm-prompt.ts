@@ -47,8 +47,11 @@ export interface LLMResponse {
 // ---------------------------------------------------------------------------
 // Konstanten
 // ---------------------------------------------------------------------------
-export const DEFAULT_MODEL = 'anthropic/claude-haiku-4-5'
-export const FALLBACK_MODEL = 'anthropic/claude-haiku-4'
+// Cloudflare Workers AI Modelle (kostenlos 10K Neurons/Tag)
+export const DEFAULT_MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast'
+export const FALLBACK_MODEL = '@cf/meta/llama-3.1-8b-instruct'
+// BYOK-Fallback (OpenRouter) wenn CF Free-Tier erschöpft:
+export const BYOK_MODEL = 'meta-llama/llama-3.3-70b-instruct'
 export const MAX_WORDS_TARGET = 160
 export const MIN_WORDS_TARGET = 100
 
@@ -185,48 +188,82 @@ export function buildLLMPrompt(input: LLMPromptInput): LLMPromptOutput {
 }
 
 // ---------------------------------------------------------------------------
-// OpenRouter-API-Call (fertige Funktion für Extension-Nutzung)
+// Lyrvio-API-Call (Standard: Cloudflare Workers AI via eigenen Worker-Endpoint)
+// BYOK-Fallback: Wenn openrouter_api_key gesetzt → OpenRouter nutzen
 // ---------------------------------------------------------------------------
 export async function generateApplicationViaLLM(
   input: LLMPromptInput,
-  openrouter_api_key: string,
+  // BYOK optional — wenn nicht gesetzt, wird Lyrvio-Worker mit CF-AI genutzt
+  openrouter_api_key?: string,
+  // Lyrvio-Worker-Endpoint für CF-AI (Standard)
+  lyrvio_ai_endpoint = 'https://api.lyrvio.de/ai/generate',
 ): Promise<LLMResponse> {
   const landlord_type = (input.listing.landlord_type === 'unknown' ? 'verwaltung' : input.listing.landlord_type) as LandlordType
   const prompt = buildLLMPrompt(input)
 
-  const requestBody = {
-    model: prompt.model,
-    max_tokens: prompt.max_tokens,
-    temperature: prompt.temperature,
-    messages: [
-      { role: 'user', content: prompt.user_prompt },
-    ],
-    system: prompt.system_prompt,
+  let text: string
+  let model_used: string
+  let prompt_tokens: number | undefined
+  let completion_tokens: number | undefined
+
+  if (openrouter_api_key) {
+    // BYOK-Pfad: OpenRouter direkt (für Premium-User oder wenn CF-Free-Tier erschöpft)
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${openrouter_api_key}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://lyrvio.com',
+        'X-Title': 'Lyrvio Bewerbungs-Generator',
+      },
+      body: JSON.stringify({
+        model: BYOK_MODEL,
+        max_tokens: prompt.max_tokens,
+        temperature: prompt.temperature,
+        messages: [
+          { role: 'user', content: prompt.user_prompt },
+        ],
+        system: prompt.system_prompt,
+      }),
+    })
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      throw new Error(`OpenRouter BYOK Fehler ${response.status}: ${errorText}`)
+    }
+
+    const data = await response.json() as {
+      choices: Array<{ message: { content: string } }>
+      usage?: { prompt_tokens: number; completion_tokens: number }
+      model: string
+    }
+
+    text = data.choices[0]?.message?.content?.trim() ?? ''
+    model_used = data.model ?? BYOK_MODEL
+    prompt_tokens = data.usage?.prompt_tokens
+    completion_tokens = data.usage?.completion_tokens
+  } else {
+    // Standard-Pfad: Lyrvio Worker mit Cloudflare Workers AI (kostenlos)
+    const response = await fetch(lyrvio_ai_endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_prompt: prompt.system_prompt,
+        user_prompt: prompt.user_prompt,
+        max_tokens: prompt.max_tokens,
+        temperature: prompt.temperature,
+      }),
+    })
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      throw new Error(`Lyrvio AI API Fehler ${response.status}: ${errorText}`)
+    }
+
+    const data = await response.json() as { text: string; model?: string }
+    text = data.text?.trim() ?? ''
+    model_used = data.model ?? DEFAULT_MODEL
   }
-
-  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${openrouter_api_key}`,
-      'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://lyrvio.com',
-      'X-Title': 'Lyrvio Bewerbungs-Generator',
-    },
-    body: JSON.stringify(requestBody),
-  })
-
-  if (!response.ok) {
-    const errorText = await response.text()
-    throw new Error(`OpenRouter API Fehler ${response.status}: ${errorText}`)
-  }
-
-  const data = await response.json() as {
-    choices: Array<{ message: { content: string } }>
-    usage?: { prompt_tokens: number; completion_tokens: number }
-    model: string
-  }
-
-  const text = data.choices[0]?.message?.content?.trim() ?? ''
 
   return {
     text,
@@ -234,9 +271,9 @@ export async function generateApplicationViaLLM(
     landlord_type,
     variant: input.variant,
     word_count: text.split(/\s+/).filter(Boolean).length,
-    model_used: data.model ?? prompt.model,
-    prompt_tokens: data.usage?.prompt_tokens,
-    completion_tokens: data.usage?.completion_tokens,
+    model_used,
+    prompt_tokens,
+    completion_tokens,
   }
 }
 

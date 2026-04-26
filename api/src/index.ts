@@ -12,6 +12,7 @@ import { profileRouter } from './routes/profile.js';
 import { appRouter } from './routes/applications.js';
 import { stripeRouter } from './routes/stripe.js';
 import { publicRouter } from './routes/public.js';
+import { aiRouter } from './routes/ai.js';
 import type { AppBindings, Env } from './types.js';
 
 const app = new Hono<AppBindings>();
@@ -75,6 +76,11 @@ app.route('/auth', authRouter);
 // Protected Routes
 app.route('/profile', profileRouter);
 app.route('/applications', appRouter);
+
+// AI Routes (Cloudflare Workers AI — kostenlos 10K Neurons/Tag)
+// Kein Auth nötig — Rate-Limit via globales Middleware ausreichend
+// Bei 429: Extension nutzt BYOK-Fallback (User-eigener OpenRouter-Key)
+app.route('/ai', aiRouter);
 
 // ─── Error Handling ─────────────────────────────────────────────────────────────
 

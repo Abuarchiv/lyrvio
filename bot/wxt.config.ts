@@ -17,7 +17,7 @@ export default defineConfig({
     host_permissions: [
       'https://www.immobilienscout24.de/*',
       'https://api.lyrvio.de/*',
-      'https://openrouter.ai/*',
+      'https://lyrvio-api.*.workers.dev/*',
     ],
     action: {
       default_popup: 'popup/index.html',

@@ -1,10 +1,12 @@
 /**
- * GlitchTip / Sentry SDK für Cloudflare Workers
+ * Sentry Free Tier SDK für Cloudflare Workers
  * Verwendet toucan-js — die einzige Worker-kompatible Sentry-Implementierung
  *
  * Installation: pnpm add toucan-js
  *
- * Env-Variable: GLITCHTIP_DSN (via wrangler secret put)
+ * Env-Variable: SENTRY_DSN (via wrangler secret put)
+ * Sentry Free Tier: 5K Errors/Mo + 10K Performance-Units — reicht für MVP.
+ * Kein Hetzner-Server nötig. DSGVO: IP-Adressen deaktiviert.
  */
 
 import Toucan from 'toucan-js';
@@ -18,7 +20,7 @@ export type SentryClient = Toucan | null;
  * Muss pro Request neu erstellt werden (kein globaler State in Workers).
  */
 export function initSentry(request: Request, env: Env, ctx: ExecutionContext): SentryClient {
-  const dsn = (env as unknown as Record<string, string>).GLITCHTIP_DSN;
+  const dsn = (env as unknown as Record<string, string>).SENTRY_DSN;
 
   if (!dsn) {
     // DSN nicht gesetzt → kein Error-Tracking (Dev-Umgebung)
@@ -60,7 +62,7 @@ export function initSentry(request: Request, env: Env, ctx: ExecutionContext): S
  */
 export function createSentryErrorHandler() {
   return async (err: Error, c: Context<AppBindings>) => {
-    const env = c.env as Env & { GLITCHTIP_DSN?: string };
+    const env = c.env as Env & { SENTRY_DSN?: string };
     const ctx = c.executionCtx;
 
     // Sentry nur für echte 500er — 4xx nicht reporten
@@ -69,7 +71,7 @@ export function createSentryErrorHandler() {
                   !err.message.includes('Forbidden') &&
                   !err.message.includes('Rate limit');
 
-    if (is5xx && env.GLITCHTIP_DSN) {
+    if (is5xx && env.SENTRY_DSN) {
       try {
         const sentry = initSentry(c.req.raw, env as Env, ctx);
         if (sentry) {

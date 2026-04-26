@@ -79,9 +79,10 @@ Erst NACH erstem zahlenden Kunden:
 
 ### 2 — Cloudflare Pages + Workers + Turso live
 - Cloudflare-Account: Workers + Pages-Project verbinden
-- `wrangler deploy` aus `api/` heraus
+- `wrangler deploy` aus `api/` heraus (inkl. [ai] Binding für Workers AI)
 - Turso-DB anlegen + Migrations laufen lassen
-- ENV-Vars setzen (OpenRouter-Key, Resend-Key, Stripe-Webhook-Secret, Turso-Token)
+- ENV-Vars setzen (Resend-Key, Stripe-Webhook-Secret, Turso-Token, SENTRY_DSN)
+- KEIN OpenRouter-Key nötig — Workers AI via [ai] Binding kostenlos
 
 ### 3 — Browser-Extension veroeffentlichen
 - `bot/` packen via `wxt build && wxt zip`

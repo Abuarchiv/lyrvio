@@ -89,7 +89,9 @@ export async function clearSession(): Promise<void> {
 }
 
 /**
- * Get OpenRouter API key from chrome.storage.local.
+ * BYOK: OpenRouter API Key — nur für Premium-User die eigenen Key mitbringen.
+ * Standardmäßig wird Cloudflare Workers AI (Free Tier) via Lyrvio-API verwendet.
+ * BYOK ermöglicht unbegrenzten Zugriff wenn CF-Free-Tier (10K Neurons/Tag) erschöpft.
  */
 export async function getOpenRouterKey(): Promise<string | null> {
   const result = await chrome.storage.local.get('openrouter_key');

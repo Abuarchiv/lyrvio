@@ -68,9 +68,7 @@ describe('generateApplication (LLM-Mock)', () => {
 
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
       ok: true,
-      json: async () => ({
-        choices: [{ message: { content: mockText } }],
-      }),
+      json: async () => ({ text: mockText }),
     }))
 
     const result = await generateApplication(makeProfile(), makeListing(), MOCK_API_KEY)
@@ -80,9 +78,7 @@ describe('generateApplication (LLM-Mock)', () => {
   test('wirft Fehler bei leerem LLM-Response', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
       ok: true,
-      json: async () => ({
-        choices: [{ message: { content: '' } }],
-      }),
+      json: async () => ({ text: '' }),
     }))
 
     await expect(
@@ -102,39 +98,37 @@ describe('generateApplication (LLM-Mock)', () => {
     ).rejects.toThrow('401')
   })
 
-  test('OpenRouter-URL wird korrekt aufgerufen', async () => {
+  test('Lyrvio AI API-URL wird korrekt aufgerufen', async () => {
     const capturedUrls: string[] = []
 
     vi.stubGlobal('fetch', vi.fn().mockImplementation((url: string) => {
       capturedUrls.push(url)
       return Promise.resolve({
         ok: true,
-        json: async () => ({
-          choices: [{ message: { content: 'Test-Bewerbung' } }],
-        }),
+        json: async () => ({ text: 'Test-Bewerbung' }),
       })
     }))
 
     await generateApplication(makeProfile(), makeListing(), MOCK_API_KEY)
-    expect(capturedUrls[0]).toContain('openrouter.ai')
-    expect(capturedUrls[0]).toContain('/chat/completions')
+    expect(capturedUrls[0]).toContain('lyrvio')
+    expect(capturedUrls[0]).toContain('/ai/generate')
   })
 
-  test('Authorization-Header enthält API-Key', async () => {
-    const capturedHeaders: Record<string, string>[] = []
+  test('Request-Body enthält Prompt', async () => {
+    const capturedBodies: string[] = []
 
     vi.stubGlobal('fetch', vi.fn().mockImplementation((_url: string, opts: RequestInit) => {
-      capturedHeaders.push(opts.headers as Record<string, string>)
+      capturedBodies.push(opts.body as string)
       return Promise.resolve({
         ok: true,
-        json: async () => ({
-          choices: [{ message: { content: 'Test' } }],
-        }),
+        json: async () => ({ text: 'Test' }),
       })
     }))
 
-    await generateApplication(makeProfile(), makeListing(), 'my-test-key')
-    expect(capturedHeaders[0]?.['Authorization']).toContain('my-test-key')
+    await generateApplication(makeProfile(), makeListing(), MOCK_API_KEY)
+    const body = JSON.parse(capturedBodies[0]!)
+    expect(body).toHaveProperty('prompt')
+    expect(typeof body.prompt).toBe('string')
   })
 
   test('Style-Variante wechselt bei unterschiedlichem counter', async () => {
@@ -144,9 +138,7 @@ describe('generateApplication (LLM-Mock)', () => {
       capturedBodies.push(opts.body as string)
       return Promise.resolve({
         ok: true,
-        json: async () => ({
-          choices: [{ message: { content: 'Test-Bewerbung' } }],
-        }),
+        json: async () => ({ text: 'Test-Bewerbung' }),
       })
     }))
 
@@ -160,8 +152,8 @@ describe('generateApplication (LLM-Mock)', () => {
     const body1 = JSON.parse(capturedBodies[1]!)
 
     // Unterschiedliche Style-Varianten sollten unterschiedliche Prompts erzeugen
-    const prompt0 = body0.messages[0].content as string
-    const prompt1 = body1.messages[0].content as string
+    const prompt0 = body0.prompt as string
+    const prompt1 = body1.prompt as string
 
     expect(prompt0).not.toBe(prompt1)
   })
@@ -173,9 +165,7 @@ describe('generateApplication (LLM-Mock)', () => {
       capturedBodies.push(opts.body as string)
       return Promise.resolve({
         ok: true,
-        json: async () => ({
-          choices: [{ message: { content: 'Test' } }],
-        }),
+        json: async () => ({ text: 'Test' }),
       })
     }))
 
@@ -183,7 +173,7 @@ describe('generateApplication (LLM-Mock)', () => {
     await generateApplication(makeProfile(), listing, MOCK_API_KEY)
 
     const body = JSON.parse(capturedBodies[0]!)
-    const prompt = body.messages[0].content as string
+    const prompt = body.prompt as string
     expect(prompt).toContain('Schuster')
   })
 })
@@ -196,9 +186,7 @@ describe('generateApplication — Prompt-Aufbau', () => {
       capturedBodies.push(opts.body as string)
       return Promise.resolve({
         ok: true,
-        json: async () => ({
-          choices: [{ message: { content: 'Test-Bewerbung' } }],
-        }),
+        json: async () => ({ text: 'Test-Bewerbung' }),
       })
     }))
 
@@ -210,7 +198,7 @@ describe('generateApplication — Prompt-Aufbau', () => {
 
     await generateApplication(profile, makeListing(), MOCK_API_KEY)
     const body = JSON.parse(capturedBodies[0]!)
-    const prompt = body.messages[0].content as string
+    const prompt = body.prompt as string
 
     expect(prompt).toContain('Maria')
     expect(prompt).toContain('Berger')
@@ -224,9 +212,7 @@ describe('generateApplication — Prompt-Aufbau', () => {
       capturedBodies.push(opts.body as string)
       return Promise.resolve({
         ok: true,
-        json: async () => ({
-          choices: [{ message: { content: 'Test' } }],
-        }),
+        json: async () => ({ text: 'Test' }),
       })
     }))
 
@@ -237,7 +223,7 @@ describe('generateApplication — Prompt-Aufbau', () => {
 
     await generateApplication(makeProfile(), listing, MOCK_API_KEY)
     const body = JSON.parse(capturedBodies[0]!)
-    const prompt = body.messages[0].content as string
+    const prompt = body.prompt as string
 
     expect(prompt).toContain('Kreuzberg')
     expect(prompt).toContain('78')

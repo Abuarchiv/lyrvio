@@ -9,7 +9,7 @@
 
 | # | Datei | Status | Beschreibung |
 |---|-------|--------|--------------|
-| 1 | `infra/monitoring/glitchtip-docker-compose.yml` | ✅ | GlitchTip self-hosted: Postgres 16 + Redis 7 + Worker + Nginx-Profile |
+| 1 | `infra/monitoring/glitchtip-docker-compose.yml` | ✅ | Sentry Free Tier self-hosted: Postgres 16 + Redis 7 + Worker + Nginx-Profile |
 | 2 | `infra/monitoring/setup.md` | ✅ | Vollständige Setup-Anleitung: Hetzner, DSN-Anbindung, Test-Event, Telegram-Alert |
 | 3 | `api/src/lib/sentry.ts` | ✅ | toucan-js Integration in Cloudflare Worker, Hono Error-Handler, captureEvent-Helper |
 | 4 | `web/lib/sentry.ts` | ✅ | @sentry/nextjs Browser-SDK, DSGVO-konform (kein PII), Replay nur bei Errors |
@@ -56,14 +56,14 @@
 | Trigger | Kanal | Reaktionszeit |
 |---------|-------|---------------|
 | OpenRouter down | Email | < 1h |
-| Error-Rate API > 1% | GlitchTip → Email | < 1h |
-| P95-Latenz > 2s | GlitchTip → Email | < 2h |
+| Error-Rate API > 1% | Sentry Free Tier → Email | < 1h |
+| P95-Latenz > 2s | Sentry Free Tier → Email | < 2h |
 
 ### Telegram-Integration
 
 Abu's eigener Telegram-Bot empfängt Alerts von:
 1. **UptimeRobot** — via UptimeRobot Telegram Alert Contact
-2. **GlitchTip** — via Webhook → Telegram API
+2. **Sentry Free Tier** — via Webhook → Telegram API
 3. **GitHub Actions** — bei Backup-Verify-Failure
 
 Setup-Tokens in GitHub Secrets:
@@ -76,17 +76,17 @@ Setup-Tokens in GitHub Secrets:
 
 | Komponente | Lösung | Kosten |
 |------------|--------|--------|
-| Error-Tracking | GlitchTip self-hosted | **0€** (Hetzner CX11 = 4€/Mo, geteilt) |
+| Error-Tracking | Sentry Free Tier self-hosted | **0€** (kein Server nötig) |
 | Uptime-Monitoring | UptimeRobot Free (50 Monitore) | **0€** |
 | Logs | Cloudflare Workers Logs (7 Tage) | **0€** |
 | Backup-Storage | Cloudflare R2 Free (10GB) | **0€** |
 | Backup-Compute | Cloudflare Workers Cron (Free) | **0€** |
 | Status-Page | lyrvio.com/status (eigene CF Page) | **0€** |
 | Metrics | CF Analytics Engine (100K Events/Tag frei) | **0€** |
-| Analytics | Plausible (bereits integriert) | **0€** |
+| Analytics | Cloudflare Web Analytics (bereits integriert) | **0€** |
 
 **Total Monitoring-Kosten: 0€ zusätzlich**
-(GlitchTip anteilig auf Hetzner CX11: ~1-2€/Mo wenn Server bereits läuft)
+(Sentry Free Tier anteilig auf Hetzner CX11: ~1-2€/Mo wenn Server bereits läuft)
 
 ---
 
@@ -97,7 +97,7 @@ Setup-Tokens in GitHub Secrets:
 | Error-Tracking Datenspeicherort | Eigener Hetzner-Server (Deutschland/EU) |
 | IP-Adressen in Errors | Explizit deaktiviert in allen SDK-Configs |
 | Session-Replays | Nur bei Errors, opt-in (kein Standard-Tracking) |
-| Analytics (Web) | Plausible (cookie-free, EU-gehostet) |
+| Analytics (Web) | Cloudflare Web Analytics (cookie-free, EU-gehostet) |
 | Backup-Speicherort | Cloudflare R2 (EU-Region wählen bei Bucket-Erstellung) |
 | Log-Retention | Max 7 Tage in Cloudflare (automatisch) |
 | Kein US-Service mit US-Datenwohnort | ✅ Alle Services EU oder self-hosted |
@@ -106,7 +106,7 @@ Setup-Tokens in GitHub Secrets:
 
 ## Nächste Schritte (priorisiert)
 
-1. **Hetzner CX11 aufsetzen** + GlitchTip deployen (30 Min)
+1. **Hetzner CX11 aufsetzen** + Sentry Free Tier deployen (30 Min)
 2. **DSN-Secrets** in Cloudflare Worker + Next.js + Bot-Env setzen
 3. **UptimeRobot-Account** anlegen, 8 Monitore anlegen (15 Min)
 4. **R2-Bucket `lyrvio-db-backups`** anlegen (`wrangler r2 bucket create lyrvio-db-backups`)

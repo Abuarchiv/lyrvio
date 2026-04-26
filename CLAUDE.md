@@ -21,7 +21,7 @@ Chatbot reagiert wenn der Mensch fragt. Bot handelt 24/7 selbstständig im echte
 
 3.000 zahlende User × 79€ = 237K€ MRR + 250 Erfolgs-Boni × 299€ = 75K€ → **~310K€ MRR. ARR 3,7M€**.
 
-## Stack — 100% Open-Source / Free-Tier
+## Stack — 100% Kostenlos (kein Pay-per-Token, kein Server)
 
 | Layer | Tool | Kosten |
 |---|---|---|
@@ -31,16 +31,20 @@ Chatbot reagiert wenn der Mensch fragt. Bot handelt 24/7 selbstständig im echte
 | Database | Turso (libSQL) + Drizzle ORM | 9GB / 1B Reads/Mo frei |
 | Auth | better-auth (Magic-Link via Resend) | 0€ |
 | Browser-Ext | WXT framework (MIT) | 0€ |
-| LLM-Routing | OpenRouter | nur API-Calls |
-| LLM-Match | Llama 3.3 70B via OpenRouter | ~0,01€ / 1K Inserate |
-| LLM-Bewerbung | Claude Haiku via OpenRouter | ~0,001€ / Bewerbung |
+| LLM (Generation) | Cloudflare Workers AI — Llama 3.3 70B | 0€ (10K Neurons/Tag frei) |
+| LLM (Klassifikation) | Cloudflare Workers AI — Llama 3.1 8B | 0€ (wie oben) |
+| LLM (BYOK-Fallback) | OpenRouter mit User-eigenem Key | 0€ für Lyrvio |
 | Email | Resend | 3K Mails/Mo frei |
 | Payments | Stripe | nur transaktional |
-| Analytics | Plausible self-hosted | 0€ |
+| Analytics | Cloudflare Web Analytics | 0€ DSGVO-konform |
+| Custom Metrics | Cloudflare Analytics Engine | 0€ 100K Events/Tag |
+| Error-Tracking | Sentry Free Tier | 0€ 5K Errors/Mo |
 | DNS | Cloudflare DNS | 0€ |
 | Repo | GitHub Free | 0€ |
+| Domain MVP | lyrvio.pages.dev | 0€ forever |
 
-**Total Year-1 Fixkosten: ~32€ Domain + max 2,5K€ Variable. Cost-Ratio bei 310K€ MRR-Exit: <1%.**
+**Total Year-1 Fixkosten: 0€ (MVP auf lyrvio.pages.dev) oder ~12€ (lyrvio.com Domain optional).**
+**BYOK-Fallback bei Skalierung: User bringen eigenen OpenRouter-Key → 0€ für Lyrvio.**
 
 ## Repo-Struktur
 

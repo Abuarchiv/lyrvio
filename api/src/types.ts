@@ -2,6 +2,7 @@ import type { DrizzleClient } from './lib/db.js';
 import type { StripeClient } from './lib/stripe.js';
 import type { ResendClient } from './lib/resend.js';
 import type { Auth } from './lib/auth.js';
+import type { AIBinding } from './lib/cloudflare-ai.js';
 
 export interface Env {
   TURSO_DATABASE_URL: string;
@@ -12,7 +13,12 @@ export interface Env {
   BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL: string;
   ALLOWED_ORIGINS: string;
-  OPENROUTER_API_KEY: string;
+  /** Cloudflare Workers AI — gebunden via wrangler.toml [ai] binding */
+  AI: AIBinding;
+  /** Cloudflare Analytics Engine — gebunden via [[analytics_engine_datasets]] */
+  METRICS: { writeDataPoint: (data: { blobs?: string[]; doubles?: number[]; indexes?: string[] }) => void };
+  /** Sentry Free Tier DSN (optional — kein Tracking wenn nicht gesetzt) */
+  SENTRY_DSN?: string;
 }
 
 export interface AppBindings {

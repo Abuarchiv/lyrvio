@@ -37,7 +37,8 @@ function buildApp() {
       BETTER_AUTH_SECRET: '',
       BETTER_AUTH_URL: '',
       ALLOWED_ORIGINS: '',
-      OPENROUTER_API_KEY: '',
+      AI: { run: async () => ({ response: '' }) } as any,
+      METRICS: { writeDataPoint: () => undefined } as any,
     }
     await next()
   })

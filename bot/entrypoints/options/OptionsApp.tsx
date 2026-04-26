@@ -210,17 +210,18 @@ export function OptionsApp(): React.ReactElement {
           </div>
         </Section>
 
-        {/* API Keys */}
-        <Section title="API-Zugänge">
+        {/* API Keys — BYOK optional */}
+        <Section title="API-Zugänge (optional)">
           <Field
-            label="OpenRouter API Key"
+            label="OpenRouter API Key (BYOK — optional)"
             value={openRouterKey}
             type="password"
             placeholder="sk-or-v1-..."
             onChange={(v) => setOpenRouterKeyState(v)}
           />
           <div className="text-xs text-slate-500 mt-1">
-            Benötigt für KI-Bewerbungsgenerierung. Kostenlos registrieren auf{' '}
+            <strong>Nicht erforderlich.</strong> Lyrvio nutzt standardmäßig Cloudflare Workers AI (kostenlos).
+            Eigenen Key eintragen wenn tägliches Limit überschritten wird.{' '}
             <a
               href="https://openrouter.ai"
               target="_blank"

@@ -5,7 +5,16 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 BETTER_AUTH_URL = "https://api.lyrvio.com"
-ALLOWED_ORIGINS = "https://lyrvio.com,chrome-extension://*"
+ALLOWED_ORIGINS = "https://lyrvio.pages.dev,https://lyrvio.com,chrome-extension://*"
+
+# Cloudflare Workers AI — kostenlos 10K Neurons/Tag (kein API-Key nötig)
+[ai]
+binding = "AI"
+
+# Analytics Engine — kostenlos 100K Events/Tag
+[[analytics_engine_datasets]]
+binding = "METRICS"
+dataset = "lyrvio_metrics"
 
 # Secrets werden via `wrangler secret put` gesetzt:
 # TURSO_DATABASE_URL
@@ -14,7 +23,7 @@ ALLOWED_ORIGINS = "https://lyrvio.com,chrome-extension://*"
 # STRIPE_WEBHOOK_SECRET
 # RESEND_API_KEY
 # BETTER_AUTH_SECRET
-# OPENROUTER_API_KEY
+# SENTRY_DSN  (Sentry Free Tier — kein eigener Server nötig)
 
 [[rules]]
 type = "ESModule"

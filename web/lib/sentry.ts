@@ -1,11 +1,13 @@
 /**
- * GlitchTip / Sentry Browser SDK für Next.js
+ * Sentry Free Tier Browser SDK für Next.js
+ *
+ * Free Tier: 5K Errors/Mo + 10K Performance-Units + 50 Replays
+ * Kein Hetzner-Server nötig. DSGVO: IP-Adressen deaktiviert.
  *
  * Installation: pnpm add @sentry/nextjs
- * GlitchTip ist vollständig Sentry-SDK-kompatibel.
  *
  * Env-Variable:
- *   NEXT_PUBLIC_GLITCHTIP_DSN=https://key@errors.lyrvio.com/2
+ *   NEXT_PUBLIC_SENTRY_DSN=https://key@sentry.io/projekt-id
  *
  * Setup in next.config.ts:
  *   Kein spezielles Sentry-Plugin nötig — direktes SDK-Init reicht.
@@ -13,9 +15,6 @@
  * Einbinden in app/layout.tsx:
  *   import { initSentry } from '@/lib/sentry';
  *   initSentry(); // einmal aufrufen, clientseitig
- *
- * Oder als separate sentry.client.config.ts (für Sentry Next.js Plugin):
- *   Datei wird automatisch bei Build injiziert.
  */
 
 import * as Sentry from '@sentry/nextjs';
@@ -30,7 +29,7 @@ export function initSentry(): void {
   if (initialized) return;
   if (typeof window === 'undefined') return; // kein SSR-Init
 
-  const dsn = process.env.NEXT_PUBLIC_GLITCHTIP_DSN;
+  const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
   if (!dsn) return; // Dev-Umgebung ohne DSN → kein Tracking
 
   Sentry.init({

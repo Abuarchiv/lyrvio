@@ -1,13 +1,16 @@
 /**
- * GlitchTip / Sentry Integration für Chrome Extension (Manifest V3)
+ * Sentry Free Tier Integration für Chrome Extension (Manifest V3)
  *
  * Manifest V3 hat strikte CSP: kein eval(), kein dynamisches Scripting.
  * @sentry/browser funktioniert, ABER braucht spezielle Konfiguration.
  *
+ * Free Tier: 5K Errors/Mo reicht für Extension-MVP.
+ * Kein Hetzner-Server nötig.
+ *
  * Installation: pnpm add @sentry/browser
  *
  * Env-Variable (via WXT .env):
- *   VITE_GLITCHTIP_DSN=https://key@errors.lyrvio.com/3
+ *   VITE_SENTRY_DSN=https://key@sentry.io/projekt-id
  *
  * Einbinden in entrypoints/background.ts:
  *   import { initSentry } from '@/lib/sentry';
@@ -33,7 +36,7 @@ let initialized = false;
 export function initSentry(): void {
   if (initialized) return;
 
-  const dsn = import.meta.env.VITE_GLITCHTIP_DSN as string | undefined;
+  const dsn = import.meta.env.VITE_SENTRY_DSN as string | undefined;
   if (!dsn) return;
 
   Sentry.init({
