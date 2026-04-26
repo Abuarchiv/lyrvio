@@ -56,7 +56,7 @@ describe('landlord-adaptions — Datenstruktur', () => {
   test('verwaltung — formell, Unterlagen-Liste vorhanden', () => {
     const a = LANDLORD_VERWALTUNG
     expect(a.tonalitaet).toBe('formell')
-    expect(a.unterlagen_empfehlung).toContain(expect.stringMatching(/SCHUFA/))
+    expect(a.unterlagen_empfehlung.some(u => /SCHUFA/i.test(u))).toBe(true)
   })
 
   test('private_young — persoenlicher Ton', () => {

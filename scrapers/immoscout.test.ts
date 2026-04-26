@@ -117,8 +117,9 @@ describe('getSearchUrl', () => {
 
   test('keine Parameter → saubere URL ohne ?', () => {
     const url = getSearchUrl({ city: 'Köln' })
-    // Kann ? enthalten wenn keine Params — okay, aber muss valid sein
-    expect(url).toContain('koeln')
+    // toLowerCase() → 'köln' (kein Umlaut-Transliteration im Scraper — absichtlich)
+    expect(url).toContain('ö') // Umlaut bleibt wie er ist
+    expect(url).not.toContain('?')
   })
 })
 

@@ -1,9 +1,29 @@
 import Link from "next/link";
+import { cityList } from "@/lib/cities";
 
 export function Footer() {
+  const sortedCities = [...cityList].sort((a, b) => b.population - a.population);
+
   return (
     <footer className="border-t border-slate-800 bg-[#0a0a0f] py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Cities grid */}
+        <div className="mb-12 pb-12 border-b border-slate-800">
+          <p className="text-xs text-slate-600 uppercase tracking-wider mb-4">Lyrvio aktiv in</p>
+          <div className="flex flex-wrap gap-2">
+            {sortedCities.map((city) => (
+              <Link
+                key={city.slug}
+                href={`/wohnung-finden/${city.slug}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-slate-500 border border-slate-800 hover:border-slate-600 hover:text-slate-300 transition-colors"
+              >
+                <span className="h-1 w-1 rounded-full bg-emerald-500" />
+                {city.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-1">

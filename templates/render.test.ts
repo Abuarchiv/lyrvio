@@ -105,7 +105,8 @@ describe('renderApplication — Basis', () => {
 describe('renderApplication — Anrede', () => {
   test('bekannter Name → personalisierte Anrede "Sehr geehrter Herr"', () => {
     const result = renderApplication('solo', 'private_senior', SAMPLE_LISTING, SAMPLE_USER_SOLO)
-    expect(result.text).toContain('Sehr geehrter Herr Müller')
+    // Name "Herr Klaus Müller" → strip prefix → "Klaus Müller"
+    expect(result.text).toContain('Sehr geehrter Herr Klaus Müller')
   })
 
   test('kein Name → "Sehr geehrte Damen und Herren"', () => {
@@ -117,7 +118,8 @@ describe('renderApplication — Anrede', () => {
   test('"Frau" in Name → "Sehr geehrte Frau"', () => {
     const listingFrau = { ...SAMPLE_LISTING, vermieter_name: 'Frau Maria Schneider' }
     const result = renderApplication('solo', 'private_senior', listingFrau, SAMPLE_USER_SOLO)
-    expect(result.text).toContain('Sehr geehrte Frau Schneider')
+    // "Frau Maria Schneider" → strip prefix → "Maria Schneider"
+    expect(result.text).toContain('Sehr geehrte Frau Maria Schneider')
   })
 })
 

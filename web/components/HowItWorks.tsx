@@ -1,4 +1,4 @@
-import { UserPlus, Chrome, BellRing } from "lucide-react";
+import { UserPlus, Globe, BellRing } from "lucide-react";
 
 const steps = [
   {
@@ -16,7 +16,7 @@ const steps = [
   },
   {
     number: "02",
-    icon: Chrome,
+    icon: Globe,
     title: "Extension installieren & Bot aktivieren",
     description:
       "Du installierst die Lyrvio Browser-Extension. Der Bot läuft dann 24/7 in deinem eigenen Browser-Account — keine Server, keine AGB-Verletzung.",

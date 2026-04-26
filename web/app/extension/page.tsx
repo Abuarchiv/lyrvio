@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Chrome, Download, Check, ArrowRight, Shield, Zap } from "lucide-react";
+import { Globe, Download, Check, ArrowRight, Shield, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -71,7 +71,7 @@ export default function ExtensionPage() {
             <div className="rounded-2xl border border-indigo-500/40 bg-slate-900 p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-12 w-12 rounded-2xl bg-indigo-600/20 flex items-center justify-center">
-                  <Chrome className="h-6 w-6 text-indigo-400" />
+                  <Globe className="h-6 w-6 text-indigo-400" />
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-white">Chrome</h2>
@@ -129,7 +129,7 @@ export default function ExtensionPage() {
           {/* Installation Steps Chrome */}
           <div className="mb-16">
             <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-              <Chrome className="h-6 w-6 text-indigo-400" />
+              <Globe className="h-6 w-6 text-indigo-400" />
               Chrome-Schritt-für-Schritt
             </h2>
             <div className="space-y-4">

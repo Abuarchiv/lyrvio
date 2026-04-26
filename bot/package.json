@@ -5,6 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "wxt prepare",
     "dev": "wxt",
     "dev:firefox": "wxt --browser firefox",
     "build": "wxt build",
@@ -12,7 +13,6 @@
     "build:all": "wxt build && wxt build --browser firefox",
     "zip": "wxt zip",
     "zip:firefox": "wxt zip --browser firefox",
-    "postinstall": "wxt prepare",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
