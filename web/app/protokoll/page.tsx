@@ -126,7 +126,7 @@ export default function ProtokollPage() {
               <br />
               <span className="text-stamp">beauftrage Lyrvio.</span>
             </p>
-            <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp">
+            <Link href="/checkout/standard" className="btn-primary cursor-stamp">
               Jetzt loslegen · 9 €/Monat
             </Link>
           </div>

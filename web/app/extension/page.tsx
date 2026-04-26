@@ -172,7 +172,7 @@ export default function ExtensionPage() {
               </p>
               <p className="font-mono text-[13px] text-ash">Pre-Launch · Beta startet Mai 2026 · 9€/Monat</p>
             </div>
-            <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp">
+            <Link href="/checkout/standard" className="btn-primary cursor-stamp">
               Beta-Platz sichern →
             </Link>
           </div>

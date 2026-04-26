@@ -102,7 +102,7 @@ export function Hero() {
         <div className="grid grid-cols-12 gap-6 lg:gap-12 mb-12 reveal reveal-2">
           <div className="col-span-12 lg:col-span-7">
             <div className="flex flex-wrap items-center gap-4">
-              <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp">
+              <Link href="/checkout/standard" className="btn-primary cursor-stamp">
                 Jetzt loslegen · 9 €/Monat
               </Link>
               <Link href="/protokoll" className="btn-secondary">

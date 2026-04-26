@@ -17,7 +17,7 @@ export function Footer() {
         </h2>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <Link href="/checkout?plan=aktiv" className="btn-primary">
+          <Link href="/checkout/standard" prefetch={false} className="btn-primary">
             Jetzt loslegen · 9 €/Monat
           </Link>
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
@@ -31,7 +31,7 @@ export function Footer() {
             <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-3">
               Über
             </div>
-            <Link href="/" className="font-mono text-[14px] font-bold tracking-[0.18em] uppercase text-ink hover:text-stamp transition-colors">
+            <Link href="/" prefetch={false} className="font-mono text-[14px] font-bold tracking-[0.18em] uppercase text-ink hover:text-stamp transition-colors">
               LYRVIO
             </Link>
             <p className="mt-3 max-w-[36ch] text-ash leading-[1.6]">
@@ -61,7 +61,7 @@ export function Footer() {
             items={[
               { href: "/dashboard", label: "Übersicht" },
               { href: "/profile", label: "Profil bearbeiten" },
-              { href: "/checkout?plan=aktiv", label: "Bestellen" },
+              { href: "/checkout/standard", label: "Bestellen" },
               { href: "/hilfe", label: "Hilfe-Center" },
             ]}
           />
@@ -86,6 +86,7 @@ export function Footer() {
               <span key={city.slug} className="contents">
                 <Link
                   href={`/wohnung-finden/${city.slug}`}
+                  prefetch={false}
                   className="hover:text-stamp transition-colors"
                 >
                   {city.name}
@@ -130,6 +131,7 @@ function FooterCol({
           <li key={it.href}>
             <Link
               href={it.href}
+              prefetch={false}
               className="text-ink hover:text-stamp transition-colors"
             >
               {it.label}

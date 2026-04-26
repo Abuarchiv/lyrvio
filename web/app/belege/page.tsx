@@ -201,7 +201,7 @@ export default function BelegePage() {
                 <br />
                 <span className="text-stamp">Beauftrage Lyrvio.</span>
               </p>
-              <Link href="/checkout?plan=aktiv" className="btn-primary">
+              <Link href="/checkout/standard" className="btn-primary">
                 Jetzt loslegen · 9 €/Monat
               </Link>
             </div>

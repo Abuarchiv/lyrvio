@@ -63,7 +63,7 @@ export default function GebuehrenPage() {
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Übersicht aller Bewerbungen</li>
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Suche alle 30 Sekunden</li>
                 </ul>
-                <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp w-full justify-center">
+                <Link href="/checkout/standard" className="btn-primary cursor-stamp w-full justify-center">
                   Standard wählen · 9 €
                 </Link>
               </article>
@@ -93,7 +93,7 @@ export default function GebuehrenPage() {
                   <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Persönliches Onboarding</li>
                   <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Vorrangige Hilfe · Antwort &lt; 2 h</li>
                 </ul>
-                <Link href="/checkout?plan=premium" className="block w-full text-center bg-paper text-ink border-2 border-paper px-5 py-3 font-mono font-semibold text-[13px] uppercase tracking-[0.06em] hover:bg-stamp hover:text-paper hover:border-stamp transition-all">
+                <Link href="/checkout/premium" className="block w-full text-center bg-paper text-ink border-2 border-paper px-5 py-3 font-mono font-semibold text-[13px] uppercase tracking-[0.06em] hover:bg-stamp hover:text-paper hover:border-stamp transition-all">
                   Premium wählen · 19 €
                 </Link>
               </article>

@@ -24,6 +24,7 @@ export function Nav() {
         <div className="flex h-14 items-center justify-between">
           <Link
             href="/"
+            prefetch={false}
             className="font-mono text-[14px] font-bold tracking-[0.18em] uppercase text-ink hover:text-stamp transition-colors"
             aria-label="Lyrvio"
           >
@@ -35,6 +36,7 @@ export function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
+                prefetch={false}
                 className="text-ink hover:text-stamp transition-colors"
               >
                 {l.label}
@@ -45,12 +47,13 @@ export function Nav() {
           <div className="hidden md:flex items-center gap-5 font-mono text-[12px] uppercase tracking-[0.14em]">
             <Link
               href="/dashboard"
+              prefetch={false}
               className="text-ash hover:text-ink transition-colors"
             >
               Mein Konto
             </Link>
             <Link
-              href="/checkout?plan=aktiv"
+              href="/checkout/standard"
               className="btn-primary !py-2 !px-4 !text-[11px]"
             >
               Jetzt loslegen
@@ -72,6 +75,7 @@ export function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
+                prefetch={false}
                 onClick={() => setOpen(false)}
                 className="text-ink"
               >
@@ -80,13 +84,14 @@ export function Nav() {
             ))}
             <Link
               href="/dashboard"
+              prefetch={false}
               onClick={() => setOpen(false)}
               className="text-ash"
             >
               Mein Konto
             </Link>
             <Link
-              href="/checkout?plan=aktiv"
+              href="/checkout/standard"
               onClick={() => setOpen(false)}
               className="btn-primary mt-2 self-start"
             >

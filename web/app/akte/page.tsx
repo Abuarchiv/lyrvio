@@ -106,7 +106,7 @@ export default function AktePage() {
                   hallo@lyrvio.com
                 </a>
               </div>
-              <Link href="/checkout?plan=aktiv" className="btn-primary">
+              <Link href="/checkout/standard" className="btn-primary">
                 Jetzt loslegen
               </Link>
             </div>

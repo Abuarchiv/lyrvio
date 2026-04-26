@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geist = Geist({
@@ -75,16 +76,16 @@ export default function RootLayout({
       lang="de"
       className={`${geist.variable} ${geistMono.variable} ${fraunces.variable}`}
     >
-      <head>
-        {/* Cloudflare Web Analytics — DSGVO-konform, kein Cookie-Banner */}
-        <script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "ed3d170682404aa2a3aa21f928f7f31b"}'
-        />
-      </head>
+      <head />
       <body className="min-h-screen bg-paper text-ink antialiased paper-grain">
         {children}
+        {/* Cloudflare Web Analytics — DSGVO-konform, kein Cookie-Banner */}
+        {/* lazyOnload = nach LCP geladen, blockiert FCP nicht */}
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "ed3d170682404aa2a3aa21f928f7f31b"}'
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
