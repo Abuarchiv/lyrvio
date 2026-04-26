@@ -3,7 +3,7 @@
  * DOM-Tests laufen in einer jsdom-ähnlichen Umgebung.
  * Da wir im Node-Kontext sind, mocken wir Document manuell.
  */
-import { describe, test, expect } from '@jest/globals'
+import { describe, test, expect } from 'vitest'
 import {
   parseListingFromDOM,
   parseListingsFromSearchResults,

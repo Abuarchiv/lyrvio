@@ -1,0 +1,90 @@
+---
+title: 'Wo werden meine Daten gespeichert?'
+slug: 'datenspeicherung'
+category: 'datenschutz-sicherheit'
+categoryLabel: 'Datenschutz & Sicherheit'
+order: 1
+description: 'Vollständige Übersicht wo und wie Lyrvio deine persönlichen Daten speichert.'
+updated: '2026-04-26'
+---
+
+## Kurz
+
+Lyrvio ist nach dem Prinzip **Datensparsamkeit** gebaut. Profildaten liegen auf sicheren EU-Servern, Bewerbungsinhalte werden nach 90 Tagen gelöscht, Browser-Extension-Daten bleiben lokal in deinem Browser.
+
+## Daten-Kategorien und ihre Speicherorte
+
+### Profildaten
+
+**Was:** Name, Beruf, Kontaktdaten, Suchkriterien, „Über mich"-Text, ggf. hochgeladene Dokumente
+
+**Wo:** Turso-Datenbank (libSQL) auf EU-Servern (Frankfurt)
+
+**Verschlüsselung:** AES-256 at rest, TLS 1.3 in transit
+
+**Aufbewahrung:** Solange dein Account aktiv ist + 90 Tage nach Kontolöschung
+
+### Bewerbungs-Daten
+
+**Was:** Zeitstempel, Inserat-URL, generierter Bewerbungstext, Status (Gesendet/Angeschaut/etc.)
+
+**Wo:** Turso-Datenbank EU-Server
+
+**Aufbewahrung:** 90 Tage nach Generierung, dann automatisch gelöscht
+
+**Ausnahme:** Wenn du einen Erfolg meldest, werden die relevanten Bewerbungsdaten für Abrechnungszwecke 7 Jahre aufbewahrt (gesetzliche Pflicht)
+
+### Extension-Daten
+
+**Was:** Session-Tokens der Plattform-Accounts, lokale Cache-Daten, Extension-Konfiguration
+
+**Wo:** Lokal in deinem Browser (Chrome Storage API / Firefox Storage API)
+
+**Kein Server-Zugriff auf Session-Tokens** — wir können deinen ImmoScout-Account nicht ohne deinen Browser verwenden
+
+### Zahlungsdaten
+
+**Was:** Abo-Status, Rechnungsadressen, Zahlungshistorie
+
+**Wo:** Stripe (EU-Server, ISO 27001-zertifiziert) — Kreditkartendaten liegen **ausschließlich** bei Stripe, nie bei uns
+
+## Datenflüsse
+
+```
+Browser (Extension)
+  → scannt Inserate (lokal, kein Server)
+  → sendet Profil-Auszug an API für Bewerbungs-Generierung
+  → KI-Modell (OpenRouter, ephemer — keine Datenspeicherung durch Modell)
+  → Bewerbungstext zurück an Browser
+  → Browser sendet Bewerbung auf Plattform
+  → Ergebnis (Status) an Server geloggt
+```
+
+Dein Klartext-Profil verlässt dein Gerät nur für die Bewerbungs-Generierung — und nur an den OpenRouter-Endpunkt unter unserer API-Key-Kontrolle.
+
+## Drittanbieter
+
+| Dienst | Zweck | Daten | Server-Region |
+|---|---|---|---|
+| Turso | Datenbank | Profil, Bewerbungen | EU (Frankfurt) |
+| Stripe | Zahlung | Abo, Rechnungen | EU |
+| OpenRouter/Anthropic | KI-Generierung | Profil-Auszug (ephemer) | USA |
+| Plausible | Analytics | Anonyme Seitenaufrufe | EU |
+| Resend | Transaktions-Mails | E-Mail-Adresse | EU |
+
+## Häufige Fragen
+
+**Werden meine Daten an Dritte weitergegeben?**
+Nein — außer an die oben genannten Dienste die für den Betrieb notwendig sind. Keine Verkäufe, kein Profiling für Werbung.
+
+**Was passiert mit meinen Daten wenn Lyrvio eingestellt wird?**
+Im Falle einer Einstellung bekommen alle Nutzer 60 Tage Vorlaufzeit und können alle ihre Daten exportieren. Danach werden alle Daten sicher gelöscht.
+
+**Liegen meine Daten in Deutschland?**
+Turso und Stripe haben EU-Server in Frankfurt und Irland. OpenRouter leitet Anfragen auch über US-Server — das ist der einzige Datentransfer außerhalb der EU, gedeckt durch SCCs (Standard Contractual Clauses).
+
+## Verwandte Artikel
+
+- [Wer hat Zugriff auf meine Mappe?](/hilfe/datenzugriff)
+- [Wie kann ich meine Daten löschen?](/hilfe/daten-loeschen)
+- [DSGVO-Auskunftsrecht ausüben](/hilfe/dsgvo-auskunft)

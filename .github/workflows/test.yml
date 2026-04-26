@@ -1,0 +1,163 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Unit Tests: api, db, templates, scrapers, bot ─────────────────────────
+  unit-tests:
+    name: Unit Tests (${{ matrix.workspace }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        workspace: [api, db, templates, scrapers, bot]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies (workspace)
+        run: pnpm install --filter ${{ matrix.workspace }} --frozen-lockfile
+        working-directory: ${{ github.workspace }}
+
+      - name: Run Unit Tests
+        run: pnpm --filter ${{ matrix.workspace }} test
+        env:
+          NODE_ENV: test
+
+      - name: Upload Coverage Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.workspace }}
+          path: ${{ matrix.workspace }}/coverage/
+          retention-days: 7
+
+  # ── E2E Tests: web/ mit Playwright ────────────────────────────────────────
+  e2e-tests:
+    name: E2E Tests (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-web-${{ hashFiles('web/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-web-
+
+      - name: Install web dependencies
+        run: pnpm install
+        working-directory: web
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps chromium
+        working-directory: web
+
+      - name: Build Next.js App
+        run: pnpm build
+        working-directory: web
+        env:
+          # Dummy-Werte für Build — keine echten Secrets nötig
+          NEXT_PUBLIC_STRIPE_PAYMENT_LINK_AKTIV: '/checkout?plan=aktiv'
+          NEXT_PUBLIC_STRIPE_PAYMENT_LINK_BONUS: '/checkout?plan=bonus'
+
+      - name: Run Playwright E2E Tests
+        run: pnpm test:e2e
+        working-directory: web
+        env:
+          BASE_URL: 'http://localhost:3000'
+          CI: 'true'
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: web/playwright-report/
+          retention-days: 14
+
+  # ── Coverage Summary ───────────────────────────────────────────────────────
+  coverage-summary:
+    name: Coverage Summary
+    runs-on: ubuntu-latest
+    needs: [unit-tests]
+    if: always()
+
+    steps:
+      - name: Download all coverage reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: coverage-*
+          path: coverage-reports/
+          merge-multiple: false
+
+      - name: Display coverage summary
+        run: |
+          echo "## Coverage Reports" >> $GITHUB_STEP_SUMMARY
+          for dir in coverage-reports/*/; do
+            workspace=$(basename "$dir")
+            echo "### $workspace" >> $GITHUB_STEP_SUMMARY
+            if [ -f "$dir/coverage-summary.json" ]; then
+              cat "$dir/coverage-summary.json" | python3 -c "
+          import json, sys
+          data = json.load(sys.stdin)
+          total = data.get('total', {})
+          print(f'| Metrik | Wert |')
+          print(f'|--------|------|')
+          for k in ['lines', 'functions', 'branches', 'statements']:
+            if k in total:
+              pct = total[k].get('pct', 0)
+              print(f'| {k} | {pct}% |')
+          " >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Keine Coverage-Daten verfügbar" >> $GITHUB_STEP_SUMMARY
+            fi
+          done

@@ -1,0 +1,87 @@
+---
+title: 'Stripe-Zahlungs-Probleme lösen'
+slug: 'stripe-probleme'
+category: 'account-bezahlung'
+categoryLabel: 'Account & Bezahlung'
+order: 4
+description: 'Häufige Stripe-Zahlungsprobleme und wie du sie in wenigen Minuten löst.'
+updated: '2026-04-26'
+---
+
+## Kurz
+
+Stripe ist unser Zahlungsdienstleister. Die meisten Zahlungsprobleme sind in 5 Minuten lösbar — meist reicht es die Zahlungsmethode zu aktualisieren.
+
+## Häufige Fehler und Lösungen
+
+### „Zahlung fehlgeschlagen" / „Karte abgelehnt"
+
+**Ursachen:**
+- Karte abgelaufen
+- Unzureichendes Guthaben
+- Bank blockiert Online-Zahlung (häufig bei neuen Karten oder Auslandsabbuchungen)
+- 3D-Secure-Bestätigung abgelaufen
+
+**Lösung:**
+1. Dashboard → Abonnement → **„Zahlungsmethode aktualisieren"**
+2. Neue Karte eingeben oder bestehende Karte aktualisieren
+3. Stripe versucht automatisch innerhalb von 24 Stunden erneut abzubuchen
+
+**Oder:** Ruf kurz bei deiner Bank an und frag ob Online-Zahlungen aktiviert sind. Bei manchen Kreditkarten ist das standardmäßig deaktiviert.
+
+### „Abonnement inaktiv nach Zahlung"
+
+Manchmal dauert es 2–5 Minuten bis Stripe die Zahlung an uns bestätigt. Lade die Dashboard-Seite neu.
+
+Wenn nach 10 Minuten immer noch „Inaktiv" steht:
+- E-Mail an support@lyrvio.com mit Betreff „Zahlung nicht anerkannt" + Datum der Zahlung
+- Wir prüfen manuell und aktivieren sofort
+
+### SEPA-Lastschrift verzögert
+
+SEPA-Abbuchungen brauchen 2–3 Werktage bis sie gutgeschrieben sind. Dein Abo wird während dieser Zeit nicht unterbrochen wenn dein Account in gutem Stand ist.
+
+### Stripe-Portal öffnet sich nicht
+
+Wenn der Button „Zahlungsmethode verwalten" nicht funktioniert:
+
+1. Cookies und Cache löschen (Strg+Shift+Del in Chrome/Firefox)
+2. Seite neu laden
+3. Wenn Problem bleibt: anderen Browser versuchen
+
+## Zahlungsmethode wechseln
+
+Von Kreditkarte auf SEPA-Lastschrift oder umgekehrt:
+
+1. Dashboard → Abonnement → **„Im Stripe-Portal verwalten"**
+2. Stripe-Portal öffnet sich in neuem Tab
+3. **„Zahlungsmethode hinzufügen"** → neue Methode eingeben
+4. Als Standard setzen → alte Methode löschen
+
+Das Stripe-Portal ist direkt von Stripe gehostet — deine Karteninformationen sehen wir niemals.
+
+## Erstattung beantragen
+
+Erstattungen für den laufenden Monat sind grundsätzlich ausgeschlossen (Vorauszahlung). Ausnahmen:
+
+- Technischer Fehler auf unserer Seite der den Bot für >48h nicht lauffähig gemacht hat
+- Doppelte Abbuchung
+
+Erstattungsanfragen an: support@lyrvio.com mit Betreff „Erstattung" + Zahlungsbeleg.
+
+## Häufige Fragen
+
+**Warum verwendet Lyrvio Stripe und nicht PayPal?**
+Stripe bietet besseren Schutz vor Chargebacks, einfacheres Abo-Management und ist DSGVO-konform mit EU-Datenhaltung. PayPal-Unterstützung ist für 2027 geplant.
+
+**Ich habe eine Zahlung gesehen die ich nicht erkenne?**
+Schau auf deiner Kreditkartenabrechnung nach „Lyrvio" oder „LYRVIO.COM". Wenn unklar: support@lyrvio.com — wir klären sofort.
+
+**Kann ich bar zahlen oder per Überweisung?**
+Nein — wir unterstützen nur Kreditkarte und SEPA-Lastschrift über Stripe.
+
+## Verwandte Artikel
+
+- [Wie kündige ich mein Abo?](/hilfe/abo-kuendigen)
+- [Rechnung herunterladen](/hilfe/rechnung-herunterladen)
+- [Wann wird der Erfolgs-Bonus fällig?](/hilfe/erfolgs-bonus)

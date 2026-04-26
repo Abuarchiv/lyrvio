@@ -1,0 +1,83 @@
+---
+title: 'Profile-Daten werden nicht gespeichert'
+slug: 'profil-nicht-gespeichert'
+category: 'troubleshooting'
+categoryLabel: 'Troubleshooting'
+order: 3
+description: 'Was tun wenn Änderungen im Profil nicht gespeichert werden oder nach dem Reload verschwinden.'
+updated: '2026-04-26'
+---
+
+## Kurz
+
+Profil-Daten die nicht gespeichert werden sind fast immer ein Login-, Browser- oder Netzwerk-Problem. Der häufigste Fall: Session abgelaufen und Speichern schlägt still fehl.
+
+## Schnell-Diagnose
+
+Öffne die Browser-Konsole (F12 → Tab „Console") und schau ob beim Speichern Fehler erscheinen:
+
+- `401 Unauthorized` → Session abgelaufen → Neu einloggen
+- `403 Forbidden` → Abo-Problem → Abo-Status prüfen
+- `Network Error` → Internetverbindung oder Server-Problem
+- Keine Fehlermeldung aber Daten verschwinden → Browser-Cache-Problem
+
+## Session abgelaufen (häufigster Fall)
+
+Sessions bei Lyrvio laufen nach 7 Tagen Inaktivität ab.
+
+1. Öffne das [Dashboard](/dashboard)
+2. Oben rechts: Wenn du „Login" siehst statt deines Profilbilds → Session abgelaufen
+3. Einloggen → Profil-Seite neu laden → Änderungen erneut vornehmen → Speichern
+
+## Browser-Cache löschen
+
+Manchmal speichert der Browser alte Formulardaten und zeigt veraltete Inhalte:
+
+1. Ctrl+Shift+Del (Windows) oder Cmd+Shift+Delete (Mac)
+2. Wähle: Cookies, Cache, Webseitendaten
+3. Zeitraum: Letzte 24 Stunden
+4. Löschen → Dashboard neu öffnen
+
+## Dokument-Upload schlägt fehl
+
+Wenn hochgeladene Dateien (PDF) nicht gespeichert werden:
+
+- **Dateigröße:** Max. 10 MB pro Datei
+- **Dateiformat:** Nur PDF akzeptiert (keine JPG, DOCX)
+- **Dateiname:** Keine Sonderzeichen (Umlaute können Probleme verursachen → Datei umbenennen)
+- **Upload-Timeout:** Bei langsamer Verbindung bricht der Upload nach 30 Sekunden ab
+
+Tipp bei großen Schufa-PDFs: komprimiere sie vorher mit einem Online-Tool auf unter 5 MB.
+
+## Formularfeld übernimmt Änderung nicht
+
+Einige Eingabefelder haben Validierungsregeln:
+
+- **Nettoeinkommen:** Nur Zahlen ohne Punkt/Komma (z.B. „3200", nicht „3.200" oder „3.200,00")
+- **Einzugsdatum:** Format TT.MM.JJJJ
+- **Telefonnummer:** Mit Ländervorwahl (+49...)
+
+Felder mit rotem Rahmen nach dem Tippen haben einen Validierungsfehler — Tooltip zeigt was erwartet wird.
+
+## Server-Problem
+
+Wenn der Lyrvio-Server vorübergehend nicht erreichbar ist, zeigt das Dashboard oben einen gelben Banner: „Verbindung unterbrochen — Änderungen werden lokal gespeichert".
+
+In diesem Fall werden deine Änderungen im Browser zwischengespeichert und beim nächsten verfügbaren Server-Kontakt synchronisiert (max. 15 Minuten). Schließe den Tab nicht bevor du den Bestätigungs-Banner siehst.
+
+## Häufige Fragen
+
+**Ich habe gespeichert, aber nach dem Reload sind die Daten weg?**
+Das deutet auf ein Caching-Problem oder eine abgelaufene Session hin. Prüfe den Login-Status und lösche den Browser-Cache.
+
+**Meine Dokumente werden im Dashboard angezeigt, aber die Extension zeigt „Keine Dokumente"?**
+Extension und Dashboard synchronisieren sich alle 5 Minuten. Warte kurz und öffne dann die Extension neu (auf Icon klicken → schließen → neu öffnen).
+
+**Was wenn gar nichts funktioniert?**
+Schreib an support@lyrvio.com mit einem Screenshot des Fehlers und deinem Browser (Chrome/Firefox/Edge) und Version.
+
+## Verwandte Artikel
+
+- [Wie lege ich mein Profil an?](/hilfe/profil-anlegen)
+- [Extension ist verschwunden im Browser](/hilfe/extension-verschwunden)
+- [Bot sendet keine Bewerbungen — was tun?](/hilfe/bot-sendet-nicht)

@@ -8,7 +8,10 @@
     "deploy": "wrangler deploy",
     "typecheck": "tsc --noEmit",
     "db:push": "cd ../db && pnpm db:push",
-    "db:generate": "cd ../db && pnpm db:generate"
+    "db:generate": "cd ../db && pnpm db:generate",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
@@ -23,8 +26,10 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250101.0",
     "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
     "drizzle-kit": "^0.29.0",
     "typescript": "^5.7.0",
+    "vitest": "^2.0.0",
     "wrangler": "^3.100.0"
   }
 }

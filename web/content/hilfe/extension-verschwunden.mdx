@@ -1,0 +1,84 @@
+---
+title: 'Extension ist verschwunden im Browser'
+slug: 'extension-verschwunden'
+category: 'troubleshooting'
+categoryLabel: 'Troubleshooting'
+order: 2
+description: 'Was tun wenn das Lyrvio-Icon aus der Browser-Symbolleiste verschwunden ist.'
+updated: '2026-04-26'
+---
+
+## Kurz
+
+Das Lyrvio-Icon verschwindet meistens weil es ausgeblendet wurde (nicht deinstalliert). Meist löst sich das in 30 Sekunden.
+
+## Schnellcheck: Ist die Extension noch installiert?
+
+### Chrome / Edge / Brave
+
+1. Tippe `chrome://extensions/` in die Adressleiste (bei Edge: `edge://extensions/`)
+2. Suche nach „Lyrvio"
+3. Wenn vorhanden und **blauer Schalter** = Extension läuft, ist nur das Icon ausgeblendet
+
+Wenn nicht vorhanden → Extension neu installieren (Abschnitt unten)
+
+### Firefox
+
+1. Tippe `about:addons` in die Adressleiste
+2. Suche nach „Lyrvio"
+3. Status prüfen
+
+## Icon wieder anpinnen (Chrome)
+
+1. Klicke auf das Puzzle-Symbol rechts in der Chrome-Adressleiste
+2. Suche „Lyrvio" in der Liste
+3. Klicke auf das Pin-Symbol (Stecknadel) rechts neben Lyrvio
+4. Das Icon erscheint sofort in der Symbolleiste
+
+## Extension ist deaktiviert
+
+Wenn die Extension in `chrome://extensions/` vorhanden aber deaktiviert ist (grauer Schalter):
+
+1. Schalter auf **Blau** (aktiv) stellen
+2. Extension startet — Icon erscheint in Symbolleiste
+
+## Extension ist deinstalliert oder fehlt komplett
+
+1. Öffne den Chrome Web Store (oder Firefox Add-ons)
+2. Suche nach „Lyrvio" oder nutze den direkten Link aus der E-Mail die du bei der Registrierung bekommen hast
+3. **„Installieren"** klicken
+4. Nach Installation einloggen — dein Profil ist auf dem Server gesichert, nichts geht verloren
+
+## Nach Browser-Update
+
+Manchmal deaktiviert Chrome nach einem Major-Update Extensions vorübergehend. Lösung:
+
+1. `chrome://extensions/` öffnen
+2. Meldung „Erweiterung wurde deaktiviert — reaktivieren?" bestätigen
+3. Fertig
+
+## Extension läuft aber hat keinen Internetzugang
+
+Manchmal blockiert eine Firewall oder ein VPN die Extension. Prüfe:
+
+- VPN deaktivieren → Extension erneut testen
+- Corporate-Firewall kann Chrome-Extensions blockieren (bei Firmen-Computern)
+
+Im Work-Browser läuft Lyrvio möglicherweise nicht — dann nutze es im privaten Browser.
+
+## Häufige Fragen
+
+**Verliere ich meine Einstellungen wenn ich die Extension neu installiere?**
+Nein. Profil, Suchkriterien und Einstellungen sind auf dem Lyrvio-Server gespeichert. Nach Neuinstallation und Login ist alles wie zuvor.
+
+**Muss ich die Vollmacht nach Neuinstallation erneut bestätigen?**
+Ja — aus Sicherheitsgründen muss die Vollmacht nach jeder Neuinstallation einmalig neu bestätigt werden. Das dauert 10 Sekunden.
+
+**Die Extension ist da aber reagiert nicht auf Klicks?**
+Extension neu starten: `chrome://extensions/` → Lyrvio → Schalter aus → Schalter an. Wenn das nicht hilft: Browser komplett neu starten.
+
+## Verwandte Artikel
+
+- [Wie installiere ich die Browser-Extension?](/hilfe/extension-installieren)
+- [Bot sendet keine Bewerbungen — was tun?](/hilfe/bot-sendet-nicht)
+- [Profile-Daten werden nicht gespeichert](/hilfe/profil-nicht-gespeichert)

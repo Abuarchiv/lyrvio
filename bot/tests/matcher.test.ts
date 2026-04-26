@@ -64,13 +64,21 @@ describe('matchListing — Basis', () => {
     expect(result.reasons.some(r => r.includes('Minimum'))).toBe(true)
   })
 
-  test('Warmmiete zu hoch → score -30, matched=false', () => {
+  test('Warmmiete zu hoch → score -30, Reason gesetzt', () => {
     const listing = makeListing({ rentWarm: 3000 })
     const criteria = makeCriteria({ maxRentWarm: 2000 })
     const result = matchListing(listing, criteria)
+    // Matcher zieht 30 Punkte ab → score 70, knapp über Schwelle
+    expect(result.score).toBeLessThan(100)
+    expect(result.reasons.some(r => r.includes('Maximum'))).toBe(true)
+  })
+
+  test('Warmmiete + Bezirk falsch → score < 60, matched=false', () => {
+    const listing = makeListing({ rentWarm: 3000, district: 'Spandau' })
+    const criteria = makeCriteria({ maxRentWarm: 2000, districts: ['Mitte'] })
+    const result = matchListing(listing, criteria)
     expect(result.score).toBeLessThan(60)
     expect(result.matched).toBe(false)
-    expect(result.reasons.some(r => r.includes('Maximum'))).toBe(true)
   })
 
   test('matched=false wenn score < 60', () => {

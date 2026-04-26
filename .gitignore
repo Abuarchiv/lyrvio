@@ -17,3 +17,8 @@ coverage/
 *.tsbuildinfo
 .wxt/
 web-ext-artifacts/
+test-results/
+playwright-report/
+playwright/.cache/
+out/
+.vercel/

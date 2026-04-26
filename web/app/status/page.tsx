@@ -266,9 +266,3 @@ export default function StatusPage() {
     </div>
   );
 }
-
-// Seiten-Metadaten
-export const metadata = {
-  title: "Status — Lyrvio",
-  description: "Echtzeit-Status aller Lyrvio-Services und Infrastruktur.",
-};

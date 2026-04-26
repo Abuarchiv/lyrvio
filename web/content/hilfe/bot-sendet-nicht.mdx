@@ -1,0 +1,90 @@
+---
+title: 'Bot sendet keine Bewerbungen — was tun?'
+slug: 'bot-sendet-nicht'
+category: 'troubleshooting'
+categoryLabel: 'Troubleshooting'
+order: 1
+description: 'Schritt-für-Schritt-Diagnose wenn Lyrvio keine Bewerbungen schickt obwohl Wohnungen vorhanden sind.'
+updated: '2026-04-26'
+---
+
+## Kurz
+
+Wenn Lyrvio nicht sendet, gibt es meistens einen von fünf Gründen: Suche nicht aktiv, Kriterien zu eng, Plattform-Session abgelaufen, Extension pausiert, oder kein passender Markt. Der Diagnose-Ablauf unten löst 95% der Fälle.
+
+## Diagnose-Ablauf
+
+### Schritt 1: Extension-Status prüfen
+
+Klicke auf das Lyrvio-Icon in deiner Browser-Symbolleiste.
+
+- **Grüner Punkt** = aktiv, alles läuft
+- **Grauer Punkt** = inaktiv → Toggle auf „Aktiv" stellen
+- **Rotes X** = Fehler → Fehlermeldung lesen
+
+### Schritt 2: Abo-Status prüfen
+
+Dashboard → Abonnement. Steht dort „Aktiv"? Wenn „Inaktiv" oder „Pausiert": Abo reaktivieren oder Pause beenden.
+
+### Schritt 3: Vollmacht prüfen
+
+Dashboard → Profil → Tab „Vollmacht". Ist die Vollmacht aktiv und nicht abgelaufen? Vollmachten laufen nach 6 Monaten ab — einfach neu bestätigen.
+
+### Schritt 4: Plattform-Sessions prüfen
+
+Extension → Tab **„Plattformen"**. Alle verknüpften Plattformen sollten grün (verbunden) sein.
+
+Wenn eine Plattform orange oder rot zeigt:
+1. Öffne die Plattform in deinem Browser (z.B. immobilienscout24.de)
+2. Logg dich ein wenn nötig
+3. Kehre zur Extension zurück → Plattform sollte jetzt grün sein
+
+Sessions laufen ab — besonders wenn du lange nicht auf der Plattform warst.
+
+### Schritt 5: Suchkriterien überprüfen
+
+Dashboard → Suchfilter. Sind die Kriterien realistisch?
+
+**Häufige Fallen:**
+- Maximalpreis zu niedrig für die Stadt (in München unter 900€ warm = sehr wenige Treffer)
+- Mindestfläche zu groß (über 80m² sind selten)
+- Stadtteile zu spezifisch eingeschränkt (nur 2–3 Stadtteile = kaum Inserate)
+
+Erweitere probeweise die Kriterien und schau ob Inserate auftauchen.
+
+### Schritt 6: Markt-Aktivität prüfen
+
+Extension → Tab **„Aktivität"** → Letzte Scan-Ergebnisse. Wie viele Inserate wurden beim letzten Scan gefunden (auch wenn keine deinen Kriterien entsprechen)?
+
+Wenn der Markt generell wenige Inserate hat (z.B. wenige Hundert in deiner Stadt), kann es normal sein dass stunden- oder tagelang keine neue Wohnung erscheint.
+
+## Spezifische Fehlermeldungen
+
+| Fehlermeldung | Bedeutung | Lösung |
+|---|---|---|
+| „Session abgelaufen" | Plattform-Login erloschen | Auf Plattform einloggen |
+| „Vollmacht ungültig" | Vollmacht abgelaufen | Im Dashboard neu bestätigen |
+| „Rate limit erreicht" | Internes Stunden-Limit | Wartet 1 Stunde automatisch |
+| „Bewerbung fehlgeschlagen" | Plattform-Fehler | Manuell prüfen, ggf. Extension neu starten |
+
+## Extension neu starten
+
+Wenn nichts hilft:
+
+1. Chrome → `chrome://extensions/`
+2. Lyrvio → Schalter **aus** und nach 5 Sekunden **an**
+3. Extension startet neu und baut alle Verbindungen frisch auf
+
+## Häufige Fragen
+
+**Der Bot war gestern aktiv, heute nicht mehr — warum?**
+Sehr häufig ist eine Plattform-Session abgelaufen (Schritt 4). Das passiert nach inaktiven Perioden oder nach Plattform-Updates.
+
+**Ich sehe Wohnungen auf ImmoScout die meinen Kriterien entsprechen — warum bewirbt sich der Bot nicht?**
+Das passiert wenn die Inserate schon > 30 Minuten online sind. Lyrvio bewirbt sich nur auf neue Inserate (frisch seit dem letzten Scan). Inserate die du manuell findest waren vielleicht schon lange online.
+
+## Verwandte Artikel
+
+- [Wie aktiviere ich meine Suche?](/hilfe/suche-aktivieren)
+- [Extension ist verschwunden im Browser](/hilfe/extension-verschwunden)
+- [Was tun wenn ImmoScout meinen Account sperrt?](/hilfe/immoscout-account-gesperrt)

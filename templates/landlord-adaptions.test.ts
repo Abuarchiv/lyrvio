@@ -1,7 +1,7 @@
 /**
  * Tests: templates/landlord-adaptions.ts
  */
-import { describe, test, expect } from '@jest/globals'
+import { describe, test, expect } from 'vitest'
 import {
   getLandlordAdaption,
   isApplicableType,
