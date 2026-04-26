@@ -74,7 +74,7 @@ export default function RootLayout({
           data-cf-beacon='{"token": "ed3d170682404aa2a3aa21f928f7f31b"}'
         />
       </head>
-      <body className="min-h-screen bg-ink text-bone antialiased grain">
+      <body className="min-h-screen bg-paper text-ink antialiased paper-grain">
         {children}
       </body>
     </html>

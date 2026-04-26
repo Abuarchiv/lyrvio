@@ -3,10 +3,10 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { TopTicker } from "@/components/TopTicker";
 import { ArticleSidebar } from "@/components/hilfe/ArticleSidebar";
 import { getAllArticles, getArticleBySlug } from "@/lib/hilfe";
 import { markdownToHtml } from "@/lib/markdown";
-import { Calendar, ChevronRight } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -72,7 +72,8 @@ export default async function ArticlePage({ params }: PageProps) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0f]">
+    <>
+      <TopTicker />
       <Nav />
 
       <script
@@ -80,22 +81,22 @@ export default async function ArticlePage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="flex-1 pt-24 pb-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <main className="bg-paper">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-24">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-1.5 text-sm text-slate-500 mb-8">
-            <Link href="/hilfe" className="hover:text-slate-300 transition-colors">
+          <nav className="flex items-center gap-2 font-mono text-[12px] text-ash mb-12 flex-wrap">
+            <Link href="/hilfe" className="hover:text-ink transition-colors">
               Help-Center
             </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
+            <span>›</span>
             <Link
               href={`/hilfe#${article.category}`}
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-ink transition-colors"
             >
               {article.categoryLabel}
             </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-slate-400">{article.title}</span>
+            <span>›</span>
+            <span className="text-ink">{article.title}</span>
           </nav>
 
           <div className="flex flex-col lg:flex-row gap-12">
@@ -109,29 +110,25 @@ export default async function ArticlePage({ params }: PageProps) {
             {/* Main Content */}
             <article className="flex-1 min-w-0">
               {/* Article Header */}
-              <header className="mb-8">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs font-medium text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-full">
-                    {article.categoryLabel}
-                  </span>
+              <header className="mb-10 pb-10 border-b-2 border-ink">
+                <div className="flex items-center gap-4 mb-6 flex-wrap">
+                  <span className="stamp-rotated">§ DOK</span>
+                  <span className="tag">{article.categoryLabel}</span>
                 </div>
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+                <h1 className="font-display text-[36px] sm:text-[48px] tracking-[-0.03em] text-ink leading-[1.1] mb-4">
                   {article.title}
                 </h1>
-                <p className="text-slate-400 text-lg leading-relaxed mb-4">
+                <p className="font-mono text-[15px] leading-[1.7] text-ink-2 mb-4">
                   {article.description}
                 </p>
-                <div className="flex items-center gap-1.5 text-xs text-slate-600">
-                  <Calendar className="h-3.5 w-3.5" />
-                  <span>
-                    Zuletzt aktualisiert:{" "}
-                    {new Date(article.updated).toLocaleDateString("de-DE", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </span>
-                </div>
+                <p className="font-mono text-[11px] text-ash">
+                  Zuletzt aktualisiert:{" "}
+                  {new Date(article.updated).toLocaleDateString("de-DE", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
               </header>
 
               {/* Article Content */}
@@ -142,16 +139,16 @@ export default async function ArticlePage({ params }: PageProps) {
 
               {/* Prev / Next Navigation */}
               {(prevArticle || nextArticle) && (
-                <div className="flex flex-col sm:flex-row gap-4 mt-12 pt-8 border-t border-slate-800">
+                <div className="flex flex-col sm:flex-row gap-4 mt-12 pt-8 border-t-2 border-ink">
                   {prevArticle && (
                     <Link
                       href={`/hilfe/${prevArticle.slug}`}
-                      className="flex-1 flex flex-col gap-1 p-4 rounded-xl border border-slate-800 hover:border-slate-700 hover:bg-slate-900/50 transition-colors group"
+                      className="flex-1 flex flex-col gap-1 p-5 border-2 border-ink hover:bg-paper-warm transition-colors group"
                     >
-                      <span className="text-xs text-slate-600 group-hover:text-slate-500">
+                      <span className="font-mono text-[11px] text-ash group-hover:text-ink-2">
                         ← Vorheriger Artikel
                       </span>
-                      <span className="text-slate-300 text-sm font-medium group-hover:text-white transition-colors">
+                      <span className="font-display text-[18px] tracking-[-0.02em] text-ink leading-[1.2]">
                         {prevArticle.title}
                       </span>
                     </Link>
@@ -159,12 +156,12 @@ export default async function ArticlePage({ params }: PageProps) {
                   {nextArticle && (
                     <Link
                       href={`/hilfe/${nextArticle.slug}`}
-                      className="flex-1 flex flex-col gap-1 p-4 rounded-xl border border-slate-800 hover:border-slate-700 hover:bg-slate-900/50 transition-colors group text-right"
+                      className="flex-1 flex flex-col gap-1 p-5 border-2 border-ink hover:bg-paper-warm transition-colors group text-right"
                     >
-                      <span className="text-xs text-slate-600 group-hover:text-slate-500">
+                      <span className="font-mono text-[11px] text-ash group-hover:text-ink-2">
                         Nächster Artikel →
                       </span>
-                      <span className="text-slate-300 text-sm font-medium group-hover:text-white transition-colors">
+                      <span className="font-display text-[18px] tracking-[-0.02em] text-ink leading-[1.2]">
                         {nextArticle.title}
                       </span>
                     </Link>
@@ -173,13 +170,13 @@ export default async function ArticlePage({ params }: PageProps) {
               )}
 
               {/* Contact CTA */}
-              <div className="mt-12 p-6 rounded-xl bg-slate-900/50 border border-slate-800 text-center">
-                <p className="text-slate-400 text-sm mb-3">
+              <div className="mt-12 p-6 border-2 border-ink bg-paper-warm">
+                <p className="font-mono text-[14px] text-ink mb-3">
                   War dieser Artikel hilfreich? Hast du noch Fragen?
                 </p>
                 <a
                   href="mailto:support@lyrvio.com"
-                  className="text-indigo-400 hover:text-indigo-300 text-sm font-medium transition-colors"
+                  className="link-underline font-mono text-[14px]"
                 >
                   support@lyrvio.com schreiben →
                 </a>
@@ -190,6 +187,6 @@ export default async function ArticlePage({ params }: PageProps) {
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }

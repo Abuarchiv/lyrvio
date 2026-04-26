@@ -63,8 +63,9 @@ export default function Step2Page() {
       <StepProgress currentStep={2} />
 
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-slate-50">Vollmacht bestätigen</h1>
-        <p className="text-sm text-slate-400">
+        <p className="label">Schritt 2</p>
+        <h1 className="font-display text-[32px] tracking-[-0.025em] text-ink">Vollmacht bestätigen</h1>
+        <p className="font-mono text-[13px] text-ash">
           Damit Lyrvio in deinem Namen Bewerbungen senden kann.
         </p>
       </div>
@@ -74,27 +75,27 @@ export default function Step2Page() {
         {TRUST_SIGNALS.map(({ icon: Icon, text }) => (
           <div
             key={text}
-            className="flex items-start gap-2.5 rounded-lg border border-slate-700/60 bg-slate-800/40 px-3 py-2.5"
+            className="flex items-start gap-2.5 border-2 border-ink bg-paper-warm px-3 py-2.5"
           >
-            <Icon className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" aria-hidden="true" />
-            <span className="text-xs text-slate-300">{text}</span>
+            <Icon className="w-4 h-4 text-stamp mt-0.5 shrink-0" aria-hidden="true" />
+            <span className="font-mono text-[12px] text-ink-2">{text}</span>
           </div>
         ))}
       </div>
 
       {/* Vollmacht text */}
       <div
-        className="rounded-xl border border-slate-700 bg-slate-900/60 p-4 space-y-3"
+        className="border-2 border-ink bg-paper-warm p-4 space-y-3"
         role="document"
         aria-label="Vollmachtstext"
       >
         <div className="flex items-center gap-2">
-          <FileText className="w-4 h-4 text-slate-400" aria-hidden="true" />
-          <h2 className="text-sm font-semibold text-slate-200">
+          <FileText className="w-4 h-4 text-ash" aria-hidden="true" />
+          <h2 className="font-mono text-[13px] font-semibold text-ink">
             Elektronische Vollmacht
           </h2>
         </div>
-        <div className="text-xs text-slate-400 leading-relaxed space-y-2 max-h-40 overflow-y-auto pr-1">
+        <div className="font-mono text-[12px] text-ash leading-relaxed space-y-2 max-h-40 overflow-y-auto pr-1">
           <p>
             Hiermit bevollmächtige ich die Lyrvio UG (haftungsbeschränkt), in
             meinem Namen automatisierte Bewerbungsnachrichten an Vermieter und
@@ -131,7 +132,7 @@ export default function Step2Page() {
             <label className="flex items-start gap-3 cursor-pointer group">
               <input
                 type="checkbox"
-                className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-indigo-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 focus:ring-offset-slate-900 shrink-0"
+                className="mt-0.5 w-4 h-4 border-2 border-ink bg-paper accent-stamp focus:ring-2 focus:ring-stamp focus:ring-offset-1 focus:ring-offset-paper shrink-0"
                 aria-required="true"
                 aria-invalid={!!errors.vollmachtAccepted}
                 aria-describedby={
@@ -139,7 +140,7 @@ export default function Step2Page() {
                 }
                 {...register("vollmachtAccepted")}
               />
-              <span className="text-sm text-slate-300 group-hover:text-slate-200">
+              <span className="font-mono text-[13px] text-ink-2 group-hover:text-ink">
                 Ich erteile Lyrvio die oben beschriebene Vollmacht und bestätige,
                 dass ich die Bedingungen verstanden habe.
               </span>
@@ -148,7 +149,7 @@ export default function Step2Page() {
               <p
                 id="vollmacht-error"
                 role="alert"
-                className="text-xs text-red-400 ml-7"
+                className="font-mono text-[12px] text-stamp ml-7"
               >
                 {errors.vollmachtAccepted.message}
               </p>
@@ -160,7 +161,7 @@ export default function Step2Page() {
             <label className="flex items-start gap-3 cursor-pointer group">
               <input
                 type="checkbox"
-                className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-indigo-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 focus:ring-offset-slate-900 shrink-0"
+                className="mt-0.5 w-4 h-4 border-2 border-ink bg-paper accent-stamp focus:ring-2 focus:ring-stamp focus:ring-offset-1 focus:ring-offset-paper shrink-0"
                 aria-required="true"
                 aria-invalid={!!errors.dsgvoAccepted}
                 aria-describedby={
@@ -168,13 +169,13 @@ export default function Step2Page() {
                 }
                 {...register("dsgvoAccepted")}
               />
-              <span className="text-sm text-slate-300 group-hover:text-slate-200">
+              <span className="font-mono text-[13px] text-ink-2 group-hover:text-ink">
                 Ich akzeptiere die{" "}
                 <a
                   href="/legal/datenschutz"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-indigo-400 hover:underline"
+                  className="text-stamp hover:underline"
                 >
                   Datenschutzerklärung
                 </a>{" "}
@@ -183,7 +184,7 @@ export default function Step2Page() {
                   href="/legal/agb"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-indigo-400 hover:underline"
+                  className="text-stamp hover:underline"
                 >
                   AGB
                 </a>
@@ -194,7 +195,7 @@ export default function Step2Page() {
               <p
                 id="dsgvo-error"
                 role="alert"
-                className="text-xs text-red-400 ml-7"
+                className="font-mono text-[12px] text-stamp ml-7"
               >
                 {errors.dsgvoAccepted.message}
               </p>

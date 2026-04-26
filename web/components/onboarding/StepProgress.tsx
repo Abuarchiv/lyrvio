@@ -34,18 +34,18 @@ export function StepProgress({
     >
       {/* Mobile: compact pill */}
       <div className="flex items-center justify-between mb-2 sm:hidden">
-        <span className="text-xs text-slate-400">
+        <span className="font-mono text-[12px] text-ash">
           Schritt{" "}
-          <span className="text-slate-200 font-semibold">{currentStep}</span>{" "}
+          <span className="text-ink font-semibold">{currentStep}</span>{" "}
           von {totalSteps}
         </span>
-        <span className="text-xs text-slate-400">
+        <span className="font-mono text-[12px] text-ash">
           {labels[currentStep - 1]}
         </span>
       </div>
-      <div className="h-1.5 w-full rounded-full bg-slate-800 sm:hidden">
+      <div className="h-1.5 w-full bg-paper-2 border border-ink/20 sm:hidden">
         <div
-          className="h-full rounded-full bg-indigo-500 transition-all duration-500"
+          className="h-full bg-stamp transition-all duration-500"
           style={{ width: `${(currentStep / totalSteps) * 100}%` }}
         />
       </div>
@@ -65,12 +65,12 @@ export function StepProgress({
                 <div className="flex flex-col items-center">
                   <div
                     className={cn(
-                      "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all duration-300",
+                      "w-8 h-8 flex items-center justify-center font-mono text-xs font-bold border-2 transition-all duration-300",
                       done
-                        ? "bg-indigo-600 border-indigo-600 text-white"
+                        ? "bg-stamp border-stamp text-paper"
                         : active
-                        ? "bg-transparent border-indigo-500 text-indigo-400 ring-2 ring-indigo-500/30"
-                        : "bg-transparent border-slate-700 text-slate-600"
+                        ? "bg-paper border-ink text-ink ring-2 ring-ink/20"
+                        : "bg-paper border-ash/40 text-ash"
                     )}
                     aria-current={active ? "step" : undefined}
                   >
@@ -82,8 +82,8 @@ export function StepProgress({
                   </div>
                   <span
                     className={cn(
-                      "mt-1 text-[10px] font-medium whitespace-nowrap",
-                      active ? "text-indigo-400" : done ? "text-slate-400" : "text-slate-600"
+                      "mt-1 font-mono text-[10px] whitespace-nowrap",
+                      active ? "text-ink font-semibold" : done ? "text-ash" : "text-ash/60"
                     )}
                   >
                     {labels[i]}
@@ -92,8 +92,8 @@ export function StepProgress({
                 {i < totalSteps - 1 && (
                   <div
                     className={cn(
-                      "flex-1 h-0.5 mx-2 rounded-full transition-all duration-500",
-                      done ? "bg-indigo-600" : "bg-slate-800"
+                      "flex-1 h-0.5 mx-2 transition-all duration-500",
+                      done ? "bg-stamp" : "bg-ink/15"
                     )}
                     aria-hidden="true"
                   />

@@ -88,10 +88,11 @@ export default function Step1Page() {
       <StepProgress currentStep={1} />
 
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-slate-50">
+        <p className="label">Schritt 1</p>
+        <h1 className="font-display text-[32px] tracking-[-0.025em] text-ink">
           Konto erstellen
         </h1>
-        <p className="text-sm text-slate-400">
+        <p className="font-mono text-[13px] text-ash">
           Kein Passwort nötig — wir senden dir einen Magic-Link.
         </p>
       </div>
@@ -106,7 +107,7 @@ export default function Step1Page() {
             <div className="space-y-1.5">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-slate-300"
+                className="font-mono text-[13px] font-medium text-ink-2"
               >
                 E-Mail-Adresse
               </label>
@@ -125,7 +126,7 @@ export default function Step1Page() {
                 <p
                   id="email-error"
                   role="alert"
-                  className="text-xs text-red-400 mt-0.5"
+                  className="font-mono text-[12px] text-stamp mt-0.5"
                 >
                   {errors.email.message}
                 </p>
@@ -133,7 +134,7 @@ export default function Step1Page() {
             </div>
 
             {serverError && (
-              <p role="alert" className="text-xs text-red-400 bg-red-950/40 border border-red-800/40 rounded-lg px-3 py-2">
+              <p role="alert" className="font-mono text-[12px] text-stamp border-2 border-stamp/40 bg-stamp/5 px-3 py-2">
                 {serverError}
               </p>
             )}
@@ -157,13 +158,13 @@ export default function Step1Page() {
               )}
             </Button>
 
-            <p className="text-xs text-slate-500 text-center">
+            <p className="font-mono text-[11px] text-ash text-center">
               Mit dem Login stimmst du unseren{" "}
-              <a href="/legal/agb" className="text-indigo-400 hover:underline">
+              <a href="/legal/agb" className="text-stamp hover:underline">
                 AGB
               </a>{" "}
               und der{" "}
-              <a href="/legal/datenschutz" className="text-indigo-400 hover:underline">
+              <a href="/legal/datenschutz" className="text-stamp hover:underline">
                 Datenschutzerklärung
               </a>{" "}
               zu.
@@ -172,32 +173,32 @@ export default function Step1Page() {
         </form>
       ) : (
         <div
-          className="rounded-xl border border-emerald-700/50 bg-emerald-950/30 p-6 text-center space-y-3"
+          className="border-2 border-sage bg-paper-warm p-6 text-center space-y-3"
           role="status"
           aria-live="polite"
         >
-          <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" aria-hidden="true" />
-          <h2 className="font-semibold text-slate-100 text-lg">
+          <CheckCircle2 className="w-10 h-10 text-sage mx-auto" aria-hidden="true" />
+          <h2 className="font-display text-[20px] text-ink">
             Link gesendet!
           </h2>
-          <p className="text-sm text-slate-400">
+          <p className="font-mono text-[13px] text-ash">
             Wir haben einen Magic-Link an{" "}
-            <span className="text-slate-200 font-medium">{email}</span> gesendet.
+            <span className="text-ink font-semibold">{email}</span> gesendet.
             <br />
             Klick auf den Link um fortzufahren.
           </p>
-          <p className="text-xs text-slate-500">
+          <p className="font-mono text-[11px] text-ash">
             Link kommt in &lt;5 Sekunden. Spam-Ordner prüfen falls nötig.
           </p>
           {countdown > 0 ? (
-            <p className="text-xs text-slate-600">
+            <p className="font-mono text-[11px] text-dust">
               Erneut senden in {countdown}s
             </p>
           ) : (
             <button
               type="button"
               onClick={resend}
-              className="text-xs text-indigo-400 hover:underline"
+              className="font-mono text-[11px] text-stamp hover:underline"
             >
               Link erneut senden
             </button>

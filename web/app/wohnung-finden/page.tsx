@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MapPin } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { TopTicker } from "@/components/TopTicker";
 import { cityList } from "@/lib/cities";
 
 export const metadata: Metadata = {
@@ -27,35 +27,42 @@ export default function WohnungFindenPage() {
   const sortedCities = cityList.sort((a, b) => b.population - a.population);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0f]">
+    <>
+      <TopTicker />
       <Nav />
-      <main className="flex-1">
-        <section className="relative overflow-hidden pt-32 pb-20">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-indigo-600/5 blur-3xl" />
-          </div>
-
-          <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8">
-              <Link href="/" className="hover:text-slate-300 transition-colors">Lyrvio</Link>
-              <span>/</span>
-              <span className="text-slate-300">Wohnung finden</span>
+      <main>
+        {/* Header */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-16 lg:pt-24 lg:pb-20">
+            <nav className="flex items-center gap-2 font-mono text-[12px] text-ash mb-10 flex-wrap">
+              <Link href="/" className="hover:text-ink transition-colors">Lyrvio</Link>
+              <span>›</span>
+              <span className="text-ink">Wohnung finden</span>
             </nav>
 
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-6">
-                <span className="text-white">Wohnung finden in </span>
-                <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
-                  deiner Stadt
-                </span>
-              </h1>
-              <p className="text-lg text-slate-400 leading-relaxed">
-                Lyrvio ist aktiv in {cityList.length} deutschen Großstädten. Wähle deine Stadt —
-                und sieh wie angespannt der Markt dort wirklich ist.
-              </p>
+            <div className="flex items-center gap-4 mb-8 flex-wrap">
+              <span className="stamp-rotated">§ STÄDTE</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
+                {cityList.length} Städte · DACH
+              </span>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h1 className="manifest mb-6">
+              Wohnung finden
+              <br />
+              in <em>deiner Stadt.</em>
+            </h1>
+            <p className="font-mono text-[15px] leading-[1.7] text-ink max-w-[56ch]">
+              Lyrvio ist aktiv in {cityList.length} deutschen Großstädten. Wähle deine Stadt —
+              und sieh wie angespannt der Markt dort wirklich ist.
+            </p>
+          </div>
+        </section>
+
+        {/* City Grid */}
+        <section className="bg-paper">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px border border-ink bg-ink">
               {sortedCities.map((city) => {
                 const avgRent =
                   city.topDistricts.reduce((s, d) => s + d.avgRentSqm, 0) /
@@ -65,33 +72,32 @@ export default function WohnungFindenPage() {
                   <Link
                     key={city.slug}
                     href={`/wohnung-finden/${city.slug}`}
-                    className="group rounded-xl border border-slate-800 bg-slate-900/40 p-5 hover:border-slate-600 hover:bg-slate-900/70 transition-all"
+                    className="group bg-paper hover:bg-paper-warm p-6 transition-colors"
                   >
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-4">
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <MapPin className="h-4 w-4 text-indigo-400" />
-                          <h2 className="font-semibold text-white">{city.name}</h2>
-                        </div>
-                        <p className="text-xs text-slate-500">{city.state}</p>
+                        <h2 className="font-display text-[22px] tracking-[-0.02em] text-ink group-hover:text-stamp transition-colors">
+                          {city.name}
+                        </h2>
+                        <p className="font-mono text-[11px] text-ash mt-0.5">{city.state}</p>
                       </div>
-                      <ArrowRight className="h-4 w-4 text-slate-600 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all mt-0.5" />
+                      <span className="font-mono text-[16px] text-ash group-hover:text-ink transition-colors">→</span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 mt-4">
+                    <div className="grid grid-cols-3 gap-4 border-t border-rule-soft pt-4">
                       <div>
-                        <div className="text-base font-bold text-white">{city.apartmentsPerDay}</div>
-                        <div className="text-xs text-slate-600">Inserate/Tag</div>
+                        <div className="font-mono text-[16px] font-bold text-ink">{city.apartmentsPerDay}</div>
+                        <div className="font-mono text-[10px] text-ash">Inserate/Tag</div>
                       </div>
                       <div>
-                        <div className="text-base font-bold text-rose-300">{city.avgBewerber}</div>
-                        <div className="text-xs text-slate-600">Bewerber</div>
+                        <div className="font-mono text-[16px] font-bold text-stamp">{city.avgBewerber}</div>
+                        <div className="font-mono text-[10px] text-ash">Bewerber</div>
                       </div>
                       <div>
-                        <div className="text-base font-bold text-slate-300">
+                        <div className="font-mono text-[16px] font-bold text-ink">
                           {avgRent.toFixed(0)} €
                         </div>
-                        <div className="text-xs text-slate-600">Ø/m²</div>
+                        <div className="font-mono text-[10px] text-ash">Ø/m²</div>
                       </div>
                     </div>
                   </Link>
@@ -102,6 +108,6 @@ export default function WohnungFindenPage() {
         </section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

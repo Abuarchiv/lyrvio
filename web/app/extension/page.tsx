@@ -1,216 +1,176 @@
 import Link from "next/link";
-import { Globe, Download, Check, ArrowRight, Shield, Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { TopTicker } from "@/components/TopTicker";
 
 const chromeSteps = [
   {
-    step: "1",
+    step: "01",
     title: "Extension herunterladen",
     description: "Klicke auf den Chrome-Extension-Link. Du wirst zum Chrome Web Store weitergeleitet.",
   },
   {
-    step: "2",
+    step: "02",
     title: "Installation bestätigen",
     description: "Klicke auf \"Zu Chrome hinzufügen\" und bestätige die Berechtigungen im Dialog.",
   },
   {
-    step: "3",
+    step: "03",
     title: "Anmelden",
     description: "Öffne die Extension über das Puzzle-Icon in der Chrome-Toolbar und logge dich mit deiner Lyrvio-E-Mail ein.",
   },
   {
-    step: "4",
+    step: "04",
     title: "Bot aktivieren",
     description: "Gehe zu deinem Lyrvio-Dashboard und klicke auf \"Bot aktivieren\". Fertig — der Bot läuft jetzt im Hintergrund.",
   },
 ];
 
-const firefoxSteps = [
+const permissions = [
   {
-    step: "1",
-    title: "Add-on installieren",
-    description: "Klicke auf den Firefox Add-on-Link. Du wirst zu addons.mozilla.org weitergeleitet.",
+    permission: "Tabs lesen",
+    reason: "Um aktive ImmoScout/Immowelt-Tabs zu erkennen",
   },
   {
-    step: "2",
-    title: "Berechtigungen erlauben",
-    description: "Klicke auf \"Zu Firefox hinzufügen\" und bestätige die notwendigen Berechtigungen.",
+    permission: "Seiteninhalte lesen",
+    reason: "Um neue Inserate auf Wohnungsportalen zu erkennen",
   },
   {
-    step: "3",
-    title: "Anmelden & aktivieren",
-    description: "Öffne die Extension über die Add-on-Leiste, melde dich an und aktiviere den Bot im Dashboard.",
+    permission: "Lokaler Speicher",
+    reason: "Dein Profil bleibt lokal auf deinem Gerät",
+  },
+  {
+    permission: "Nachrichten senden",
+    reason: "Um Bewerbungen über Plattform-Messaging zu versenden",
   },
 ];
 
 export default function ExtensionPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0f]">
+    <>
+      <TopTicker />
       <Nav />
-      <main className="flex-1 pt-24 pb-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-300 mb-4">
-              <Zap className="h-3.5 w-3.5 fill-indigo-400 text-indigo-400" />
-              Setup in 2 Minuten
+      <main>
+        {/* Header */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-16 lg:pt-24 lg:pb-20">
+            <div className="flex items-center gap-4 mb-10 flex-wrap">
+              <span className="stamp-rotated">§ EXT</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
+                Setup in 2 Minuten
+              </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Extension installieren
+            <h1 className="manifest mb-6">
+              Extension
+              <br />
+              <em>installieren.</em>
             </h1>
-            <p className="text-lg text-slate-400 max-w-xl mx-auto">
+            <p className="font-mono text-[15px] leading-[1.7] text-ink max-w-[56ch]">
               Der Bot läuft direkt in deinem Browser — keine Server, keine AGB-Verletzung. Wähle deinen Browser.
             </p>
           </div>
+        </section>
 
-          {/* Browser Selection */}
-          <div className="grid sm:grid-cols-2 gap-6 mb-16">
-            {/* Chrome */}
-            <div className="rounded-2xl border border-indigo-500/40 bg-slate-900 p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-12 w-12 rounded-2xl bg-indigo-600/20 flex items-center justify-center">
-                  <Globe className="h-6 w-6 text-indigo-400" />
+        {/* Browser Selection */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
+            <div className="label mb-8">Browser wählen</div>
+            <div className="grid sm:grid-cols-2 gap-6 max-w-[800px]">
+              {/* Chrome */}
+              <div className="border-2 border-ink bg-paper-warm p-8">
+                <div className="flex items-center gap-3 mb-2">
+                  <h2 className="font-display text-[28px] tracking-[-0.025em] text-ink">Chrome</h2>
+                  <span className="tag -sage">Empfohlen</span>
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white">Chrome</h2>
-                  <p className="text-sm text-slate-500">Empfohlen</p>
-                </div>
-              </div>
-              <a
-                href="https://chrome.google.com/webstore/detail/lyrvio/placeholder"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  size="lg"
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-600/20 mb-4"
+                <p className="font-mono text-[12px] text-ash mb-6">Kompatibel: Chrome 88+, Edge, Brave, Opera</p>
+                <a
+                  href="https://chrome.google.com/webstore/detail/lyrvio/placeholder"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary block text-center cursor-stamp"
                 >
-                  <Download className="h-5 w-5" />
                   Chrome Extension installieren
-                </Button>
-              </a>
-              <p className="text-xs text-slate-600 text-center">
-                Kompatibel: Chrome 88+, Edge, Brave, Opera
-              </p>
-            </div>
-
-            {/* Firefox */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-12 w-12 rounded-2xl bg-slate-800 flex items-center justify-center">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-                    <circle cx="12" cy="12" r="10" className="fill-orange-500" opacity="0.8" />
-                    <circle cx="12" cy="12" r="6" className="fill-amber-400" opacity="0.6" />
-                    <circle cx="12" cy="12" r="3" className="fill-orange-300" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white">Firefox</h2>
-                  <p className="text-sm text-slate-500">Bald verfügbar (Beta)</p>
-                </div>
+                </a>
               </div>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-slate-700 text-slate-400"
-                disabled
-              >
-                <Download className="h-5 w-5" />
-                Firefox Add-on (demnächst)
-              </Button>
-              <p className="text-xs text-slate-600 text-center mt-4">
-                Firefox-Version in Entwicklung. <Link href="/#preise" className="text-indigo-400 hover:text-indigo-300">Auf Warteliste setzen.</Link>
-              </p>
-            </div>
-          </div>
 
-          {/* Installation Steps Chrome */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-              <Globe className="h-6 w-6 text-indigo-400" />
-              Chrome-Schritt-für-Schritt
-            </h2>
-            <div className="space-y-4">
-              {chromeSteps.map((step, i) => (
-                <div
-                  key={i}
-                  className="flex gap-5 p-5 rounded-xl border border-slate-800 bg-slate-900/50"
+              {/* Firefox */}
+              <div className="border-2 border-ink bg-paper p-8">
+                <div className="flex items-center gap-3 mb-2">
+                  <h2 className="font-display text-[28px] tracking-[-0.025em] text-ink">Firefox</h2>
+                  <span className="tag -outline">Beta</span>
+                </div>
+                <p className="font-mono text-[12px] text-ash mb-6">Firefox-Version in Entwicklung.</p>
+                <button
+                  disabled
+                  className="btn-secondary w-full opacity-50 cursor-not-allowed"
                 >
-                  <div className="h-10 w-10 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center flex-shrink-0">
-                    <span className="text-indigo-400 font-bold text-sm">{step.step}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white mb-1">{step.title}</h3>
-                    <p className="text-sm text-slate-400">{step.description}</p>
-                  </div>
-                  {i < chromeSteps.length - 1 && (
-                    <ArrowRight className="h-4 w-4 text-slate-700 ml-auto mt-3 flex-shrink-0" />
-                  )}
-                  {i === chromeSteps.length - 1 && (
-                    <Check className="h-4 w-4 text-emerald-400 ml-auto mt-3 flex-shrink-0" />
-                  )}
-                </div>
-              ))}
+                  Firefox Add-on (demnächst)
+                </button>
+                <p className="font-mono text-[11px] text-ash mt-3">
+                  <Link href="/#preise" className="link-underline">Auf Warteliste setzen.</Link>
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Permissions Explanation */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 mb-12">
-            <div className="flex items-center gap-2 mb-6">
-              <Shield className="h-5 w-5 text-indigo-400" />
-              <h2 className="text-xl font-bold text-white">Welche Berechtigungen braucht die Extension?</h2>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                {
-                  permission: "Tabs lesen",
-                  reason: "Um aktive ImmoScout/Immowelt-Tabs zu erkennen",
-                  sensitive: false,
-                },
-                {
-                  permission: "Seiteninhalte lesen",
-                  reason: "Um neue Inserate auf Wohnungsportalen zu erkennen",
-                  sensitive: false,
-                },
-                {
-                  permission: "Lokaler Speicher",
-                  reason: "Dein Profil bleibt lokal auf deinem Gerät",
-                  sensitive: false,
-                },
-                {
-                  permission: "Nachrichten senden",
-                  reason: "Um Bewerbungen über Plattform-Messaging zu versenden",
-                  sensitive: false,
-                },
-              ].map((item, i) => (
-                <div key={i} className="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Check className="h-4 w-4 text-emerald-400" />
-                    <span className="text-sm font-medium text-slate-200">{item.permission}</span>
+        {/* Installation Steps Chrome */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
+            <div className="label mb-10">Chrome-Schritt-für-Schritt</div>
+            <ol className="space-y-8 max-w-[800px]">
+              {chromeSteps.map((step, i) => (
+                <li key={i} className="grid grid-cols-12 gap-6 pb-8 border-b border-rule-soft last:border-b-0 last:pb-0">
+                  <div className="col-span-12 lg:col-span-2">
+                    <div className="step-num">{step.step}</div>
                   </div>
-                  <p className="text-xs text-slate-500 pl-6">{item.reason}</p>
+                  <div className="col-span-12 lg:col-span-10">
+                    <h3 className="font-display text-[22px] tracking-[-0.02em] text-ink mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="font-mono text-[14px] leading-[1.75] text-ink">
+                      {step.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Permissions */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
+            <div className="label mb-10">Welche Berechtigungen braucht die Extension?</div>
+            <div className="grid sm:grid-cols-2 gap-4 max-w-[800px]">
+              {permissions.map((item, i) => (
+                <div key={i} className="border-2 border-ink bg-paper-warm p-5">
+                  <p className="font-display text-[18px] tracking-[-0.02em] text-ink mb-1">
+                    ■ {item.permission}
+                  </p>
+                  <p className="font-mono text-[12px] text-ash leading-[1.6]">{item.reason}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs text-slate-600">
+            <p className="font-mono text-[11px] text-ash mt-6">
               Kein Zugriff auf: Passwörter, Zahlungsdaten, andere Browser-Tabs außer Wohnungsportale.
             </p>
           </div>
+        </section>
 
-          {/* CTA */}
-          <div className="text-center">
-            <Link href="/dashboard">
-              <Button size="xl" className="bg-indigo-600 hover:bg-indigo-700">
-                Extension installiert — zum Dashboard
-                <ArrowRight className="h-5 w-5" />
-              </Button>
+        {/* CTA */}
+        <section>
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 flex flex-wrap items-center justify-between gap-6">
+            <p className="font-display text-[28px] sm:text-[36px] tracking-[-0.02em] text-ink max-w-[28ch]">
+              Extension installiert — jetzt zum Dashboard.
+            </p>
+            <Link href="/dashboard" className="btn-primary cursor-stamp">
+              Zum Dashboard →
             </Link>
           </div>
-        </div>
+        </section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

@@ -13,44 +13,42 @@ export default function OnboardingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0a0a0f]">
-      {/* Minimal header */}
-      <header className="border-b border-slate-800/60 px-4 py-3 flex items-center justify-between">
+    <div className="min-h-screen flex flex-col bg-paper text-ink">
+      {/* Minimal-Header im Akten-Stil */}
+      <header className="border-b-2 border-ink px-6 py-3 flex items-center justify-between bg-paper">
         <Link
           href="/"
-          className="text-lg font-bold gradient-text"
+          className="font-mono text-[13px] font-bold tracking-[0.18em] uppercase text-ink hover:text-stamp transition-colors"
           aria-label="Zurück zur Startseite"
         >
-          Lyrvio
+          LYRVIO<span className="text-stamp">·</span>001
         </Link>
-        <span className="text-xs text-slate-500">
+        <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-ash">
           Fragen?{" "}
           <a
-            href="mailto:support@lyrvio.com"
-            className="text-indigo-400 hover:underline"
+            href="mailto:akte@lyrvio.com"
+            className="link-underline text-ink"
           >
-            support@lyrvio.com
+            akte@lyrvio.com
           </a>
         </span>
       </header>
 
-      {/* Content */}
       <main
         id="main-content"
-        className="flex-1 flex items-start justify-center px-4 py-8 sm:py-12"
+        className="flex-1 flex items-start justify-center px-6 py-12 sm:py-16"
       >
-        <div className="w-full max-w-lg">{children}</div>
+        <div className="w-full max-w-[640px]">{children}</div>
       </main>
 
-      {/* Footer trust */}
-      <footer className="border-t border-slate-800/60 px-4 py-3 text-center">
-        <p className="text-xs text-slate-600">
+      <footer className="border-t border-rule-soft px-6 py-3 text-center bg-paper-2">
+        <p className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-ash">
           DSGVO-konform · SSL-verschlüsselt · Widerruf jederzeit ·{" "}
-          <a href="/legal/datenschutz" className="hover:text-slate-400">
+          <a href="/datenschutz" className="link-underline text-ink">
             Datenschutz
           </a>{" "}
           ·{" "}
-          <a href="/legal/agb" className="hover:text-slate-400">
+          <a href="/agb" className="link-underline text-ink">
             AGB
           </a>
         </p>

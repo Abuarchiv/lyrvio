@@ -67,8 +67,9 @@ export default function Step3Page() {
       <StepProgress currentStep={3} />
 
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-slate-50">Persönliche Daten</h1>
-        <p className="text-sm text-slate-400">
+        <p className="label">Schritt 3</p>
+        <h1 className="font-display text-[32px] tracking-[-0.025em] text-ink">Persönliche Daten</h1>
+        <p className="font-mono text-[13px] text-ash">
           Diese Daten erscheinen in deinen Bewerbungen — genau wie du sie
           eingibst.
         </p>
@@ -96,7 +97,7 @@ export default function Step3Page() {
                 {...register("vorname")}
               />
               {errors.vorname && (
-                <p id="vorname-error" role="alert" className="text-xs text-red-400">
+                <p id="vorname-error" role="alert" className="font-mono text-[12px] text-stamp">
                   {errors.vorname.message}
                 </p>
               )}
@@ -114,7 +115,7 @@ export default function Step3Page() {
                 {...register("nachname")}
               />
               {errors.nachname && (
-                <p id="nachname-error" role="alert" className="text-xs text-red-400">
+                <p id="nachname-error" role="alert" className="font-mono text-[12px] text-stamp">
                   {errors.nachname.message}
                 </p>
               )}
@@ -134,11 +135,11 @@ export default function Step3Page() {
               aria-describedby={errors.telefon ? "telefon-error" : "telefon-hint"}
               {...register("telefon")}
             />
-            <p id="telefon-hint" className="text-xs text-slate-500">
+            <p id="telefon-hint" className="font-mono text-[11px] text-ash">
               Vermieter nutzen diese Nummer für Besichtigungs-Termine.
             </p>
             {errors.telefon && (
-              <p id="telefon-error" role="alert" className="text-xs text-red-400">
+              <p id="telefon-error" role="alert" className="font-mono text-[12px] text-stamp">
                 {errors.telefon.message}
               </p>
             )}
@@ -158,7 +159,7 @@ export default function Step3Page() {
               {...register("geburtsdatum")}
             />
             {errors.geburtsdatum && (
-              <p id="geb-error" role="alert" className="text-xs text-red-400">
+              <p id="geb-error" role="alert" className="font-mono text-[12px] text-stamp">
                 {errors.geburtsdatum.message}
               </p>
             )}
@@ -170,7 +171,7 @@ export default function Step3Page() {
             <div className="relative">
               <select
                 id="beruf"
-                className="flex h-10 w-full appearance-none rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full appearance-none border-2 border-ink bg-paper px-3 py-2 font-mono text-[14px] text-ink focus:outline-none focus:ring-2 focus:ring-stamp focus:border-stamp disabled:cursor-not-allowed disabled:opacity-50"
                 aria-required="true"
                 aria-invalid={!!errors.beruf}
                 aria-describedby={errors.beruf ? "beruf-error" : undefined}
@@ -183,12 +184,12 @@ export default function Step3Page() {
                   </option>
                 ))}
               </select>
-              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-ash">
                 ▾
               </span>
             </div>
             {errors.beruf && (
-              <p id="beruf-error" role="alert" className="text-xs text-red-400">
+              <p id="beruf-error" role="alert" className="font-mono text-[12px] text-stamp">
                 {errors.beruf.message}
               </p>
             )}

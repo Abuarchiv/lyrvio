@@ -20,6 +20,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { TopTicker } from "@/components/TopTicker";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 interface ServiceStatus {
   name: string;
@@ -41,26 +44,22 @@ const SERVICES: Omit<ServiceStatus, "status" | "latency" | "lastChecked">[] = [
 const STATUS_CONFIG = {
   operational: {
     label: "Betriebsbereit",
-    color: "bg-green-500",
-    textColor: "text-green-400",
+    color: "text-sage",
     dot: "●",
   },
   degraded: {
     label: "Beeinträchtigt",
-    color: "bg-yellow-500",
-    textColor: "text-yellow-400",
+    color: "text-hi",
     dot: "●",
   },
   down: {
     label: "Ausgefallen",
-    color: "bg-red-500",
-    textColor: "text-red-400",
+    color: "text-stamp",
     dot: "●",
   },
   checking: {
     label: "Wird geprüft…",
-    color: "bg-gray-500",
-    textColor: "text-gray-400",
+    color: "text-ash",
     dot: "○",
   },
 };
@@ -72,14 +71,12 @@ async function checkService(
   try {
     const response = await fetch(url, {
       method: "GET",
-      signal: AbortSignal.timeout(10_000), // 10s Timeout
-      // no-cors für externe Services ohne CORS-Headers
+      signal: AbortSignal.timeout(10_000),
       mode: url.includes("lyrvio") ? "cors" : "no-cors",
     });
 
     const latency = Date.now() - start;
 
-    // no-cors → opaque response (status 0) → wir nehmen an: ok
     if (response.type === "opaque") {
       return { status: "operational", latency };
     }
@@ -131,7 +128,6 @@ export default function StatusPage() {
     setIsRefreshing(false);
   }
 
-  // Initial check + Auto-Refresh alle 5 Minuten
   useEffect(() => {
     checkAll();
     const interval = setInterval(checkAll, 5 * 60 * 1000);
@@ -150,119 +146,124 @@ export default function StatusPage() {
     : "degraded";
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white">
-      {/* Header */}
-      <div className="border-b border-white/10">
-        <div className="max-w-2xl mx-auto px-6 py-8">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-2xl font-bold tracking-tight">Lyrvio</span>
-            <span className="text-white/40">/</span>
-            <span className="text-white/60">Status</span>
-          </div>
-          <p className="text-sm text-white/40">
-            Echtzeit-Status aller Lyrvio-Services
-          </p>
-        </div>
-      </div>
-
-      <div className="max-w-2xl mx-auto px-6 py-10 space-y-8">
-        {/* Overall Status Banner */}
-        <div
-          className={`rounded-xl p-5 border ${
-            overallStatus === "operational"
-              ? "bg-green-950/30 border-green-500/20"
-              : overallStatus === "degraded"
-              ? "bg-yellow-950/30 border-yellow-500/20"
-              : "bg-red-950/30 border-red-500/20"
-          }`}
-        >
-          <div className="flex items-center gap-3">
-            <span
-              className={`text-xl ${STATUS_CONFIG[overallStatus].textColor}`}
-            >
-              {STATUS_CONFIG[overallStatus].dot}
-            </span>
-            <div>
-              <p className="font-semibold">
-                {overallStatus === "operational"
-                  ? "Alle Systeme betriebsbereit"
-                  : overallStatus === "degraded"
-                  ? "Teilweise Beeinträchtigungen"
-                  : "Systemausfall erkannt"}
-              </p>
-              {lastUpdated && (
-                <p className="text-xs text-white/40 mt-0.5">
-                  Zuletzt geprüft:{" "}
-                  {new Date(lastUpdated).toLocaleTimeString("de-DE")}
-                </p>
-              )}
+    <>
+      <TopTicker />
+      <Nav />
+      <main className="bg-paper min-h-screen">
+        {/* Header */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-12 lg:pt-20">
+            <div className="flex items-center gap-4 mb-8 flex-wrap">
+              <span className="stamp-rotated">§ STATUS</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
+                System-Status · Echtzeit
+              </span>
             </div>
-            <button
-              onClick={checkAll}
-              disabled={isRefreshing}
-              className="ml-auto text-xs text-white/40 hover:text-white/70 transition-colors disabled:opacity-50 cursor-pointer"
-            >
-              {isRefreshing ? "Wird geprüft…" : "↻ Aktualisieren"}
-            </button>
+            <h1 className="font-display text-[44px] sm:text-[56px] tracking-[-0.03em] text-ink leading-[1.1] mb-2">
+              Lyrvio Status
+            </h1>
+            <p className="font-mono text-[14px] text-ash">
+              Echtzeit-Status aller Lyrvio-Services
+            </p>
           </div>
-        </div>
+        </section>
 
-        {/* Service List */}
-        <div>
-          <h2 className="text-sm font-semibold text-white/40 uppercase tracking-wider mb-4">
-            Services
-          </h2>
-          <div className="space-y-2">
-            {services.map((service) => {
-              const config = STATUS_CONFIG[service.status];
-              return (
-                <div
-                  key={service.name}
-                  className="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/5"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className={`text-sm ${config.textColor}`}>
-                      {config.dot}
-                    </span>
-                    <span className="text-sm font-medium">{service.name}</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    {service.latency !== undefined && (
-                      <span className="text-xs text-white/30">
-                        {service.latency}ms
-                      </span>
-                    )}
-                    <span className={`text-xs ${config.textColor}`}>
-                      {config.label}
-                    </span>
-                  </div>
+        <div className="mx-auto max-w-[860px] px-6 lg:px-10 py-12 space-y-10">
+          {/* Overall Status Banner */}
+          <div className={`border-2 p-6 ${
+            overallStatus === "operational"
+              ? "border-ink bg-paper-warm"
+              : overallStatus === "degraded"
+              ? "border-ink bg-paper-warm"
+              : "border-stamp bg-paper-warm"
+          }`}>
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-4">
+                <span className={`text-2xl font-mono ${STATUS_CONFIG[overallStatus].color}`}>
+                  {STATUS_CONFIG[overallStatus].dot}
+                </span>
+                <div>
+                  <p className="font-display text-[22px] tracking-[-0.02em] text-ink">
+                    {overallStatus === "operational"
+                      ? "Alle Systeme betriebsbereit"
+                      : overallStatus === "degraded"
+                      ? "Teilweise Beeinträchtigungen"
+                      : "Systemausfall erkannt"}
+                  </p>
+                  {lastUpdated && (
+                    <p className="font-mono text-[11px] text-ash mt-1">
+                      Zuletzt geprüft:{" "}
+                      {new Date(lastUpdated).toLocaleTimeString("de-DE")}
+                    </p>
+                  )}
                 </div>
-              );
-            })}
+              </div>
+              <button
+                onClick={checkAll}
+                disabled={isRefreshing}
+                className="font-mono text-[12px] text-ash hover:text-ink transition-colors disabled:opacity-50 cursor-pointer"
+              >
+                {isRefreshing ? "Wird geprüft…" : "↻ Aktualisieren"}
+              </button>
+            </div>
+          </div>
+
+          {/* Service List */}
+          <div>
+            <div className="label mb-6">Services</div>
+            <div className="border-2 border-ink divide-y divide-rule-soft">
+              {services.map((service) => {
+                const config = STATUS_CONFIG[service.status];
+                return (
+                  <div
+                    key={service.name}
+                    className="flex items-center justify-between px-6 py-4 bg-paper hover:bg-paper-warm transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={`font-mono text-[16px] ${config.color}`}>
+                        {config.dot}
+                      </span>
+                      <span className="font-mono text-[14px] text-ink">{service.name}</span>
+                    </div>
+                    <div className="flex items-center gap-6">
+                      {service.latency !== undefined && (
+                        <span className="font-mono text-[12px] text-ash">
+                          {service.latency}ms
+                        </span>
+                      )}
+                      <span className={`font-mono text-[12px] ${config.color}`}>
+                        {config.label}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Incident History */}
+          <div>
+            <div className="label mb-6">Störungsverlauf (letzte 90 Tage)</div>
+            <div className="border-2 border-ink bg-paper p-6">
+              <p className="font-mono text-[14px] text-ash">
+                Keine Vorfälle in den letzten 90 Tagen.
+              </p>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="pt-4 border-t-2 border-ink flex justify-between font-mono text-[11px] text-ash">
+            <span>Lyrvio Status Page</span>
+            <a
+              href="https://lyrvio.com"
+              className="hover:text-ink transition-colors"
+            >
+              ← Zurück zu Lyrvio
+            </a>
           </div>
         </div>
-
-        {/* Incident History placeholder */}
-        <div>
-          <h2 className="text-sm font-semibold text-white/40 uppercase tracking-wider mb-4">
-            Störungsverlauf (letzte 90 Tage)
-          </h2>
-          <div className="p-4 rounded-lg bg-white/5 border border-white/5 text-sm text-white/40">
-            Keine Vorfälle in den letzten 90 Tagen.
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="pt-4 border-t border-white/10 text-xs text-white/30 flex justify-between">
-          <span>Lyrvio Status Page</span>
-          <a
-            href="https://lyrvio.com"
-            className="hover:text-white/60 transition-colors"
-          >
-            ← Zurück zu Lyrvio
-          </a>
-        </div>
-      </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }

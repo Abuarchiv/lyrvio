@@ -15,11 +15,11 @@ import { Info } from "lucide-react";
 const LS_KEY = "lyrvio_onboarding";
 
 const SCHUFA_OPTIONS = [
-  { value: "sehr_gut", label: "Sehr gut (97–100)", color: "text-emerald-400" },
-  { value: "gut", label: "Gut (95–96)", color: "text-green-400" },
-  { value: "befriedigend", label: "Befriedigend (90–94)", color: "text-yellow-400" },
-  { value: "ausreichend", label: "Ausreichend (80–89)", color: "text-orange-400" },
-  { value: "keine", label: "Kein Schufa-Score / Nicht bekannt", color: "text-slate-400" },
+  { value: "sehr_gut", label: "Sehr gut (97–100)", color: "text-sage" },
+  { value: "gut", label: "Gut (95–96)", color: "text-sage" },
+  { value: "befriedigend", label: "Befriedigend (90–94)", color: "text-ink-2" },
+  { value: "ausreichend", label: "Ausreichend (80–89)", color: "text-stamp" },
+  { value: "keine", label: "Kein Schufa-Score / Nicht bekannt", color: "text-ash" },
 ];
 
 const BESCHAEFTIGUNG_OPTIONS = [
@@ -76,10 +76,11 @@ export default function Step4Page() {
       <StepProgress currentStep={4} />
 
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-slate-50">
+        <p className="label">Schritt 4</p>
+        <h1 className="font-display text-[32px] tracking-[-0.025em] text-ink">
           Mietsicherheits-Daten
         </h1>
-        <p className="text-sm text-slate-400">
+        <p className="font-mono text-[13px] text-ash">
           Stärkt deine Bewerbung — Vermieter sehen diese Infos als Vertrauens­signal.
         </p>
       </div>
@@ -112,16 +113,16 @@ export default function Step4Page() {
                 }
                 {...register("nettogehalt")}
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-ash font-mono text-[13px] pointer-events-none">
                 €
               </span>
             </div>
-            <p id="gehalt-hint" className="text-xs text-slate-500 flex gap-1.5 items-start">
+            <p id="gehalt-hint" className="font-mono text-[11px] text-ash flex gap-1.5 items-start">
               <Info className="w-3 h-3 mt-0.5 shrink-0" aria-hidden="true" />
               Faustregel: Kaltmiete sollte max. 1/3 des Nettoeinkommens sein.
             </p>
             {errors.nettogehalt && (
-              <p id="gehalt-error" role="alert" className="text-xs text-red-400">
+              <p id="gehalt-error" role="alert" className="font-mono text-[12px] text-stamp">
                 {errors.nettogehalt.message}
               </p>
             )}
@@ -134,23 +135,23 @@ export default function Step4Page() {
               {SCHUFA_OPTIONS.map((opt) => (
                 <label
                   key={opt.value}
-                  className="flex items-center gap-3 rounded-lg border border-slate-700 bg-slate-800/40 px-3 py-2.5 cursor-pointer hover:border-slate-600 hover:bg-slate-800 transition-colors"
+                  className="flex items-center gap-3 border-2 border-ink bg-paper-warm px-3 py-2.5 cursor-pointer hover:bg-paper-2 transition-colors"
                 >
                   <input
                     type="radio"
                     value={opt.value}
-                    className="w-4 h-4 text-indigo-600 border-slate-600 bg-slate-800 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 focus:ring-offset-slate-900"
+                    className="w-4 h-4 accent-stamp border-2 border-ink bg-paper focus:ring-2 focus:ring-stamp focus:ring-offset-1 focus:ring-offset-paper"
                     aria-describedby={errors.schufa ? "schufa-error" : undefined}
                     {...register("schufa")}
                   />
-                  <span className={`text-sm font-medium ${opt.color}`}>
+                  <span className={`font-mono text-[13px] font-medium ${opt.color}`}>
                     {opt.label}
                   </span>
                 </label>
               ))}
             </div>
             {errors.schufa && (
-              <p id="schufa-error" role="alert" className="text-xs text-red-400">
+              <p id="schufa-error" role="alert" className="font-mono text-[12px] text-stamp">
                 {errors.schufa.message}
               </p>
             )}
@@ -162,7 +163,7 @@ export default function Step4Page() {
             <div className="relative">
               <select
                 id="beschaeftigungsart"
-                className="flex h-10 w-full appearance-none rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="flex h-10 w-full appearance-none border-2 border-ink bg-paper px-3 py-2 font-mono text-[14px] text-ink focus:outline-none focus:ring-2 focus:ring-stamp focus:border-stamp"
                 aria-required="true"
                 aria-invalid={!!errors.beschaeftigungsart}
                 aria-describedby={
@@ -177,12 +178,12 @@ export default function Step4Page() {
                   </option>
                 ))}
               </select>
-              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-ash">
                 ▾
               </span>
             </div>
             {errors.beschaeftigungsart && (
-              <p id="beschaeft-error" role="alert" className="text-xs text-red-400">
+              <p id="beschaeft-error" role="alert" className="font-mono text-[12px] text-stamp">
                 {errors.beschaeftigungsart.message}
               </p>
             )}
@@ -192,7 +193,7 @@ export default function Step4Page() {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label>Mietmappe hochladen</Label>
-              <span className="text-xs text-slate-500 bg-slate-800 border border-slate-700 px-2 py-0.5 rounded-full">
+              <span className="font-mono text-[10px] text-ash border border-ink/30 px-2 py-0.5">
                 Optional
               </span>
             </div>

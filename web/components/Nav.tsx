@@ -2,83 +2,117 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+
+const links = [
+  { href: "/protokoll", label: "Protokoll" },
+  { href: "/gebuehren", label: "Gebühren" },
+  { href: "/belege", label: "Belege" },
+  { href: "/akte", label: "Akte" },
+];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const today = new Date().toLocaleDateString("de-DE", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-ink/85 backdrop-blur-xl">
-      <div className="mx-auto max-w-[1280px] px-6">
-        <div className="flex h-16 items-center justify-between">
+    <header className="relative z-30 border-b-2 border-ink bg-paper">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <div className="flex h-14 items-center justify-between">
           <Link
             href="/"
-            className="font-display text-[26px] leading-none tracking-[-0.02em] text-bone hover:text-lime transition-colors"
-            aria-label="Lyrvio · Startseite"
+            className="font-mono text-[13px] font-bold tracking-[0.18em] uppercase text-ink hover:text-stamp transition-colors"
+            aria-label="Lyrvio"
           >
-            Lyrvio<span className="text-lime">.</span>
+            LYRVIO<span className="text-stamp">·</span>001
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 text-[14px] text-bone-2">
-            <Link href="/#wie" className="hover:text-bone transition-colors">
-              Wie es läuft
-            </Link>
-            <Link href="/#preise" className="hover:text-bone transition-colors">
-              Preis
-            </Link>
-            <Link href="/wohnung-finden/berlin" className="hover:text-bone transition-colors">
-              Städte
-            </Link>
-            <Link href="/hilfe" className="hover:text-bone transition-colors">
-              Hilfe
-            </Link>
+          <nav className="hidden md:flex items-center gap-10 font-mono text-[12px] uppercase tracking-[0.16em]">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-ink hover:text-stamp transition-colors"
+              >
+                {l.label}
+              </Link>
+            ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-5 font-mono text-[12px] uppercase tracking-[0.16em]">
             <Link
               href="/dashboard"
-              className="text-[14px] text-ash hover:text-bone transition-colors"
+              className="text-ash hover:text-ink transition-colors"
             >
-              Login
+              Dossier
             </Link>
-            <Link href="/#preise" className="btn-lime !py-2 !px-4 !text-[13px]">
-              Bot aktivieren
+            <Link
+              href="/checkout?plan=aktiv"
+              className="btn-primary !py-2 !px-4 !text-[11px]"
+            >
+              Bot beauftragen
             </Link>
           </div>
 
           <button
-            className="md:hidden p-2 text-bone-2 hover:text-bone"
             onClick={() => setOpen(!open)}
+            className="md:hidden font-mono text-[12px] uppercase tracking-[0.16em] text-ink"
             aria-label="Menü"
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? "Schließen" : "Menü"}
           </button>
         </div>
+
+        {open && (
+          <div className="md:hidden border-t border-rule-soft py-4 flex flex-col gap-4 font-mono text-[12px] uppercase tracking-[0.16em]">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="text-ink"
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              href="/dashboard"
+              onClick={() => setOpen(false)}
+              className="text-ash"
+            >
+              Dossier
+            </Link>
+            <Link
+              href="/checkout?plan=aktiv"
+              onClick={() => setOpen(false)}
+              className="btn-primary mt-2 self-start"
+            >
+              Bot beauftragen
+            </Link>
+          </div>
+        )}
       </div>
 
-      {open && (
-        <div className="md:hidden border-t border-line bg-ink px-6 py-6 space-y-4">
-          {[
-            { href: "/#wie", label: "Wie es läuft" },
-            { href: "/#preise", label: "Preis" },
-            { href: "/wohnung-finden/berlin", label: "Städte" },
-            { href: "/hilfe", label: "Hilfe" },
-            { href: "/dashboard", label: "Login" },
-          ].map((it) => (
-            <Link
-              key={it.href}
-              href={it.href}
-              onClick={() => setOpen(false)}
-              className="block text-bone-2 hover:text-bone py-1"
-            >
-              {it.label}
-            </Link>
-          ))}
-          <Link href="/#preise" onClick={() => setOpen(false)} className="btn-lime w-full">
-            Bot aktivieren
-          </Link>
+      {/* Akten-Sub-Bar */}
+      <div className="border-t border-rule-soft bg-paper-2">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 h-9 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.18em] text-ash">
+          <div className="flex items-center gap-6">
+            <span>
+              <span className="text-stamp">●</span> 24/7 aktiv
+            </span>
+            <span className="hidden sm:inline">
+              Berlin · München · Hamburg · Köln · Frankfurt
+            </span>
+          </div>
+          <div className="hidden sm:flex items-center gap-6">
+            <span>Ausgabe Nr. 042</span>
+            <span>{today}</span>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

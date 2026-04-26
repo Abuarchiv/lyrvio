@@ -148,18 +148,19 @@ export default function Step6Page() {
       <StepProgress currentStep={6} />
 
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-slate-50">
+        <p className="label">Schritt 6</p>
+        <h1 className="font-display text-[32px] tracking-[-0.025em] text-ink">
           Browser-Extension installieren
         </h1>
-        <p className="text-sm text-slate-400">
+        <p className="font-mono text-[13px] text-ash">
           Letzter Schritt — die Extension ist der eigentliche Bot.
         </p>
       </div>
 
       {/* Browser detection banner */}
-      <div className="flex items-center gap-2.5 rounded-lg border border-slate-700 bg-slate-800/50 px-4 py-3">
-        <BrowserIcon className="w-5 h-5 text-slate-400 shrink-0" aria-hidden="true" />
-        <p className="text-sm text-slate-300">
+      <div className="flex items-center gap-2.5 border-2 border-ink bg-paper-warm px-4 py-3">
+        <BrowserIcon className="w-5 h-5 text-ash shrink-0" aria-hidden="true" />
+        <p className="font-mono text-[13px] text-ink-2">
           {browser === "unknown"
             ? "Browser erkannt — Anleitung unten"
             : `${browser === "firefox" ? "Firefox" : browser === "edge" ? "Edge" : "Chrome"} erkannt — passende Anleitung unten`}
@@ -168,14 +169,14 @@ export default function Step6Page() {
 
       {/* Install CTA */}
       {!extensionInstalled ? (
-        <div className="rounded-xl border border-indigo-600/40 bg-indigo-950/30 p-5 space-y-4">
+        <div className="border-2 border-ink bg-paper-warm p-5 space-y-4">
           <div className="flex items-start gap-3">
-            <Puzzle className="w-6 h-6 text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
+            <Puzzle className="w-6 h-6 text-stamp shrink-0 mt-0.5" aria-hidden="true" />
             <div>
-              <p className="text-sm font-semibold text-slate-200">
+              <p className="font-mono text-[14px] font-semibold text-ink">
                 Lyrvio Extension
               </p>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="font-mono text-[12px] text-ash mt-0.5">
                 Kostenlos · ~200 KB · Keine Daten ohne dein Wissen
               </p>
             </div>
@@ -200,22 +201,22 @@ export default function Step6Page() {
               </>
             )}
           </Button>
-          <p className="text-xs text-slate-500 text-center">
+          <p className="font-mono text-[11px] text-ash text-center">
             Nach der Installation wird hier automatisch ein Häkchen gesetzt.
           </p>
         </div>
       ) : (
         <div
-          className="rounded-xl border border-emerald-700/50 bg-emerald-950/30 p-5 flex items-center gap-3"
+          className="border-2 border-sage bg-paper-warm p-5 flex items-center gap-3"
           role="status"
           aria-live="polite"
         >
-          <CheckCircle2 className="w-6 h-6 text-emerald-400 shrink-0" aria-hidden="true" />
+          <CheckCircle2 className="w-6 h-6 text-sage shrink-0" aria-hidden="true" />
           <div>
-            <p className="text-sm font-semibold text-emerald-300">
+            <p className="font-mono text-[14px] font-semibold text-sage">
               Extension erkannt!
             </p>
-            <p className="text-xs text-slate-400">
+            <p className="font-mono text-[12px] text-ash">
               Lyrvio ist aktiv und bereit Bewerbungen zu senden.
             </p>
           </div>
@@ -224,24 +225,24 @@ export default function Step6Page() {
 
       {/* Step-by-step guide */}
       <div className="space-y-3">
-        <h2 className="text-sm font-semibold text-slate-300">
+        <h2 className="font-mono text-[13px] font-semibold text-ink-2">
           Schritt-für-Schritt Anleitung
         </h2>
         <ol className="space-y-3">
           {steps.map((step) => (
             <li
               key={step.n}
-              className="flex gap-3 rounded-lg border border-slate-700/60 bg-slate-800/30 px-3 py-3"
+              className="flex gap-3 border-2 border-ink/30 bg-paper-warm px-3 py-3"
             >
               <span
-                className="w-6 h-6 rounded-full bg-indigo-600/20 border border-indigo-600/40 text-indigo-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5"
+                className="w-6 h-6 bg-stamp/10 border border-stamp/40 text-stamp font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5"
                 aria-hidden="true"
               >
                 {step.n}
               </span>
               <div>
-                <p className="text-sm font-medium text-slate-200">{step.title}</p>
-                <p className="text-xs text-slate-400 mt-0.5">{step.desc}</p>
+                <p className="font-mono text-[13px] font-medium text-ink">{step.title}</p>
+                <p className="font-mono text-[12px] text-ash mt-0.5">{step.desc}</p>
               </div>
             </li>
           ))}
@@ -262,7 +263,7 @@ export default function Step6Page() {
         />
 
         {errors.extensionInstalled && (
-          <p role="alert" className="text-xs text-red-400 mb-2">
+          <p role="alert" className="font-mono text-[12px] text-stamp mb-2">
             {errors.extensionInstalled.message}
           </p>
         )}
@@ -271,12 +272,12 @@ export default function Step6Page() {
           <label className="flex items-start gap-3 mb-4 cursor-pointer">
             <input
               type="checkbox"
-              className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-indigo-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 focus:ring-offset-slate-900 shrink-0"
+              className="mt-0.5 w-4 h-4 border-2 border-ink bg-paper accent-stamp focus:ring-2 focus:ring-stamp focus:ring-offset-1 focus:ring-offset-paper shrink-0"
               onChange={(e) =>
                 setValue("extensionInstalled", e.target.checked)
               }
             />
-            <span className="text-sm text-slate-400">
+            <span className="font-mono text-[13px] text-ash">
               Ich habe die Extension installiert und bin eingeloggt.
             </span>
           </label>

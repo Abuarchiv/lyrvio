@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { TopTicker } from "@/components/TopTicker";
 import { CityHero } from "@/components/seo/CityHero";
 import { CityStats } from "@/components/seo/CityStats";
 import { DistrictList } from "@/components/seo/DistrictList";
@@ -90,7 +89,7 @@ export default async function StadtPage({ params }: PageProps) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0f]">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -99,8 +98,9 @@ export default async function StadtPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
+      <TopTicker />
       <Nav />
-      <main className="flex-1">
+      <main>
         <CityHero city={city} />
         <CityStats city={city} />
         <DistrictList city={city} />
@@ -108,38 +108,32 @@ export default async function StadtPage({ params }: PageProps) {
         <CityFAQ city={city} />
 
         {/* Bottom CTA */}
-        <section className="py-20 border-t border-slate-800">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
-            <div className="rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/5 to-violet-500/5 p-8 sm:p-12">
-              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-300 mb-6">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Bot aktiv in {city.name}
+        <section className="border-t-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20">
+            <div className="border-2 border-ink bg-paper-warm p-8 sm:p-12 max-w-[700px]">
+              <div className="flex items-center gap-3 mb-6 flex-wrap">
+                <span className="stamp-rotated">§ BOT</span>
+                <span className="tag -sage">Bot aktiv in {city.name}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              <h2 className="font-display text-[32px] sm:text-[42px] tracking-[-0.03em] text-ink leading-[1.1] mb-4">
                 Bereit für deine {city.name}-Wohnung?
               </h2>
-              <p className="text-slate-400 mb-8 max-w-lg mx-auto leading-relaxed">
+              <p className="font-mono text-[14px] leading-[1.75] text-ink mb-8 max-w-[48ch]">
                 Lass Lyrvio für dich suchen. Aktiviere den Bot — er scannt {city.mainPlatforms.join(", ")} rund um die Uhr
                 und bewirbt sich auf jede passende Wohnung in {city.name}, bevor die Konkurrenz aufwacht.
               </p>
-              <Link href="/checkout">
-                <Button
-                  size="xl"
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/30"
-                >
-                  Jetzt aktiv suchen für 79€/Mo
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
+              <Link href="/checkout" className="btn-primary cursor-stamp inline-block">
+                Jetzt aktiv suchen für 79€/Mo
               </Link>
-              <p className="text-xs text-slate-600 mt-4">
+              <p className="font-mono text-[11px] text-ash mt-4">
                 Monatlich kündbar · Keine versteckten Kosten · Direkt nach Zahlung aktiv
               </p>
             </div>
 
             {/* Sibling city links */}
             <div className="mt-12">
-              <p className="text-sm text-slate-500 mb-4">Lyrvio auch in anderen Städten:</p>
-              <div className="flex flex-wrap justify-center gap-2">
+              <p className="font-mono text-[12px] text-ash mb-4">Lyrvio auch in anderen Städten:</p>
+              <div className="flex flex-wrap gap-2">
                 {Object.values(cities)
                   .filter((c) => c.slug !== city.slug)
                   .slice(0, 8)
@@ -147,7 +141,7 @@ export default async function StadtPage({ params }: PageProps) {
                     <Link
                       key={c.slug}
                       href={`/wohnung-finden/${c.slug}`}
-                      className="inline-flex px-3 py-1.5 rounded-full text-xs text-slate-400 border border-slate-800 hover:border-slate-600 hover:text-slate-200 transition-colors"
+                      className="tag -outline hover:border-ink hover:text-ink transition-colors"
                     >
                       {c.name}
                     </Link>
@@ -158,6 +152,6 @@ export default async function StadtPage({ params }: PageProps) {
         </section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

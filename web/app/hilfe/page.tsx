@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { TopTicker } from "@/components/TopTicker";
 import { CategoryGrid } from "@/components/hilfe/CategoryGrid";
 import { SearchBar } from "@/components/hilfe/SearchBar";
 import { getAllArticles, getSearchIndex } from "@/lib/hilfe";
-import { MessageCircle, BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Help-Center — Lyrvio",
@@ -45,7 +45,8 @@ export default function HilfePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0f]">
+    <>
+      <TopTicker />
       <Nav />
 
       <script
@@ -53,47 +54,46 @@ export default function HilfePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="flex-1 pt-24 pb-20">
-        {/* Hero */}
-        <section className="mx-auto max-w-4xl px-4 sm:px-6 text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-300 mb-6">
-            <BookOpen className="h-3.5 w-3.5" />
-            Help-Center
+      <main>
+        {/* Header */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-16 lg:pt-24 lg:pb-20">
+            <div className="flex items-center gap-4 mb-10 flex-wrap">
+              <span className="stamp-rotated">§ HILFE</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
+                Help-Center · {articles.length} Artikel
+              </span>
+            </div>
+            <h1 className="manifest mb-10">
+              Wie können
+              <br />
+              wir <em>helfen?</em>
+            </h1>
+            <div className="max-w-[600px]">
+              <SearchBar articles={searchIndex} />
+            </div>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
-            Wie können wir helfen?
-          </h1>
-          <p className="text-slate-400 text-lg mb-10">
-            {articles.length} Artikel zu allen Themen rund um Lyrvio.
-          </p>
-
-          {/* Search */}
-          <SearchBar articles={searchIndex} />
         </section>
 
         {/* Category Grid */}
-        <section className="mx-auto max-w-6xl px-4 sm:px-6 mb-20">
-          <CategoryGrid articlesByCategory={articlesByCategory} />
+        <section className="bg-paper">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20">
+            <CategoryGrid articlesByCategory={articlesByCategory} />
+          </div>
         </section>
 
         {/* Contact Banner */}
-        <section className="mx-auto max-w-3xl px-4 sm:px-6">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 text-center">
-            <div className="flex justify-center mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-500/10">
-                <MessageCircle className="h-6 w-6 text-indigo-400" />
-              </div>
+        <section className="border-t-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 flex flex-wrap items-center justify-between gap-6">
+            <div>
+              <p className="font-display text-[28px] sm:text-[36px] tracking-[-0.02em] text-ink max-w-[24ch]">
+                Keine Antwort gefunden?
+              </p>
+              <p className="font-mono text-[14px] text-ash mt-2">
+                Schreib uns direkt — wir antworten innerhalb von 24 Stunden.
+              </p>
             </div>
-            <h2 className="text-white font-semibold text-lg mb-2">
-              Keine Antwort gefunden?
-            </h2>
-            <p className="text-slate-400 text-sm mb-6">
-              Schreib uns direkt — wir antworten innerhalb von 24 Stunden.
-            </p>
-            <a
-              href="mailto:support@lyrvio.com"
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-3 rounded-xl transition-colors text-sm"
-            >
+            <a href="mailto:support@lyrvio.com" className="btn-primary">
               support@lyrvio.com
             </a>
           </div>
@@ -101,6 +101,6 @@ export default function HilfePage() {
       </main>
 
       <Footer />
-    </div>
+    </>
   );
 }
