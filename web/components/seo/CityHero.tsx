@@ -21,7 +21,7 @@ export function CityHero({ city }: CityHeroProps) {
 
         {/* Stamp + Eyebrow */}
         <div className="flex items-center gap-4 mb-10 flex-wrap">
-          <span className="stamp-rotated">24/7 BOT</span>
+          <span className="stamp-rotated">24/7 AUTO</span>
           <span className="label">{city.apartmentsPerDay} neue Inserate täglich in {city.name}</span>
         </div>
 

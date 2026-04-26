@@ -83,7 +83,7 @@ export default function ProfilePage() {
               Dein Bewerbungs-Profil
             </h1>
             <p className="font-mono text-[14px] text-ash">
-              Füll dein Profil aus. Der Bot nutzt diese Daten für personalisierte Bewerbungen.
+              Füll dein Profil aus. Lyrvio nutzt diese Daten für personalisierte Bewerbungen.
             </p>
           </div>
         </section>
@@ -283,7 +283,7 @@ export default function ProfilePage() {
               <div className="border-2 border-ink bg-paper-warm p-8 space-y-6">
                 <div className="label">Persönliches Anschreiben</div>
                 <p className="font-mono text-[14px] text-ash leading-[1.75]">
-                  Schreib ein persönliches Anschreiben. Der Bot passt es automatisch an den jeweiligen Inserat-Text an. Schreib in der Ich-Form, max. 300 Wörter.
+                  Schreib ein persönliches Anschreiben. Lyrvio passt es automatisch an den jeweiligen Inserat-Text an. Schreib in der Ich-Form, max. 300 Wörter.
                 </p>
                 <div>
                   <label className={labelClass} htmlFor="coverLetter">Anschreiben *</label>
@@ -298,7 +298,7 @@ export default function ProfilePage() {
                     <p className={errorClass}>{errors.coverLetter.message}</p>
                   )}
                   <p className="font-mono text-[11px] text-ash mt-1">
-                    Min. 100 Zeichen. Der Bot ergänzt automatisch wohnungsspezifische Details.
+                    Min. 100 Zeichen. Lyrvio ergänzt automatisch wohnungsspezifische Details.
                   </p>
                 </div>
               </div>

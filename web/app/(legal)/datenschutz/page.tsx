@@ -38,7 +38,7 @@ export default function DatenschutzPage() {
               "E-Mail-Adresse (zur Authentifizierung und Kommunikation)",
               "Abonnement-Status und Zahlungshistorie (via Stripe)",
               "Anonymisierte Bewerbungsstatistiken (Anzahl gesendeter Bewerbungen, Antwortquoten)",
-              "Bot-Aktivierungsstatus",
+              "Lyrvio-Aktivierungsstatus",
             ].map((item, i) => (
               <li key={i} className="font-mono text-[14px] leading-[1.75] text-ink flex gap-3">
                 <span className="text-stamp mt-1 flex-shrink-0">■</span>
@@ -71,7 +71,7 @@ export default function DatenschutzPage() {
           <div className="border-2 border-ink bg-paper-warm p-5">
             <p className="font-mono text-[13px] leading-[1.75] text-ink">
               Diese sensiblen Daten werden niemals an Lyrvio-Server übertragen. Sie bleiben auf deinem Gerät
-              und werden nur direkt an Vermieter gesendet, wenn der Bot eine Bewerbung versendet.
+              und werden nur direkt an Vermieter gesendet, wenn Lyrvio eine Bewerbung versendet.
             </p>
           </div>
         </section>

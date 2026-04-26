@@ -111,7 +111,7 @@ export default function Step2Page() {
           <p>
             Diese Vollmacht kann jederzeit ohne Angabe von Gründen im Lyrvio
             Dashboard widerrufen werden. Bei Widerruf werden alle
-            Bot-Aktivitäten sofort gestoppt.
+            Lyrvio-Aktivitäten sofort gestoppt.
           </p>
           <p>
             Die Verarbeitung personenbezogener Daten erfolgt gemäß DSGVO Art. 6

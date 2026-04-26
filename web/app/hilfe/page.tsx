@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Antworten auf alle Fragen zu Lyrvio: Extension installieren, Bewerbungen verstehen, Plattformen, Datenschutz und Troubleshooting.",
   openGraph: {
     title: "Lyrvio Help-Center",
-    description: "Alle Antworten zu Lyrvio — Wohnungs-Bot für DACH.",
+    description: "Alle Antworten zu Lyrvio — automatische Wohnungsbewerbung für DACH.",
     url: "https://lyrvio.com/hilfe",
     siteName: "Lyrvio",
     locale: "de_DE",

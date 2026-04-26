@@ -54,7 +54,7 @@ export function CityStats({ city }: CityStatsProps) {
             <ul className="space-y-4">
               {[
                 `Ø ${city.waitTimeWithLyrvioWeeks} Wochen bis erste Besichtigung`,
-                "Bot scannt 24/7 automatisch — ohne dein Zutun",
+                "Lyrvio scannt 24/7 automatisch — ohne dein Zutun",
                 "Bewerbung in < 30 Sekunden nach Veröffentlichung",
                 "Wohnungen während des Schlafs gefunden",
                 "Bewerbung in 4 Sekunden generiert und gesendet",

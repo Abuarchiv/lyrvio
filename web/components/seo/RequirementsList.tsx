@@ -47,7 +47,7 @@ export function RequirementsList({ city }: RequirementsListProps) {
               <ol className="space-y-3">
                 {[
                   "Profil einmal anlegen",
-                  "Bot liest Vermieter-Anforderungen aus dem Inserat",
+                  "Lyrvio liest Vermieter-Anforderungen aus dem Inserat",
                   "Bewerbung in 4 Sekunden generiert (Claude Haiku)",
                   "Direkt über die Plattform gesendet",
                   "Du wirst bei Antwort sofort benachrichtigt",

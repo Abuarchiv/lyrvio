@@ -49,11 +49,11 @@ export default function AgbPage() {
           <div className="border-2 border-ink bg-paper-warm p-6">
             <div className="label mb-3">Wichtig: Vollmacht zur Bewerbung im Namen des Nutzers</div>
             <p className="font-mono text-[13px] leading-[1.75] text-ink mb-3">
-              Mit der Aktivierung des Lyrvio-Bots erteilt der Nutzer Lyrvio ausdrücklich eine
+              Mit der Aktivierung von Lyrvio erteilt der Nutzer Lyrvio ausdrücklich eine
               <strong> widerrufliche Vollmacht</strong>, in seinem Namen und unter Verwendung seiner
               Nutzerdaten (Name, Kontaktdaten, Bewerbungsunterlagen) Bewerbungen bei Vermietern und
               Wohnungsportalen einzureichen. Diese Vollmacht gilt ausschließlich für den Zweck der
-              Wohnungsbewerbung und kann jederzeit durch Deaktivierung des Bots oder Kündigung des
+              Wohnungsbewerbung und kann jederzeit durch Deaktivierung von Lyrvio oder Kündigung des
               Abonnements widerrufen werden.
             </p>
             <p className="font-mono text-[13px] leading-[1.75] text-ink">
@@ -100,7 +100,7 @@ export default function AgbPage() {
               "Die Extension ausschließlich über einen eigenen Browser-Account zu nutzen",
               "Keine automatisierten Massenanfragen über Lyrvio hinaus durchzuführen",
               "Die AGB der genutzten Wohnungsportale einzuhalten",
-              "Den Bot bei Abschluss eines Mietvertrags zu deaktivieren bzw. Lyrvio zu informieren",
+              "Lyrvio bei Abschluss eines Mietvertrags zu deaktivieren bzw. Lyrvio zu informieren",
             ].map((item, i) => (
               <li key={i} className="font-mono text-[14px] leading-[1.75] text-ink flex gap-3">
                 <span className="text-stamp mt-1 flex-shrink-0">■</span>
@@ -139,7 +139,7 @@ export default function AgbPage() {
           <div className="label mb-4">§ 7 Widerrufsrecht</div>
           <p className="font-mono text-[14px] leading-[1.75] text-ink">
             Verbrauchern steht ein gesetzliches Widerrufsrecht von 14 Tagen ab Vertragsschluss zu.
-            Das Widerrufsrecht erlischt vorzeitig, wenn mit der Ausführung des Dienstes (Bot-Aktivierung)
+            Das Widerrufsrecht erlischt vorzeitig, wenn mit der Ausführung des Dienstes (Lyrvio-Aktivierung)
             vor Ablauf der Widerrufsfrist begonnen wird und der Nutzer ausdrücklich zugestimmt hat,
             dass das Widerrufsrecht mit Beginn der Leistungserbringung erlischt.
           </p>

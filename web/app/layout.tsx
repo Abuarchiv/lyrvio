@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     "In Berlin werden Wohnungen 4 Minuten nach dem Inserat bereits ausgebucht. Lyrvio läuft 24/7 in deinem Browser und schreibt für dich, wenn du gerade nicht kannst.",
   keywords: [
     "Wohnungssuche",
-    "Wohnungs-Bot",
-    "ImmoScout24 Bot",
+    "Wohnungssuche automatisieren",
+    "ImmoScout24 automatisch bewerben",
     "automatische Bewerbung",
     "Berlin Wohnung",
     "München Wohnung",

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Lyrvio – Onboarding",
-  description: "Richte deinen Wohnungs-Bot in 5 Minuten ein.",
+  description: "Richte Lyrvio in 5 Minuten ein.",
   robots: { index: false, follow: false },
 };
 

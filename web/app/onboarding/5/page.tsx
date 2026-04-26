@@ -91,7 +91,7 @@ export default function Step5Page() {
         <p className="label">Schritt 5</p>
         <h1 className="font-display text-[32px] tracking-[-0.025em] text-ink">Such-Kriterien</h1>
         <p className="font-mono text-[13px] text-ash">
-          Der Bot bewirbt sich nur auf Wohnungen die exakt passen.
+          Lyrvio bewirbt sich nur auf Wohnungen die exakt passen.
         </p>
       </div>
 
@@ -253,7 +253,7 @@ export default function Step5Page() {
                 {
                   name: "haustier" as const,
                   label: "Haustier vorhanden",
-                  hint: "Bot filtert haustierfreundliche Inserate",
+                  hint: "Lyrvio filtert haustierfreundliche Inserate",
                 },
                 {
                   name: "wgGeeignet" as const,

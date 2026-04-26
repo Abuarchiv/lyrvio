@@ -153,7 +153,7 @@ export default function Step6Page() {
           Browser-Extension installieren
         </h1>
         <p className="font-mono text-[13px] text-ash">
-          Letzter Schritt — die Extension ist der eigentliche Bot.
+          Letzter Schritt — die Extension ist das Herzstück von Lyrvio.
         </p>
       </div>
 
@@ -287,7 +287,7 @@ export default function Step6Page() {
           currentStep={6}
           onBack={() => router.push("/onboarding/5")}
           isSubmitting={isSubmitting}
-          nextLabel="Bot aktivieren"
+          nextLabel="Lyrvio aktivieren"
           nextDisabled={!extensionInstalled}
         />
       </form>

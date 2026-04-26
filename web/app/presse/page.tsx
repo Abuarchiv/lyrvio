@@ -6,7 +6,7 @@ import Link from "next/link";
 export const metadata = {
   title: "Presse | Lyrvio",
   description:
-    "Press Kit, Factsheet, Founder-Bio und Pressekontakt für Lyrvio — KI-Bot für automatische Wohnungsbewerbungen im DACH-Raum.",
+    "Press Kit, Factsheet, Founder-Bio und Pressekontakt für Lyrvio — KI-Software für automatische Wohnungsbewerbungen im DACH-Raum.",
 };
 
 const QUICK_FACTS = [
@@ -208,7 +208,7 @@ export default function PressePage() {
               <div className="space-y-1 pt-6 border-t border-rule-soft">
                 <div className="label">Mittel (150 Wörter)</div>
                 <p className="font-mono text-[14px] leading-[1.75] text-ink">
-                  Abu ist Solo-Founder und Architekt von Lyrvio, dem ersten kommerziellen KI-Bot der sich
+                  Abu ist Solo-Founder und Architekt von Lyrvio, dem ersten kommerziellen KI-Tool das sich
                   automatisch auf Wohnungsinserate bewirbt. Er entwickelt das Produkt vollständig allein —
                   Produktentwicklung, Engineering, Marketing und Betrieb — unterstützt durch eine selbst
                   gebaute KI-Subagenten-Architektur. Die Idee entstand aus direkter Erfahrung: wer in Berlin

@@ -1,18 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="6" fill="#0F0F23"/>
-  <!-- Lyra constellation miniaturized -->
-  <circle cx="16" cy="4"   r="1.4" fill="#F59E0B"/>
-  <circle cx="8"  cy="11"  r="1"   fill="#A5B4FC"/>
-  <circle cx="24" cy="11"  r="1"   fill="#A5B4FC"/>
-  <circle cx="10" cy="21"  r="1"   fill="#A5B4FC"/>
-  <circle cx="22" cy="21"  r="1"   fill="#A5B4FC"/>
-  <circle cx="16" cy="28"  r="1.1" fill="#6366F1"/>
-  <line x1="16" y1="4"  x2="8"  y2="11" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="16" y1="4"  x2="24" y2="11" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="8"  y1="11" x2="24" y2="11" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="8"  y1="11" x2="10" y2="21" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="24" y1="11" x2="22" y2="21" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="10" y1="21" x2="22" y2="21" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="10" y1="21" x2="16" y2="28" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
-  <line x1="22" y1="21" x2="16" y2="28" stroke="#4F46E5" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Lyrvio favicon — Akten-Frame mit Italic-L + Stempel-Punkt -->
+  <rect width="32" height="32" fill="#f3efe6"/>
+  <rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="#0c0a08" stroke-width="2"/>
+  <!-- Italic Serif L (Georgia ist auf 99% Browsern verfügbar) -->
+  <text
+    x="6" y="25"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="24"
+    font-style="italic"
+    font-weight="700"
+    fill="#0c0a08"
+    letter-spacing="-1">L</text>
+  <!-- Stempel-Punkt oben rechts: Live-Indikator -->
+  <circle cx="25" cy="7" r="2.5" fill="#c8201c"/>
 </svg>
