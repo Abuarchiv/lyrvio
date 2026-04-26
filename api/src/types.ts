@@ -5,8 +5,8 @@ import type { Auth } from './lib/auth.js';
 import type { AIBinding } from './lib/cloudflare-ai.js';
 
 export interface Env {
-  TURSO_DATABASE_URL: string;
-  TURSO_AUTH_TOKEN: string;
+  /** Cloudflare D1 — gebunden via wrangler.toml [[d1_databases]] binding = "DB" */
+  DB: D1Database;
   STRIPE_SECRET_KEY: string;
   STRIPE_WEBHOOK_SECRET: string;
   RESEND_API_KEY: string;

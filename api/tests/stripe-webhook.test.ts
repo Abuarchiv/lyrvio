@@ -29,8 +29,7 @@ function buildApp() {
     c.set('resend', {} as any)
     c.set('auth', {} as any)
     c.env = {
-      TURSO_DATABASE_URL: '',
-      TURSO_AUTH_TOKEN: '',
+      DB: {} as any,
       STRIPE_SECRET_KEY: 'sk_test_mock',
       STRIPE_WEBHOOK_SECRET: 'whsec_test',
       RESEND_API_KEY: '',

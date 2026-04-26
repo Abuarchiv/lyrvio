@@ -7,6 +7,12 @@ compatibility_flags = ["nodejs_compat"]
 BETTER_AUTH_URL = "https://api.lyrvio.com"
 ALLOWED_ORIGINS = "https://lyrvio.pages.dev,https://lyrvio.com,chrome-extension://*"
 
+# Cloudflare D1 — SQLite, kostenlos 5 GB, kein extra Auth
+[[d1_databases]]
+binding = "DB"
+database_name = "lyrvio-prod"
+database_id = "335856e6-c2bb-41a1-ac65-d91aec13baf4"
+
 # Cloudflare Workers AI — kostenlos 10K Neurons/Tag (kein API-Key nötig)
 [ai]
 binding = "AI"
@@ -17,8 +23,6 @@ binding = "METRICS"
 dataset = "lyrvio_metrics"
 
 # Secrets werden via `wrangler secret put` gesetzt:
-# TURSO_DATABASE_URL
-# TURSO_AUTH_TOKEN
 # STRIPE_SECRET_KEY
 # STRIPE_WEBHOOK_SECRET
 # RESEND_API_KEY

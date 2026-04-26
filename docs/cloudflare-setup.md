@@ -34,34 +34,35 @@ wrangler deploy
 
 URL: `https://lyrvio-api.<account>.workers.dev`
 
-## 4. Turso-DB anlegen
+## 4. Cloudflare D1-DB (bereits angelegt)
 
-```bash
-turso auth login
-turso db create lyrvio-prod
-turso db tokens create lyrvio-prod
-turso db show lyrvio-prod  # → URL
-```
+D1-Datenbank `lyrvio-prod` ist bereits live:
+- Database-ID: `335856e6-c2bb-41a1-ac65-d91aec13baf4`
+- Binding: `env.DB` (via `wrangler.toml [[d1_databases]]`)
+- Schema: bereits deployed via `wrangler d1 execute lyrvio-prod --file=../db/migrations/0000_initial.sql --remote`
+
+Kein Turso-Account, kein extra Auth nötig. DB ist Teil des Cloudflare-Accounts.
 
 ## 5. Wrangler-Secrets setzen
 
 ```bash
 cd api
-wrangler secret put TURSO_DATABASE_URL
-wrangler secret put TURSO_AUTH_TOKEN
 wrangler secret put STRIPE_SECRET_KEY
 wrangler secret put STRIPE_WEBHOOK_SECRET
 wrangler secret put RESEND_API_KEY
 wrangler secret put BETTER_AUTH_SECRET   # openssl rand -base64 32
 wrangler secret put SENTRY_DSN          # Sentry Free Tier DSN (optional)
+# KEIN TURSO_DATABASE_URL/TURSO_AUTH_TOKEN — D1 via Binding, kein Secret nötig
 # KEIN OPENROUTER_API_KEY — Workers AI läuft via [ai] Binding (kostenlos)
 ```
 
-## 6. Schema deployen
+## 6. Schema deployen (bereits fertig)
+
+D1-Schema ist bereits deployed. Bei künftigen Migrations:
 
 ```bash
-cd ../db
-TURSO_DATABASE_URL=<url> TURSO_AUTH_TOKEN=<token> pnpm db:push
+cd api
+npx wrangler d1 execute lyrvio-prod --file=../db/migrations/<migration>.sql --remote
 ```
 
 ## 7. GitHub-Actions-Secrets
@@ -123,7 +124,7 @@ Dann `web/app/layout.tsx` metadataBase auf `https://lyrvio.com` aktualisieren.
 | Cloudflare Workers AI | Free (10K Neurons/Tag) | 0€ |
 | Cloudflare Web Analytics | Free | 0€ |
 | Cloudflare Analytics Engine | Free (100K Events/Tag) | 0€ |
-| Turso | Starter (9GB DB) | 0€ |
+| Cloudflare D1 | Free (5GB DB, SQLite) | 0€ |
 | Resend | Free Tier (3K/Mo) | 0€ |
 | Sentry | Free Tier (5K Errors/Mo) | 0€ |
 | Stripe | Transaktional | 1,5% + 0,25€ pro Tx |

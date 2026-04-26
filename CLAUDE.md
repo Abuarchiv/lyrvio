@@ -28,7 +28,7 @@ Chatbot reagiert wenn der Mensch fragt. Bot handelt 24/7 selbstständig im echte
 | Web | Next.js 15 + Tailwind + shadcn/ui | 0€ MIT |
 | Hosting | Cloudflare Pages | 0€ unbegrenzt |
 | Edge-Compute | Cloudflare Workers | 100K Reqs/Tag frei |
-| Database | Turso (libSQL) + Drizzle ORM | 9GB / 1B Reads/Mo frei |
+| Database | Cloudflare D1 (SQLite) + Drizzle ORM | 5GB frei, kein extra Auth |
 | Auth | better-auth (Magic-Link via Resend) | 0€ |
 | Browser-Ext | WXT framework (MIT) | 0€ |
 | LLM (Generation) | Cloudflare Workers AI — Llama 3.3 70B | 0€ (10K Neurons/Tag frei) |

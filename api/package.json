@@ -14,7 +14,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@libsql/client": "^0.14.0",
     "better-auth": "^1.2.0",
     "drizzle-orm": "^0.38.0",
     "@hono/zod-validator": "^0.4.3",

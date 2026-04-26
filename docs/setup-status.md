@@ -36,7 +36,7 @@
 
 ### Backend (Repo, noch nicht deployed)
 - API: Cloudflare Workers (Hono + Drizzle + Stripe-Webhook + better-auth) — `api/src/`
-- DB: Turso/libSQL Schema + Drizzle Migrations — `db/`
+- DB: Cloudflare D1 (SQLite) + Drizzle ORM — `db/` (migriert von Turso/libSQL)
 - Browser-Extension: WXT framework, Manifest V3, Background+Content+Popup+Options — `bot/`
 - Scrapers: ImmoScout24 DOM-Reader + LLM-Extract + Hash-Dedup — `scrapers/`
 - Templates: 7 Profil-Variations + LLM-Prompt + Landlord-Adaptions — `templates/`
@@ -77,11 +77,11 @@ Erst NACH erstem zahlenden Kunden:
 - Webhook in `api/src/routes/stripe.ts` aktivieren
 - Customer-Portal-Link auf `/dashboard/abo`
 
-### 2 — Cloudflare Pages + Workers + Turso live
+### 2 — Cloudflare Pages + Workers + D1 live
 - Cloudflare-Account: Workers + Pages-Project verbinden
 - `wrangler deploy` aus `api/` heraus (inkl. [ai] Binding für Workers AI)
-- Turso-DB anlegen + Migrations laufen lassen
-- ENV-Vars setzen (Resend-Key, Stripe-Webhook-Secret, Turso-Token, SENTRY_DSN)
+- D1-DB `lyrvio-prod` bereits angelegt + Schema deployed (ID: 335856e6-c2bb-41a1-ac65-d91aec13baf4)
+- ENV-Vars setzen (Resend-Key, Stripe-Webhook-Secret, SENTRY_DSN) — KEIN Turso-Token nötig
 - KEIN OpenRouter-Key nötig — Workers AI via [ai] Binding kostenlos
 
 ### 3 — Browser-Extension veroeffentlichen
