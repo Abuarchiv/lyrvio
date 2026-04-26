@@ -1,0 +1,25 @@
+name = "lyrvio-api"
+main = "src/index.ts"
+compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+BETTER_AUTH_URL = "https://api.lyrvio.com"
+ALLOWED_ORIGINS = "https://lyrvio.com,chrome-extension://*"
+
+# Secrets werden via `wrangler secret put` gesetzt:
+# TURSO_DATABASE_URL
+# TURSO_AUTH_TOKEN
+# STRIPE_SECRET_KEY
+# STRIPE_WEBHOOK_SECRET
+# RESEND_API_KEY
+# BETTER_AUTH_SECRET
+# OPENROUTER_API_KEY
+
+[[rules]]
+type = "ESModule"
+globs = ["**/*.ts"]
+
+[dev]
+port = 8787
+local_protocol = "http"

@@ -1,0 +1,45 @@
+import type { DrizzleClient } from './lib/db.js';
+import type { StripeClient } from './lib/stripe.js';
+import type { ResendClient } from './lib/resend.js';
+import type { Auth } from './lib/auth.js';
+
+export interface Env {
+  TURSO_DATABASE_URL: string;
+  TURSO_AUTH_TOKEN: string;
+  STRIPE_SECRET_KEY: string;
+  STRIPE_WEBHOOK_SECRET: string;
+  RESEND_API_KEY: string;
+  BETTER_AUTH_SECRET: string;
+  BETTER_AUTH_URL: string;
+  ALLOWED_ORIGINS: string;
+  OPENROUTER_API_KEY: string;
+}
+
+export interface AppBindings {
+  Bindings: Env;
+  Variables: {
+    db: DrizzleClient;
+    stripe: StripeClient;
+    resend: ResendClient;
+    auth: Auth;
+    userId: string;
+  };
+}
+
+export interface UserProfile {
+  name?: string;
+  telefon?: string;
+  gehalt?: number;
+  schufa_score?: number;
+  mappe_url?: string;
+  anschreiben_variations?: string[];
+  such_kriterien?: {
+    stadt?: string;
+    zimmer_min?: number;
+    zimmer_max?: number;
+    qm_min?: number;
+    qm_max?: number;
+    kaltmiete_max?: number;
+    stadteile?: string[];
+  };
+}

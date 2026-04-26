@@ -1,0 +1,19 @@
+{
+  "name": "lyrvio-templates",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Lyrvio Bewerbungs-Template-System mit Profile-Variations und Vermieter-Adaptionen",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "@jest/globals": "^29.7.0",
+    "ts-jest": "^29.1.0"
+  }
+}

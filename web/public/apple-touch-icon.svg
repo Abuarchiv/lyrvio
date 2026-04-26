@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+  <rect width="180" height="180" rx="38" fill="#0F0F23"/>
+  <!-- Lyra constellation scaled for 180x180 -->
+  <circle cx="90"  cy="22"  r="8"   fill="#F59E0B"/>
+  <circle cx="45"  cy="60"  r="5.5" fill="#A5B4FC"/>
+  <circle cx="135" cy="60"  r="5.5" fill="#A5B4FC"/>
+  <circle cx="56"  cy="118" r="5.5" fill="#A5B4FC"/>
+  <circle cx="124" cy="118" r="5.5" fill="#A5B4FC"/>
+  <circle cx="90"  cy="156" r="6"   fill="#6366F1"/>
+  <line x1="90"  y1="22"  x2="45"  y2="60"  stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="90"  y1="22"  x2="135" y2="60"  stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="45"  y1="60"  x2="135" y2="60"  stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="45"  y1="60"  x2="56"  y2="118" stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="135" y1="60"  x2="124" y2="118" stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="56"  y1="118" x2="124" y2="118" stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="56"  y1="118" x2="90"  y2="156" stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="124" y1="118" x2="90"  y2="156" stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

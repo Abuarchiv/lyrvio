@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Wordmark: lyrvio -->
+  <!-- Using path-based letterforms for scalability -->
+  <text
+    x="10"
+    y="43"
+    font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="36"
+    font-weight="700"
+    letter-spacing="-1.5"
+    fill="#0F0F23"
+  >lyrvio</text>
+
+  <!-- Subtle star dot above the i -->
+  <!-- The 'i' in 'lyrvio' at roughly x=138, star replaces dot -->
+  <!-- 4-point star shape above i -->
+  <g transform="translate(147, 6)">
+    <!-- 4-point star -->
+    <path d="M0,-5 L1.2,-1.2 L5,0 L1.2,1.2 L0,5 L-1.2,1.2 L-5,0 L-1.2,-1.2 Z"
+          fill="#F59E0B"/>
+  </g>
+</svg>

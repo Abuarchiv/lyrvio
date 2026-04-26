@@ -1,0 +1,8 @@
+packages:
+  - 'web'
+  - 'api'
+  - 'bot'
+  - 'scrapers'
+  - 'db'
+  - 'templates'
+  - 'templates/emails'
