@@ -282,6 +282,172 @@ Lisa & Tom Hansen`}
           </div>
         </section>
 
+        {/* A/B-VERGLEICH — VARIANZ-BEWEIS */}
+        <section id="varianz" className="border-b border-rule-soft bg-paper">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28">
+
+            {/* Header */}
+            <div className="flex items-center gap-4 mb-10 flex-wrap">
+              <span className="stamp-rotated">Varianz</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
+                Eine Wohnung · Drei Anschreiben · Drei Profile
+              </span>
+            </div>
+
+            <h2 className="font-display text-[36px] sm:text-[52px] tracking-[-0.025em] text-ink mb-4 max-w-[28ch]">
+              Drei Anschreiben —
+              <br />
+              <em>eine Wohnung.</em> Lyrvios Varianz-Beweis.
+            </h2>
+            <p className="font-mono text-[13px] leading-[1.7] text-ash mb-12 max-w-[64ch] border-l-2 border-stamp/40 pl-4">
+              Lyrvio analysiert das Inserat und passt jeden Brief an: Wortwahl, Länge,
+              Tonalität. Hier dieselbe Wohnung — drei verschiedene Anschreiben für drei
+              verschiedene Profile.
+            </p>
+
+            {/* Inserat-Box */}
+            <div className="relative mb-14 border-2 border-ink max-w-[680px]">
+              {/* Stempel oben */}
+              <div className="absolute -top-[13px] left-6">
+                <span className="bg-stamp text-paper font-mono text-[10px] uppercase tracking-[0.2em] font-bold px-3 py-[3px]">
+                  Inserat #2034 · neu
+                </span>
+              </div>
+              <div className="px-6 pt-8 pb-6">
+                <div className="label mb-3">Inserat — Berlin Prenzlauer Berg</div>
+                <pre className="font-mono text-[14px] leading-[1.85] text-ink whitespace-pre-wrap">
+{`2-Zi · 58 m² · 1.080 € warm · Altbau · 3. OG ohne Aufzug
+Online seit 4 Min · 47 Bewerbungen bereits eingegangen`}
+                </pre>
+              </div>
+            </div>
+
+            {/* 3 Varianten — Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-4">
+
+              {/* Variante A */}
+              <article className="border border-rule-soft flex flex-col">
+                <header className="border-b border-rule-soft px-5 py-3 bg-paper-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-stamp font-bold mb-1">
+                    Variante A
+                  </div>
+                  <div className="font-mono text-[11px] text-ink font-medium">
+                    Berufseinsteigerin
+                  </div>
+                  <div className="font-mono text-[10.5px] text-ash mt-[2px]">
+                    knapp + freundlich · 67 Wörter
+                  </div>
+                </header>
+                <div className="px-5 py-5 flex-1">
+                  <pre className="font-mono text-[12px] leading-[1.85] text-ink whitespace-pre-wrap break-words">
+{`Hallo,
+
+das Inserat passt — 2-Zi-Altbau in P-Berg,
+58 m². Ich liebe den Bezirk.
+
+Kurz zu mir: Lena Weber, 26, frische
+Apothekerin bei DocMorris (Probezeit
+bestanden, 2.900€ netto, unbefristet).
+Keine Tiere, Nichtraucherin, alles ordentlich.
+
+Schufa 95, Selbstauskunft + Lohnnachweis
+liegen bereit. Wann passt eine Besichtigung?
+
+Lena Weber · 0151-XXXXXXX`}
+                  </pre>
+                </div>
+              </article>
+
+              {/* Variante B */}
+              <article className="border border-rule-soft flex flex-col">
+                <header className="border-b border-rule-soft px-5 py-3 bg-paper-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-stamp font-bold mb-1">
+                    Variante B
+                  </div>
+                  <div className="font-mono text-[11px] text-ink font-medium">
+                    Senior-Engineer
+                  </div>
+                  <div className="font-mono text-[10.5px] text-ash mt-[2px]">
+                    präzise + nüchtern · 89 Wörter
+                  </div>
+                </header>
+                <div className="px-5 py-5 flex-1">
+                  <pre className="font-mono text-[12px] leading-[1.85] text-ink whitespace-pre-wrap break-words">
+{`Sehr geehrte Damen und Herren,
+
+ich bewerbe mich auf Ihre 2-Zimmer-Wohnung
+in Prenzlauer Berg (58 m², 1.080 € warm).
+
+Zu meiner Person: Christoph Brandt, 38,
+Senior Software Engineer bei Zalando
+(unbefristet seit 2020, 6.400 € brutto /
+3.850 € netto). Schufa-Score 99/100.
+Keine Haustiere, Nichtraucher, ledig,
+beziehe die Wohnung allein.
+
+Anbei vollständige Bewerbungsmappe (Schufa,
+3x Lohnabrechnung, Selbstauskunft,
+Mietschuldenfreiheitsbescheinigung). Ich
+bin zeitlich flexibel für eine Besichtigung.
+
+Mit freundlichen Grüßen
+Christoph Brandt`}
+                  </pre>
+                </div>
+              </article>
+
+              {/* Variante C */}
+              <article className="border border-rule-soft flex flex-col">
+                <header className="border-b border-rule-soft px-5 py-3 bg-paper-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-stamp font-bold mb-1">
+                    Variante C
+                  </div>
+                  <div className="font-mono text-[11px] text-ink font-medium">
+                    Paar mit Hund
+                  </div>
+                  <div className="font-mono text-[10.5px] text-ash mt-[2px]">
+                    warm + ehrlich · 102 Wörter
+                  </div>
+                </header>
+                <div className="px-5 py-5 flex-1">
+                  <pre className="font-mono text-[12px] leading-[1.85] text-ink whitespace-pre-wrap break-words">
+{`Liebe Vermieterin, lieber Vermieter,
+
+wir haben uns sofort in Ihre 2-Zi-Wohnung
+in P-Berg verguckt — Altbau, 3. OG, das
+ist genau das was wir suchen seit unsere
+Vermieterin Eigenbedarf angemeldet hat.
+
+Wir sind Sandra (32, Erzieherin Kita
+Winsstraße) und Jonas (34, Webdesigner
+selbständig). Zusammen 4.700€ netto.
+Ehrlich gesagt: wir haben einen kleinen
+Hund (Rocco, 8 Jahre, Mischling, sehr
+ruhig — Foto im Anhang). Wir wissen das
+ist ein Thema. Falls grundsätzlich okay,
+würden wir uns über eine Antwort sehr
+freuen.
+
+Schufa 96, beide unbefristet.
+
+Sandra & Jonas`}
+                  </pre>
+                </div>
+              </article>
+
+            </div>
+
+            {/* Erklärender Satz */}
+            <p className="mt-10 font-mono text-[13px] leading-[1.75] text-ash max-w-[72ch] border-l-2 border-ink/20 pl-4">
+              Drei Anschreiben — drei Längen (67/89/102 Wörter), drei Tonalitäten
+              (knapp/präzise/warm), drei Stilebenen (du-Form/Sie-Form/persönlich).
+              Lyrvio passt jeden Brief automatisch an dein Profil und das Inserat an —
+              keine Vorlage, kein Copy-Paste-Muster.
+            </p>
+
+          </div>
+        </section>
+
         <SlamCounter />
 
         <section>

@@ -3,7 +3,7 @@
 /* ═══════════════════════════════════════════════════════════
    LYRVIO — WOHNUNGSKRIEG-AKTE
    Off-White Akte · Tiefschwarz · Stempelrot · Hi-Lite-Gelb · Akten-Marine
-   Display: Fraunces · UI/Body: Geist Mono · KEINE Sans.
+   Display: Fraunces · UI/Body: IBM Plex Mono · KEINE Sans.
    ═══════════════════════════════════════════════════════════ */
 
 :root {
@@ -64,7 +64,7 @@
   --color-sage:       var(--sage);
 
   --font-display: var(--font-fraunces), ui-serif, "Iowan Old Style", "Georgia", serif;
-  --font-mono:    var(--font-geist-mono), ui-monospace, "SF Mono", "Menlo", monospace;
+  --font-mono:    var(--font-ibm-plex-mono), ui-monospace, "SF Mono", "Menlo", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -77,7 +77,7 @@ html {
 body {
   background-color: var(--paper);
   color: var(--ink);
-  font-family: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+  font-family: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", monospace;
   font-size: 14px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -92,7 +92,7 @@ body {
   font-optical-sizing: auto;
   letter-spacing: -0.025em;
 }
-.font-mono { font-family: var(--font-geist-mono), ui-monospace, "SF Mono", monospace; }
+.font-mono { font-family: var(--font-ibm-plex-mono), ui-monospace, "SF Mono", monospace; }
 
 /* Riesen-Manifest-Headline */
 .manifest {
@@ -148,7 +148,7 @@ body {
   padding: 0.35rem 0.7rem;
   border: 2px solid var(--stamp);
   color: var(--stamp);
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -173,7 +173,7 @@ body {
   border: 3px solid var(--stamp);
   color: var(--stamp);
   padding: 0.5rem 1rem;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -194,7 +194,7 @@ body {
   border: 4px solid var(--stamp);
   color: var(--stamp);
   padding: 0.6rem 1.4rem;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -205,7 +205,7 @@ body {
 
 /* ─── Eyebrow / Akten-Label ─────────────────────────────── */
 .label {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 10.5px;
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -237,7 +237,7 @@ body {
   position: absolute;
   left: 0;
   color: var(--stamp);
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-style: normal;
   transform: rotate(2.5deg);
 }
@@ -245,7 +245,7 @@ body {
 .vertical-text {
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -262,7 +262,7 @@ body {
   padding: 1rem 1.4rem;
   background: var(--ink);
   color: var(--paper);
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.06em;
@@ -291,7 +291,7 @@ body {
   padding: 1rem 1.4rem;
   background: transparent;
   color: var(--ink);
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-weight: 500;
   font-size: 13px;
   letter-spacing: 0.06em;
@@ -324,7 +324,7 @@ body {
 
 /* ─── Live ASCII Feed ────────────────────────────────────── */
 .feed {
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 12px;
   line-height: 1.7;
   color: var(--ink);
@@ -388,7 +388,7 @@ body {
   background: var(--ink);
   color: var(--paper);
   padding: 1rem 1.4rem;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -433,7 +433,7 @@ body {
 .akte-foot {
   padding: 1.6rem 1.4rem;
   background: var(--paper-2);
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 12px;
   color: var(--ink);
   display: grid;
@@ -569,7 +569,7 @@ body {
   background: var(--paper-warm);
   border: 1.5px solid var(--ink);
   padding: 14px 16px;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 12.5px;
   display: grid;
   gap: 6px;
@@ -678,7 +678,7 @@ a.link-underline:hover { color: var(--stamp); }
   align-items: center;
   gap: 0.4rem;
   padding: 3px 8px;
-  font-family: var(--font-geist-mono), monospace;
+  font-family: var(--font-ibm-plex-mono), monospace;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -717,6 +717,139 @@ a.link-underline:hover { color: var(--stamp); }
 .reveal-2 { animation-delay: 200ms; }
 .reveal-3 { animation-delay: 320ms; }
 .reveal-4 { animation-delay: 440ms; }
+
+/* ─── Extension-Mockup Animations (12s loop, pure CSS) ─── */
+
+/* Master timeline: 12 seconds total
+   0–2s:   Idle (0%–16.6%)
+   2–3s:   Pulse + new listing fadein (16.6%–25%)
+   3–5s:   Log line 1 typewriter / fadein (25%–41.6%)
+   5–7s:   Loader dots (41.6%–58.3%)
+   7–8s:   Success flash (58.3%–66.6%)
+   8–10s:  Stats number tick (66.6%–83.3%)
+   10–12s: Pause / rest (83.3%–100%)
+*/
+
+/* Status indicator outer ring pulse at ~2s mark */
+@keyframes ext-indicator-pulse {
+  0%, 15%   { r: 4.5; opacity: 1; }
+  18%        { r: 7.5; opacity: 0.3; }
+  22%, 100%  { r: 4.5; opacity: 1; }
+}
+@keyframes ext-indicator-pulse-compact {
+  0%, 15%   { r: 4;  opacity: 1; }
+  18%        { r: 6.5; opacity: 0.3; }
+  22%, 100%  { r: 4;  opacity: 1; }
+}
+
+/* Log lines fade in staggered */
+@keyframes ext-log1-in {
+  0%, 24%   { opacity: 0; }
+  27%, 84%  { opacity: 1; }
+  88%, 100% { opacity: 0; }
+}
+@keyframes ext-log2-in {
+  0%, 40%   { opacity: 0; }
+  44%, 84%  { opacity: 1; }
+  88%, 100% { opacity: 0; }
+}
+@keyframes ext-log3-in {
+  0%, 57%   { opacity: 0; }
+  61%, 84%  { opacity: 1; }
+  88%, 100% { opacity: 0; }
+}
+@keyframes ext-log4-in {
+  0%, 65%   { opacity: 0; }
+  69%, 84%  { opacity: 0.6; }
+  88%, 100% { opacity: 0; }
+}
+
+/* Loader dots — visible during 5–7s (41.6%–58.3%) */
+@keyframes ext-dot1 {
+  0%, 41%     { opacity: 0; }
+  43%, 56%    { opacity: 1; }
+  58%, 100%   { opacity: 0; }
+}
+@keyframes ext-dot2 {
+  0%, 44%     { opacity: 0; }
+  46%, 56%    { opacity: 1; }
+  58%, 100%   { opacity: 0; }
+}
+@keyframes ext-dot3 {
+  0%, 47%     { opacity: 0; }
+  49%, 56%    { opacity: 1; }
+  58%, 100%   { opacity: 0; }
+}
+
+/* Success flash — 7–8s (58.3%–66.6%) */
+@keyframes ext-success-flash {
+  0%, 57%    { opacity: 0; }
+  60%         { opacity: 1; }
+  63%         { opacity: 0.4; }
+  66%         { opacity: 1; }
+  84%         { opacity: 1; }
+  88%, 100%   { opacity: 0; }
+}
+@keyframes ext-success-bg {
+  0%, 57%    { opacity: 0; }
+  60%, 84%   { opacity: 1; }
+  88%, 100%  { opacity: 0; }
+}
+
+/* Stats tick — old number fades, new fades in at 8s (66.6%) */
+@keyframes ext-stat-old {
+  0%, 65%    { opacity: 1; }
+  68%, 100%  { opacity: 0; }
+}
+@keyframes ext-stat-new {
+  0%, 65%    { opacity: 0; }
+  68%, 84%   { opacity: 1; }
+  88%, 100%  { opacity: 0; }
+}
+
+/* Cursor blink (constant) */
+@keyframes ext-cursor {
+  0%, 49%  { opacity: 0.7; }
+  50%, 99% { opacity: 0; }
+}
+
+/* New listing card highlight at ~2s */
+@keyframes ext-card-hi {
+  0%, 15%    { filter: brightness(1); }
+  18%         { filter: brightness(1.15); }
+  25%, 100%  { filter: brightness(1); }
+}
+
+/* Animation classes — applied to SVG elements via className */
+.ext-indicator-ring         { animation: ext-indicator-pulse 12s ease-in-out infinite; }
+.ext-indicator-ring-compact { animation: ext-indicator-pulse-compact 12s ease-in-out infinite; }
+.ext-log1        { animation: ext-log1-in 12s linear infinite; }
+.ext-log2        { animation: ext-log2-in 12s linear infinite; }
+.ext-log3        { animation: ext-log3-in 12s linear infinite; }
+.ext-log4        { animation: ext-log4-in 12s linear infinite; }
+.ext-dot1        { animation: ext-dot1 12s linear infinite; }
+.ext-dot2        { animation: ext-dot2 12s linear infinite; }
+.ext-dot3        { animation: ext-dot3 12s linear infinite; }
+.ext-success     { animation: ext-success-flash 12s linear infinite; }
+.ext-success-bg  { animation: ext-success-bg 12s linear infinite; }
+.ext-stat-old    { animation: ext-stat-old 12s linear infinite; }
+.ext-stat-new    { animation: ext-stat-new 12s linear infinite; }
+.ext-cursor      { animation: ext-cursor 0.8s steps(1) infinite; }
+.ext-card-hi     { animation: ext-card-hi 12s linear infinite; }
+
+/* Reduced motion: freeze all extension animations */
+@media (prefers-reduced-motion: reduce) {
+  .ext-indicator-ring,
+  .ext-indicator-ring-compact,
+  .ext-log1, .ext-log2, .ext-log3, .ext-log4,
+  .ext-dot1, .ext-dot2, .ext-dot3,
+  .ext-success, .ext-success-bg,
+  .ext-stat-old, .ext-stat-new,
+  .ext-cursor, .ext-card-hi {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
 
 /* ─── Responsive Tweaks ─────────────────────────────────── */
 @media (max-width: 720px) {

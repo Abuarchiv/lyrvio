@@ -37,6 +37,9 @@ export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
 
           {/* ── Status Badge ── */}
           <rect x="10" y="62" width="272" height="30" rx="4" fill="#f8f4ea" stroke="#0c0a08" strokeWidth="1.5" />
+          {/* Outer pulse ring */}
+          <circle className="ext-indicator-ring-compact" cx="23" cy="77" r="4" fill="#1a8a1a" opacity="0.35" />
+          {/* Inner dot */}
           <circle cx="23" cy="77" r="4" fill="#1a8a1a" />
           <circle cx="23" cy="77" r="2.2" fill="#2dbd2d" />
           <text x="34" y="81" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="9.5" fill="#0c0a08" fontWeight="bold">AKTIV — Suche läuft</text>
@@ -49,25 +52,37 @@ export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
           {/* Log box */}
           <rect x="10" y="122" width="272" height="102" rx="3" fill="#f8f4ea" />
 
-          {/* Log line 1 */}
-          <text x="17" y="138" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:23:45]</text>
-          <text x="70" y="138" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">Inserat erkannt:</text>
-          <text x="17" y="149" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">2-Zi · Friedrichshain · 1.150€</text>
+          {/* Log line 1 — animated fadein */}
+          <g className="ext-log1">
+            <text x="17" y="138" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:23:45]</text>
+            <text x="70" y="138" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">Inserat erkannt:</text>
+            <text x="17" y="149" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">2-Zi · Friedrichshain · 1.150€</text>
+          </g>
 
-          {/* Log line 2 */}
-          <text x="17" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:23:48]</text>
-          <text x="70" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">Anschreiben erstellt (3,2s)</text>
+          {/* Log line 2 — loader dots phase */}
+          <g className="ext-log2">
+            <text x="17" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:23:48]</text>
+            <text x="70" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#0c0a08">Anschreiben erstellt</text>
+          </g>
+          {/* Animated dots for "Anschreiben wird erstellt..." phase */}
+          <text className="ext-dot1" x="185" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#c8201c">.</text>
+          <text className="ext-dot2" x="189" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#c8201c">.</text>
+          <text className="ext-dot3" x="193" y="164" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#c8201c">.</text>
 
           {/* Log line 3 — success highlight */}
-          <rect x="10" y="172" width="272" height="17" fill="rgba(200,32,28,0.07)" />
-          <text x="17" y="184" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:24:13]</text>
-          <text x="70" y="184" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#c8201c" fontWeight="bold">✓ Gesendet — Pos. 02</text>
+          <rect className="ext-success-bg" x="10" y="172" width="272" height="17" fill="rgba(200,32,28,0.07)" />
+          <g className="ext-success">
+            <text x="17" y="184" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e">[14:24:13]</text>
+            <text x="70" y="184" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#c8201c" fontWeight="bold">✓ Gesendet — Pos. 02</text>
+          </g>
 
           {/* Log line 4 */}
-          <text x="17" y="201" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#9a9486">[14:24:31]  Nächstes Inserat…</text>
+          <g className="ext-log4">
+            <text x="17" y="201" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#9a9486">[14:24:31]  Nächstes Inserat…</text>
+          </g>
 
           {/* Cursor */}
-          <rect x="17" y="208" width="5" height="7" fill="#c8201c" opacity="0.7" />
+          <rect className="ext-cursor" x="17" y="208" width="5" height="7" fill="#c8201c" opacity="0.7" />
 
           {/* ── Divider ── */}
           <line x1="10" y1="238" x2="282" y2="238" stroke="#0c0a08" strokeWidth="1" />
@@ -76,7 +91,9 @@ export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
           <text x="10" y="254" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7.5" fill="#6f6a5e" letterSpacing="1.5">HEUTE</text>
 
           <rect x="10" y="260" width="126" height="50" rx="3" fill="#f8f4ea" stroke="#0c0a08" strokeWidth="1.5" />
-          <text x="73" y="281" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="20" fill="#0c0a08" fontWeight="bold" textAnchor="middle">12</text>
+          {/* Old number "12" fades out, new "13" fades in */}
+          <text className="ext-stat-old" x="73" y="281" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="20" fill="#0c0a08" fontWeight="bold" textAnchor="middle">12</text>
+          <text className="ext-stat-new" x="73" y="281" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="20" fill="#0c0a08" fontWeight="bold" textAnchor="middle">13</text>
           <text x="73" y="294" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7.5" fill="#6f6a5e" textAnchor="middle">Bewerbungen</text>
           <text x="73" y="303" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="6.5" fill="#9a9486" textAnchor="middle">gesendet</text>
 
@@ -154,11 +171,13 @@ export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
         <text x="240" y="74" fontFamily="ui-monospace, monospace" fontSize="10" fill="#6f6a5e">Gewerbe</text>
 
         {/* IS24 listing cards (3 faint cards) */}
-        {/* Card 1 */}
-        <rect x="24" y="108" width="240" height="120" fill="#ebe7de" rx="4" stroke="#d5d0c7" strokeWidth="1" />
-        <rect x="24" y="108" width="240" height="60" fill="#d5d0c7" rx="4" />
-        <text x="34" y="184" fontFamily="ui-monospace, monospace" fontSize="8.5" fill="#6f6a5e">2-Zi · Friedrichshain · 72m²</text>
-        <text x="34" y="198" fontFamily="ui-monospace, monospace" fontSize="8.5" fill="#0c0a08" fontWeight="bold">1.150 €/Monat</text>
+        {/* Card 1 — highlights briefly when new listing detected */}
+        <g className="ext-card-hi">
+          <rect x="24" y="108" width="240" height="120" fill="#ebe7de" rx="4" stroke="#d5d0c7" strokeWidth="1" />
+          <rect x="24" y="108" width="240" height="60" fill="#d5d0c7" rx="4" />
+          <text x="34" y="184" fontFamily="ui-monospace, monospace" fontSize="8.5" fill="#6f6a5e">2-Zi · Friedrichshain · 72m²</text>
+          <text x="34" y="198" fontFamily="ui-monospace, monospace" fontSize="8.5" fill="#0c0a08" fontWeight="bold">1.150 €/Monat</text>
+        </g>
 
         {/* Card 2 */}
         <rect x="278" y="108" width="240" height="120" fill="#ebe7de" rx="4" stroke="#d5d0c7" strokeWidth="1" />
@@ -203,7 +222,9 @@ export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
 
         {/* ── Status Badge ── */}
         <rect x="554" y="114" width="276" height="32" rx="4" fill="#f8f4ea" stroke="#0c0a08" strokeWidth="1.5" />
-        {/* Green dot */}
+        {/* Animated pulse ring behind the green dot */}
+        <circle className="ext-indicator-ring" cx="568" cy="130" r="4.5" fill="#1a8a1a" opacity="0.3" />
+        {/* Green dot — solid, always visible */}
         <circle cx="568" cy="130" r="4.5" fill="#1a8a1a" />
         <circle cx="568" cy="130" r="2.5" fill="#2dbd2d" />
         <text x="580" y="134" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="10" fill="#0c0a08" fontWeight="bold">AKTIV — Suche läuft</text>
@@ -214,28 +235,40 @@ export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
         <text x="554" y="168" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e" letterSpacing="1.5">AKTIVITÄT · LIVE</text>
         <line x1="554" y1="173" x2="830" y2="173" stroke="#0c0a08" strokeWidth="1" />
 
-        {/* Log lines */}
+        {/* Log lines container */}
         <rect x="554" y="178" width="276" height="108" rx="3" fill="#f8f4ea" />
 
-        {/* Log line 1 */}
-        <text x="562" y="194" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#6f6a5e">[14:23:45]</text>
-        <text x="618" y="194" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#0c0a08">Inserat erkannt:</text>
-        <text x="562" y="204" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#0c0a08">2-Zi · Friedrichshain · 1.150€</text>
+        {/* Log line 1 — Inserat erkannt (fades in at ~3s) */}
+        <g className="ext-log1">
+          <text x="562" y="194" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#6f6a5e">[14:23:45]</text>
+          <text x="618" y="194" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#0c0a08">Inserat erkannt:</text>
+          <text x="562" y="204" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#0c0a08">2-Zi · Friedrichshain · 1.150€</text>
+        </g>
 
-        {/* Log line 2 */}
-        <text x="562" y="220" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#6f6a5e">[14:23:48]</text>
-        <text x="618" y="220" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#0c0a08">Anschreiben erstellt (3,2s)</text>
+        {/* Log line 2 — Anschreiben erstellt (fades in at ~5s) */}
+        <g className="ext-log2">
+          <text x="562" y="220" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#6f6a5e">[14:23:48]</text>
+          <text x="618" y="220" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#0c0a08">Anschreiben erstellt</text>
+        </g>
+        {/* Animated loader dots — active during 5–7s generating phase */}
+        <text className="ext-dot1" x="714" y="220" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="9" fill="#c8201c">.</text>
+        <text className="ext-dot2" x="719" y="220" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="9" fill="#c8201c">.</text>
+        <text className="ext-dot3" x="724" y="220" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="9" fill="#c8201c">.</text>
 
-        {/* Log line 3 — success */}
-        <rect x="554" y="228" width="276" height="18" fill="rgba(200,32,28,0.07)" />
-        <text x="562" y="241" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#6f6a5e">[14:24:13]</text>
-        <text x="618" y="241" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#c8201c" fontWeight="bold">✓ Gesendet — Pos. 02</text>
+        {/* Log line 3 — success (fades in at ~7s with flash) */}
+        <rect className="ext-success-bg" x="554" y="228" width="276" height="18" fill="rgba(200,32,28,0.07)" />
+        <g className="ext-success">
+          <text x="562" y="241" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#6f6a5e">[14:24:13]</text>
+          <text x="618" y="241" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#c8201c" fontWeight="bold">✓ Gesendet — Pos. 02</text>
+        </g>
 
-        {/* Log line 4 */}
-        <text x="562" y="258" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#9a9486">[14:24:31]  Nächstes Inserat wird geprüft…</text>
+        {/* Log line 4 — next inserat (fades in at ~8s) */}
+        <g className="ext-log4">
+          <text x="562" y="258" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8.5" fill="#9a9486">[14:24:31]  Nächstes Inserat wird geprüft…</text>
+        </g>
 
         {/* Blinking cursor */}
-        <rect x="562" y="265" width="5" height="8" fill="#c8201c" opacity="0.7" />
+        <rect className="ext-cursor" x="562" y="265" width="5" height="8" fill="#c8201c" opacity="0.7" />
 
         {/* ── Divider ── */}
         <line x1="554" y1="298" x2="830" y2="298" stroke="#0c0a08" strokeWidth="1" />
@@ -244,7 +277,9 @@ export function ExtensionMockup({ compact = false }: ExtensionMockupProps) {
         <text x="554" y="316" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e" letterSpacing="1.5">HEUTE</text>
 
         <rect x="554" y="322" width="130" height="52" rx="3" fill="#f8f4ea" stroke="#0c0a08" strokeWidth="1.5" />
-        <text x="619" y="344" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="22" fill="#0c0a08" fontWeight="bold" textAnchor="middle">12</text>
+        {/* Bewerbungen: "12" fades out, "13" fades in at 8s mark */}
+        <text className="ext-stat-old" x="619" y="344" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="22" fill="#0c0a08" fontWeight="bold" textAnchor="middle">12</text>
+        <text className="ext-stat-new" x="619" y="344" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="22" fill="#0c0a08" fontWeight="bold" textAnchor="middle">13</text>
         <text x="619" y="357" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="8" fill="#6f6a5e" textAnchor="middle">Bewerbungen</text>
         <text x="619" y="367" fontFamily="ui-monospace, 'SF Mono', monospace" fontSize="7" fill="#9a9486" textAnchor="middle">gesendet</text>
 

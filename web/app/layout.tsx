@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { Geist, IBM_Plex_Mono, Fraunces } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -9,9 +9,10 @@ const geist = Geist({
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-ibm-plex-mono",
   display: "swap",
 });
 
@@ -74,7 +75,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${geist.variable} ${geistMono.variable} ${fraunces.variable}`}
+      className={`${geist.variable} ${ibmPlexMono.variable} ${fraunces.variable}`}
     >
       <head />
       <body className="min-h-screen bg-paper text-ink antialiased paper-grain">
