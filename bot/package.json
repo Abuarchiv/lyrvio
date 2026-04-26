@@ -5,8 +5,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "wxt prepare",
     "dev": "wxt",
+    "wxt:prepare": "wxt prepare",
     "dev:firefox": "wxt --browser firefox",
     "build": "wxt build",
     "build:firefox": "wxt build --browser firefox",
