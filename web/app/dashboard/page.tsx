@@ -38,17 +38,17 @@ export default function DashboardPage() {
         <section className="border-b-2 border-ink">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12">
             <div className="flex items-center gap-4 mb-6 flex-wrap">
-              <span className="stamp-rotated">DOSSIER</span>
+              <span className="stamp-rotated">ÜBERSICHT</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
-                Aktive Akte · Berlin · seit 8 Tagen
+                Aktiv · Berlin · seit 8 Tagen
               </span>
             </div>
             <div className="flex items-end justify-between flex-wrap gap-6">
               <h1 className="font-display text-[44px] sm:text-[60px] lg:text-[72px] leading-[0.95] tracking-[-0.035em] text-ink">
-                Dein <em>Dossier.</em>
+                Mein <em>Konto.</em>
               </h1>
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="tag -sage">● Bot aktiv · 24/7</span>
+                <span className="tag -sage">● Aktiv · 24/7</span>
                 <Link href="/profile" className="btn-secondary">
                   Profil →
                 </Link>
@@ -69,7 +69,7 @@ export default function DashboardPage() {
               ].map((s, i) => (
                 <div key={i} className="border-2 border-ink bg-paper-warm p-6">
                   <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-3">
-                    § {String(i + 1).padStart(2, "0")} · {s.label}
+                    {String(i + 1).padStart(2, "0")} · {s.label}
                   </div>
                   <div className="font-display text-[44px] sm:text-[56px] leading-none tracking-[-0.04em] text-ink">
                     {s.value}
@@ -87,7 +87,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-12 gap-8">
               {/* Pipeline */}
               <div className="col-span-12 lg:col-span-8">
-                <div className="label mb-4">§ Pipeline</div>
+                <div className="label mb-4">Pipeline</div>
                 <h2 className="font-display text-[28px] sm:text-[36px] tracking-[-0.025em] text-ink mb-6">
                   Bewerbungs-Verlauf
                 </h2>
@@ -116,7 +116,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Recent Activity */}
-                <div className="label mb-4">§ Verlauf</div>
+                <div className="label mb-4">Verlauf</div>
                 <h2 className="font-display text-[28px] sm:text-[36px] tracking-[-0.025em] text-ink mb-6">
                   Letzte Aktivitäten
                 </h2>
@@ -140,14 +140,14 @@ export default function DashboardPage() {
 
               {/* Profile-Status */}
               <aside className="col-span-12 lg:col-span-4">
-                <div className="label mb-4">§ Profilstand</div>
+                <div className="label mb-4">Profil-Status</div>
                 <h2 className="font-display text-[28px] sm:text-[32px] tracking-[-0.025em] text-ink mb-6">
                   Vollständigkeit
                 </h2>
 
                 <div className="border-2 border-ink bg-paper-warm">
                   <div className="akte-head">
-                    <span>Akte · Profil-Check</span>
+                    <span>Profil-Check</span>
                     <span>5/6 ✓</span>
                   </div>
                   <ul className="divide-y divide-rule-soft">
@@ -174,7 +174,7 @@ export default function DashboardPage() {
                   <div className="absolute inset-x-0 top-0 h-1.5 diagonal-yellow opacity-80" />
                   <div className="label !text-paper-2 mb-3">
                     <span style={{ color: "var(--hi)" }}>■</span>
-                    § Erfolgsbonus
+                    Erfolgsprämie
                   </div>
                   <p className="font-display text-[22px] leading-[1.2] tracking-[-0.02em] text-paper">
                     3 Besichtigungen.
@@ -183,7 +183,7 @@ export default function DashboardPage() {
                   </p>
                   <p className="mt-3 font-mono text-[11.5px] leading-[1.5] text-paper-2">
                     Wenn du einen Mietvertrag unterschreibst, melde dich bei
-                    akte@lyrvio.com — wir schicken die Erfolgsprämien-Rechnung.
+                    hallo@lyrvio.com — wir schicken die Erfolgsprämien-Rechnung.
                   </p>
                 </div>
               </aside>

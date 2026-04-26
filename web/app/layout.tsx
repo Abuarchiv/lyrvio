@@ -24,7 +24,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://lyrvio.vercel.app"),
   title: {
-    default: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
+    default: "Lyrvio — Schreibt für dich Wohnungsbewerbungen",
     template: "%s · Lyrvio",
   },
   description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "Lyrvio",
   ],
   openGraph: {
-    title: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
+    title: "Lyrvio — Schreibt für dich Wohnungsbewerbungen",
     description:
       "In Berlin werden Wohnungen 4 Minuten nach dem Inserat bereits ausgebucht. Lyrvio läuft 24/7 in deinem Browser.",
     url: "https://lyrvio.vercel.app",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
+    title: "Lyrvio — Schreibt für dich Wohnungsbewerbungen",
     description:
       "In Berlin werden Wohnungen 4 Minuten nach dem Inserat ausgebucht. Lyrvio läuft 24/7.",
     images: ["/og-image.svg"],

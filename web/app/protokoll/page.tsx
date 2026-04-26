@@ -5,7 +5,7 @@ import { TopTicker } from "@/components/TopTicker";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Protokoll · So funktioniert der Bot",
+  title: "Protokoll · So funktioniert Lyrvio",
   description:
     "Das exakte Verfahren: Wie Lyrvio in 28 Sekunden auf jedes neue Inserat reagiert und für dich schreibt.",
 };
@@ -13,7 +13,7 @@ export const metadata = {
 const steps = [
   {
     n: "01",
-    titel: "Beauftragung",
+    titel: "Bestellen",
     inhalt:
       "Du installierst die Browser-Extension (Chrome, Firefox), legst dein Profil an und unterzeichnest die Vollmacht. Dauer: vier Minuten. Ab diesem Punkt agiert Lyrvio in deinem Namen — niemals von einem fremden Server, immer aus deinem eigenen Browser.",
     note: "Daten verlassen dein Gerät nicht. Keine Cloud-Profile, keine Konto-Übergabe.",
@@ -64,23 +64,23 @@ export default function ProtokollPage() {
         <section className="border-b-2 border-ink">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-20 lg:pt-24 lg:pb-28">
             <div className="flex items-center gap-4 mb-10">
-              <span className="stamp-rotated">§ 47/2026</span>
+              <span className="stamp-rotated">Verfahren</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
                 Protokoll · Verfahren in sechs Schritten
               </span>
             </div>
 
             <h1 className="manifest mb-10">
-              Wie der Bot
+              Wie Lyrvio
               <br />
               für dich <em>arbeitet.</em>
             </h1>
 
             <p className="font-mono text-[15px] leading-[1.7] text-ink max-w-[64ch]">
-              Lyrvio ist kein "intelligenter Helfer". Lyrvio ist ein
+              Lyrvio ist nicht ein "intelligenter Assistent". Lyrvio ist ein
               Verfahren mit sechs definierten Schritten. Jeder Schritt ist
               messbar, jeder Schritt ist transparent. Wer wissen will, was
-              dieser Bot in seinem Namen tut — kann es nachlesen.
+              Lyrvio in deinem Namen tut — kann es nachlesen.
             </p>
           </div>
         </section>
@@ -124,10 +124,10 @@ export default function ProtokollPage() {
             <p className="font-display text-[28px] sm:text-[44px] tracking-[-0.02em] text-ink max-w-[24ch]">
               Wenn du das Verfahren willst —
               <br />
-              <span className="text-stamp">beauftrage den Bot.</span>
+              <span className="text-stamp">beauftrage Lyrvio.</span>
             </p>
             <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp">
-              Bot beauftragen · 79 €/Mo
+              Jetzt loslegen · 79 €/Monat
             </Link>
           </div>
         </section>

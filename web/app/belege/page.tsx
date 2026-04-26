@@ -5,7 +5,7 @@ import { TopTicker } from "@/components/TopTicker";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Belege · Zahlen, Stimmen, Quellen",
+  title: "Erfolge · Zahlen, Stimmen, Quellen",
   description:
     "Wie schlimm ist der Wohnungsmarkt wirklich? Quellen, Zahlen, Stimmen aus der Wohnungssuche.",
 };
@@ -67,7 +67,7 @@ export default function BelegePage() {
         <section className="border-b-2 border-ink">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-16 lg:pt-24 lg:pb-20">
             <div className="flex items-center gap-4 mb-10 flex-wrap">
-              <span className="stamp-rotated">§ 88/2026</span>
+              <span className="stamp-rotated">Belege</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
                 Belegakte · Zahlen + Stimmen + Quellen
               </span>
@@ -114,7 +114,7 @@ export default function BelegePage() {
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20">
             <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
               <div>
-                <div className="label mb-3">§ Front</div>
+                <div className="label mb-3">Aktuell live</div>
                 <h2 className="font-display text-[36px] sm:text-[52px] tracking-[-0.025em] text-ink">
                   9 Inserate. <em>Letzte Stunde.</em>
                 </h2>
@@ -129,7 +129,7 @@ export default function BelegePage() {
 
         <section className="border-b border-rule-soft bg-paper-2">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28">
-            <div className="label mb-6">§ Stimmen</div>
+            <div className="label mb-6">Stimmen</div>
             <h2 className="font-display text-[40px] sm:text-[56px] leading-[0.95] tracking-[-0.03em] text-ink mb-12 max-w-[18ch]">
               Was Menschen sagen,
               <br />
@@ -163,7 +163,7 @@ export default function BelegePage() {
 
         <section>
           <div className="mx-auto max-w-[1100px] px-6 lg:px-10 py-20">
-            <div className="label mb-6">§ Quellen</div>
+            <div className="label mb-6">Quellen</div>
             <h2 className="font-display text-[36px] sm:text-[48px] tracking-[-0.025em] text-ink mb-10">
               Belegt von
             </h2>
@@ -190,10 +190,10 @@ export default function BelegePage() {
               <p className="font-display text-[24px] sm:text-[32px] tracking-[-0.02em] text-ink max-w-[28ch]">
                 Belege gelesen.
                 <br />
-                <span className="text-stamp">Beauftrage den Bot.</span>
+                <span className="text-stamp">Beauftrage Lyrvio.</span>
               </p>
               <Link href="/checkout?plan=aktiv" className="btn-primary">
-                Bot beauftragen · 79 €/Mo
+                Jetzt loslegen · 79 €/Monat
               </Link>
             </div>
           </div>

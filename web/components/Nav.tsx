@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
-  { href: "/protokoll", label: "Protokoll" },
-  { href: "/gebuehren", label: "Gebühren" },
-  { href: "/belege", label: "Belege" },
-  { href: "/akte", label: "Akte" },
+  { href: "/protokoll", label: "So funktioniert's" },
+  { href: "/gebuehren", label: "Preis" },
+  { href: "/belege", label: "Erfolge" },
+  { href: "/akte", label: "Fragen" },
 ];
 
 export function Nav() {
@@ -24,13 +24,13 @@ export function Nav() {
         <div className="flex h-14 items-center justify-between">
           <Link
             href="/"
-            className="font-mono text-[13px] font-bold tracking-[0.18em] uppercase text-ink hover:text-stamp transition-colors"
+            className="font-mono text-[14px] font-bold tracking-[0.18em] uppercase text-ink hover:text-stamp transition-colors"
             aria-label="Lyrvio"
           >
-            LYRVIO<span className="text-stamp">·</span>001
+            LYRVIO
           </Link>
 
-          <nav className="hidden md:flex items-center gap-10 font-mono text-[12px] uppercase tracking-[0.16em]">
+          <nav className="hidden md:flex items-center gap-8 font-mono text-[12px] uppercase tracking-[0.14em]">
             {links.map((l) => (
               <Link
                 key={l.href}
@@ -42,24 +42,24 @@ export function Nav() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-5 font-mono text-[12px] uppercase tracking-[0.16em]">
+          <div className="hidden md:flex items-center gap-5 font-mono text-[12px] uppercase tracking-[0.14em]">
             <Link
               href="/dashboard"
               className="text-ash hover:text-ink transition-colors"
             >
-              Dossier
+              Mein Konto
             </Link>
             <Link
               href="/checkout?plan=aktiv"
               className="btn-primary !py-2 !px-4 !text-[11px]"
             >
-              Bot beauftragen
+              Jetzt loslegen
             </Link>
           </div>
 
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden font-mono text-[12px] uppercase tracking-[0.16em] text-ink"
+            className="md:hidden font-mono text-[12px] uppercase tracking-[0.14em] text-ink"
             aria-label="Menü"
           >
             {open ? "Schließen" : "Menü"}
@@ -67,7 +67,7 @@ export function Nav() {
         </div>
 
         {open && (
-          <div className="md:hidden border-t border-rule-soft py-4 flex flex-col gap-4 font-mono text-[12px] uppercase tracking-[0.16em]">
+          <div className="md:hidden border-t border-rule-soft py-4 flex flex-col gap-4 font-mono text-[12px] uppercase tracking-[0.14em]">
             {links.map((l) => (
               <Link
                 key={l.href}
@@ -83,32 +83,31 @@ export function Nav() {
               onClick={() => setOpen(false)}
               className="text-ash"
             >
-              Dossier
+              Mein Konto
             </Link>
             <Link
               href="/checkout?plan=aktiv"
               onClick={() => setOpen(false)}
               className="btn-primary mt-2 self-start"
             >
-              Bot beauftragen
+              Jetzt loslegen
             </Link>
           </div>
         )}
       </div>
 
-      {/* Akten-Sub-Bar */}
+      {/* Sub-Bar mit Live-Indikator */}
       <div className="border-t border-rule-soft bg-paper-2">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 h-9 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.18em] text-ash">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 h-9 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.16em] text-ash">
           <div className="flex items-center gap-6">
             <span>
-              <span className="text-stamp">●</span> 24/7 aktiv
+              <span className="text-stamp">●</span> Aktiv 24/7
             </span>
             <span className="hidden sm:inline">
               Berlin · München · Hamburg · Köln · Frankfurt
             </span>
           </div>
           <div className="hidden sm:flex items-center gap-6">
-            <span>Ausgabe Nr. 042</span>
             <span>{today}</span>
           </div>
         </div>

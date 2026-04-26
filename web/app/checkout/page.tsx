@@ -12,15 +12,15 @@ const plans = {
     name: "Aktiv-Suche",
     price: "79,00 €",
     suffix: "pro Monat",
-    description: "24/7-Bot auf 5 Plattformen, monatlich kündbar.",
+    description: "24/7-Suche auf 5 Plattformen, monatlich kündbar.",
     paymentLink:
       process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_AKTIV ||
       "https://buy.stripe.com/placeholder",
     features: [
-      "24/7 Bot auf 5 Plattformen",
+      "24/7 Suche auf 5 Plattformen",
       "Personalisierte Anschreiben",
       "Push + E-Mail bei Antwort",
-      "Pipeline-Dossier",
+      "Pipeline-Übersicht",
       "Monatlich kündbar",
     ],
   },
@@ -69,21 +69,21 @@ function CheckoutContent() {
     <div className="mx-auto max-w-[900px] px-6 lg:px-10 py-16 lg:py-20">
       {/* Akten-Header */}
       <div className="flex items-center gap-4 mb-10 flex-wrap">
-        <span className="stamp-rotated">Beauftragung</span>
+        <span className="stamp-rotated">Bestellen</span>
         <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
-          Akte LYR-B/2026-{planKey === "aktiv" ? "001" : "002"} · Stand laufend
+          Bestellung Nr. 2026-{planKey === "aktiv" ? "001" : "002"} · Stand laufend
         </span>
       </div>
 
       <h1 className="font-display text-[44px] sm:text-[64px] leading-[0.95] tracking-[-0.035em] text-ink mb-6">
-        Bot <em>beauftragen.</em>
+        Lyrvio <em>starten.</em>
       </h1>
 
       <Link
         href="/gebuehren"
         className="inline-block link-underline font-mono text-[12px] uppercase tracking-[0.18em] mb-12"
       >
-        ← Zurück zur Gebührenordnung
+        ← Zurück zum Preis
       </Link>
 
       {/* Akten-Block */}
@@ -94,7 +94,7 @@ function CheckoutContent() {
         </div>
 
         <div className="akte-row">
-          <div className="para">§ 1</div>
+          <div className="para">1.</div>
           <div className="desc">
             <strong>{plan.name}</strong>
             <small>{plan.description}</small>
@@ -104,7 +104,7 @@ function CheckoutContent() {
 
         <div className="px-6 py-5 border-t border-rule-soft">
           <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-3">
-            § 2 · Leistungsumfang
+            2 · Leistungsumfang
           </div>
           <ul className="space-y-2 font-mono text-[13px] text-ink">
             {plan.features.map((f, i) => (
@@ -118,7 +118,7 @@ function CheckoutContent() {
 
         <div className="akte-foot">
           <div className="font-mono text-[12px] text-ink">
-            <strong>Hiermit beauftrage ich Lyrvio</strong>
+            <strong>Hiermit bestelle ich Lyrvio</strong>
             <br />
             <span className="text-ash">
               {plan.suffix}. Bezahlung via Stripe. Monatlich kündbar zum
@@ -147,7 +147,7 @@ function CheckoutContent() {
 
       {/* Legal */}
       <p className="mt-10 pt-6 border-t border-rule-soft font-mono text-[11.5px] leading-[1.6] text-ash max-w-[68ch]">
-        Mit der Beauftragung akzeptierst du unsere{" "}
+        Mit der Bestellung akzeptierst du unsere{" "}
         <Link href="/agb" className="link-underline text-ink">
           AGB
         </Link>{" "}

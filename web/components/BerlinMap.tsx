@@ -108,7 +108,7 @@ export function BerlinMap() {
         </span>
         <span className="flex items-center gap-2">
           <span className="inline-block w-2.5 h-2.5 bg-stamp border border-ink rounded-full" />
-          Bot bewirbt
+          Lyrvio bewirbt
         </span>
       </div>
     </div>

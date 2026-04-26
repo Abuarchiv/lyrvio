@@ -4,9 +4,9 @@ import { TopTicker } from "@/components/TopTicker";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Akte · Häufige Fragen",
+  title: "Häufige Fragen",
   description:
-    "Was Lyrvio ist, was es nicht ist. Wie der Bot in deinem Browser arbeitet, ohne deine Daten zu verkaufen.",
+    "Was Lyrvio ist, was es nicht ist. Wie Lyrvio in deinem Browser arbeitet, ohne deine Daten zu verkaufen.",
 };
 
 const fragen = [
@@ -19,12 +19,12 @@ const fragen = [
     a: "Nein. Dein Profil, deine Selbstauskunft, deine Schufa — bleiben in der Browser-Extension auf deinem Gerät. Nur Erfolgsmetriken (Bewerbung versandt: ja/nein, Antwort erhalten: ja/nein) gehen an unseren Server, damit dein Dossier in der Cloud sichtbar bleibt. Inhalte nicht.",
   },
   {
-    q: "Was, wenn ImmoScout den Bot erkennt?",
+    q: "Was, wenn ImmoScout Lyrvio erkennt?",
     a: "Lyrvio agiert wie ein realer User: dein Browser, deine Cookies, deine Klicks, dein Tempo (mit minimaler menschlicher Verzögerung). Es gibt keinen technischen Marker, der das von einem schnellen, organisierten Menschen unterscheidet. Sollte eine Plattform sich beschweren: dein Account, deine Aktion — du bist der Vertragspartner.",
   },
   {
     q: "Wieso 28 Sekunden Reaktion und nicht eine Sekunde?",
-    a: "Weil eine Sekunde unrealistisch wäre und auffallen würde. Lyrvio simuliert ein menschliches Tempo: Inserat sehen, lesen, Anschreiben formulieren, absenden. 28 Sekunden ist schnell genug für Position 2-5 in der Bewerber-Schlange — und nicht so schnell, dass es nach Bot riecht.",
+    a: "Weil eine Sekunde unrealistisch wäre und auffallen würde. Lyrvio simuliert ein menschliches Tempo: Inserat sehen, lesen, Anschreiben formulieren, absenden. 28 Sekunden ist schnell genug für Position 2-5 in der Bewerber-Schlange — und nicht so schnell, dass es nach Lyrvio riecht.",
   },
   {
     q: "Was kostet der Erfolgsbonus konkret?",
@@ -40,11 +40,11 @@ const fragen = [
   },
   {
     q: "Was passiert, wenn ich kündige?",
-    a: "Der Bot stoppt zum Monatsende. Dein Profil bleibt 30 Tage gespeichert für eine eventuelle Reaktivierung. Auf Wunsch sofortige Löschung — du erhältst eine schriftliche Bestätigung per E-Mail mit Lösch-Protokoll.",
+    a: "Lyrvio stoppt zum Monatsende. Dein Profil bleibt 30 Tage gespeichert für eine eventuelle Reaktivierung. Auf Wunsch sofortige Löschung — du erhältst eine schriftliche Bestätigung per E-Mail mit Lösch-Protokoll.",
   },
   {
-    q: "Warum sollte ein Vermieter eine Bot-Bewerbung lesen?",
-    a: "Er liest sie nicht als 'Bot-Bewerbung'. Er liest sie als persönliches Anschreiben, das die Anforderungen aus seinem Inserat aufgreift. Genau wie du sie geschrieben hättest — nur 280-mal so schnell. Vermieter merken nicht den Bot. Sie merken nur, dass deine Bewerbung in der Top 3 statt Position 487 ankommt.",
+    q: "Warum sollte ein Vermieter eine Bewerbung von Lyrvio lesen?",
+    a: "Er liest sie nicht als 'Bewerbung von Lyrvio'. Er liest sie als persönliches Anschreiben, das die Anforderungen aus seinem Inserat aufgreift. Genau wie du sie geschrieben hättest — nur 280-mal so schnell. Vermieter merken nicht Lyrvio. Sie merken nur, dass deine Bewerbung in der Top 3 statt Position 487 ankommt.",
   },
   {
     q: "Kann ich das selbst auch machen?",
@@ -61,7 +61,7 @@ export default function AktePage() {
         <section className="border-b-2 border-ink">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-16 lg:pt-24 lg:pb-20">
             <div className="flex items-center gap-4 mb-10 flex-wrap">
-              <span className="stamp-rotated">§ Q&A</span>
+              <span className="stamp-rotated">Häufige Fragen</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
                 Akte · Antworten auf häufige Fragen
               </span>
@@ -100,14 +100,14 @@ export default function AktePage() {
                   Frage nicht beantwortet?
                 </p>
                 <a
-                  href="mailto:akte@lyrvio.com"
+                  href="mailto:hallo@lyrvio.com"
                   className="link-underline font-mono text-[14px] mt-3 inline-block"
                 >
-                  akte@lyrvio.com
+                  hallo@lyrvio.com
                 </a>
               </div>
               <Link href="/checkout?plan=aktiv" className="btn-primary">
-                Bot beauftragen
+                Jetzt loslegen
               </Link>
             </div>
           </div>

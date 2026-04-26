@@ -61,20 +61,17 @@ export function Hero() {
   return (
     <section className="relative">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-12 pb-16 lg:pt-16 lg:pb-20">
-        {/* Akten-Kopfzeile */}
-        <div className="mb-10 lg:mb-14 grid grid-cols-12 gap-6 items-end">
+        {/* Sub-Header — kurz, kein Akten-Jargon */}
+        <div className="mb-10 lg:mb-12 grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 lg:col-span-7 flex items-center gap-4 flex-wrap">
             <span className="stamp-box">
               <span className="pulse" />
-              Akte LYR-2026/042 · Wohnungskrieg
-            </span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
-              §&nbsp;Manifest
+              Wohnungssuche 2026 · DACH-Großstädte
             </span>
           </div>
           <div className="col-span-12 lg:col-span-5 lg:text-right">
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
-              Berlin · Stand: vor wenigen Sekunden
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ash">
+              Berlin · Live · vor wenigen Sekunden
             </span>
           </div>
         </div>
@@ -93,11 +90,11 @@ export function Hero() {
         <div className="grid grid-cols-12 gap-6 lg:gap-12 mb-10 reveal reveal-1">
           <div className="col-span-12 lg:col-span-7">
             <p className="font-mono text-[16px] sm:text-[17px] leading-[1.6] text-ink max-w-[58ch]">
-              <strong className="text-stamp">Lyrvio ist eine Browser-Extension.</strong>{" "}
-              Sie scannt 24/7 ImmoScout24, Immowelt, Immonet und
-              eBay-Kleinanzeigen. Bei einem passenden Inserat schreibt sie in
-              deinem Namen — <span className="marker">in 28 Sekunden, persönlich, mit deinem Profil.</span>{" "}
-              Du landest auf Position 2 statt 487.
+              <strong className="text-stamp">Lyrvio ist eine Browser-Erweiterung.</strong>{" "}
+              Sie sucht rund um die Uhr auf ImmoScout24, Immowelt, Immonet
+              und eBay-Kleinanzeigen. Sobald eine passende Wohnung online
+              geht, schreibt Lyrvio in deinem Namen — <span className="marker">in 28 Sekunden, persönlich, mit deinem Profil.</span>{" "}
+              Du landest auf Platz 2 statt auf Platz 487.
             </p>
           </div>
         </div>
@@ -107,7 +104,7 @@ export function Hero() {
           <div className="col-span-12 lg:col-span-7">
             <div className="flex flex-wrap items-center gap-4">
               <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp">
-                Bot beauftragen · 79 €/Mo
+                Jetzt loslegen · 79 €/Monat
               </Link>
               <Link href="/protokoll" className="btn-secondary">
                 So funktioniert's →
@@ -123,28 +120,28 @@ export function Hero() {
 
             {/* Klare Plain-Sprech-Trio */}
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-5 border-t-2 border-ink pt-7">
-              <Para n="01" titel="Das Problem"   body="487 Bewerbungen im Median pro 2-Zi-Inserat in Berlin-Mitte." />
-              <Para n="02" titel="Die Folge"     body="Wer nach 60 Min schreibt, hat unter 1,6 % Einladungs-Chance." />
-              <Para n="03" titel="Lyrvio macht das" body="Reagiert in 28 s — nicht der Erste, aber lange vor dem Achten." />
+              <Para n="01" titel="Das Problem"   body="487 Bewerbungen kommen im Schnitt pro 2-Zimmer-Wohnung in Berlin-Mitte rein." />
+              <Para n="02" titel="Die Folge"     body="Wer nach einer Stunde schreibt, hat weniger als 1,6 % Chance auf eine Einladung." />
+              <Para n="03" titel="Was Lyrvio macht" body="Schreibt in 28 Sekunden — nicht der Erste, aber lange vor dem Achten." />
             </div>
           </div>
 
-          {/* RIGHT — Berlin Live-Map + Marginalia */}
+          {/* RIGHT — Berlin Live-Map + Notiz */}
           <aside className="col-span-12 lg:col-span-5 relative">
             {/* Sideways-Label */}
             <span className="vertical-text absolute -left-6 top-0 hidden lg:inline-block">
-              Live · Karte · Berlin · {new Date().toLocaleDateString("de-DE")}
+              Berlin · live · {new Date().toLocaleDateString("de-DE")}
             </span>
 
             <BerlinMap />
 
-            {/* Marginalie unter der Karte */}
+            {/* Notiz unter der Karte */}
             <div className="mt-6 flex items-start gap-4">
-              <span className="margin-note max-w-[20ch]">
-                rote Pins = Bot bewirbt sich gerade
+              <span className="margin-note max-w-[22ch]">
+                rote Pins: Lyrvio bewirbt sich gerade
               </span>
               <span className="margin-note max-w-[18ch]" style={{ transform: "rotate(1.5deg)", color: "var(--ink)" }}>
-                gelbe Pins = neues Inserat
+                gelbe Pins: neue Inserate
               </span>
             </div>
           </aside>
@@ -156,7 +153,7 @@ export function Hero() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 lg:py-20">
           <div className="grid grid-cols-12 gap-8 mb-10">
             <div className="col-span-12 lg:col-span-5">
-              <div className="label mb-3">§ Einrichtung</div>
+              <div className="label mb-3">Einrichtung</div>
               <h2 className="font-display text-[36px] sm:text-[52px] leading-[0.95] tracking-[-0.03em] text-ink">
                 In 7&nbsp;Minuten
                 <br />
@@ -165,9 +162,9 @@ export function Hero() {
             </div>
             <div className="col-span-12 lg:col-span-7 flex items-end">
               <p className="font-mono text-[14px] sm:text-[15px] leading-[1.6] text-ink max-w-[58ch]">
-                Du musst kein Tech-Genie sein. Drei Schritte, sieben Minuten,
-                dann läuft der Bot.{" "}
-                <span className="marker">Du machst nichts mehr — er schreibt.</span>
+                Du musst nichts technisches können. Drei Schritte, sieben
+                Minuten, dann läuft Lyrvio.{" "}
+                <span className="marker">Du machst nichts mehr — Lyrvio schreibt.</span>
               </p>
             </div>
           </div>
@@ -176,20 +173,20 @@ export function Hero() {
             <Step
               num="01"
               dauer="2 Min"
-              titel="Extension installieren"
-              body="Chrome Web Store oder Firefox AMO. Ein Klick. Lyrvio läuft im eigenen Browser, niemals serverseitig."
+              titel="Erweiterung installieren"
+              body="Ein Klick im Chrome- oder Firefox-Store. Lyrvio läuft in deinem eigenen Browser, nicht auf irgendwelchen Servern."
             />
             <Step
               num="02"
               dauer="5 Min"
-              titel="Profil + Vollmacht"
-              body="Du legst dein Mieter-Profil an (Beruf, Einkommen, Schufa) und unterschreibst digital die Vollmacht."
+              titel="Profil anlegen"
+              body="Beruf, Einkommen, Schufa eintragen. Du unterschreibst digital, dass Lyrvio in deinem Namen schreiben darf — jederzeit widerrufbar."
             />
             <Step
               num="03"
               dauer="läuft 24/7"
-              titel="Bot scant + bewirbt sich"
-              body="ImmoScout, Immowelt, Immonet, eBay-K. Bei Treffer: Anschreiben generieren, versenden, dich informieren."
+              titel="Lyrvio sucht für dich"
+              body="ImmoScout, Immowelt, Immonet, eBay-Kleinanzeigen. Bei einem Treffer: persönliches Anschreiben, sofort versendet, du bekommst Bescheid."
             />
           </div>
         </div>
@@ -200,9 +197,9 @@ export function Hero() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
           <div className="flex items-baseline justify-between mb-8 flex-wrap gap-4">
             <div>
-              <div className="label mb-3">§ Live-Stream</div>
+              <div className="label mb-3">Live</div>
               <h2 className="font-display text-[32px] sm:text-[44px] tracking-[-0.025em] text-ink">
-                Was der Bot <em>jetzt</em> tut
+                Was Lyrvio <em>gerade</em> macht
               </h2>
             </div>
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
@@ -237,7 +234,7 @@ function Para({ n, titel, body }: { n: string; titel: string; body: string }) {
   return (
     <div>
       <div className="flex items-baseline gap-2 mb-2 flex-wrap">
-        <span className="font-display text-[28px] text-stamp leading-none">§ {n}</span>
+        <span className="font-display text-[28px] text-stamp leading-none">{n}.</span>
         <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink font-bold">
           {titel}
         </span>

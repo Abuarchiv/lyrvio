@@ -4,7 +4,7 @@ import { TopTicker } from "@/components/TopTicker";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Gebühren · Was Lyrvio kostet",
+  title: "Preis · Was Lyrvio kostet",
   description:
     "Eine Gebühr monatlich. Eine einmalige Erfolgsprämie. Sonst nichts. Keine Setup-Kosten, kein Mindestlauf, keine versteckten Posten.",
 };
@@ -18,7 +18,7 @@ export default function GebuehrenPage() {
         <section className="border-b-2 border-ink">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-16 lg:pt-24 lg:pb-20">
             <div className="flex items-center gap-4 mb-10 flex-wrap">
-              <span className="stamp-rotated">§ 12/2026</span>
+              <span className="stamp-rotated">Preis 2026</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
                 Gebührenordnung · Stand 26.04.2026
               </span>
@@ -43,25 +43,25 @@ export default function GebuehrenPage() {
           <div className="mx-auto max-w-[1100px] px-6 lg:px-10 py-20 lg:py-28">
             <div className="akte">
               <div className="akte-head">
-                <span>LYRVIO · Gebührenordnung 2026</span>
-                <span className="hidden sm:inline">Akte LYR-G/042</span>
+                <span>LYRVIO · Preisliste 2026</span>
+                <span className="hidden sm:inline">Stand 2026</span>
               </div>
 
               <div className="akte-row">
-                <div className="para">§ 1</div>
+                <div className="para">1.</div>
                 <div className="desc">
                   <strong>Aktivsuche, monatlich</strong>
                   <small>
-                    Bot läuft 24/7 in deinem Browser · 5 Plattformen · ø 28 s
+                    Lyrvio läuft 24/7 in deinem Browser · 5 Plattformen · ø 28 s
                     Reaktion · persönliche Anschreiben · Push + Mail bei
-                    Antwort · Pipeline-Dossier · Chrome + Firefox
+                    Antwort · Pipeline-Übersicht · Chrome + Firefox
                   </small>
                 </div>
                 <div className="price">79,00 €</div>
               </div>
 
               <div className="akte-row">
-                <div className="para">§ 2</div>
+                <div className="para">2.</div>
                 <div className="desc">
                   <strong>Erfolgsprämie, einmalig</strong>
                   <small>
@@ -74,7 +74,7 @@ export default function GebuehrenPage() {
               </div>
 
               <div className="akte-row">
-                <div className="para">§ 3</div>
+                <div className="para">3.</div>
                 <div className="desc">
                   <strong>Setup, Onboarding, Updates</strong>
                   <small>
@@ -86,12 +86,12 @@ export default function GebuehrenPage() {
               </div>
 
               <div className="akte-row">
-                <div className="para">§ 4</div>
+                <div className="para">4.</div>
                 <div className="desc">
                   <strong>Mindestlaufzeit</strong>
                   <small>
                     Keine. Der Vertrag ist zum Monatsende kündbar — formlos
-                    per E-Mail an akte@lyrvio.com.
+                    per E-Mail an hallo@lyrvio.com.
                   </small>
                 </div>
                 <div className="price">—</div>
@@ -102,7 +102,7 @@ export default function GebuehrenPage() {
                   Gesamt erst bei Mietvertrag.
                   <br />
                   <span className="text-ash">
-                    Hiermit beauftrage ich Lyrvio mit der automatisierten
+                    Hiermit bestelle ich Lyrvio mit der automatisierten
                     Wohnungssuche zu vorgenannten Konditionen.
                   </span>
                 </div>
@@ -136,7 +136,7 @@ export default function GebuehrenPage() {
               <div className="col-span-12 md:col-span-6">
                 <div className="label mb-3">Was passiert bei Kündigung?</div>
                 <p className="text-ink">
-                  Der Bot stoppt zum Monatsende. Dein Profil bleibt 30 Tage
+                  Lyrvio stoppt zum Monatsende. Dein Profil bleibt 30 Tage
                   gespeichert für eine mögliche Reaktivierung. Auf Wunsch
                   sofortige Löschung — nachweisbar per E-Mail-Bestätigung.
                 </p>

@@ -21,8 +21,8 @@ const chromeSteps = [
   },
   {
     step: "04",
-    title: "Bot aktivieren",
-    description: "Gehe zu deinem Lyrvio-Dashboard und klicke auf \"Bot aktivieren\". Fertig — der Bot läuft jetzt im Hintergrund.",
+    title: "Aktivieren",
+    description: "Gehe zu deinem Lyrvio-Dashboard und klicke auf \"Aktivieren\". Fertig — Lyrvio läuft jetzt im Hintergrund.",
   },
 ];
 
@@ -55,7 +55,7 @@ export default function ExtensionPage() {
         <section className="border-b-2 border-ink">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-16 pb-16 lg:pt-24 lg:pb-20">
             <div className="flex items-center gap-4 mb-10 flex-wrap">
-              <span className="stamp-rotated">§ EXT</span>
+              <span className="stamp-rotated">Erweiterung</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
                 Setup in 2 Minuten
               </span>
@@ -66,7 +66,7 @@ export default function ExtensionPage() {
               <em>installieren.</em>
             </h1>
             <p className="font-mono text-[15px] leading-[1.7] text-ink max-w-[56ch]">
-              Der Bot läuft direkt in deinem Browser — keine Server, keine AGB-Verletzung. Wähle deinen Browser.
+              Lyrvio läuft direkt in deinem Browser — keine Server, keine AGB-Verletzung. Wähle deinen Browser.
             </p>
           </div>
         </section>
@@ -87,7 +87,7 @@ export default function ExtensionPage() {
                   href="/checkout?plan=aktiv"
                   className="btn-primary block text-center cursor-stamp"
                 >
-                  Bot beauftragen → Extension per Mail
+                  Jetzt loslegen → Extension per Mail
                 </a>
                 <p className="font-mono text-[11px] text-ash mt-3">
                   Während der Beta wird die Extension als signiertes .crx
