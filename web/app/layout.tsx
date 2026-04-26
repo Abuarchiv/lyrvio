@@ -22,7 +22,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lyrvio.vercel.app"),
+  metadataBase: new URL("https://lyrvio.pages.dev"),
   title: {
     default: "Lyrvio — Schreibt für dich Wohnungsbewerbungen",
     template: "%s · Lyrvio",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Lyrvio — Schreibt für dich Wohnungsbewerbungen",
     description:
       "In Berlin werden Wohnungen 4 Minuten nach dem Inserat bereits ausgebucht. Lyrvio läuft 24/7 in deinem Browser.",
-    url: "https://lyrvio.vercel.app",
+    url: "https://lyrvio.pages.dev",
     siteName: "Lyrvio",
     locale: "de_DE",
     type: "website",
