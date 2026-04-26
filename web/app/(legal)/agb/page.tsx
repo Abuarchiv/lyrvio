@@ -61,6 +61,46 @@ export default function AgbPage() {
               Mietverhältnisse einzugehen. Lyrvio handelt als technischer Bevollmächtigter,
               nicht als Vertragspartei des Mietverhältnisses.
             </p>
+            <div className="mt-6 pt-6 border-t border-rule-soft">
+              <div className="label mb-3">§2.2 Konkreter Umfang der Vollmacht (§307 BGB transparent)</div>
+              <p className="font-mono text-[13px] leading-[1.75] text-ink mb-4">
+                Die erteilte Vollmacht umfasst ausschließlich folgende Handlungen im Namen des Nutzers
+                auf den Plattformen ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen und wg-gesucht.de:
+              </p>
+              <ul className="space-y-2 mb-4">
+                {[
+                  "a) Versenden eines Erst-Bewerbungs-Anschreibens auf neue Inserate, die den vom Nutzer hinterlegten Suchkriterien entsprechen (Stadt, Bezirk, Budget, Zimmeranzahl, Mindestgröße)",
+                  "b) Übermittlung der vom Nutzer hinterlegten Profil-Angaben (Name, Beruf, Einkommen, Schufa-Score, Haushalts-Größe) als Bewerbungs-Inhalt",
+                  "c) Anhängen vom Nutzer hochgeladener Dokumente (Schufa-Auskunft, Selbstauskunft, Lohnnachweis) an die Bewerbung — soweit die Plattform das technisch erlaubt",
+                ].map((item, i) => (
+                  <li key={i} className="font-mono text-[13px] leading-[1.75] text-ink flex gap-3">
+                    <span className="text-stamp mt-1 flex-shrink-0">■</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="font-mono text-[13px] leading-[1.75] text-ink mb-3">
+                <strong>NICHT umfasst sind:</strong>
+              </p>
+              <ul className="space-y-2 mb-4">
+                {[
+                  "Antworten auf Vermieter-Nachrichten (das machst du selbst)",
+                  "Zusagen oder Vertragsabschlüsse jeder Art",
+                  "Verhandlungen über Mietkonditionen",
+                  "Weitergabe der Daten an andere Plattformen oder Dritte",
+                  "Nutzung außerhalb der genannten 5 Plattformen",
+                ].map((item, i) => (
+                  <li key={i} className="font-mono text-[13px] leading-[1.75] text-ink flex gap-3">
+                    <span className="text-stamp mt-1 flex-shrink-0">→</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="font-mono text-[13px] leading-[1.75] text-ink">
+                Der Nutzer kann die Vollmacht jederzeit durch Deaktivierung der Extension oder Kündigung
+                des Abonnements widerrufen — ohne Frist, ohne Angabe von Gründen, ohne Mehrkosten.
+              </p>
+            </div>
           </div>
         </section>
 

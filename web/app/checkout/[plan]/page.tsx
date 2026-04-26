@@ -5,6 +5,13 @@ import { TopTicker } from "@/components/TopTicker";
 import { Footer } from "@/components/Footer";
 import { plans, validPlanKeys, type PlanKey } from "../_plans";
 
+// §312j BGB-konforme Button-Texte pro Plan
+const buttonLabel: Record<PlanKey, string> = {
+  standard: "Jetzt zahlungspflichtig abonnieren — 9 €/Monat",
+  premium: "Jetzt zahlungspflichtig abonnieren — 19 €/Monat",
+  erfolg: "Jetzt zahlungspflichtig abonnieren — 9 €/Monat + 49 € bei Erfolg",
+};
+
 export function generateStaticParams() {
   return validPlanKeys.map((plan) => ({ plan }));
 }
@@ -132,6 +139,88 @@ export default async function CheckoutPlanPage({
               </p>
             </div>
 
+            {/* Widerrufsbelehrung — Anlage 1 EGBGB */}
+            <div className="px-6 py-5 border-t border-rule-soft">
+              <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-3">
+                4 · Widerrufsbelehrung
+              </div>
+              <div className="font-mono text-[11.5px] leading-[1.65] text-ash space-y-3 max-w-[70ch]">
+                <div>
+                  <span className="text-ink font-bold">Widerrufsrecht</span>
+                  <p className="mt-1">
+                    Du hast das Recht, binnen 14 Tagen ohne Angabe von Gründen
+                    diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt 14
+                    Tage ab dem Tag des Vertragsabschlusses.
+                  </p>
+                  <p className="mt-1">
+                    Um dein Widerrufsrecht auszuüben, musst du uns (Lyrvio,{" "}
+                    <a
+                      href="mailto:hallo@lyrvio.com"
+                      className="link-underline text-ink"
+                    >
+                      hallo@lyrvio.com
+                    </a>
+                    ) mittels einer eindeutigen Erklärung (z.B. ein mit der Post
+                    versandter Brief oder E-Mail) über deinen Entschluss, diesen
+                    Vertrag zu widerrufen, informieren. Du kannst dafür das
+                    beigefügte Muster-Widerrufsformular verwenden, das jedoch
+                    nicht vorgeschrieben ist.
+                  </p>
+                  <p className="mt-1">
+                    Zur Wahrung der Widerrufsfrist reicht es aus, dass du die
+                    Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf
+                    der Widerrufsfrist absendest.
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-ink font-bold">Folgen des Widerrufs</span>
+                  <p className="mt-1">
+                    Wenn du diesen Vertrag widerrufst, haben wir dir alle
+                    Zahlungen, die wir von dir erhalten haben, unverzüglich und
+                    spätestens binnen 14 Tagen ab dem Tag zurückzuzahlen, an dem
+                    die Mitteilung über deinen Widerruf bei uns eingegangen ist.
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-ink font-bold">
+                    Vorzeitiges Erlöschen des Widerrufsrechts
+                  </span>
+                  <p className="mt-1">
+                    Das Widerrufsrecht erlischt vorzeitig, wenn wir mit der
+                    Ausführung des Dienstes (Lyrvio-Aktivierung) vor Ablauf der
+                    Widerrufsfrist begonnen haben und du ausdrücklich zugestimmt
+                    hast, dass dein Widerrufsrecht mit Beginn der
+                    Leistungserbringung erlischt (§ 356 Abs. 5 BGB).
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-ink font-bold">
+                    Muster-Widerrufsformular
+                  </span>
+                  <p className="mt-1 text-[10.5px]">
+                    (Wenn du den Vertrag widerrufen willst, dann fülle bitte
+                    dieses Formular aus und sende es zurück.)
+                  </p>
+                  <div className="mt-2 border border-rule-soft p-3 text-[10.5px] leading-[1.7] space-y-0.5">
+                    <p>— An Lyrvio, hallo@lyrvio.com:</p>
+                    <p>
+                      — Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*)
+                      abgeschlossenen Vertrag über die Erbringung der folgenden
+                      Dienstleistung: Lyrvio-Abonnement
+                    </p>
+                    <p>— Bestellt am: ___ / Erhalten am: ___</p>
+                    <p>— Name des Verbrauchers: ___</p>
+                    <p>— Anschrift des Verbrauchers: ___</p>
+                    <p>— Datum: ___</p>
+                    <p>— (*) Unzutreffendes streichen</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="akte-foot">
               <div className="font-mono text-[12px] text-ink">
                 <strong>Hiermit bestelle ich Lyrvio</strong>
@@ -143,10 +232,15 @@ export default async function CheckoutPlanPage({
               </div>
               <div className="flex flex-col items-end gap-1.5">
                 <a href={plan.paymentLink} className="btn-primary cursor-stamp whitespace-nowrap">
-                  → Weiter zu Stripe
+                  {buttonLabel[planKey]}
                 </a>
                 <span className="font-mono text-[10.5px] text-ash">
                   Du wirst zur sicheren Zahlung bei Stripe weitergeleitet
+                </span>
+                <span className="font-mono text-[10px] text-ash max-w-[36ch] text-right leading-[1.5]">
+                  Mit Klick stimmst du der Widerrufsbelehrung zu und dass
+                  Lyrvio sofort startet — dein Widerrufsrecht erlischt
+                  damit (§ 356 Abs. 5 BGB).
                 </span>
               </div>
             </div>
