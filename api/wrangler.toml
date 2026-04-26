@@ -18,9 +18,10 @@ database_id = "335856e6-c2bb-41a1-ac65-d91aec13baf4"
 binding = "AI"
 
 # Analytics Engine — kostenlos 100K Events/Tag
-[[analytics_engine_datasets]]
-binding = "METRICS"
-dataset = "lyrvio_metrics"
+# Aktivieren: https://dash.cloudflare.com/<account>/workers/analytics-engine (einmalig)
+# [[analytics_engine_datasets]]
+# binding = "METRICS"
+# dataset = "lyrvio_metrics"
 
 # Secrets werden via `wrangler secret put` gesetzt:
 # STRIPE_SECRET_KEY

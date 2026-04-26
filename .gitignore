@@ -22,3 +22,6 @@ playwright-report/
 playwright/.cache/
 out/
 .vercel/
+
+# Sentry DSNs (Secrets)
+.sentry-dsns.local
