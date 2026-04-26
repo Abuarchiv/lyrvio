@@ -5,14 +5,12 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Chrome,
-  Firefox,
   Globe,
   Download,
   CheckCircle2,
   ExternalLink,
   Loader2,
-  PuzzleIcon,
+  Puzzle,
 } from "lucide-react";
 import { step6Schema, type Step6Data } from "@/app/onboarding/schemas";
 import { StepProgress } from "@/components/onboarding/StepProgress";
@@ -119,8 +117,7 @@ export default function Step6Page() {
 
   const steps = browser === "firefox" ? FIREFOX_STEPS : CHROME_STEPS;
 
-  const BrowserIcon =
-    browser === "firefox" ? Globe : browser === "edge" ? Globe : Chrome;
+  const BrowserIcon = Globe;
 
   const onSubmit = async (data: Step6Data) => {
     // Final submit — merge all localStorage data and POST to API
@@ -173,7 +170,7 @@ export default function Step6Page() {
       {!extensionInstalled ? (
         <div className="rounded-xl border border-indigo-600/40 bg-indigo-950/30 p-5 space-y-4">
           <div className="flex items-start gap-3">
-            <PuzzleIcon className="w-6 h-6 text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
+            <Puzzle className="w-6 h-6 text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <p className="text-sm font-semibold text-slate-200">
                 Lyrvio Extension

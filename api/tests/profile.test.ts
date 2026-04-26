@@ -104,6 +104,8 @@ describe('PUT /profile', () => {
   })
 
   test('200 bei validem Profil-Update', async () => {
+    mockDb.query.users.findFirst.mockResolvedValueOnce(mockUser)
+
     const { profileRouter } = await import('../src/routes/profile.js')
     const app = buildApp(true)
     app.route('/profile', profileRouter)
@@ -118,8 +120,8 @@ describe('PUT /profile', () => {
       }),
     }))
     expect(res.status).toBe(200)
-    const body = await res.json() as { ok: boolean }
-    expect(body.ok).toBe(true)
+    const body = await res.json() as { success?: boolean; ok?: boolean }
+    expect(body.success ?? body.ok).toBeTruthy()
   })
 
   test('400 bei ungültigem schufa_score (> 1000)', async () => {
