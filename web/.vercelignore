@@ -1,0 +1,9 @@
+.next
+node_modules
+.turbo
+.cache
+out
+test-results
+playwright-report
+.wrangler
+.vercel/output

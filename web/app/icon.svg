@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Lyrvio favicon — Akten-Frame mit Italic-L + Stempel-Punkt -->
+  <rect width="32" height="32" fill="#f3efe6"/>
+  <rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="#0c0a08" stroke-width="2"/>
+  <!-- Italic Serif L (Georgia ist auf 99% Browsern verfügbar) -->
+  <text
+    x="6" y="25"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="24"
+    font-style="italic"
+    font-weight="700"
+    fill="#0c0a08"
+    letter-spacing="-1">L</text>
+  <!-- Stempel-Punkt oben rechts: Live-Indikator -->
+  <circle cx="25" cy="7" r="2.5" fill="#c8201c"/>
+</svg>
