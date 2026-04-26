@@ -1,0 +1,85 @@
+---
+title: 'Wie erstellt Lyrvio meine Bewerbungen?'
+slug: 'bewerbungen-erstellt'
+category: 'bewerbungen-verstehen'
+categoryLabel: 'Bewerbungen verstehen'
+order: 1
+description: 'Der technische und inhaltliche Prozess hinter jeder automatischen Bewerbung.'
+updated: '2026-04-26'
+---
+
+## Kurz
+
+Lyrvio nutzt ein KI-Sprachmodell (Claude Haiku) um aus deinem Profil und dem Inserat-Inhalt eine passgenaue Bewerbung zu schreiben. Kein Template, kein Copy-Paste — für jedes Inserat ein eigener Text.
+
+## Die drei Bausteine
+
+### 1. Dein Profil
+
+Das Fundament jeder Bewerbung. Lyrvio zieht daraus:
+
+- Persönliche Angaben (Name, Beruf, Arbeitgeber)
+- Deinen persönlichen Freitext („Über mich")
+- Wohnsituation (aktuell, geplanter Einzug)
+- Relevante Fakten (Einkommen, Haushaltsgröße, keine Haustiere etc.)
+
+### 2. Das Inserat
+
+Der Bot liest den Inserat-Text vollständig aus und analysiert:
+
+- Was verlangt der Vermieter explizit? (z.B. „keine WG", „ruhige Mieter bevorzugt")
+- Was lässt sich implizit ablesen? (Tonalität, Formalität, Prioritäten)
+- Handelt es sich um einen Privat-, Gewerbe- oder Makler-Vermieter?
+- Gibt es rote Flags die gegen eine Bewerbung sprechen?
+
+### 3. Vermieter-Typ-Logik
+
+Lyrvio unterscheidet 3 Vermieter-Profile und passt den Stil an:
+
+| Typ | Stil | Länge | Fokus |
+|---|---|---|---|
+| Privatvermieter | persönlich, warm | 150–220 Wörter | Mensch hinter dem Mieter |
+| Hausverwaltung | sachlich, vollständig | 120–180 Wörter | Fakten + Bonität |
+| Makler | professionell, knapp | 100–150 Wörter | Qualifikation + Schnelligkeit |
+
+## Der Prompt-Aufbau
+
+Die KI bekommt folgende Infos:
+
+```
+- Profil des Bewerbers
+- Vollständiger Inserat-Text
+- Erkannter Vermieter-Typ
+- Stilrichtlinie basierend auf Vermieter-Typ
+- Anweisung: Keine Floskeln, keine Phrasen, kein „Hiermit bewerbe ich mich"
+```
+
+Das Ergebnis ist ein natürlicher Fließtext — kein Anschreiben im Amtsstil.
+
+## Qualitätskontrolle
+
+Bevor die Bewerbung abgeschickt wird, prüft ein interner Check:
+
+- Enthält die Bewerbung den Namen des Bewerbers?
+- Wird das Inserat irgendwie adressiert?
+- Ist der Text mindestens 80 Wörter lang?
+- Kein Platzhalter-Text vorhanden?
+
+Schlägt einer dieser Checks fehl, wird die Bewerbung nicht gesendet und du bekommst eine Warnung im Dashboard.
+
+## Häufige Fragen
+
+**Kann ich sehen was der Bot geschrieben hat?**
+Ja. Im Dashboard klappst du jede Bewerbung auf und siehst den exakten Text. Du kannst ihn nicht nachträglich editieren (er ist bereits gesendet), aber du bekommst volle Transparenz.
+
+**Klingen alle Bewerbungen gleich?**
+Nein — aber ähnlich. Der Bot hat einen konsistenten Stil (basierend auf deinem Profil), variiert aber Formulierungen und Schwerpunkte je nach Inserat. Inserate mit vielen persönlichen Anforderungen erzeugen persönlichere Texte.
+
+**Was wenn das Modell Fehler macht?**
+Selten, aber möglich. Wenn du eine schlechte Bewerbung siehst, nutze die „Feedback"-Funktion im Dashboard. Das verbessert das Modell für künftige Bewerbungen.
+
+## Verwandte Artikel
+
+- [Kann ich Bewerbungen vorab prüfen?](/hilfe/bewerbungen-pruefen)
+- [Was wenn der Bot eine schlechte Bewerbung schreibt?](/hilfe/schlechte-bewerbung)
+- [Wie unterscheidet der Bot zwischen Vermieter-Typen?](/hilfe/vermieter-typen)
