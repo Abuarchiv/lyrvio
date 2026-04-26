@@ -17,7 +17,10 @@
     "dev:bot": "pnpm --filter bot dev",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r --filter='!web' test && pnpm --filter web test:e2e",
+    "test:unit": "pnpm -r --filter='!web' test",
+    "test:e2e": "pnpm --filter web test:e2e"
   },
   "packageManager": "pnpm@9.0.0"
 }

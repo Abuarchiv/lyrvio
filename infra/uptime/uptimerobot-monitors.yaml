@@ -1,0 +1,154 @@
+# UptimeRobot Monitor Configuration — Lyrvio
+# Free Tier: 50 Monitors, 5-Minuten-Intervall
+# Bulk-Import via UptimeRobot API oder manuelle Anlage im Dashboard
+#
+# API-Dokumentation: https://uptimerobot.com/api/
+# Bulk-Import: Dashboard → Add New Monitor → Import (JSON/CSV)
+#
+# Alert-Kontakte konfigurieren:
+#   1. Email: abubakarabditube@gmail.com
+#   2. Telegram: UptimeRobot → My Settings → Alert Contacts → Add Telegram
+#      (Telegram Bot @UptimeRobot anschreiben → /start)
+#
+# Alle Alerts gehen an: Email + Telegram
+
+monitors:
+  - name: "Lyrvio Web — Homepage"
+    type: keyword
+    url: "https://lyrvio.com"
+    keyword: "Lyrvio"
+    keyword_type: exists  # Alert wenn Keyword NICHT vorhanden
+    interval: 5  # Minuten
+    timeout: 30  # Sekunden
+    alert_contacts:
+      - email
+      - telegram
+    tags:
+      - frontend
+      - critical
+
+  - name: "Lyrvio API — Health Check"
+    type: http
+    url: "https://lyrvio-api.workers.dev/health"
+    # Passe URL an nach wrangler deploy: wrangler deploy --dry-run zeigt finale URL
+    expected_status: 200
+    interval: 5
+    timeout: 30
+    alert_contacts:
+      - email
+      - telegram
+    tags:
+      - api
+      - critical
+
+  - name: "Lyrvio API — DB Health"
+    type: http
+    url: "https://lyrvio-api.workers.dev/health/db"
+    expected_status: 200
+    interval: 5
+    timeout: 30
+    alert_contacts:
+      - email
+      - telegram
+    tags:
+      - api
+      - database
+
+  - name: "Stripe Webhook Endpoint"
+    type: http
+    url: "https://lyrvio-api.workers.dev/stripe/webhook"
+    # Stripe-Webhooks antworten auf GET mit 405 (Method Not Allowed) — das ist OK
+    expected_status: 405
+    interval: 5
+    timeout: 30
+    alert_contacts:
+      - email
+      - telegram
+    tags:
+      - payments
+      - critical
+
+  - name: "Resend Email Health"
+    type: http
+    url: "https://lyrvio-api.workers.dev/health/email"
+    # Eigener Health-Endpoint der Resend-API-Verbindung prüft
+    expected_status: 200
+    interval: 15
+    timeout: 30
+    alert_contacts:
+      - email
+      - telegram
+    tags:
+      - email
+      - integrations
+
+  - name: "OpenRouter API Health"
+    type: http
+    url: "https://openrouter.ai/api/v1/models"
+    # Externer Service — nur Status-Check, kein Auth nötig
+    expected_status: 200
+    interval: 15
+    timeout: 30
+    alert_contacts:
+      - email
+    tags:
+      - ai
+      - external
+
+  - name: "Lyrvio Pages Deploy"
+    type: http
+    url: "https://lyrvio.pages.dev"
+    expected_status: 200
+    interval: 30
+    timeout: 30
+    alert_contacts:
+      - email
+    tags:
+      - deployment
+      - cdn
+
+  - name: "Lyrvio Status Page"
+    type: http
+    url: "https://lyrvio.com/status"
+    expected_status: 200
+    keyword: "API"
+    keyword_type: exists
+    interval: 10
+    timeout: 30
+    alert_contacts:
+      - email
+      - telegram
+    tags:
+      - status
+      - meta
+
+# ─── Alert-Konfiguration ──────────────────────────────────────────────────────
+#
+# CRITICAL-Monitors (Homepage, API, DB, Stripe):
+#   - Alert nach 1 fehlgeschlagenem Check
+#   - Re-Alert alle 30 Minuten wenn weiterhin down
+#   - Recovery-Alert wenn wieder up
+#
+# EXTERNAL-Monitors (OpenRouter, etc.):
+#   - Alert nach 3 fehlgeschlagenen Checks (5 Min × 3 = 15 Min)
+#   - Verhindert False-Positives bei kurzen Outages
+#
+# ─── Maintenance Windows ──────────────────────────────────────────────────────
+#
+# Deployment-Fenster: Täglich 02:00-02:15 UTC (vor Backup um 03:00)
+# Während Deployment: UptimeRobot pausiert Alerts automatisch (via API-Call in CI)
+#
+# GitHub Actions Integration:
+#   - Vor Deploy: curl -X POST "https://api.uptimerobot.com/v2/editMonitor" ...
+#   - Nach Deploy: Pause aufheben
+
+# ─── DNS-Monitoring ───────────────────────────────────────────────────────────
+# UptimeRobot Free unterstützt keinen DNS-Monitor.
+# Alternative: Cloudflare Health Checks (free, built-in) für DNS-Monitoring.
+# Setup: Cloudflare Dashboard → Traffic → Health Checks → Create
+
+# ─── Status-Page Setup ────────────────────────────────────────────────────────
+# UptimeRobot Public Status Page (free):
+# dashboard.uptimerobot.com → Status Pages → Add Status Page
+# URL: stats.uptimerobot.com/XXXXX
+# Oder: Eigene Status-Page auf lyrvio.com/status (siehe web/app/status/page.tsx)
