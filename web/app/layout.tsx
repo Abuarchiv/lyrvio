@@ -22,7 +22,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lyrvio.pages.dev"),
+  metadataBase: new URL("https://lyrvio.vercel.app"),
   title: {
     default: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
     template: "%s · Lyrvio",
@@ -42,16 +42,25 @@ export const metadata: Metadata = {
     title: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
     description:
       "In Berlin werden Wohnungen 4 Minuten nach dem Inserat bereits ausgebucht. Lyrvio läuft 24/7 in deinem Browser.",
-    url: "https://lyrvio.pages.dev",
+    url: "https://lyrvio.vercel.app",
     siteName: "Lyrvio",
     locale: "de_DE",
     type: "website",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "Lyrvio — Eine Wohnung ist vier Minuten online. Du verlierst.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Lyrvio — Der Browser-Bot, der für dich bewirbt",
     description:
       "In Berlin werden Wohnungen 4 Minuten nach dem Inserat ausgebucht. Lyrvio läuft 24/7.",
+    images: ["/og-image.svg"],
   },
   robots: { index: true, follow: true },
 };

@@ -61,7 +61,7 @@ export function Footer() {
             items={[
               { href: "/dashboard", label: "Mein Dossier" },
               { href: "/profile", label: "Profil pflegen" },
-              { href: "/checkout", label: "Beauftragung" },
+              { href: "/checkout?plan=aktiv", label: "Beauftragung" },
               { href: "/hilfe", label: "Hilfe" },
             ]}
           />

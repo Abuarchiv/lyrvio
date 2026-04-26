@@ -80,17 +80,20 @@ export default function ExtensionPage() {
               <div className="border-2 border-ink bg-paper-warm p-8">
                 <div className="flex items-center gap-3 mb-2">
                   <h2 className="font-display text-[28px] tracking-[-0.025em] text-ink">Chrome</h2>
-                  <span className="tag -sage">Empfohlen</span>
+                  <span className="tag -yellow">Beta · invite-only</span>
                 </div>
                 <p className="font-mono text-[12px] text-ash mb-6">Kompatibel: Chrome 88+, Edge, Brave, Opera</p>
                 <a
-                  href="https://chrome.google.com/webstore/detail/lyrvio/placeholder"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/checkout?plan=aktiv"
                   className="btn-primary block text-center cursor-stamp"
                 >
-                  Chrome Extension installieren
+                  Bot beauftragen → Extension per Mail
                 </a>
+                <p className="font-mono text-[11px] text-ash mt-3">
+                  Während der Beta wird die Extension als signiertes .crx
+                  per Email zugesandt. Chrome-Web-Store-Listung folgt nach
+                  ersten 100 Usern.
+                </p>
               </div>
 
               {/* Firefox */}

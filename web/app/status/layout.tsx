@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Status — Lyrvio",
+  title: "Status",
   description: "Echtzeit-Status aller Lyrvio-Services und Infrastruktur.",
 };
 

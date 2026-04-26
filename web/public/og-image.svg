@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1a1815" stroke-width="0.5" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Paper Background -->
+  <rect width="1200" height="630" fill="#f3efe6"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Top Ticker Bar (red strip) -->
+  <rect x="0" y="0" width="1200" height="40" fill="#c8201c"/>
+  <text x="40" y="27" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="3" fill="#f3efe6">● LIVE · 1.247 BEWERBUNGEN HEUTE</text>
+
+  <!-- Akten-Header strip -->
+  <rect x="0" y="40" width="1200" height="60" fill="#f3efe6"/>
+  <text x="40" y="78" font-family="ui-monospace, Menlo, monospace" font-size="16" font-weight="700" letter-spacing="3" fill="#0c0a08">LYRVIO·001</text>
+
+  <line x1="0" y1="100" x2="1200" y2="100" stroke="#0c0a08" stroke-width="2"/>
+
+  <!-- Stamp Box -->
+  <g transform="translate(60, 150) rotate(-2)">
+    <rect width="380" height="44" fill="rgba(200,32,28,0.05)" stroke="#c8201c" stroke-width="2.5"/>
+    <text x="20" y="29" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="800" letter-spacing="3" fill="#c8201c">● AKTE LYR-2026/042 · WOHNUNGSKRIEG</text>
+  </g>
+
+  <!-- Manifest Headline -->
+  <text x="60" y="290" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="400" letter-spacing="-3" fill="#0c0a08">Eine Wohnung</text>
+  <text x="60" y="380" font-family="Fraunces, Georgia, serif" font-size="92" font-style="italic" letter-spacing="-3" fill="#0c0a08">ist vier Minuten online.</text>
+  <text x="60" y="470" font-family="Fraunces, Georgia, serif" font-size="92" font-weight="400" letter-spacing="-3" fill="#0c0a08">Du <tspan fill="#6f6a5e" text-decoration="line-through" text-decoration-color="#c8201c" text-decoration-thickness="6">kämpfst</tspan>  <tspan fill="#c8201c" font-style="italic">verlierst.</tspan></text>
+
+  <!-- Plain explanation under -->
+  <text x="60" y="540" font-family="ui-monospace, Menlo, monospace" font-size="20" fill="#0c0a08">
+    <tspan font-weight="700" fill="#c8201c">Lyrvio ist eine Browser-Extension.</tspan> Schreibt in 28 s für dich.
+  </text>
+  <text x="60" y="570" font-family="ui-monospace, Menlo, monospace" font-size="18" fill="#6f6a5e">
+    79 €/Monat · monatlich kündbar · 14 Tage Geld-zurück
+  </text>
+
+  <!-- URL bottom right -->
+  <text x="1140" y="600" font-family="ui-monospace, Menlo, monospace" font-size="16" font-weight="700" letter-spacing="3" fill="#0c0a08" text-anchor="end">→ LYRVIO.VERCEL.APP</text>
+
+  <!-- Stamp angle -->
+  <g transform="translate(880, 150) rotate(8)">
+    <rect width="220" height="60" fill="rgba(200,32,28,0.08)" stroke="#c8201c" stroke-width="3"/>
+    <text x="110" y="40" font-family="ui-monospace, Menlo, monospace" font-size="15" font-weight="800" letter-spacing="3" fill="#c8201c" text-anchor="middle">79 €/MO</text>
+  </g>
+</svg>

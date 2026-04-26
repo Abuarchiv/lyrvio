@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) return {};
 
   return {
-    title: `${article.title} — Lyrvio Help-Center`,
+    title: article.title,
     description: article.description,
     openGraph: {
       title: article.title,

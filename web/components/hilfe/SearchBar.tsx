@@ -60,13 +60,13 @@ export function SearchBar({ articles }: SearchBarProps) {
   return (
     <div className="relative w-full max-w-2xl mx-auto">
       <div className="relative">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-500" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-ash" />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Suche im Help-Center…"
-          className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-12 pr-12 py-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors text-base"
+          className="w-full bg-paper border-2 border-ink pl-12 pr-12 py-4 text-ink placeholder-ash focus:outline-none focus:border-stamp transition-colors font-mono text-[14px]"
           onFocus={() => {
             if (query.trim().length >= 2) setOpen(true);
           }}
@@ -74,7 +74,7 @@ export function SearchBar({ articles }: SearchBarProps) {
         {query && (
           <button
             onClick={clear}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-ash hover:text-ink transition-colors"
             aria-label="Suche löschen"
           >
             <X className="h-5 w-5" />
@@ -83,21 +83,21 @@ export function SearchBar({ articles }: SearchBarProps) {
       </div>
 
       {open && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden z-50">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-paper border-2 border-ink shadow-[4px_4px_0px_0px_#0c0a08] overflow-hidden z-50">
           {results.map((item) => (
             <Link
               key={item.slug}
               href={`/hilfe/${item.slug}`}
               onClick={clear}
-              className="flex flex-col gap-0.5 px-4 py-3 hover:bg-slate-800 transition-colors border-b border-slate-800 last:border-0"
+              className="flex flex-col gap-0.5 px-4 py-3 hover:bg-paper-warm transition-colors border-b border-rule-soft last:border-0"
             >
-              <span className="text-xs text-indigo-400 font-medium">
+              <span className="font-mono text-[11px] text-stamp uppercase tracking-[0.1em]">
                 {item.categoryLabel}
               </span>
-              <span className="text-slate-200 text-sm font-medium">
+              <span className="font-display text-[15px] text-ink">
                 {item.title}
               </span>
-              <span className="text-slate-500 text-xs line-clamp-1">
+              <span className="font-mono text-[12px] text-ash line-clamp-1">
                 {item.description}
               </span>
             </Link>
@@ -106,10 +106,10 @@ export function SearchBar({ articles }: SearchBarProps) {
       )}
 
       {open && results.length === 0 && query.trim().length >= 2 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl p-4 z-50">
-          <p className="text-slate-500 text-sm text-center">
-            Keine Artikel gefunden für „{query}". Probiere andere Suchbegriffe oder{" "}
-            <a href="mailto:support@lyrvio.com" className="text-indigo-400 hover:underline">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-paper border-2 border-ink shadow-[4px_4px_0px_0px_#0c0a08] p-4 z-50">
+          <p className="font-mono text-[13px] text-ash text-center">
+            Keine Artikel für „{query}". Probiere andere Suchbegriffe oder{" "}
+            <a href="mailto:support@lyrvio.com" className="text-stamp hover:underline">
               schreib uns
             </a>
             .
