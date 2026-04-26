@@ -1,0 +1,120 @@
+version: "3.9"
+
+# GlitchTip – Open-Source Sentry-Alternative
+# Self-hosted auf Hetzner CX11 (4 €/Mo) oder lokalem Mac
+# DSGVO-konform (alle Daten bleiben auf eigenem Server)
+#
+# Erstes Setup:
+#   cp .env.example .env
+#   docker compose up -d
+#   docker compose exec web python manage.py createsuperuser
+#
+# Ports: GlitchTip läuft auf :8000 (hinter Nginx/Cloudflare Tunnel empfohlen)
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: glitchtip
+      POSTGRES_USER: glitchtip
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U glitchtip"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - glitchtip
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - glitchtip
+
+  web:
+    image: glitchtip/glitchtip:latest
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://glitchtip:${POSTGRES_PASSWORD}@postgres:5432/glitchtip
+      SECRET_KEY: ${SECRET_KEY}
+      REDIS_URL: redis://redis:6379/0
+      PORT: 8000
+      EMAIL_URL: ${EMAIL_URL}
+      GLITCHTIP_DOMAIN: ${GLITCHTIP_DOMAIN}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL}
+      CELERY_WORKER_CONCURRENCY: 2
+      ENABLE_OPEN_USER_REGISTRATION: "False"
+      DJANGO_SUPERUSER_EMAIL: ${ADMIN_EMAIL}
+      DJANGO_SUPERUSER_PASSWORD: ${ADMIN_PASSWORD}
+      # Performance
+      GUNICORN_WORKERS: 2
+      # DSGVO: Keine externen Tracking-Calls
+      DISABLE_COLLECTSTATIC: "1"
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - uploads:/code/uploads
+    networks:
+      - glitchtip
+    labels:
+      - "traefik.enable=false"  # falls kein Traefik: Cloudflare Tunnel empfohlen
+
+  worker:
+    image: glitchtip/glitchtip:latest
+    restart: unless-stopped
+    command: ./bin/run-celery-with-beat.sh
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://glitchtip:${POSTGRES_PASSWORD}@postgres:5432/glitchtip
+      SECRET_KEY: ${SECRET_KEY}
+      REDIS_URL: redis://redis:6379/0
+      EMAIL_URL: ${EMAIL_URL}
+      GLITCHTIP_DOMAIN: ${GLITCHTIP_DOMAIN}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL}
+      CELERY_WORKER_CONCURRENCY: 2
+    networks:
+      - glitchtip
+
+  # Optional: Nginx als Reverse-Proxy (alternativ: Cloudflare Tunnel ohne Port-Exposition)
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - glitchtip
+    profiles:
+      - with-nginx  # nur mit: docker compose --profile with-nginx up -d
+
+volumes:
+  postgres_data:
+  redis_data:
+  uploads:
+
+networks:
+  glitchtip:
+    driver: bridge
