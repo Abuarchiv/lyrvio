@@ -47,10 +47,13 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${inter.className} h-full`}>
       <head>
-        {/* Analytics: Cloudflare Web Analytics (kostenlos, DSGVO-konform, kein Cookie-Banner)
-            Aktivierung via Cloudflare Dashboard → Web Analytics → Add Site → lyrvio.pages.dev
-            Kein Script-Tag nötig wenn über Cloudflare Pages deployed (automatisch injiziert).
-            Für Custom-Events: Cloudflare Analytics Engine (kostenlos 100K Events/Tag) nutzen. */}
+        {/* Cloudflare Web Analytics — kostenlos, DSGVO-konform, kein Cookie-Banner */}
+        {/* Token: ed3d170682404aa2a3aa21f928f7f31b | Site: lyrvio.pages.dev */}
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "ed3d170682404aa2a3aa21f928f7f31b"}'
+        />
       </head>
       <body className="min-h-full flex flex-col bg-[#0a0a0f] text-slate-50 antialiased">
         {children}
