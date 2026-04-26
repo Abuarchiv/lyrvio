@@ -1,0 +1,142 @@
+name: Backup Verification
+
+on:
+  schedule:
+    # Täglich 06:00 UTC (3h nach Backup-Worker-Run um 03:00 UTC)
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      max_age_hours:
+        description: "Maximales Backup-Alter in Stunden (Default: 26)"
+        required: false
+        default: "26"
+
+jobs:
+  verify-backup:
+    name: Prüfe letzten Backup-Run
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Backup-Status von R2 laden
+        id: check
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_R2_READ_TOKEN }}
+          MAX_AGE_HOURS: ${{ inputs.max_age_hours || '26' }}
+        run: |
+          # _status/last-backup.json aus R2 laden
+          STATUS_JSON=$(curl -s \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/r2/buckets/lyrvio-db-backups/objects/_status/last-backup.json")
+
+          echo "Raw response:"
+          echo "$STATUS_JSON" | jq . || echo "$STATUS_JSON"
+
+          # Prüfen ob Request erfolgreich
+          SUCCESS=$(echo "$STATUS_JSON" | jq -r '.success // false' 2>/dev/null || echo "false")
+          if [[ "$SUCCESS" != "true" ]]; then
+            echo "❌ Fehler beim Laden des Backup-Status aus R2"
+            echo "::error::R2-Zugriff fehlgeschlagen: ${STATUS_JSON}"
+            exit 1
+          fi
+
+          # Backup-Inhalt laden (Datei via Object-URL)
+          OBJECT_URL="https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/r2/buckets/lyrvio-db-backups/objects/_status%2Flast-backup.json"
+          BACKUP_STATUS=$(curl -s \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            "$OBJECT_URL")
+
+          echo "Backup Status:"
+          echo "$BACKUP_STATUS" | jq .
+
+          # last_run Timestamp prüfen
+          LAST_RUN=$(echo "$BACKUP_STATUS" | jq -r '.last_run // empty')
+          BACKUP_SUCCESS=$(echo "$BACKUP_STATUS" | jq -r '.success // false')
+          BACKUP_ERROR=$(echo "$BACKUP_STATUS" | jq -r '.error // null')
+
+          if [[ -z "$LAST_RUN" ]]; then
+            echo "::error::Kein last_run Timestamp im Backup-Status gefunden"
+            exit 1
+          fi
+
+          # Alter des Backups berechnen
+          LAST_RUN_TS=$(date -d "$LAST_RUN" +%s 2>/dev/null || date -jf "%Y-%m-%dT%H:%M:%S" "${LAST_RUN%.*}" +%s 2>/dev/null || echo "0")
+          NOW_TS=$(date +%s)
+          AGE_SECONDS=$((NOW_TS - LAST_RUN_TS))
+          AGE_HOURS=$((AGE_SECONDS / 3600))
+          MAX_AGE_SECONDS=$((MAX_AGE_HOURS * 3600))
+
+          echo "Last backup: $LAST_RUN"
+          echo "Age: ${AGE_HOURS}h (max: ${MAX_AGE_HOURS}h)"
+          echo "Backup success: $BACKUP_SUCCESS"
+
+          # Outputs setzen
+          echo "last_run=$LAST_RUN" >> "$GITHUB_OUTPUT"
+          echo "age_hours=$AGE_HOURS" >> "$GITHUB_OUTPUT"
+          echo "backup_success=$BACKUP_SUCCESS" >> "$GITHUB_OUTPUT"
+
+          # Prüfungen
+          if [[ "$BACKUP_SUCCESS" != "true" ]]; then
+            echo "::error::Letzter Backup-Run ist fehlgeschlagen: ${BACKUP_ERROR}"
+            exit 1
+          fi
+
+          if [[ $AGE_SECONDS -gt $MAX_AGE_SECONDS ]]; then
+            echo "::error::Backup ist ${AGE_HOURS}h alt — maximal erlaubt: ${MAX_AGE_HOURS}h"
+            exit 1
+          fi
+
+          echo "✅ Backup OK — Alter: ${AGE_HOURS}h, letzter Run: $LAST_RUN"
+
+      - name: Backup-Tabellen-Statistik ausgeben
+        if: success()
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_R2_READ_TOKEN }}
+        run: |
+          OBJECT_URL="https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/r2/buckets/lyrvio-db-backups/objects/_status%2Flast-backup.json"
+          curl -s \
+            -H "Authorization: Bearer ${CF_API_TOKEN}" \
+            "$OBJECT_URL" | jq '.tables // {}' || true
+
+      - name: Telegram-Alert bei Fehler
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          MESSAGE="🚨 Lyrvio Backup-Verify fehlgeschlagen!%0A"
+          MESSAGE+="Job: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}%0A"
+          MESSAGE+="Zeit: $(date -u '+%Y-%m-%d %H:%M UTC')"
+
+          curl -s -X POST \
+            "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}&text=${MESSAGE}&parse_mode=HTML" || true
+
+  verify-backup-worker-health:
+    name: Backup-Worker erreichbar
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Worker-URL prüfen
+        run: |
+          # Worker ist via POST aufrufbar (mit Bearer Token)
+          # Hier nur HTTP-Status prüfen (401 = Worker läuft, kein Token)
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 10 \
+            -X POST \
+            "https://lyrvio-backup.workers.dev/")
+
+          echo "Worker HTTP-Status: $HTTP_CODE"
+
+          # 401 = Worker läuft (Auth fehlt, aber das ist erwünscht für Public-Access)
+          # 405 = Method Not Allowed (auch ok, Worker ist da)
+          # 000 = Unreachable = PROBLEM
+          if [[ "$HTTP_CODE" == "000" ]]; then
+            echo "::error::Backup-Worker nicht erreichbar!"
+            exit 1
+          fi
+
+          echo "✅ Backup-Worker antwortet (HTTP $HTTP_CODE)"
