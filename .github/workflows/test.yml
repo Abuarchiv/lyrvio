@@ -107,16 +107,17 @@ jobs:
         run: pnpm build
         working-directory: web
         env:
-          # Dummy-Werte für Build — keine echten Secrets nötig
           NEXT_PUBLIC_STRIPE_PAYMENT_LINK_AKTIV: '/checkout?plan=aktiv'
           NEXT_PUBLIC_STRIPE_PAYMENT_LINK_BONUS: '/checkout?plan=bonus'
 
       - name: Run Playwright E2E Tests
-        run: pnpm test:e2e
+        run: node node_modules/@playwright/test/cli.js test --reporter=list --project=chromium
         working-directory: web
         env:
           BASE_URL: 'http://localhost:3000'
           CI: 'true'
+          # webServer startet 'next start' nach Build
+          PLAYWRIGHT_WEB_SERVER_CMD: 'node node_modules/next/dist/bin/next start --port 3000'
 
       - name: Upload Playwright Report
         if: always()

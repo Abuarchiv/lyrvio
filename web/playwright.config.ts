@@ -24,7 +24,10 @@ export default defineConfig({
     // { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
   ],
   webServer: {
-    command: '/Users/abu/.local/bin/node node_modules/next/dist/bin/next dev --port 3000',
+    // CI: next start (nach Build); lokal: next dev
+    command: process.env.CI
+      ? 'node node_modules/next/dist/bin/next start --port 3000'
+      : '/Users/abu/.local/bin/node node_modules/next/dist/bin/next dev --port 3000',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
