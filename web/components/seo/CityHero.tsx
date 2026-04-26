@@ -43,7 +43,7 @@ export function CityHero({ city }: CityHeroProps) {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <Link href="/checkout" className="btn-primary">
-            Jetzt aktiv suchen — 79€/Mo
+            Jetzt aktiv suchen — 9€/Mo
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link href="/#wie-es-funktioniert" className="btn-secondary">

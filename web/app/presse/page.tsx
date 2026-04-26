@@ -15,7 +15,7 @@ const QUICK_FACTS = [
   { label: "Kategorie", value: "PropTech / Consumer SaaS" },
   { label: "Zielmarkt", value: "DACH" },
   { label: "Gründer", value: "Abu" },
-  { label: "Pricing", value: "79 €/Mo + 299 € Erfolgs-Bonus" },
+  { label: "Pricing", value: "9 €/Mo + 49 € Erfolgs-Bonus" },
 ];
 
 const LOGO_VARIANTS = [

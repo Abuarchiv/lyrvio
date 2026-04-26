@@ -123,7 +123,7 @@ export default async function StadtPage({ params }: PageProps) {
                 und bewirbt sich auf jede passende Wohnung in {city.name}, bevor die Konkurrenz aufwacht.
               </p>
               <Link href="/checkout" className="btn-primary cursor-stamp inline-block">
-                Jetzt aktiv suchen für 79€/Mo
+                Jetzt aktiv suchen für 9€/Mo
               </Link>
               <p className="font-mono text-[11px] text-ash mt-4">
                 Monatlich kündbar · Keine versteckten Kosten · Direkt nach Zahlung aktiv

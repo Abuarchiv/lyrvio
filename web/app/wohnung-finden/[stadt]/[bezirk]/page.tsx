@@ -155,7 +155,7 @@ export default async function BezirkPage({ params }: PageProps) {
             </div>
 
             <Link href="/checkout" className="btn-primary cursor-stamp inline-block">
-              Bot für {district.name} aktivieren — 79€/Mo
+              Bot für {district.name} aktivieren — 9€/Mo
             </Link>
           </div>
         </section>

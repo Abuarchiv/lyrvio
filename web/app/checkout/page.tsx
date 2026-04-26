@@ -9,53 +9,49 @@ import { Footer } from "@/components/Footer";
 
 const plans = {
   aktiv: {
-    name: "Aktiv-Suche",
-    price: "79,00 €",
+    name: "Lyrvio Standard",
+    price: "9,00 €",
     suffix: "pro Monat",
-    description: "24/7-Suche auf 5 Plattformen, monatlich kündbar.",
+    description: "24/7-Suche auf 5 Plattformen, vollautomatisches Bewerben, monatlich kündbar.",
     paymentLink:
       process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_AKTIV ||
       "https://buy.stripe.com/placeholder",
     features: [
       "24/7 Suche auf 5 Plattformen",
-      "Personalisierte Anschreiben",
+      "Persönliche Anschreiben automatisch",
       "Push + E-Mail bei Antwort",
-      "Pipeline-Übersicht",
+      "Übersicht aller Bewerbungen",
       "Monatlich kündbar",
     ],
   },
-  erfolg: {
-    name: "Aktiv-Suche + Erfolgsprämie",
-    price: "79,00 €",
-    suffix: "pro Monat · 299 € nur bei Mietvertrag",
-    description: "Alles aus Aktiv-Suche, plus Erfolgsprämie nur bei Erfolg.",
+  premium: {
+    name: "Lyrvio Premium",
+    price: "19,00 €",
+    suffix: "pro Monat",
+    description: "Alles aus Standard plus Priority-Support und doppelte Polling-Frequenz.",
     paymentLink:
       process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_PREMIUM ||
       "https://buy.stripe.com/placeholder",
     features: [
-      "Alles aus Aktiv-Suche",
-      "Priorisiertes Scanning (12 s Polling)",
+      "Alles aus Standard",
+      "12 Sekunden Polling (statt 30 s)",
       "Vermieter-Profil-Matching",
       "Persönliches Onboarding",
       "Priority-Support · Antwort < 2 h",
-      "299 € einmalig nur bei Vertragsunterschrift",
     ],
   },
-  premium: {
-    name: "Aktiv-Suche + Erfolgsprämie",
-    price: "79,00 €",
-    suffix: "pro Monat · 299 € nur bei Mietvertrag",
-    description: "Alles aus Aktiv-Suche, plus Erfolgsprämie nur bei Erfolg.",
+  erfolg: {
+    name: "Lyrvio Standard + Erfolgsprämie",
+    price: "9,00 €",
+    suffix: "pro Monat · 49 € einmal bei Mietvertrag",
+    description: "Standard-Tarif. Du zahlst zusätzlich 49 € nur wenn ein Mietvertrag unterschrieben wird.",
     paymentLink:
-      process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_PREMIUM ||
+      process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_AKTIV ||
       "https://buy.stripe.com/placeholder",
     features: [
-      "Alles aus Aktiv-Suche",
-      "Priorisiertes Scanning (12 s Polling)",
-      "Vermieter-Profil-Matching",
-      "Persönliches Onboarding",
-      "Priority-Support · Antwort < 2 h",
-      "299 € einmalig nur bei Vertragsunterschrift",
+      "Alles aus Standard",
+      "+ 49 € einmalig nur bei Mietvertrag",
+      "Wenn keine Wohnung: keine Prämie",
     ],
   },
 };

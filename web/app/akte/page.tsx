@@ -28,7 +28,7 @@ const fragen = [
   },
   {
     q: "Was kostet der Erfolgsbonus konkret?",
-    a: "299 € einmalig, fällig am Tag der Mietvertrags-Unterzeichnung — wenn die Wohnung über eine Lyrvio-Bewerbung zustande kam. Falls du die Wohnung selbst gefunden hast: keine Prämie. Falls Lyrvio bewirbt aber nichts klappt: keine Prämie. Nur bei Erfolg, klar dokumentiert.",
+    a: "49 € einmalig, fällig am Tag der Mietvertrags-Unterzeichnung — wenn die Wohnung über eine Lyrvio-Bewerbung zustande kam. Falls du die Wohnung selbst gefunden hast: keine Prämie. Falls Lyrvio bewirbt aber nichts klappt: keine Prämie. Nur bei Erfolg, klar dokumentiert.",
   },
   {
     q: "Welche Plattformen werden überwacht?",

@@ -104,7 +104,7 @@ export function Hero() {
           <div className="col-span-12 lg:col-span-7">
             <div className="flex flex-wrap items-center gap-4">
               <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp">
-                Jetzt loslegen · 79 €/Monat
+                Jetzt loslegen · 9 €/Monat
               </Link>
               <Link href="/protokoll" className="btn-secondary">
                 So funktioniert's →

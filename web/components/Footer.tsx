@@ -18,7 +18,7 @@ export function Footer() {
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link href="/checkout?plan=aktiv" className="btn-primary">
-            Jetzt loslegen · 79 €/Monat
+            Jetzt loslegen · 9 €/Monat
           </Link>
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
             Monatlich kündbar

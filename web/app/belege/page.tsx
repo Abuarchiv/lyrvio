@@ -193,7 +193,7 @@ export default function BelegePage() {
                 <span className="text-stamp">Beauftrage Lyrvio.</span>
               </p>
               <Link href="/checkout?plan=aktiv" className="btn-primary">
-                Jetzt loslegen · 79 €/Monat
+                Jetzt loslegen · 9 €/Monat
               </Link>
             </div>
           </div>
