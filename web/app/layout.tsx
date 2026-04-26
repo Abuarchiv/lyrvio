@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Lyrvio — Eine Wohnung ist vier Minuten online. Du verlierst.",
+        alt: "Lyrvio — Eine Wohnung ist vier Minuten online — dann ist sie weg.",
       },
     ],
   },

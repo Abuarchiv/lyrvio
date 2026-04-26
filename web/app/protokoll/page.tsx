@@ -15,22 +15,22 @@ const steps = [
     n: "01",
     titel: "Bestellen",
     inhalt:
-      "Du installierst die Browser-Extension (Chrome, Firefox), legst dein Profil an und unterzeichnest die Vollmacht. Dauer: vier Minuten. Ab diesem Punkt agiert Lyrvio in deinem Namen — niemals von einem fremden Server, immer aus deinem eigenen Browser.",
+      "Du installierst die Browser-Extension (ein kleines Gratis-Programm im Chrome- oder Firefox-Browser), legst dein Profil an und unterzeichnest die Vollmacht. Dauer: vier Minuten. Ab diesem Punkt agiert Lyrvio in deinem Namen — niemals von einem fremden Server, immer aus deinem eigenen Browser.",
     note: "Daten verlassen dein Gerät nicht. Keine Cloud-Profile, keine Konto-Übergabe.",
   },
   {
     n: "02",
     titel: "Überwachung",
     inhalt:
-      "Lyrvio scant ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen und wg-gesucht alle 30 Sekunden. Jedes neue Inserat wird automatisch ausgefiltert wenn du dich bereits beworben hast — und gegen deine Filter-Kriterien (Stadt, Zimmerzahl, Miete, Größe) geprüft.",
+      "Lyrvio schaut nach ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen und wg-gesucht alle 30 Sekunden. Jedes neue Inserat wird automatisch ausgefiltert wenn du dich bereits beworben hast — und gegen deine Filter-Kriterien (Stadt, Zimmerzahl, Miete, Größe) geprüft.",
     note: "Aktualisierungs-Takt im Premium-Tarif: alle 12 Sekunden.",
   },
   {
     n: "03",
-    titel: "Extraktion",
+    titel: "Lyrvio liest die Inserate",
     inhalt:
       "Aus jedem passenden Inserat liest Lyrvio die Anforderungen des Vermieters: Selbstauskunft erwünscht? Schufa? Beruf? Familienstand? Einzugsdatum? Diese Punkte fließen in dein Anschreiben ein.",
-    note: "Sprach-KI auf europäischen Servern — kostenlos für dich.",
+    note: "Sprach-KI auf europäischen Servern — im Abo enthalten.",
   },
   {
     n: "04",
@@ -44,7 +44,7 @@ const steps = [
     titel: "Versand",
     inhalt:
       "Lyrvio sendet die Bewerbung über das Plattform-Messaging — wie ein realer Klick, mit deinen Cookies, deinem Browser, deiner Identität. Kein Verstoß gegen Plattform-Regeln, keine Bot-Erkennung.",
-    note: "Median: zwischen Inserat-Online-Gang und Versand 28 Sekunden.",
+    note: "Durchschnitt: zwischen Inserat-Online-Gang und Versand 28 Sekunden.",
   },
   {
     n: "06",

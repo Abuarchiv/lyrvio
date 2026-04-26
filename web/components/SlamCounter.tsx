@@ -51,7 +51,7 @@ export function SlamCounter() {
           <div className="col-span-12 lg:col-span-5 lg:text-right">
             <div className="label !text-paper-2 mb-3 lg:justify-end">
               <span style={{ color: "var(--hi)" }}>■</span>
-              Live-Zähler · DACH gesamt
+              Demo-Zähler · DACH gesamt
             </div>
             <div
               ref={ref}
@@ -61,10 +61,7 @@ export function SlamCounter() {
               {count}
             </div>
             <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper-2">
-              Inserate · letzte 5 Min · {new Date().toLocaleTimeString("de-DE", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+              Inserate · letzte 5 Min · Beispiel-Daten
             </div>
           </div>
         </div>

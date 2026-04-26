@@ -89,7 +89,7 @@ export function Hero() {
         <div className="grid grid-cols-12 gap-6 lg:gap-12 mb-10 reveal reveal-1">
           <div className="col-span-12 lg:col-span-7">
             <p className="font-mono text-[16px] sm:text-[17px] leading-[1.6] text-ink max-w-[58ch]">
-              <strong className="text-stamp">Lyrvio ist eine Browser-Erweiterung.</strong>{" "}
+              <strong className="text-stamp">Lyrvio ist eine Browser-Erweiterung (ein kleines Gratis-Programm im Chrome- oder Firefox-Browser).</strong>{" "}
               Sie sucht rund um die Uhr auf ImmoScout24, Immowelt, Immonet
               und eBay-Kleinanzeigen. Sobald eine passende Wohnung online
               geht, schreibt Lyrvio in deinem Namen — <span className="marker">in 28 Sekunden, persönlich, mit deinem Profil.</span>{" "}

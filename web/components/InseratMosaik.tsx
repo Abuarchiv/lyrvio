@@ -16,9 +16,17 @@ export function InseratMosaik() {
       {items.map((it, i) => (
         <article
           key={i}
-          className="inserat"
+          className="inserat relative opacity-80"
           style={{ transform: `rotate(${[(i % 3) - 1] * 0.6}deg)` }}
         >
+          {/* DEMO watermark diagonal */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 flex items-center justify-center font-mono text-[13px] font-bold uppercase tracking-[0.3em] text-stamp/20 rotate-[-28deg] select-none"
+          >
+            DEMO
+          </span>
+
           <span className={`stamp-corner ${it.state === "weg" ? "" : it.state === "neu" ? "-yellow" : "-sage"}`}>
             {it.state === "weg" ? "VOLL" : "NEU"}
           </span>

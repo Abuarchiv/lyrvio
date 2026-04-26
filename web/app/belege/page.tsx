@@ -113,20 +113,23 @@ export default function BelegePage() {
           </div>
         </section>
 
-        {/* INSERATE-MOSAIK */}
+        {/* INSERATE-MOSAIK — DEMO */}
         <section className="border-b border-rule-soft">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20">
-            <div className="flex items-baseline justify-between mb-10 flex-wrap gap-4">
+            <div className="flex items-baseline justify-between mb-4 flex-wrap gap-4">
               <div>
-                <div className="label mb-3">Aktuell live</div>
+                <div className="label mb-3">Demo · Simulation</div>
                 <h2 className="font-display text-[36px] sm:text-[52px] tracking-[-0.025em] text-ink">
-                  9 Inserate. <em>Letzte Stunde.</em>
+                  So sieht das <em>Live-Feed aus.</em>
                 </h2>
               </div>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash max-w-[24ch] sm:text-right">
-                Echte Inserat-Daten · ImmoScout/Immowelt/eBay-K. · 26.04.2026
+                Beispiel-Inserate · keine Echtdaten · ab Mai 2026 live
               </span>
             </div>
+            <p className="font-mono text-[12px] leading-[1.65] text-ash mb-10 max-w-[64ch] border-l-2 border-stamp/40 pl-4">
+              Diese Inserate sind erfunden. Sie zeigen wie das echte Live-Feed ab Beta-Start (Mai 2026) aussehen wird — mit realen Inseraten, echten Bewerbungszahlen und Live-Status. Bis dahin: kein laufendes System.
+            </p>
             <InseratMosaik />
           </div>
         </section>
