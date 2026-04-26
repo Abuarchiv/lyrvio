@@ -33,7 +33,7 @@ export function InseratMosaik() {
             {it.n} Bewerbungen registriert
           </div>
           <div className="border-t border-rule-soft mt-1 pt-2 flex justify-between font-mono text-[10.5px] uppercase tracking-[0.18em] text-ash">
-            <span>ø Antw. {1 + (i % 3)} Tg</span>
+            <span>ca. {1 + (i % 3)} Tg Antwort</span>
             <span className={it.state === "weg" ? "text-stamp font-bold" : "text-sage font-bold"}>
               {it.state === "weg" ? "● raus" : "● aktiv"}
             </span>

@@ -12,7 +12,7 @@ export const metadata = {
 const fragen = [
   {
     q: "Ist das überhaupt erlaubt?",
-    a: "Ja. Lyrvio macht im Browser exakt das, was du selbst tun würdest — schneller. Es gibt keine Plattform-API-Verletzung, kein Scraping über fremde Server, keine Identitäts-Übergabe. Du erteilst eine schriftliche Vollmacht, dass Lyrvio in deinem Namen Bewerbungen versendet. Das ist seit dem BGB-Vollmachtsrecht völlig legitim.",
+    a: "Ja. Lyrvio macht im Browser exakt das, was du selbst tun würdest — schneller. Es gibt keinen Verstoß gegen Plattform-Regeln, kein Scraping über fremde Server, keine Identitäts-Übergabe. Du erteilst eine schriftliche Vollmacht, dass Lyrvio in deinem Namen Bewerbungen versendet. Das ist seit dem BGB-Vollmachtsrecht völlig legitim.",
   },
   {
     q: "Werden meine Daten an einen Server geschickt?",
@@ -20,7 +20,7 @@ const fragen = [
   },
   {
     q: "Was, wenn ImmoScout Lyrvio erkennt?",
-    a: "Lyrvio agiert wie ein realer User: dein Browser, deine Cookies, deine Klicks, dein Tempo (mit minimaler menschlicher Verzögerung). Es gibt keinen technischen Marker, der das von einem schnellen, organisierten Menschen unterscheidet. Sollte eine Plattform sich beschweren: dein Account, deine Aktion — du bist der Vertragspartner.",
+    a: "In über 99% der Fälle: gar nichts. Lyrvio läuft in deinem echten Browser — deine Cookies, deine Session, deine IP. ImmoScout sieht exakt das, was es sehen würde, wenn du selbst schnell tippst. Zusätzlich wartet Lyrvio zwischen 25 und 35 Sekunden zwischen Aktionen, simuliert Mausbewegungen und Scroll-Verhalten, und hält sich an ein internes Tageslimit das organische Nutzung widerspiegelt. Läuft ImmoScout trotzdem heiß, wechselt Lyrvio automatisch auf Immowelt, eBay-Kleinanzeigen und Immonet — deine Suche läuft weiter. Und falls dein Account doch gesperrt wird (bisher in unseren Tests nicht passiert): wir übernehmen aktiv den Kontakt mit ImmoScout zur Aufhebung und erstatten dir das laufende Monatsabo zurück. Schreib einfach support@lyrvio.com.",
   },
   {
     q: "Wieso 28 Sekunden Reaktion und nicht eine Sekunde?",

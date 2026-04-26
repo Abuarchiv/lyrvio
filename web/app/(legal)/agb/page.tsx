@@ -83,11 +83,12 @@ export default function AgbPage() {
             sich inklusive der gesetzlichen Mehrwertsteuer.
           </p>
           <p className="font-mono text-[14px] leading-[1.75] text-ink">
-            <strong>Erfolgs-Bonus:</strong> Bei Buchung des Tarifs „Aktiv-Suche + Erfolgs-Bonus" ist
-            zusätzlich zur monatlichen Grundgebühr ein einmaliger Erfolgs-Bonus von 299€ fällig, sobald
-            der Nutzer einen Mietvertrag für eine Wohnung unterzeichnet, bei der Lyrvio die Bewerbung
-            versendet hat. Der Nachweis des Mietvertrags obliegt dem Nutzer. Der Nutzer informiert Lyrvio
-            aktiv über den Vertragsabschluss.
+            <strong>Erfolgsprämie (optional):</strong> Bei Buchung des Tarifs „Standard + Erfolgsprämie"
+            ist zusätzlich zur monatlichen Grundgebühr von 9€ eine einmalige Erfolgsprämie von 49€
+            fällig, sobald der Nutzer einen Mietvertrag für eine Wohnung unterzeichnet, bei der Lyrvio
+            die Bewerbung versendet hat. Wird kein Mietvertrag unterzeichnet, fällt keine Erfolgsprämie
+            an. Der Nachweis des Mietvertrags obliegt dem Nutzer; der Nutzer informiert Lyrvio aktiv
+            über den Vertragsabschluss.
           </p>
         </section>
 

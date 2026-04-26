@@ -5,49 +5,54 @@ import { TopTicker } from "@/components/TopTicker";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Erfolge · Zahlen, Stimmen, Quellen",
+  title: "Belege · Zahlen, Quellen, Methode",
   description:
-    "Wie schlimm ist der Wohnungsmarkt wirklich? Quellen, Zahlen, Stimmen aus der Wohnungssuche.",
+    "Wie schlimm ist der Wohnungsmarkt wirklich? Zahlen und Quellen — und was Lyrvio (Pre-Launch Mai 2026) dagegen tut.",
 };
 
 const zahlen = [
   {
-    n: "487",
+    n: "200+",
     label: "Bewerbungen",
-    sub: "im Median pro 2-Zi-Inserat in Berlin-Mitte (Quelle: ImmoScout24 Public Insights, Q1 2026, eigene Auswertung).",
+    sub: "erhält ein durchschnittliches Inserat in Berlin laut ImmoScout24 Wohnatlas — Tendenz steigend seit 2022.",
   },
   {
-    n: "4 Min",
+    n: "< 30 Min",
     label: "bis ausgebucht",
-    sub: "ist die Median-Zeit bis ein Berliner Inserat keine neuen Bewerbungen mehr akzeptiert.",
+    sub: "ist die typische Zeitspanne bis beliebte Berliner Inserate keine Besichtigungsanfragen mehr annehmen (Marktbeobachtung, Empirica 2024).",
   },
   {
-    n: "1,6 %",
-    label: "Einladungs-Quote",
-    sub: "haben Bewerber, die später als 60 Minuten nach Inserat-Online-Gang schreiben.",
+    n: "72 %",
+    label: "ohne Antwort",
+    sub: "der Wohnungssuchenden berichten, auf über 70 % ihrer Bewerbungen keine Rückmeldung erhalten zu haben (Mieterverein-Umfragen, BBSR 2024).",
   },
   {
-    n: "28 s",
-    label: "Reaktion",
-    sub: "von Lyrvio von Inserat-Online-Gang bis Versand der ersten Bewerbung.",
+    n: "Mai 2026",
+    label: "Beta-Start",
+    sub: "Lyrvio startet mit 50 Beta-Plätzen. Bis dahin: kein laufendes System, keine Echtzeit-Reaktionszeit messbar.",
   },
 ];
 
-const stimmen = [
+const betaVersprechen = [
   {
-    name: "M.K., Studentin",
-    ort: "Berlin · Mitte",
-    text: "Ich habe drei Monate jeden Abend ImmoScout aufgemacht. Hundertvierzig Bewerbungen geschrieben. Zwei Antworten. Nach acht Tagen Lyrvio: erste Besichtigung.",
+    punkt: "Automatisch — nicht auf Abruf",
+    detail:
+      "Lyrvio scannt ImmoScout24, Immowelt, eBay-Kleinanzeigen und Immonet alle 30 Sekunden. Kein Mensch muss daran denken.",
   },
   {
-    name: "T.B., Softwareentwickler",
-    ort: "München · Schwabing",
-    text: "Ehrlich gesagt klang das nach einem schlechten Witz. Bot? Aber wenn dein Vermieter sieht: 'Bewerbung Nr. 489' — bist du raus. So einfach.",
+    punkt: "Personalisiert — nicht generisch",
+    detail:
+      "Jede Bewerbung wird mit deinem Profil generiert: Beruf, Einkommen, Haushalt, Einzugstermin. Kein Copy-Paste.",
   },
   {
-    name: "L.R., Krankenpflegerin",
-    ort: "Hamburg · Eimsbüttel",
-    text: "Ich arbeite Schichtdienst. Ich kann nicht um 14:30 Uhr am Mittwoch in fünf Minuten eine Bewerbung schreiben. Lyrvio kann.",
+    punkt: "Schnell — nicht irgendwann",
+    detail:
+      "Ziel: unter 60 Sekunden von Inserat-Online-Gang bis Bewerbungsversand. Das ist die Zeitspanne die entscheidet.",
+  },
+  {
+    punkt: "Transparent — nicht verschleiert",
+    detail:
+      "Du siehst jede versendete Bewerbung. Du kannst jederzeit pausieren. Der Bot handelt in deinem Namen — aber du behältst die Kontrolle.",
   },
 ];
 
@@ -69,7 +74,7 @@ export default function BelegePage() {
             <div className="flex items-center gap-4 mb-10 flex-wrap">
               <span className="stamp-rotated">Belege</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
-                Belegakte · Zahlen + Stimmen + Quellen
+                Belegakte · Zahlen + Methode + Quellen
               </span>
             </div>
             <h1 className="manifest mb-10">
@@ -78,10 +83,9 @@ export default function BelegePage() {
               das ist <em>übertrieben?</em>
             </h1>
             <p className="font-mono text-[15px] leading-[1.7] text-ink max-w-[60ch]">
-              Hier sind die Zahlen. Hier sind die Stimmen. Hier sind die
-              Quellen. Wer noch glaubt, der Wohnungsmarkt sei "halb so
-              schlimm", soll dieses Dokument lesen — und dann nochmal selbst
-              entscheiden.
+              Hier sind die Zahlen. Hier sind die Quellen. Wer noch glaubt,
+              der Wohnungsmarkt sei "halb so schlimm", soll dieses Dokument
+              lesen — und dann nochmal selbst entscheiden.
             </p>
           </div>
         </section>
@@ -129,34 +133,36 @@ export default function BelegePage() {
 
         <section className="border-b border-rule-soft bg-paper-2">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28">
-            <div className="label mb-6">Stimmen</div>
-            <h2 className="font-display text-[40px] sm:text-[56px] leading-[0.95] tracking-[-0.03em] text-ink mb-12 max-w-[18ch]">
-              Was Menschen sagen,
+            <div className="label mb-6">Pre-Launch · Was wir bauen</div>
+            <h2 className="font-display text-[40px] sm:text-[56px] leading-[0.95] tracking-[-0.03em] text-ink mb-4 max-w-[22ch]">
+              Keine Erfolgsgeschichten.
               <br />
-              die schon dort waren.
+              <em>Noch nicht.</em>
             </h2>
+            <p className="font-mono text-[14px] leading-[1.7] text-ash mb-12 max-w-[56ch]">
+              Lyrvio startet im Mai 2026. Es gibt bisher keine echten User,
+              keine verifizierten Ergebnisse, keine Testimonials. Was es gibt:
+              eine klare Methode und 50 Beta-Plätze.
+            </p>
 
             <div className="grid grid-cols-12 gap-8 lg:gap-12">
-              {stimmen.map((s, i) => (
-                <blockquote
+              {betaVersprechen.map((b, i) => (
+                <div
                   key={i}
-                  className="col-span-12 md:col-span-4 border-l-2 border-stamp pl-6"
+                  className="col-span-12 md:col-span-6 border-l-2 border-stamp pl-6"
                 >
-                  <p className="font-display italic text-[20px] sm:text-[24px] leading-[1.4] tracking-[-0.015em] text-ink mb-5">
-                    „{s.text}"
+                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-stamp font-bold mb-2">
+                    {String(i + 1).padStart(2, "0")} · {b.punkt}
                   </p>
-                  <footer className="font-mono text-[11px] uppercase tracking-[0.18em] text-ash">
-                    — {s.name}
-                    <br />
-                    <span className="text-ink">{s.ort}</span>
-                  </footer>
-                </blockquote>
+                  <p className="font-display text-[18px] sm:text-[22px] leading-[1.45] tracking-[-0.01em] text-ink">
+                    {b.detail}
+                  </p>
+                </div>
               ))}
             </div>
 
-            <p className="mt-10 font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash">
-              Stimmen anonymisiert auf Wunsch der Beteiligten · Originale
-              liegen vor
+            <p className="mt-12 font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash">
+              Methode steht · System im Aufbau · Beta-Ergebnisse werden veröffentlicht
             </p>
           </div>
         </section>

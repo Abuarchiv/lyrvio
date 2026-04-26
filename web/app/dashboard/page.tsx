@@ -4,7 +4,7 @@ import { TopTicker } from "@/components/TopTicker";
 import { Footer } from "@/components/Footer";
 
 const pipeline = [
-  { label: "Gesendet",   count: 47, sub: "ø 3,2 s",  tone: "" },
+  { label: "Gesendet",   count: 47, sub: "ca. 3,2 s",  tone: "" },
   { label: "Angeschaut", count: 12, sub: "26 % CTR", tone: "" },
   { label: "Eingeladen", count: 5,  sub: "+2 heute", tone: "-yellow" },
   { label: "Besichtigt", count: 3,  sub: "Termine",  tone: "-sage" },
@@ -85,9 +85,9 @@ export default function DashboardPage() {
         <section>
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12">
             <div className="grid grid-cols-12 gap-8">
-              {/* Pipeline */}
+              {/* Bewerbungs-Übersicht */}
               <div className="col-span-12 lg:col-span-8">
-                <div className="label mb-4">Pipeline</div>
+                <div className="label mb-4">Bewerbungs-Übersicht</div>
                 <h2 className="font-display text-[28px] sm:text-[36px] tracking-[-0.025em] text-ink mb-6">
                   Bewerbungs-Verlauf
                 </h2>

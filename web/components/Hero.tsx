@@ -16,7 +16,7 @@ const seed: Event[] = [
   { ts: "03:14:14", type: "versandt", text: "#4781 · Anschreiben in 3,2 s",         meta: "Pos. 02" },
   { ts: "03:14:18", type: "neu",      text: "3-Zi · P-Berg · 84 m² · 1.420 €",      meta: "Immowelt" },
   { ts: "03:14:22", type: "versandt", text: "#4782 · Anschreiben in 2,9 s",         meta: "Pos. 01" },
-  { ts: "03:14:35", type: "warten",   text: "#4779 · 47 Bewerber registriert",      meta: "ø Antw. 2,3 d" },
+  { ts: "03:14:35", type: "warten",   text: "#4779 · 47 Bewerber registriert",      meta: "ca. 2,3 d Antwort" },
   { ts: "03:14:48", type: "neu",      text: "1-Zi · Friedrichshain · 38 m² · 720 €", meta: "eBay-K." },
   { ts: "03:14:52", type: "versandt", text: "#4783 · Anschreiben in 4,1 s",         meta: "Pos. 03" },
 ];
@@ -49,7 +49,7 @@ export function Hero() {
         { text: `#${4783 + tick} · Anschreiben in 4,1 s`, meta: "Pos. 04" },
       ],
       warten: [
-        { text: `#${4780 - tick} · 124 Bewerber registriert`, meta: "ø Antw. 1,8 d" },
+        { text: `#${4780 - tick} · 124 Bewerber registriert`, meta: "ca. 1,8 d Antwort" },
         { text: `#${4779 - tick} · Vermieter angesehen`,       meta: "vor 2 h" },
       ],
     };
@@ -76,14 +76,13 @@ export function Hero() {
           </div>
         </div>
 
-        {/* MANIFEST-HEADLINE mit Korrektur-Marks */}
+        {/* MANIFEST-HEADLINE — klare Trennung zwischen Streichung und Ersatz */}
         <h1 className="manifest mb-10 reveal">
           Eine Wohnung
           <br />
-          ist <em>vier Minuten</em> online.
+          ist <em>vier Minuten</em> online —
           <br />
-          Du <span className="korr">kämpfst</span>{" "}
-          <span className="korr-replace">verlierst.</span>
+          dann ist sie <span className="korr-replace">weg.</span>
         </h1>
 
         {/* Plain-Sprech: Was Lyrvio konkret macht */}

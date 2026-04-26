@@ -22,15 +22,15 @@ const steps = [
     n: "02",
     titel: "Überwachung",
     inhalt:
-      "Lyrvio scant ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen und wg-gesucht alle 30 Sekunden. Jedes neue Inserat wird per Hash dedupliziert und gegen deine Filter-Kriterien (Stadt, Zimmerzahl, Miete, Größe) geprüft.",
-    note: "Polling-Frequenz im Premium-Tarif: alle 12 Sekunden.",
+      "Lyrvio scant ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen und wg-gesucht alle 30 Sekunden. Jedes neue Inserat wird automatisch ausgefiltert wenn du dich bereits beworben hast — und gegen deine Filter-Kriterien (Stadt, Zimmerzahl, Miete, Größe) geprüft.",
+    note: "Aktualisierungs-Takt im Premium-Tarif: alle 12 Sekunden.",
   },
   {
     n: "03",
     titel: "Extraktion",
     inhalt:
       "Aus jedem passenden Inserat liest Lyrvio die Anforderungen des Vermieters: Selbstauskunft erwünscht? Schufa? Beruf? Familienstand? Einzugsdatum? Diese Punkte fließen in dein Anschreiben ein.",
-    note: "Modell: Llama 3.3 70B via Cloudflare Workers AI — kostenlos für dich.",
+    note: "Sprach-KI auf europäischen Servern — kostenlos für dich.",
   },
   {
     n: "04",
@@ -43,12 +43,12 @@ const steps = [
     n: "05",
     titel: "Versand",
     inhalt:
-      "Lyrvio sendet die Bewerbung über das Plattform-Messaging — wie ein realer Klick, mit deinen Cookies, deinem Browser, deiner Identität. Keine API-Verletzung, keine Bot-Detection.",
+      "Lyrvio sendet die Bewerbung über das Plattform-Messaging — wie ein realer Klick, mit deinen Cookies, deinem Browser, deiner Identität. Kein Verstoß gegen Plattform-Regeln, keine Bot-Erkennung.",
     note: "Median: zwischen Inserat-Online-Gang und Versand 28 Sekunden.",
   },
   {
     n: "06",
-    titel: "Pipeline",
+    titel: "Bewerbungs-Übersicht",
     inhalt:
       "Im Dossier siehst du jede Bewerbung: Inserat, Anschreiben, Status. Kommt eine Antwort, schickt Lyrvio dir Push + E-Mail. Du übernimmst dann persönlich.",
     note: "Antworten beantwortest du selbst — Lyrvio mischt sich nicht in Gespräche.",

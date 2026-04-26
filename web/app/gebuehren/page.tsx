@@ -61,7 +61,7 @@ export default function GebuehrenPage() {
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Persönliche Anschreiben automatisch</li>
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Push + E-Mail bei Antwort</li>
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Übersicht aller Bewerbungen</li>
-                  <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> 30 Sekunden Polling-Frequenz</li>
+                  <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Suche alle 30 Sekunden</li>
                 </ul>
                 <Link href="/checkout?plan=aktiv" className="btn-primary cursor-stamp w-full justify-center">
                   Standard wählen · 9 €
@@ -88,10 +88,10 @@ export default function GebuehrenPage() {
                 </p>
                 <ul className="space-y-2.5 font-mono text-[13px] text-paper mb-8">
                   <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Alles aus Standard</li>
-                  <li className="flex gap-3"><span className="text-hi font-bold">✓</span> 12 Sekunden Polling (statt 30 s)</li>
-                  <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Vermieter-Profil-Matching</li>
+                  <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Suche alle 12 Sekunden (statt 30)</li>
+                  <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Vermieter, die zu deinem Profil passen</li>
                   <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Persönliches Onboarding</li>
-                  <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Priority-Support · Antwort &lt; 2 h</li>
+                  <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Vorrangige Hilfe · Antwort &lt; 2 h</li>
                 </ul>
                 <Link href="/checkout?plan=premium" className="block w-full text-center bg-paper text-ink border-2 border-paper px-5 py-3 font-mono font-semibold text-[13px] uppercase tracking-[0.06em] hover:bg-stamp hover:text-paper hover:border-stamp transition-all">
                   Premium wählen · 19 €
@@ -100,19 +100,25 @@ export default function GebuehrenPage() {
             </div>
 
             {/* OPTION: Erfolgsprämie */}
-            <div className="mt-10 border-2 border-ink bg-paper p-6 grid grid-cols-12 gap-4 items-center">
+            <div className="mt-10 border-2 border-ink bg-paper p-6 md:p-8 grid grid-cols-12 gap-4 items-center">
               <div className="col-span-12 md:col-span-9">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-2">
-                  Optional · zahle nur bei Erfolg
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-3">
+                  Standard + Erfolgsprämie
                 </div>
-                <p className="font-display text-[22px] sm:text-[26px] tracking-[-0.02em] text-ink leading-[1.25]">
-                  + <span className="text-stamp">49 €</span> Erfolgsprämie nur
-                  wenn du eine Wohnung kriegst.
+                <p className="font-display text-[26px] sm:text-[32px] tracking-[-0.02em] text-ink leading-[1.2] mb-3">
+                  9 € im Monat. Plus <span className="text-stamp">49 €</span> — aber nur wenn du eine Wohnung bekommst.
                 </p>
-                <p className="font-mono text-[12px] text-ash mt-2 max-w-[58ch]">
-                  Du buchst Standard oder Premium. Wenn am Ende ein
-                  Mietvertrag unterschrieben ist, fällt zusätzlich 49 €
-                  einmalig an. Kein Vertrag → keine Prämie.
+                <p className="font-mono text-[13px] text-ink leading-[1.7] max-w-[60ch]">
+                  Du zahlst 9 € im Monat wie beim Standard-Tarif. Wenn Lyrvio
+                  dir zu einer Wohnung verhilft und du den Mietvertrag
+                  unterschreibst, kommen einmalig 49 € extra. Klappt nichts:
+                  zahlst du nur die 9 €.
+                </p>
+                <p className="font-mono text-[11px] text-ash mt-3">
+                  Der Erfolg wird von dir selbst gemeldet.{" "}
+                  <Link href="/akte#erfolgspraemie" className="link-underline text-ink">
+                    Mehr Details →
+                  </Link>
                 </p>
               </div>
               <div className="col-span-12 md:col-span-3 md:text-right">
@@ -120,7 +126,7 @@ export default function GebuehrenPage() {
                   href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_ERFOLG || "https://buy.stripe.com/eVqcMY2RyaQn3pp92Aes007"}
                   className="btn-secondary inline-block"
                 >
-                  Mehr →
+                  Wählen →
                 </a>
               </div>
             </div>

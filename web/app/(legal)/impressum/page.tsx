@@ -18,8 +18,14 @@ export default function ImpressumPage() {
           <div className="label mb-4">Anbieter</div>
           <p className="font-mono text-[14px] leading-[1.75] text-ink">
             Lyrvio<br />
-            (Gesellschaft in Gründung)<br />
-            Deutschland
+            Inhaber: Abubakar Abdi<br />
+            76131 Karlsruhe · Deutschland
+          </p>
+          <p className="font-mono text-[12px] text-ash mt-3 max-w-[60ch]">
+            Lyrvio wird derzeit als Einzelunternehmen geführt; die Gründung einer
+            UG ist in Vorbereitung. Vollständige Postanschrift wird auf Anfrage per
+            E-Mail mitgeteilt — die ladungsfähige Adresse ist auf Anforderung
+            innerhalb von 24 Stunden verfügbar.
           </p>
         </section>
 
@@ -37,23 +43,24 @@ export default function ImpressumPage() {
             </a>
           </p>
           <p className="font-mono text-[12px] text-ash mt-3">
-            Wir antworten in der Regel innerhalb von 24–48 Stunden an Werktagen.
+            Wir antworten in der Regel innerhalb von 24 Stunden an Werktagen.
           </p>
         </section>
 
         <section className="pb-10 border-b border-rule-soft">
-          <div className="label mb-4">Umsatzsteuer-ID</div>
+          <div className="label mb-4">Umsatzsteuer</div>
           <p className="font-mono text-[14px] leading-[1.75] text-ink">
-            Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG:<br />
-            <span className="text-ash">Wird nach UG-Gründung ergänzt</span>
+            Aktuell Kleinunternehmer gemäß § 19 UStG — keine Umsatzsteuer
+            ausgewiesen.<br />
+            <span className="text-ash">USt-ID wird nach UG-Gründung ergänzt.</span>
           </p>
         </section>
 
         <section className="pb-10 border-b border-rule-soft">
           <div className="label mb-4">Handelsregister</div>
           <p className="font-mono text-[14px] leading-[1.75] text-ink">
-            Eintragung im Handelsregister nach UG-Gründung.<br />
-            <span className="text-ash">Registernummer und -gericht werden ergänzt.</span>
+            Bislang keine Eintragung — Eintragung im Handelsregister erfolgt mit
+            UG-Gründung im Lauf des Jahres 2026.
           </p>
         </section>
 
@@ -61,8 +68,8 @@ export default function ImpressumPage() {
           <div className="label mb-4">Verantwortlich für den Inhalt</div>
           <p className="font-mono text-[14px] leading-[1.75] text-ink">
             Gemäß § 55 Abs. 2 RStV:<br />
-            Geschäftsführung Lyrvio<br />
-            Deutschland
+            Abubakar Abdi<br />
+            76131 Karlsruhe · Deutschland
           </p>
         </section>
 
