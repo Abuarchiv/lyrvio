@@ -17,8 +17,8 @@ export function Footer() {
         </h2>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <Link href="/checkout/standard" prefetch={false} className="btn-primary">
-            Jetzt loslegen · 9 €/Monat
+          <Link href="/checkout/erfolg" prefetch={false} className="btn-primary">
+            Jetzt starten · 9 €/Monat
           </Link>
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
             Monatlich kündbar
@@ -61,7 +61,7 @@ export function Footer() {
             items={[
               { href: "/dashboard", label: "Übersicht" },
               { href: "/profile", label: "Profil bearbeiten" },
-              { href: "/checkout/standard", label: "Bestellen" },
+              { href: "/checkout/erfolg", label: "Bestellen" },
               { href: "/hilfe", label: "Hilfe-Center" },
             ]}
           />

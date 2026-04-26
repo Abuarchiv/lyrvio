@@ -53,7 +53,7 @@ export function Nav() {
               Mein Konto
             </Link>
             <Link
-              href="/checkout/standard"
+              href="/checkout/erfolg"
               className="btn-primary !py-2 !px-4 !text-[11px]"
             >
               Jetzt loslegen
@@ -91,7 +91,7 @@ export function Nav() {
               Mein Konto
             </Link>
             <Link
-              href="/checkout/standard"
+              href="/checkout/erfolg"
               onClick={() => setOpen(false)}
               className="btn-primary mt-2 self-start"
             >

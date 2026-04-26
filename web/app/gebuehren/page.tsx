@@ -42,51 +42,98 @@ export default function GebuehrenPage() {
         {/* TIER-VERGLEICH */}
         <section className="border-b border-rule-soft">
           <div className="mx-auto max-w-[1200px] px-6 lg:px-10 py-20 lg:py-24">
+
+            {/* ERFOLG — Hauptangebot, groß und oben */}
+            <article className="border-2 border-ink bg-paper-warm p-8 md:p-10 relative mb-6">
+              <div className="absolute -top-3 right-6">
+                <span className="bg-stamp text-paper font-mono text-[10px] font-bold px-3 py-1 uppercase tracking-[0.18em]">
+                  UNSERE EMPFEHLUNG · KEIN RISIKO
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                <div className="md:col-span-8">
+                  <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash font-bold mb-4 block">
+                    Lyrvio Erfolg · Standard + Erfolgsprämie
+                  </span>
+                  <h2 className="font-display text-[40px] sm:text-[52px] leading-[1.05] tracking-[-0.03em] text-ink mb-3">
+                    9 €<span className="text-[28px] sm:text-[36px] text-ash">/Monat</span>
+                    <span className="block text-[24px] sm:text-[30px] mt-1">
+                      + <span className="text-stamp">49 €</span> wenn du eine Wohnung bekommst
+                    </span>
+                  </h2>
+                  <p className="font-mono text-[13px] text-ash mb-6">
+                    Klappt nichts: zahlst du nur die 9 €.
+                  </p>
+                  <ul className="space-y-2.5 font-mono text-[13px] text-ink mb-8">
+                    <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> 24/7 Suche auf 5 Plattformen</li>
+                    <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Persönliche Anschreiben automatisch</li>
+                    <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Push + E-Mail bei Antwort</li>
+                    <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Übersicht aller Bewerbungen</li>
+                    <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Suche alle 30 Sekunden</li>
+                    <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> 49 € Erfolgsprämie — <em>nur bei unterschriebenem Mietvertrag</em></li>
+                  </ul>
+                  <p className="font-mono text-[11px] text-ash">
+                    Du meldest den Erfolg selbst — kein Tracking, keine Spionage.{" "}
+                    <Link href="/akte#erfolgspraemie" className="link-underline text-ink">
+                      Mehr Details →
+                    </Link>
+                  </p>
+                </div>
+                <div className="md:col-span-4 flex flex-col gap-3 md:pt-12">
+                  <Link href="/checkout/erfolg" className="btn-primary cursor-stamp w-full justify-center text-center">
+                    Jetzt starten · 9 €/Monat
+                  </Link>
+                  <span className="font-mono text-[10.5px] text-ash text-center">+ 49 € einmalig nur bei Erfolg</span>
+                </div>
+              </div>
+            </article>
+
+            {/* ALTERNATIVEN — kompakt nebeneinander */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {/* STANDARD */}
-              <article className="border-2 border-ink bg-paper-warm p-8 relative">
-                <div className="flex items-baseline justify-between mb-4">
+              <article className="border border-rule-soft bg-paper p-6 relative">
+                <div className="flex items-baseline justify-between mb-3">
                   <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash font-bold">
-                    Standard · meistens richtig
+                    Standard · ohne Erfolgsprämie
                   </span>
                 </div>
-                <h2 className="font-display text-[44px] leading-none tracking-[-0.03em] text-ink mb-2">
+                <h2 className="font-display text-[36px] leading-none tracking-[-0.03em] text-ink mb-1">
                   9 €
                 </h2>
-                <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-ash mb-6">
+                <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-ash mb-5">
                   pro Monat · monatlich kündbar
                 </p>
-                <ul className="space-y-2.5 font-mono text-[13px] text-ink mb-8">
+                <ul className="space-y-2 font-mono text-[12.5px] text-ink mb-6">
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> 24/7 Suche auf 5 Plattformen</li>
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Persönliche Anschreiben automatisch</li>
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Push + E-Mail bei Antwort</li>
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Übersicht aller Bewerbungen</li>
                   <li className="flex gap-3"><span className="text-stamp font-bold">✓</span> Suche alle 30 Sekunden</li>
                 </ul>
-                <Link href="/checkout/standard" className="btn-primary cursor-stamp w-full justify-center">
+                <Link href="/checkout/standard" className="btn-secondary w-full text-center block">
                   Standard wählen · 9 €
                 </Link>
               </article>
 
               {/* PREMIUM */}
-              <article className="border-2 border-ink bg-ink text-paper p-8 relative">
+              <article className="border-2 border-ink bg-ink text-paper p-6 relative">
                 <div className="absolute -top-3 right-6">
                   <span className="bg-hi text-ink font-mono text-[10px] font-bold px-2 py-1 uppercase tracking-[0.18em]">
                     schneller
                   </span>
                 </div>
-                <div className="flex items-baseline justify-between mb-4">
+                <div className="flex items-baseline justify-between mb-3">
                   <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-paper-2 font-bold">
                     Premium · für Eilige
                   </span>
                 </div>
-                <h2 className="font-display text-[44px] leading-none tracking-[-0.03em] text-paper mb-2">
+                <h2 className="font-display text-[36px] leading-none tracking-[-0.03em] text-paper mb-1">
                   19 €
                 </h2>
-                <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-paper-2 mb-6">
+                <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-paper-2 mb-5">
                   pro Monat · monatlich kündbar
                 </p>
-                <ul className="space-y-2.5 font-mono text-[13px] text-paper mb-8">
+                <ul className="space-y-2 font-mono text-[12.5px] text-paper mb-6">
                   <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Alles aus Standard</li>
                   <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Suche alle 12 Sekunden (statt 30)</li>
                   <li className="flex gap-3"><span className="text-hi font-bold">✓</span> Vermieter, die zu deinem Profil passen</li>
@@ -97,38 +144,6 @@ export default function GebuehrenPage() {
                   Premium wählen · 19 €
                 </Link>
               </article>
-            </div>
-
-            {/* OPTION: Erfolgsprämie */}
-            <div className="mt-10 border-2 border-ink bg-paper p-6 md:p-8 grid grid-cols-12 gap-4 items-center">
-              <div className="col-span-12 md:col-span-9">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-3">
-                  Standard + Erfolgsprämie
-                </div>
-                <p className="font-display text-[26px] sm:text-[32px] tracking-[-0.02em] text-ink leading-[1.2] mb-3">
-                  9 € im Monat. Plus <span className="text-stamp">49 €</span> — aber nur wenn du eine Wohnung bekommst.
-                </p>
-                <p className="font-mono text-[13px] text-ink leading-[1.7] max-w-[60ch]">
-                  Du zahlst 9 € im Monat wie beim Standard-Tarif. Wenn Lyrvio
-                  dir zu einer Wohnung verhilft und du den Mietvertrag
-                  unterschreibst, kommen einmalig 49 € extra. Klappt nichts:
-                  zahlst du nur die 9 €.
-                </p>
-                <p className="font-mono text-[11px] text-ash mt-3">
-                  Der Erfolg wird von dir selbst gemeldet.{" "}
-                  <Link href="/akte#erfolgspraemie" className="link-underline text-ink">
-                    Mehr Details →
-                  </Link>
-                </p>
-              </div>
-              <div className="col-span-12 md:col-span-3 md:text-right">
-                <a
-                  href={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_ERFOLG || "https://buy.stripe.com/eVqcMY2RyaQn3pp92Aes007"}
-                  className="btn-secondary inline-block"
-                >
-                  Wählen →
-                </a>
-              </div>
             </div>
           </div>
         </section>

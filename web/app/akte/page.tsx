@@ -102,7 +102,22 @@ export default function AktePage() {
               ))}
             </ol>
 
-            <div className="mt-20 pt-10 border-t-2 border-ink flex flex-wrap items-center justify-between gap-6">
+            {/* Wer antwortet auf Support? */}
+            <div className="mt-16 p-6 border-2 border-ink bg-paper-warm">
+              <div className="label mb-4">Support</div>
+              <p className="font-mono text-[14px] leading-[1.7] text-ink max-w-[58ch]">
+                <strong>Wer antwortet auf deine Email?</strong> Ich — Abubakar Abdi, Solo-Founder. Nicht ein Team, nicht ein Bot. Jede Email an{" "}
+                <a href="mailto:hallo@lyrvio.com" className="link-underline">
+                  hallo@lyrvio.com
+                </a>{" "}
+                landet direkt bei mir, meistens Antwort in unter 4 Stunden.{" "}
+                <Link href="/#founder" className="link-underline">
+                  Mehr über mich →
+                </Link>
+              </p>
+            </div>
+
+            <div className="mt-12 pt-10 border-t-2 border-ink flex flex-wrap items-center justify-between gap-6">
               <div>
                 <p className="font-display text-[28px] sm:text-[36px] tracking-[-0.02em] text-ink max-w-[24ch]">
                   Frage nicht beantwortet?

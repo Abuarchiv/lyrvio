@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { TopTicker } from "@/components/TopTicker";
+import { Waitlist } from "@/components/Waitlist";
+import { ExtensionMockup } from "@/components/ExtensionMockup";
 
 const setupSteps = [
   {
@@ -72,6 +74,14 @@ export default function ExtensionPage() {
             <p className="font-mono text-[15px] leading-[1.7] text-ink max-w-[56ch]">
               Lyrvio läuft direkt in deinem Browser — keine Server, keine AGB-Verletzung. Die Extension wird derzeit für die Beta-Phase finalisiert. Ab Mai 2026: 1-Klick-Install via Chrome Web Store.
             </p>
+          </div>
+        </section>
+
+        {/* Extension Mockup */}
+        <section className="border-b-2 border-ink">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
+            <div className="label mb-8">Vorschau · Extension-UI</div>
+            <ExtensionMockup />
           </div>
         </section>
 
@@ -163,20 +173,8 @@ export default function ExtensionPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section>
-          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 flex flex-wrap items-center justify-between gap-6">
-            <div>
-              <p className="font-display text-[28px] sm:text-[36px] tracking-[-0.02em] text-ink max-w-[28ch] mb-2">
-                Beta-Platz sichern — bevor sie voll sind.
-              </p>
-              <p className="font-mono text-[13px] text-ash">Pre-Launch · Beta startet Mai 2026 · 9€/Monat</p>
-            </div>
-            <Link href="/checkout/standard" className="btn-primary cursor-stamp">
-              Beta-Platz sichern →
-            </Link>
-          </div>
-        </section>
+        {/* Waitlist */}
+        <Waitlist />
       </main>
       <Footer />
     </>
