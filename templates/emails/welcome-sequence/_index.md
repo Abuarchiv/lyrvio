@@ -77,17 +77,16 @@ Cron: Cloudflare Worker Cron Trigger (täglich 07:00 UTC) → `api/src/jobs/welc
 ## From-Adresse
 
 ```
-From: Abu von Lyrvio <abu@lyrvio.de>
-Reply-To: abu@lyrvio.de
+From: Abu von Lyrvio <onboarding@resend.dev>
+Reply-To: abubakarabditube@gmail.com
 ```
 
-Mensch-Abu-Task: `lyrvio.de` in Resend verifizieren + `abu@lyrvio.de` aktivieren + Forward zu Gmail.
+Resend-Default-Sender `onboarding@resend.dev` aktiv — kein Custom-Domain-Setup nötig. Sobald `lyrvio.de` in Cloudflare DNS registriert, Migration zu `abu@lyrvio.de` möglich.
 
-## Mensch-Abu-Tasks (einmalig)
+## Auto-Provisioning-Status (Stand: 2026-04-26)
 
-1. Domain `lyrvio.de` in Resend verifizieren (DKIM/SPF/DMARC Records via Cloudflare DNS)
-2. From-Adresse `abu@lyrvio.de` in Resend aktivieren
-3. Reply-Forward: Cloudflare Email Routing → abubakarabditube@gmail.com
-4. `RESEND_API_KEY` und `RESEND_FROM=Abu von Lyrvio <abu@lyrvio.de>` in Cloudflare Worker Secrets setzen
-5. D1 Migration: `email_sequences` Tabelle anlegen (SQL oben)
-6. Worker Cron Trigger in wrangler.toml aktivieren (täglich)
+- [x] Resend From-Adresse: `onboarding@resend.dev` (Reply-To: abubakarabditube@gmail.com) — Test-Send erfolgreich
+- [x] Cloudflare Worker Secrets gesetzt: `RESEND_API_KEY`, `RESEND_FROM` (via `wrangler secret put`)
+- [x] D1 Migration applied: `email_sequences` Tabelle live auf `lyrvio-prod` (ID 335856e6) — verifiziert via sqlite_master
+- [x] Worker Cron Trigger `0 7 * * *` bereits in `wrangler.toml` konfiguriert
+- [ ] Custom Domain `lyrvio.de` — NXDOMAIN, nicht registriert. Domain-Kauf via Cloudflare-Registrar entsperrt: CF Email Routing, DKIM/SPF in Resend, From `abu@lyrvio.de`. Tech-Limit: Registrar-Auth nicht API-automatisierbar.
