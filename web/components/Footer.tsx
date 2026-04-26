@@ -68,6 +68,7 @@ export function Footer() {
           <FooterCol
             title="Rechtliches"
             items={[
+              { href: "/widerruf", label: "7 Tage Geld zurück" },
               { href: "/agb", label: "AGB" },
               { href: "/datenschutz", label: "Datenschutz" },
               { href: "/impressum", label: "Impressum" },

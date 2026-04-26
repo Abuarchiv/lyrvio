@@ -113,7 +113,9 @@ export function Hero() {
 
             <div className="mt-6 flex items-center gap-3 flex-wrap">
               <span className="tag -outline">Monatlich kündbar</span>
-              <span className="tag -yellow">14 Tage Geld-zurück</span>
+              <Link href="/widerruf" className="tag -yellow hover:opacity-80 transition-opacity">
+                7 Tage Geld-zurück ↗
+              </Link>
               <span className="tag -outline">Chrome + Firefox</span>
               <span className="tag -outline">DSGVO · DE-Hosting</span>
             </div>

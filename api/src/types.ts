@@ -19,6 +19,9 @@ export interface Env {
   METRICS: { writeDataPoint: (data: { blobs?: string[]; doubles?: number[]; indexes?: string[] }) => void };
   /** Sentry Free Tier DSN (optional — kein Tracking wenn nicht gesetzt) */
   SENTRY_DSN?: string;
+  /** Telegram-Alert für Mensch Abu — IMP-041 Chargeback-Killswitch */
+  TELEGRAM_BOT_TOKEN?: string;
+  TELEGRAM_CHAT_ID?: string;
 }
 
 export interface AppBindings {
