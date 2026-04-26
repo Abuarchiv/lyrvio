@@ -1,4 +1,3 @@
-import { FileText, CheckCircle2 } from "lucide-react";
 import type { CityData } from "@/lib/cities";
 
 interface RequirementsListProps {
@@ -7,59 +6,60 @@ interface RequirementsListProps {
 
 export function RequirementsList({ city }: RequirementsListProps) {
   return (
-    <section className="py-20 border-t border-slate-800">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section className="bg-paper border-t-2 border-ink py-20">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Requirements */}
           <div>
-            <div className="flex items-start gap-3 mb-6">
-              <FileText className="h-6 w-6 text-indigo-400 flex-shrink-0 mt-1" />
-              <div>
-                <h2 className="text-2xl font-bold text-white">
-                  Häufige Vermieter-Anforderungen in {city.name}
-                </h2>
-                <p className="text-slate-400 text-sm mt-2">
-                  Das verlangen die meisten Vermieter von Bewerbern
-                </p>
-              </div>
-            </div>
+            <span className="label mb-6 block">Vermieter-Anforderungen {city.name}</span>
+            <h2 className="font-display text-[28px] sm:text-[36px] leading-[1.15] tracking-[-0.025em] text-ink mb-3">
+              Was Vermieter in {city.name}
+              <br />
+              <em>wirklich verlangen</em>
+            </h2>
+            <p className="font-mono text-[12px] text-ash mb-8">
+              Das fordern die meisten Vermieter von Bewerbern
+            </p>
 
-            <ul className="space-y-3">
+            <ul className="space-y-0 border-t border-rule-soft">
               {city.typicalRequirements.map((req) => (
-                <li key={req} className="flex items-start gap-3 p-3 rounded-lg bg-slate-900/40 border border-slate-800">
-                  <CheckCircle2 className="h-4 w-4 text-indigo-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-300 text-sm">{req}</span>
+                <li key={req} className="flex items-start gap-3 py-3 border-b border-rule-soft font-mono text-[13px] text-ink-2">
+                  <span className="text-stamp flex-shrink-0 mt-0.5">■</span>
+                  <span>{req}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Lyrvio handles it */}
-          <div className="rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/5 to-violet-500/5 p-6">
-            <h3 className="text-lg font-semibold text-white mb-3">
-              Lyrvio erstellt das Bewerbungspaket automatisch
-            </h3>
-            <p className="text-slate-400 text-sm mb-5 leading-relaxed">
-              Du legst dein Profil einmal an — mit Gehalt, Beruf, Einzugstermin und deinen Wohnwünschen.
-              Lyrvio generiert dann für jede passende Wohnung in {city.name} ein personalisiertes Bewerbungsschreiben,
-              das genau auf die Anforderungen des Vermieters eingeht.
-            </p>
+          <div className="akte" style={{ boxShadow: "8px 8px 0 0 var(--ink)" }}>
+            <div className="akte-head">
+              <span>Lyrvio erledigt das automatisch</span>
+              <span className="tag -yellow">4 SEK</span>
+            </div>
 
-            <div className="space-y-2.5">
-              {[
-                "Profil einmal anlegen",
-                "Bot liest Vermieter-Anforderungen aus dem Inserat",
-                "Bewerbung in 4 Sekunden generiert (Claude Haiku)",
-                "Direkt über die Plattform gesendet",
-                "Du wirst bei Antwort sofort benachrichtigt",
-              ].map((step, i) => (
-                <div key={step} className="flex items-center gap-3">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-xs text-indigo-300 flex items-center justify-center font-medium">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm text-slate-300">{step}</span>
-                </div>
-              ))}
+            <div className="p-6">
+              <p className="font-mono text-[13px] leading-[1.75] text-ink-2 mb-6">
+                Du legst dein Profil einmal an — mit Gehalt, Beruf, Einzugstermin und deinen Wohnwünschen.
+                Lyrvio generiert für jede passende Wohnung in {city.name} ein personalisiertes Bewerbungsschreiben.
+              </p>
+
+              <ol className="space-y-3">
+                {[
+                  "Profil einmal anlegen",
+                  "Bot liest Vermieter-Anforderungen aus dem Inserat",
+                  "Bewerbung in 4 Sekunden generiert (Claude Haiku)",
+                  "Direkt über die Plattform gesendet",
+                  "Du wirst bei Antwort sofort benachrichtigt",
+                ].map((step, i) => (
+                  <li key={step} className="flex items-start gap-3">
+                    <span className="font-display text-[22px] leading-none text-stamp flex-shrink-0 mt-0.5">
+                      {i + 1}
+                    </span>
+                    <span className="font-mono text-[13px] text-ink pt-1">{step}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </div>

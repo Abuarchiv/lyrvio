@@ -1,4 +1,3 @@
-import { CheckCircle, AlertCircle } from "lucide-react";
 import type { CityData } from "@/lib/cities";
 
 interface CityStatsProps {
@@ -7,24 +6,29 @@ interface CityStatsProps {
 
 export function CityStats({ city }: CityStatsProps) {
   return (
-    <section className="py-20 border-t border-slate-800">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-center">
-          Wie Lyrvio in {city.name} funktioniert
+    <section className="bg-paper-warm border-t-2 border-ink py-20">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-8 flex-wrap">
+          <span className="stamp-rotated">ANALYSE</span>
+          <span className="label">Wie Lyrvio in {city.name} funktioniert</span>
+        </div>
+
+        <h2 className="font-display text-[32px] sm:text-[44px] leading-[1.1] tracking-[-0.03em] text-ink mb-4">
+          Manuell vs. <em className="text-stamp">mit Lyrvio</em>
         </h2>
-        <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+        <p className="font-mono text-[13px] text-ash mb-14 max-w-[60ch]">
           Lyrvio läuft als Browser-Extension auf deinem Computer und scannt{" "}
           {city.mainPlatforms.join(", ")} alle 30 Sekunden auf neue Inserate — auch nachts und am Wochenende.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 gap-0 border-2 border-ink mb-14" style={{ boxShadow: "8px 8px 0 0 var(--ink)" }}>
           {/* Without Lyrvio */}
-          <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 p-6">
-            <h3 className="text-lg font-semibold text-rose-300 mb-4 flex items-center gap-2">
-              <AlertCircle className="h-5 w-5" />
-              Manuelle Suche in {city.name}
-            </h3>
-            <ul className="space-y-3">
+          <div className="border-b-2 md:border-b-0 md:border-r-2 border-ink p-8">
+            <div className="akte-head mb-6" style={{ margin: "-2rem -2rem 1.5rem -2rem", boxShadow: "none" }}>
+              <span>✕ Manuelle Suche in {city.name}</span>
+            </div>
+            <ul className="space-y-4 mt-8">
               {[
                 `Ø ${city.waitTimeManualMonths} Monate Wartezeit`,
                 "Täglich mehrmals Plattformen manuell prüfen",
@@ -33,8 +37,8 @@ export function CityStats({ city }: CityStatsProps) {
                 "Bewerbung schreiben nimmt 20–30 Minuten",
                 `${city.apartmentsPerDay} Inserate täglich — du schaffst einen Bruchteil`,
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-slate-400">
-                  <span className="text-rose-500 mt-0.5">✕</span>
+                <li key={item} className="flex items-start gap-3 font-mono text-[13px] text-ink-2">
+                  <span className="text-stamp font-bold mt-0.5 flex-shrink-0">✕</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -42,23 +46,23 @@ export function CityStats({ city }: CityStatsProps) {
           </div>
 
           {/* With Lyrvio */}
-          <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6">
-            <h3 className="text-lg font-semibold text-emerald-300 mb-4 flex items-center gap-2">
-              <CheckCircle className="h-5 w-5" />
-              Mit Lyrvio in {city.name}
-            </h3>
-            <ul className="space-y-3">
+          <div className="bg-paper-2 p-8">
+            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-ash mb-6 flex items-center gap-2">
+              <span className="tag -sage">LYRVIO</span>
+              <span>Mit Lyrvio in {city.name}</span>
+            </div>
+            <ul className="space-y-4">
               {[
                 `Ø ${city.waitTimeWithLyrvioWeeks} Wochen bis erste Besichtigung`,
                 "Bot scannt 24/7 automatisch — ohne dein Zutun",
-                `Bewerbung in &lt; 30 Sekunden nach Veröffentlichung`,
+                "Bewerbung in < 30 Sekunden nach Veröffentlichung",
                 "Wohnungen während des Schlafs gefunden",
                 "Bewerbung in 4 Sekunden generiert und gesendet",
                 `Alle ${city.mainPlatforms.length} Plattformen gleichzeitig`,
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
-                  <CheckCircle className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span dangerouslySetInnerHTML={{ __html: item }} />
+                <li key={item} className="flex items-start gap-3 font-mono text-[13px] text-ink">
+                  <span className="text-sage font-bold mt-0.5 flex-shrink-0">✓</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -66,17 +70,15 @@ export function CityStats({ city }: CityStatsProps) {
         </div>
 
         {/* Platform Coverage */}
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-          <h3 className="text-base font-semibold text-white mb-4">
-            Abgedeckte Plattformen in {city.name}
-          </h3>
-          <div className="flex flex-wrap gap-3">
+        <div className="border-2 border-ink bg-paper p-6">
+          <p className="label mb-4">Abgedeckte Plattformen in {city.name}</p>
+          <div className="flex flex-wrap gap-2">
             {city.mainPlatforms.map((platform) => (
               <div
                 key={platform}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-sm text-indigo-300"
+                className="tag -outline flex items-center gap-2"
               >
-                <div className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                <span className="pulse-dot" style={{ width: 6, height: 6, marginRight: 0 }} />
                 {platform}
               </div>
             ))}

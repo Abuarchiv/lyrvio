@@ -11,41 +11,58 @@ export function CityFAQ({ city }: CityFAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 border-t border-slate-800">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 text-center">
-          Häufige Fragen zur Wohnungssuche in {city.name}
+    <section className="bg-paper border-t-2 border-ink py-20">
+      <div className="mx-auto max-w-[1100px] px-6 lg:px-10">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-8 flex-wrap">
+          <span className="stamp-rotated">§ FAQ</span>
+          <span className="label">Wohnungsmarkt {city.name}</span>
+        </div>
+
+        <h2 className="font-display text-[32px] sm:text-[44px] leading-[1.1] tracking-[-0.03em] text-ink mb-4">
+          Häufige Fragen zur Wohnungssuche
+          <br />
+          <em>in {city.name}</em>
         </h2>
-        <p className="text-slate-400 text-center mb-10">
+        <p className="font-mono text-[13px] text-ash mb-12 max-w-[52ch]">
           Alles was du über den Wohnungsmarkt in {city.name} wissen musst
         </p>
 
-        <div className="space-y-3">
+        <ol className="space-y-0 border-t-2 border-ink">
           {city.faq.map((item, index) => (
-            <div
+            <li
               key={index}
-              className="rounded-xl border border-slate-800 bg-slate-900/40 overflow-hidden"
+              className="border-b border-rule-soft"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full text-left px-5 py-4 flex items-start justify-between gap-4 hover:bg-slate-800/30 transition-colors"
+                className="w-full text-left px-0 py-6 flex items-start justify-between gap-6 hover:bg-paper-warm transition-colors group"
                 aria-expanded={openIndex === index}
               >
-                <span className="font-medium text-white text-sm leading-relaxed">{item.question}</span>
+                <div className="flex items-start gap-4">
+                  <span className="font-display text-[28px] leading-none text-stamp mt-1 select-none">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-display text-[18px] sm:text-[22px] leading-[1.25] tracking-[-0.02em] text-ink pt-1">
+                    {item.question}
+                  </span>
+                </div>
                 <ChevronDown
-                  className={`h-4 w-4 text-slate-400 flex-shrink-0 mt-0.5 transition-transform duration-200 ${
+                  className={`h-5 w-5 text-ash flex-shrink-0 mt-2 transition-transform duration-200 ${
                     openIndex === index ? "rotate-180" : ""
                   }`}
                 />
               </button>
               {openIndex === index && (
-                <div className="px-5 pb-4 border-t border-slate-800">
-                  <p className="text-slate-400 text-sm leading-relaxed pt-4">{item.answer}</p>
+                <div className="pb-6 pl-14">
+                  <p className="font-mono text-[13.5px] leading-[1.8] text-ink-2 max-w-[64ch]">
+                    {item.answer}
+                  </p>
                 </div>
               )}
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

@@ -92,23 +92,25 @@ export default function DashboardPage() {
                   Bewerbungs-Verlauf
                 </h2>
 
-                <div className="grid grid-cols-5 gap-3 mb-10">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-10">
                   {pipeline.map((p, i) => (
-                    <div key={i} className="border-2 border-ink bg-paper-warm p-4 text-center relative">
-                      {p.tone && (
-                        <span className={`tag ${p.tone} absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap`}>
-                          {p.label}
-                        </span>
-                      )}
-                      <div className="font-display text-[36px] sm:text-[44px] leading-none tracking-[-0.04em] text-ink mt-2">
+                    <div key={i} className="border-2 border-ink bg-paper-warm p-4 text-center relative overflow-visible">
+                      <div className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2">
+                        {p.tone === "-yellow" && (
+                          <span className="bg-hi text-ink px-2 py-0.5 font-bold">{p.label}</span>
+                        )}
+                        {p.tone === "-sage" && (
+                          <span className="bg-sage text-paper px-2 py-0.5 font-bold">{p.label}</span>
+                        )}
+                        {p.tone === "-stamp" && (
+                          <span className="bg-stamp text-paper px-2 py-0.5 font-bold">{p.label}</span>
+                        )}
+                        {!p.tone && <span className="text-ash">{p.label}</span>}
+                      </div>
+                      <div className="font-display text-[36px] sm:text-[44px] leading-none tracking-[-0.04em] text-ink">
                         {p.count}
                       </div>
-                      {!p.tone && (
-                        <div className="mt-2 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ash">
-                          {p.label}
-                        </div>
-                      )}
-                      <div className="mt-1 font-mono text-[10px] text-ash">{p.sub}</div>
+                      <div className="mt-2 font-mono text-[10px] text-ash">{p.sub}</div>
                     </div>
                   ))}
                 </div>

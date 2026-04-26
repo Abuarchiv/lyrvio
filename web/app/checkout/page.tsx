@@ -71,7 +71,7 @@ function CheckoutContent() {
       <div className="flex items-center gap-4 mb-10 flex-wrap">
         <span className="stamp-rotated">Beauftragung</span>
         <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
-          Akte LYR-B/{Math.floor(Math.random() * 900 + 100)} · Stand {new Date().toLocaleDateString("de-DE")}
+          Akte LYR-B/2026-{planKey === "aktiv" ? "001" : "002"} · Stand laufend
         </span>
       </div>
 
