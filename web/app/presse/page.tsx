@@ -4,7 +4,7 @@ import { TopTicker } from "@/components/TopTicker";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Presse | Lyrvio",
+  title: "Presse-Material & Founder-Story · Lyrvio",
   description:
     "Press Kit, Factsheet, Founder-Bio und Pressekontakt für Lyrvio — KI-Software für automatische Wohnungsbewerbungen im DACH-Raum.",
 };

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AgbPage() {
   return (
     <div>
@@ -178,11 +180,17 @@ export default function AgbPage() {
 
         <section className="pb-10 border-b border-rule-soft">
           <div className="label mb-4">§ 7 Widerrufsrecht</div>
-          <p className="font-mono text-[14px] leading-[1.75] text-ink">
+          <p className="font-mono text-[14px] leading-[1.75] text-ink mb-4">
             Verbrauchern steht ein gesetzliches Widerrufsrecht von 14 Tagen ab Vertragsschluss zu.
             Das Widerrufsrecht erlischt vorzeitig, wenn mit der Ausführung des Dienstes (Lyrvio-Aktivierung)
             vor Ablauf der Widerrufsfrist begonnen wird und der Nutzer ausdrücklich zugestimmt hat,
             dass das Widerrufsrecht mit Beginn der Leistungserbringung erlischt.
+          </p>
+          <p className="font-mono text-[14px] leading-[1.75] text-ink">
+            Vollständige Belehrung:{" "}
+            <Link href="/widerruf" className="link-underline">
+              Widerrufsbelehrung
+            </Link>
           </p>
         </section>
 

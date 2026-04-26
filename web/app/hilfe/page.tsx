@@ -7,7 +7,7 @@ import { SearchBar } from "@/components/hilfe/SearchBar";
 import { getAllArticles, getSearchIndex } from "@/lib/hilfe";
 
 export const metadata: Metadata = {
-  title: "Hilfe",
+  title: "Hilfe-Center · Anleitung zur Wohnungssuche mit Lyrvio",
   description:
     "Antworten auf alle Fragen zu Lyrvio: Extension installieren, Bewerbungen verstehen, Plattformen, Datenschutz und Troubleshooting.",
   openGraph: {

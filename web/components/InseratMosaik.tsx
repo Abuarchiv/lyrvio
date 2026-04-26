@@ -17,7 +17,7 @@ export function InseratMosaik() {
         <article
           key={i}
           className="inserat relative opacity-80"
-          style={{ transform: `rotate(${[(i % 3) - 1] * 0.6}deg)` }}
+          style={{ transform: `rotate(${((i % 3) - 1) * 0.6}deg)` }}
         >
           {/* DEMO watermark diagonal */}
           <span

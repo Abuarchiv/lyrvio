@@ -71,11 +71,11 @@ export default async function StadtPage({ params }: PageProps) {
     url: "https://lyrvio.com",
     offers: {
       "@type": "Offer",
-      price: "79",
+      price: "9",
       priceCurrency: "EUR",
       priceSpecification: {
         "@type": "UnitPriceSpecification",
-        price: "79",
+        price: "9",
         priceCurrency: "EUR",
         unitText: "Monat",
       },

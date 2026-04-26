@@ -48,11 +48,11 @@ export const step4Schema = z.object({
     .min(1, "Nettogehalt eingeben")
     .regex(/^\d+$/, "Nur Zahlen"),
   schufa: z.enum(["sehr_gut", "gut", "befriedigend", "ausreichend", "keine"], {
-    error: "Schufa-Score auswählen",
+    errorMap: () => ({ message: "Schufa-Score auswählen" }),
   }),
   beschaeftigungsart: z.enum(
     ["angestellt", "beamtet", "selbststaendig", "student", "rentner", "sonstiges"],
-    { error: "Beschäftigungsart auswählen" }
+    { errorMap: () => ({ message: "Beschäftigungsart auswählen" }) }
   ),
   mappeUrl: z.string().optional(),
 });

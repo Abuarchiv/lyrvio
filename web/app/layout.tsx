@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, IBM_Plex_Mono, Fraunces } from "next/font/google";
+import { IBM_Plex_Mono, Fraunces } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-  display: "swap",
-});
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -24,7 +18,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lyrvio.pages.dev"),
+  metadataBase: new URL("https://lyrvio.vercel.app"),
   title: {
     default: "Lyrvio — Schreibt für dich Wohnungsbewerbungen",
     template: "%s · Lyrvio",
@@ -44,7 +38,7 @@ export const metadata: Metadata = {
     title: "Lyrvio — Schreibt für dich Wohnungsbewerbungen",
     description:
       "In Berlin werden Wohnungen 4 Minuten nach dem Inserat bereits ausgebucht. Lyrvio läuft 24/7 in deinem Browser.",
-    url: "https://lyrvio.pages.dev",
+    url: "https://lyrvio.vercel.app",
     siteName: "Lyrvio",
     locale: "de_DE",
     type: "website",
@@ -75,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${geist.variable} ${ibmPlexMono.variable} ${fraunces.variable}`}
+      className={`${ibmPlexMono.variable} ${fraunces.variable}`}
     >
       <head />
       <body className="min-h-screen bg-paper text-ink antialiased paper-grain">

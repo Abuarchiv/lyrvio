@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
+
+export const metadata: Metadata = {
+  title: "Extension installieren — Wohnungssuche automatisieren",
+  description:
+    "Installiere die Lyrvio Browser-Extension und lass deinen Browser 24/7 für dich Wohnungsbewerbungen schreiben — auf ImmoScout24, eBay Kleinanzeigen und mehr.",
+};
 import { Footer } from "@/components/Footer";
 import { TopTicker } from "@/components/TopTicker";
 import { Waitlist } from "@/components/Waitlist";
@@ -81,7 +88,12 @@ export default function ExtensionPage() {
         <section className="border-b-2 border-ink">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
             <div className="label mb-8">Vorschau · Extension-UI</div>
-            <ExtensionMockup />
+            <div className="md:hidden">
+              <ExtensionMockup compact />
+            </div>
+            <div className="hidden md:block">
+              <ExtensionMockup />
+            </div>
           </div>
         </section>
 

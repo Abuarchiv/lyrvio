@@ -230,8 +230,8 @@ export default async function CheckoutPlanPage({
                   Monatsende.
                 </span>
               </div>
-              <div className="flex flex-col items-end gap-1.5">
-                <a href={plan.paymentLink} className="btn-primary cursor-stamp whitespace-nowrap">
+              <div className="flex flex-col items-stretch sm:items-end gap-1.5">
+                <a href={plan.paymentLink} className="btn-primary cursor-stamp w-full sm:w-auto whitespace-normal sm:whitespace-nowrap text-center">
                   {buttonLabel[planKey]}
                 </a>
                 <span className="font-mono text-[10.5px] text-ash">

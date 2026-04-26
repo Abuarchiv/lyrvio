@@ -189,7 +189,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             <Step
               num="01"
               dauer="2 Min"

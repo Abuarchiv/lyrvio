@@ -82,7 +82,7 @@ export default async function BezirkPage({ params }: PageProps) {
     },
     offers: {
       "@type": "Offer",
-      price: "79",
+      price: "9",
       priceCurrency: "EUR",
     },
   };

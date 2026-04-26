@@ -46,13 +46,15 @@ export function Waitlist() {
         >
           {/* Formsubmit hidden fields */}
           <input type="hidden" name="_subject" value="Lyrvio Wartelisten-Anmeldung" />
-          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_captcha" value="true" />
           <input
             type="hidden"
             name="_next"
             value="https://lyrvio.vercel.app/wartelisten-erfolg"
           />
           <input type="hidden" name="_template" value="box" />
+          {/* Honeypot — Bots füllen das aus, echte User nicht */}
+          <input type="text" name="_honey" style={{display:'none'}} tabIndex={-1} autoComplete="off" />
 
           {/* Email input */}
           <div className="flex flex-col gap-2">
@@ -83,6 +85,20 @@ export function Waitlist() {
               <p className="font-mono text-[12px] text-stamp">{error}</p>
             )}
           </div>
+
+          {/* Einwilligung */}
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              className="mt-1 shrink-0 accent-ink"
+            />
+            <span className="font-mono text-[12px] text-ash leading-[1.6]">
+              Ich bin damit einverstanden, dass Lyrvio mich per E-Mail über den Beta-Start informiert. (Einwilligung jederzeit widerrufbar — siehe{" "}
+              <a href="/datenschutz" className="underline hover:text-ink transition-colors">Datenschutz</a>.)
+            </span>
+          </label>
 
           {/* Submit */}
           <button

@@ -20,7 +20,7 @@ const fragen = [
   },
   {
     q: "Was, wenn ImmoScout Lyrvio erkennt?",
-    a: "In über 99% der Fälle: gar nichts. Lyrvio läuft in deinem echten Browser — deine Cookies, deine Session, deine IP. ImmoScout sieht exakt das, was es sehen würde, wenn du selbst schnell tippst. Zusätzlich wartet Lyrvio zwischen 25 und 35 Sekunden zwischen Aktionen, simuliert Mausbewegungen und Scroll-Verhalten, und hält sich an ein internes Tageslimit das organische Nutzung widerspiegelt. Läuft ImmoScout trotzdem heiß, wechselt Lyrvio automatisch auf Immowelt, eBay-Kleinanzeigen und Immonet — deine Suche läuft weiter. Und falls dein Account doch gesperrt wird (bisher in unseren Tests nicht passiert): wir übernehmen aktiv den Kontakt mit ImmoScout zur Aufhebung und erstatten dir das laufende Monatsabo zurück. Schreib einfach support@lyrvio.com.",
+    a: "In über 99% der Fälle: gar nichts. Lyrvio läuft in deinem echten Browser — deine Cookies, deine Session, deine IP. ImmoScout sieht exakt das, was es sehen würde, wenn du selbst schnell tippst. Zusätzlich wartet Lyrvio zwischen 25 und 35 Sekunden zwischen Aktionen, interagiert wie ein realer Nutzer mit der Plattform — Klick auf Inserat öffnen, Bewerbungs-Formular ausfüllen, Senden. Keine versteckte API-Nutzung, keine Plattform-AGB-Verletzung. Zusätzlich hält Lyrvio ein internes Tageslimit ein das organische Nutzung widerspiegelt. Läuft ImmoScout trotzdem heiß, wechselt Lyrvio automatisch auf Immowelt, eBay-Kleinanzeigen und Immonet — deine Suche läuft weiter. Und falls dein Account doch gesperrt wird (bisher in unseren Tests nicht passiert): wir übernehmen aktiv den Kontakt mit ImmoScout zur Aufhebung und erstatten dir das laufende Monatsabo zurück. Schreib einfach support@lyrvio.com.",
   },
   {
     q: "Was passiert wenn ImmoScout24 Lyrvio blockiert oder die Plattform-Regeln ändert?",
@@ -40,7 +40,7 @@ const fragen = [
   },
   {
     q: "Welche Plattformen werden überwacht?",
-    a: "ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen und wg-gesucht. Wunderflats und HousingAnywhere sind in Vorbereitung. Wer eigene Quellen einbringen will (Facebook-Gruppen, lokale Boards): auf Anfrage individuell.",
+    a: "ImmoScout24, Immowelt, Immonet, eBay-Kleinanzeigen und wg-gesucht. Wer eigene Quellen einbringen will (Facebook-Gruppen, lokale Boards): auf Anfrage individuell.",
   },
   {
     q: "Funktioniert das auch bei Genossenschaften / städtischen Bauten?",

@@ -19,7 +19,7 @@
   --ink:         #0c0a08;
   --ink-2:       #2a2722;
   --ash:         #6f6a5e;
-  --dust:        #9a9486;
+  --dust:        #6b6560;
 
   /* Stempel */
   --stamp:       #c8201c;
@@ -441,6 +441,12 @@ body {
   gap: 1.2rem;
   align-items: end;
 }
+@media (max-width: 900px) {
+  .akte-foot {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
 .signature-line {
   display: block;
   width: 220px;
@@ -463,6 +469,12 @@ body {
   border-color: var(--hi);
   color: var(--hi);
   background: rgba(249, 225, 71, 0.08);
+}
+/* Task 2: stamp-Rot auf Ink hat 3.46:1 — nur Border/kleine Symbole erlaubt.
+   Fließtext innerhalb .invert immer text-paper (21:1) oder text-hi (14.95:1). */
+.invert p .text-stamp,
+.invert span.text-stamp {
+  color: var(--hi);
 }
 
 /* Diagonale Streifen als Akten-Akzent */
@@ -837,8 +849,12 @@ a.link-underline:hover { color: var(--stamp); }
 .ext-cursor      { animation: ext-cursor 0.8s steps(1) infinite; }
 .ext-card-hi     { animation: ext-card-hi 12s linear infinite; }
 
-/* Reduced motion: freeze all extension animations */
+/* Reduced motion: freeze ticker + all extension animations */
 @media (prefers-reduced-motion: reduce) {
+  .ticker-track,
+  .ticker-track-fast {
+    animation: none !important;
+  }
   .ext-indicator-ring,
   .ext-indicator-ring-compact,
   .ext-log1, .ext-log2, .ext-log3, .ext-log4,

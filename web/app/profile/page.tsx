@@ -57,7 +57,6 @@ export default function ProfilePage() {
   const { register, handleSubmit, formState: { errors }, setValue } = form;
 
   const onSubmit = (data: ProfileForm) => {
-    console.log("Profile data:", data);
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };

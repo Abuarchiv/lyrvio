@@ -6,14 +6,14 @@ import { TopTicker } from "@/components/TopTicker";
 import { cityList } from "@/lib/cities";
 
 export const metadata: Metadata = {
-  title: "Wohnung finden in deutschen Großstädten | Lyrvio",
+  title: "Wohnung finden in deutschen Großstädten",
   description:
     "Lyrvio hilft dir in allen deutschen Großstädten schneller eine Wohnung zu finden. Automatische Bewerbungen auf ImmoScout24, eBay Kleinanzeigen und mehr — in unter 30 Sekunden nach Veröffentlichung.",
   alternates: {
     canonical: "https://lyrvio.com/wohnung-finden",
   },
   openGraph: {
-    title: "Wohnung finden in deutschen Großstädten | Lyrvio",
+    title: "Wohnung finden in deutschen Großstädten",
     description:
       "Automatische Wohnungsbewerbungen in Berlin, München, Hamburg und 12 weiteren Städten.",
     url: "https://lyrvio.com/wohnung-finden",

@@ -54,7 +54,7 @@ export function Nav() {
             </Link>
             <Link
               href="/checkout/erfolg"
-              className="btn-primary !py-2 !px-4 !text-[11px]"
+              className="btn-primary !py-2.5 !px-4 !text-[11px] min-h-[44px]"
             >
               Jetzt loslegen
             </Link>

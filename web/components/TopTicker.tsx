@@ -11,7 +11,7 @@ const items = [
 
 export function TopTicker() {
   return (
-    <div className="border-b-2 border-ink bg-stamp text-paper overflow-hidden">
+    <div className="border-b-2 border-ink bg-stamp text-paper overflow-hidden" aria-hidden="true">
       <div className="flex items-center h-8">
         <span className="px-4 h-full inline-flex items-center bg-ink text-hi font-mono text-[10.5px] font-bold uppercase tracking-[0.22em] whitespace-nowrap">
           ● PRE-LAUNCH · Beta startet Mai 2026

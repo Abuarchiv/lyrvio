@@ -6,10 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Globe,
-  Download,
   CheckCircle2,
-  ExternalLink,
-  Loader2,
   Puzzle,
 } from "lucide-react";
 import { step6Schema, type Step6Data } from "@/app/onboarding/schemas";
@@ -79,7 +76,6 @@ const FIREFOX_STEPS = [
 export default function Step6Page() {
   const router = useRouter();
   const [browser, setBrowser] = useState<Browser>("unknown");
-  const [isInstalling, setIsInstalling] = useState(false);
 
   const {
     register,
@@ -110,11 +106,6 @@ export default function Step6Page() {
     return () => clearInterval(id);
   }, [extensionInstalled, setValue]);
 
-  const storeUrl =
-    browser === "firefox"
-      ? "https://addons.mozilla.org/de/firefox/addon/lyrvio/"
-      : "https://chromewebstore.google.com/detail/lyrvio/PLACEHOLDER_ID";
-
   const steps = browser === "firefox" ? FIREFOX_STEPS : CHROME_STEPS;
 
   const BrowserIcon = Globe;
@@ -134,13 +125,6 @@ export default function Step6Page() {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const handleInstallClick = () => {
-    setIsInstalling(true);
-    window.open(storeUrl, "_blank", "noopener,noreferrer");
-    // Give user time to install, then check automatically
-    setTimeout(() => setIsInstalling(false), 5000);
   };
 
   return (
@@ -174,35 +158,36 @@ export default function Step6Page() {
             <Puzzle className="w-6 h-6 text-stamp shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <p className="font-mono text-[14px] font-semibold text-ink">
-                Lyrvio Extension
+                Lyrvio Extension — Beta
               </p>
               <p className="font-mono text-[12px] text-ash mt-0.5">
                 Kostenlos · ~200 KB · Keine Daten ohne dein Wissen
               </p>
             </div>
           </div>
+
+          {/* Beta notice — replaces dead store link */}
+          <div className="border-2 border-ink/40 bg-paper px-4 py-4 space-y-2">
+            <p className="font-mono text-[13px] font-semibold text-ink">
+              Beta-User erhalten die Extension per E-Mail.
+            </p>
+            <p className="font-mono text-[12px] text-ash leading-[1.65]">
+              Die Extension befindet sich in der finalen Testphase (Release: Mai 2026).
+              Du wirst benachrichtigt, sobald sie für dich freigeschaltet ist.
+            </p>
+          </div>
+
           <Button
             type="button"
             size="lg"
             className="w-full gap-2"
-            onClick={handleInstallClick}
-            aria-label="Extension im Browser-Store installieren"
+            onClick={() => router.push("/")}
+            aria-label="Verstanden — zurück zur Startseite"
           >
-            {isInstalling ? (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-                Store wird geöffnet…
-              </>
-            ) : (
-              <>
-                <Download className="w-4 h-4" aria-hidden="true" />
-                Extension installieren
-                <ExternalLink className="w-3 h-3 opacity-60" aria-hidden="true" />
-              </>
-            )}
+            Verstanden
           </Button>
           <p className="font-mono text-[11px] text-ash text-center">
-            Nach der Installation wird hier automatisch ein Häkchen gesetzt.
+            Sobald die Beta startet, bekommst du eine E-Mail mit dem Installations-Link.
           </p>
         </div>
       ) : (

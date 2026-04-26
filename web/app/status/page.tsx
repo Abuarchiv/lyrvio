@@ -33,7 +33,7 @@ interface ServiceStatus {
 }
 
 const SERVICES: Omit<ServiceStatus, "status" | "latency" | "lastChecked">[] = [
-  { name: "Web App", url: "https://lyrvio.pages.dev" },
+  { name: "Web App", url: "https://lyrvio.vercel.app" },
   { name: "API", url: "https://lyrvio-api.workers.dev/health" },
   { name: "Datenbank", url: "https://lyrvio-api.workers.dev/health/db" },
   { name: "E-Mail (Resend)", url: "https://lyrvio-api.workers.dev/health/email" },

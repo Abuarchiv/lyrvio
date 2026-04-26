@@ -164,7 +164,7 @@ Vorstrafen. Schufa-Score 96/100, alle Belege liegen bereit.
 
 Ich kann gerne diese Woche zur Besichtigung kommen — wann passt es Ihnen?
 
-Anna Becker · 0152-XXXXXXXX`}
+Anna Becker · [Demo-Nummer]`}
                     </pre>
                   </div>
                   <aside className="col-span-12 lg:col-span-3 border-t lg:border-t-0 lg:border-l border-rule-soft px-6 py-6 bg-paper">
@@ -353,7 +353,7 @@ Keine Tiere, Nichtraucherin, alles ordentlich.
 Schufa 95, Selbstauskunft + Lohnnachweis
 liegen bereit. Wann passt eine Besichtigung?
 
-Lena Weber · 0151-XXXXXXX`}
+Lena Weber · [Demo-Nummer]`}
                   </pre>
                 </div>
               </article>
