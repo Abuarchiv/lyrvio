@@ -16,7 +16,7 @@ const fragen = [
   },
   {
     q: "Werden meine Daten an einen Server geschickt?",
-    a: "Nein. Dein Profil, deine Selbstauskunft, deine Schufa — bleiben in der Browser-Extension auf deinem Gerät. Nur Erfolgsmetriken (Bewerbung versandt: ja/nein, Antwort erhalten: ja/nein) gehen an unseren Server, damit dein Dossier in der Cloud sichtbar bleibt. Inhalte nicht.",
+    a: "Nein. Dein Profil, deine Selbstauskunft, deine Schufa — bleiben in der Browser-Extension auf deinem Gerät. Nur Erfolgsmetriken (Bewerbung versandt: ja/nein, Antwort erhalten: ja/nein) gehen an unseren Server, damit deine Übersicht in der Cloud sichtbar bleibt. Inhalte nicht.",
   },
   {
     q: "Was, wenn ImmoScout Lyrvio erkennt?",
@@ -63,13 +63,13 @@ export default function AktePage() {
             <div className="flex items-center gap-4 mb-10 flex-wrap">
               <span className="stamp-rotated">Häufige Fragen</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash">
-                Akte · Antworten auf häufige Fragen
+                Antworten auf häufige Fragen
               </span>
             </div>
             <h1 className="manifest mb-10">
               Bevor du <em>fragst</em>:
               <br />
-              Hier ist <span className="stamped">die Akte.</span>
+              Hier sind <span className="stamped">die Antworten.</span>
             </h1>
           </div>
         </section>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+  <!-- Lyrvio Apple Touch Icon 180×180 — iOS rounded corners (rx=40) -->
+  <rect width="180" height="180" rx="40" fill="#f3efe6"/>
+  <rect x="14" y="14" width="152" height="152" rx="28" fill="none" stroke="#0c0a08" stroke-width="11"/>
+  <text
+    x="34" y="142"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="136"
+    font-style="italic"
+    font-weight="700"
+    fill="#0c0a08"
+    letter-spacing="-5">L</text>
+  <circle cx="140" cy="42" r="14" fill="#c8201c"/>
+</svg>

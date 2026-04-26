@@ -1,20 +1,20 @@
 ---
-title: 'Bot-Sicherheits-Features'
+title: 'Lyrvio-Sicherheits-Features'
 slug: 'bot-sicherheit'
 category: 'datenschutz-sicherheit'
 categoryLabel: 'Datenschutz & Sicherheit'
 order: 5
-description: 'Alle Sicherheitsmechanismen die verhindern dass der Bot ungewollt oder schädlich handelt.'
+description: 'Alle Sicherheitsmechanismen die verhindern dass Lyrvio ungewollt oder schädlich handelt.'
 updated: '2026-04-26'
 ---
 
 ## Kurz
 
-Lyrvio hat mehrere unabhängige Sicherheitsschichten die sicherstellen dass der Bot nur handelt wenn du es willst, nur das tut was du erlaubt hast, und sofort stoppbar ist.
+Lyrvio hat mehrere unabhängige Sicherheitsschichten die sicherstellen dass Lyrvio nur handelt wenn du es willst, nur das tut was du erlaubt hast, und sofort stoppbar ist.
 
 ## Sicherheitsschicht 1: Vollmacht als Gate
 
-Der Bot sendet keine einzige Bewerbung ohne gültige Vollmacht. Die Vollmacht wird:
+Lyrvio sendet keine einzige Bewerbung ohne gültige Vollmacht. Die Vollmacht wird:
 
 - Bei jedem Extension-Start geprüft
 - Bei jeder Bewerbung nochmals validiert
@@ -24,7 +24,7 @@ Technisch: Die Vollmacht ist ein signierter JWT-Token mit Ablaufdatum. Abgelaufe
 
 ## Sicherheitsschicht 2: Kriterien-Filter
 
-Der Bot bewirbt sich nur auf Inserate die deine gesetzten Suchkriterien erfüllen. Kein Inserat geht durch das ohne:
+Lyrvio bewirbt sich nur auf Inserate die deine gesetzten Suchkriterien erfüllen. Kein Inserat geht durch das ohne:
 
 - Preisfilter-Check (innerhalb deines Max-Budgets)
 - Größenfilter-Check (mindestens deine Min-Fläche)
@@ -35,7 +35,7 @@ Schlägt einer dieser Checks fehl: keine Bewerbung.
 
 ## Sicherheitsschicht 3: Qualitätskontrolle
 
-Vor dem Absenden prüft der Bot die generierte Bewerbung:
+Vor dem Absenden prüft Lyrvio die generierte Bewerbung:
 
 - Mindestlänge: 80 Wörter
 - Enthält deinen Namen
@@ -56,7 +56,7 @@ Interne Limits verhindern Massen-Bewerbungen die deinen Plattform-Account gefäh
 
 Du hast 2 Minuten Zeit jede Bewerbung zu stornieren. Stornierung versucht die Nachricht auf der Plattform zu löschen — ob erfolgreich hängt von der Plattform ab.
 
-Zusätzlich: Emergency-Stop in der Extension (rotes X-Icon bei längerem Klick auf Extension-Icon) stoppt den Bot sofort ohne Dashboard-Öffnung.
+Zusätzlich: Emergency-Stop in der Extension (rotes X-Icon bei längerem Klick auf Extension-Icon) stoppt Lyrvio sofort ohne Dashboard-Öffnung.
 
 ## Sicherheitsschicht 6: Benachrichtigungen
 
@@ -66,18 +66,18 @@ Du wirst über jede Aktion informiert:
 - Tägliche E-Mail-Zusammenfassung (einstellbar)
 - Dashboard-Badge mit ungelesenen Aktivitäten
 
-Keine „stille" Aktivität — du weißt immer was der Bot gemacht hat.
+Keine „stille" Aktivität — du weißt immer was Lyrvio gemacht hat.
 
 ## Häufige Fragen
 
-**Kann der Bot versehentlich doppelt bewerben?**
+**Kann Lyrvio versehentlich doppelt bewerben?**
 Nein. Der Duplikat-Check nutzt Inserat-IDs die plattformweit eindeutig sind. Selbst wenn dasselbe Inserat unter verschiedenen URLs erscheint, erkennt Lyrvio Duplikate durch Adresse + Preis + Vermieter-Hash.
 
-**Was passiert wenn mein Browser abstürzt während der Bot gerade sendet?**
+**Was passiert wenn mein Browser abstürzt während Lyrvio gerade sendet?**
 Der Browser-Absturz unterbricht die Aktion. Lyrvio hat kein Retry-Mechanismus für unterbrochene Bewerbungen — das verhindert unbeabsichtigtes Doppelsenden.
 
-**Kann jemand anderes meinen Bot steuern wenn er meinen Lyrvio-Account hackt?**
-Der Bot läuft in deinem Browser. Auch mit deinen Account-Credentials kann niemand anderes den Bot aktivieren — er braucht deine lokale Browser-Session und deine Extension. Das ist ein fundamentaler Sicherheitsvorteil der Browser-Extension-Architektur.
+**Kann jemand anderes Lyrvio steuern wenn er meinen Lyrvio-Account hackt?**
+Lyrvio läuft in deinem Browser. Auch mit deinen Account-Credentials kann niemand anderes Lyrvio aktivieren — es braucht deine lokale Browser-Session und deine Extension. Das ist ein fundamentaler Sicherheitsvorteil der Browser-Extension-Architektur.
 
 ## Verwandte Artikel
 

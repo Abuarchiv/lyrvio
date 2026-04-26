@@ -153,8 +153,8 @@ function CheckoutContent() {
         </Link>
         . Du erteilst Lyrvio eine Vollmacht, in deinem Namen
         Wohnungsbewerbungen zu versenden — diese Vollmacht ist jederzeit
-        widerruflich. Erfolgsprämie 299 € einmalig wird nur bei
-        Mietvertrags-Unterschrift fällig.
+        widerruflich. Erfolgsprämie 49 € einmalig wird nur bei
+        Mietvertrags-Unterschrift fällig (optional).
       </p>
     </div>
   );
