@@ -2,7 +2,29 @@ import { Hono } from 'hono';
 import Stripe from 'stripe';
 import { eq } from 'drizzle-orm';
 import { users, erfolgBonus } from '../../../db/schema.js';
-import type { AppBindings } from '../types.js';
+import type { AppBindings, Env } from '../types.js';
+import { triggerWelcomeEmail, type LyrvioWelcomeContext } from '../lib/welcome-sequence.js';
+
+// ---------------------------------------------------------------------------
+// Telegram-Alert — fire-and-forget via Cloudflare fetch
+// ---------------------------------------------------------------------------
+async function telegramAlert(env: Env, message: string): Promise<void> {
+  const botToken = env.TELEGRAM_BOT_TOKEN;
+  const chatId = env.TELEGRAM_CHAT_ID;
+  if (!botToken || !chatId) {
+    console.warn('[Stripe] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set — alert skipped');
+    return;
+  }
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'HTML' }),
+    });
+  } catch (err) {
+    console.error('[Stripe] Telegram alert failed:', err);
+  }
+}
 
 const stripeRouter = new Hono<AppBindings>();
 
@@ -60,6 +82,29 @@ stripeRouter.post('/webhook', async (c) => {
           .where(eq(users.stripeCustomerId, customerId));
 
         console.log(`[Stripe] Subscription ${subscription.id} → ${newStatus} for customer ${customerId}`);
+
+        // Welcome-Sequenz: Email 1 sofort bei neuer aktiver Subscription
+        if (event.type === 'customer.subscription.created' && newStatus === 'active') {
+          const d1 = env.DB;
+          const userRow = await d1
+            .prepare('SELECT id, email, name, created_at FROM users WHERE stripe_customer_id = ?')
+            .bind(customerId)
+            .first<{ id: string; email: string; name: string | null; created_at: string }>();
+
+          if (userRow) {
+            const ctx: LyrvioWelcomeContext = {
+              userId: userRow.id,
+              email: userRow.email,
+              firstName: (userRow.name ?? '').split(' ')[0] || 'du',
+              city: 'deiner Stadt',
+              signedUpAt: new Date(userRow.created_at),
+            };
+            // Fire-and-forget — don't block webhook response
+            triggerWelcomeEmail(env, d1, ctx).catch((err) =>
+              console.error('[welcome-sequence] Step 1 failed:', err)
+            );
+          }
+        }
         break;
       }
 
@@ -113,6 +158,31 @@ stripeRouter.post('/webhook', async (c) => {
             })
             .where(eq(users.email, customer.email));
         }
+        break;
+      }
+
+      case 'charge.dispute.created': {
+        const dispute = event.data.object as Stripe.Dispute;
+        const chargeId = typeof dispute.charge === 'string' ? dispute.charge : (dispute.charge as Stripe.Charge)?.id ?? 'unbekannt';
+        const amount = (dispute.amount / 100).toFixed(2);
+        const currency = dispute.currency.toUpperCase();
+        const reason = dispute.reason ?? 'unbekannt';
+
+        const msg = `🚨 LYRVIO DISPUTE: charge=${chargeId}, betrag=${amount} ${currency}, grund=${reason}, status=${dispute.status}`;
+        console.error('[Stripe] DISPUTE:', msg);
+        await telegramAlert(env, msg);
+        break;
+      }
+
+      case 'charge.refunded': {
+        const charge = event.data.object as Stripe.Charge;
+        const refunded = (charge.amount_refunded / 100).toFixed(2);
+        const currency = charge.currency.toUpperCase();
+        const customerId = typeof charge.customer === 'string' ? charge.customer : (charge.customer as Stripe.Customer)?.id ?? 'unbekannt';
+
+        const msg = `✅ LYRVIO REFUND: customer=${customerId}, erstattet=${refunded} ${currency}, charge=${charge.id}`;
+        console.log('[Stripe] REFUND:', msg);
+        await telegramAlert(env, msg);
         break;
       }
 

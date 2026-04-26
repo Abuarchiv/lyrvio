@@ -1,0 +1,46 @@
+Subject: 10 Tage Wohnungssuche — was läuft, was nicht
+
+---
+
+Hey {{first_name}},
+
+Zehn Tage. Zeit für einen ehrlichen Stand:
+
+Bot-Aktivität:
+- Bewerbungen gesamt: {{total_applications}}
+- Vermieter-Antworten: {{responses_count}}
+- Besichtigungen: {{viewings_count}}
+
+---
+
+{{#if responses_count_positive}}
+Du hast bereits Antworten bekommen. Das ist gut — viele Sucher warten Wochen auf die erste Reaktion.
+
+Was funktioniert:
+- {{what_works}}
+
+Was noch nicht:
+- {{what_doesnt}}
+{{else}}
+Noch keine Antworten. Das klingt frustrierend — aber es ist normal für Städte wie {{city}} in den ersten zwei Wochen.
+
+Was wir machen um das zu verbessern:
+- Bewerbungs-Stil anpassen (weniger förmlich / mehr persönlich)
+- Inserate aus dem Randgebiet miteinbeziehen
+- Timing optimieren (morgens 6–8 Uhr = meiste neue Inserate)
+
+Du kannst hier testen ob dein Profil vollständig ist:
+{{profile_url}}
+{{/if}}
+
+---
+
+Wenn du einen Tipp hast oder etwas nicht stimmt — einfach Reply.
+
+Abu
+Lyrvio
+
+---
+
+Abmelden: {{unsubscribe_url}}
+Lyrvio · lyrvio.de

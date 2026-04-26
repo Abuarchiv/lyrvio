@@ -1,0 +1,42 @@
+Subject: Ein Monat Wohnungssuche — Wohnung gefunden?
+
+---
+
+Hey {{first_name}},
+
+Ein Monat.
+
+{{#if housing_found}}
+Du hast mir geschrieben dass du eine Wohnung gefunden hast. Das ist der Moment für den wir das gebaut haben.
+
+Falls du Lust hast uns kurz zu sagen wie es gelaufen ist — für uns, aber auch für andere die gerade in der gleichen Situation stecken:
+
+Eine Frage: Wie wahrscheinlich empfiehlst du Lyrvio auf einer Skala von 1–10 — und ein Satz warum?
+
+Einfach antworten.
+
+Falls du den Erfolgs-Bonus noch nicht eingelöst hast: Du kriegst 299€ zurück wenn du uns deinen Mietvertrag schickst.
+→ {{bonus_url}}
+{{else}}
+Noch auf der Suche. Das zieht sich manchmal — besonders in {{city}}.
+
+Zwei Optionen:
+
+1. Weiter wie bisher — Bot läuft, nächste Verlängerung am {{renewal_date}}. Nichts zu tun.
+
+2. Einstellungen anpassen — vielleicht ist der Radius zu eng, der Preis zu niedrig, oder bestimmte Plattformen bringen mehr als andere. Hier die aktuellen Stats:
+→ {{stats_url}}
+
+Eine Frage für dich: Was wäre der eine Kompromiss den du noch machen könntest — mehr Zimmer, anderer Bezirk, höherer Preis?
+Einfach antworten. Ich schau mir das an.
+{{/if}}
+
+---
+
+Abu
+Lyrvio
+
+---
+
+Abmelden: {{unsubscribe_url}}
+Lyrvio · lyrvio.de

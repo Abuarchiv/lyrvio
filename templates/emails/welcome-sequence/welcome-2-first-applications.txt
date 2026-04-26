@@ -1,0 +1,36 @@
+Subject: Erste Bewerbungen raus — hier was passiert ist
+
+---
+
+Hey {{first_name}},
+
+Update vom Bot:
+
+In den letzten 3 Tagen hat er {{applications_sent_count}} Bewerbungen verschickt.
+
+Wo: {{platforms_summary}}
+Preisspanne: {{price_range}}
+Bezirke: {{districts}}
+
+---
+
+Was das bedeutet:
+
+Vermieter in deutschen Großstädten bekommen oft 50–200 Bewerbungen pro Inserat. Die meisten kommen innerhalb von 6 Stunden nach Veröffentlichung. Der Bot war da.
+
+Was als nächstes passiert: Einige Vermieter antworten innerhalb von 2–5 Tagen. Andere erst nach 2 Wochen. Andere nie. Das hat mit deiner Bewerbung meist nichts zu tun — das ist Wohnungsmarkt.
+
+Du kriegst sofort eine Benachrichtigung wenn jemand antwortet.
+
+---
+
+Falls du Kriterien anpassen willst (Bezirk größer, Preis höher, kleinere WF) — jetzt guter Zeitpunkt:
+{{search_settings_url}}
+
+Abu
+Lyrvio
+
+---
+
+Abmelden: {{unsubscribe_url}}
+Lyrvio · lyrvio.de

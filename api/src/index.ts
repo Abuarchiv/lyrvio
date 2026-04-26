@@ -14,6 +14,7 @@ import { stripeRouter } from './routes/stripe.js';
 import { publicRouter } from './routes/public.js';
 import { aiRouter } from './routes/ai.js';
 import type { AppBindings, Env } from './types.js';
+import { processWelcomeSequenceBatch } from './lib/welcome-sequence.js';
 
 const app = new Hono<AppBindings>();
 
@@ -89,4 +90,19 @@ app.notFound(onNotFound);
 
 // ─── Export ────────────────────────────────────────────────────────────────────
 
-export default app;
+// Cloudflare Worker Scheduled Handler — täglicher Cron 07:00 UTC
+const scheduled: ExportedHandlerScheduledHandler<Env> = async (_event, env, _ctx) => {
+  console.log('[cron] Scheduled handler running');
+  const db = env.DB;
+  try {
+    const result = await processWelcomeSequenceBatch(env, db);
+    console.log('[cron] welcome-sequence batch:', result);
+  } catch (err) {
+    console.error('[cron] welcome-sequence batch failed:', err);
+  }
+};
+
+export default {
+  fetch: app.fetch,
+  scheduled,
+};

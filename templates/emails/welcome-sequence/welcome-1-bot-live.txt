@@ -1,0 +1,38 @@
+Subject: Bot ist scharfgeschaltet — hier was er gerade macht
+
+---
+
+Hey {{first_name}},
+
+Zahlung durch. Bot läuft.
+
+Gerade aktiv:
+- Plattformen: {{active_platforms}}
+- Neue Inserate werden alle 30 Sekunden geprüft
+- Kriterien: {{search_criteria_summary}}
+
+---
+
+Was jetzt passiert:
+
+Sobald ein neues Inserat deinen Kriterien entspricht, schickt der Bot automatisch eine Bewerbung — personalisiert, mit deinen Dokumenten. Du kriegst eine Benachrichtigung.
+
+Drei Dinge die du heute noch erledigen solltest damit wirklich alles läuft:
+
+1. Extension aktiv? → {{extension_check_url}}
+2. Bewerbungsmappe hochgeladen? → {{docs_url}}
+3. Suche aktiviert? → {{search_url}}
+
+Wenn eines davon noch fehlt: Der Bot wartet, bis alles bereit ist. Kein Druck — aber je früher, desto früher fängt er an.
+
+---
+
+Du hörst von mir sobald die erste Bewerbung rausgeht.
+
+Abu
+Lyrvio
+
+---
+
+Abmelden: {{unsubscribe_url}}
+Lyrvio · lyrvio.de
