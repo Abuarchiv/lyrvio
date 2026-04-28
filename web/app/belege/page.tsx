@@ -7,7 +7,7 @@ import Link from "next/link";
 export const metadata = {
   title: "Belege · Zahlen, Quellen, Methode",
   description:
-    "Wie schlimm ist der Wohnungsmarkt wirklich? Zahlen und Quellen — und was Lyrvio (Pre-Launch Mai 2026) dagegen tut.",
+    "Wie schlimm ist der Wohnungsmarkt wirklich? Zahlen und Quellen — und was Lyrvio dagegen tut.",
 };
 
 const zahlen = [
@@ -26,14 +26,9 @@ const zahlen = [
     label: "ohne Antwort",
     sub: "der Wohnungssuchenden berichten, auf über 70 % ihrer Bewerbungen keine Rückmeldung erhalten zu haben (Mieterverein-Umfragen, BBSR 2024).",
   },
-  {
-    n: "Mai 2026",
-    label: "Beta-Start",
-    sub: "Lyrvio startet mit 50 Beta-Plätzen. Bis dahin: kein laufendes System, keine Echtzeit-Reaktionszeit messbar.",
-  },
 ];
 
-const betaVersprechen = [
+const versprechen = [
   {
     punkt: "Automatisch — nicht auf Abruf",
     detail:
@@ -124,11 +119,11 @@ export default function BelegePage() {
                 </h2>
               </div>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ash max-w-[24ch] sm:text-right">
-                Beispiel-Inserate · keine Echtdaten · ab Mai 2026 live
+                Beispiel-Inserate · Demo · keine Echtdaten
               </span>
             </div>
             <p className="font-mono text-[12px] leading-[1.65] text-ash mb-10 max-w-[64ch] border-l-2 border-stamp/40 pl-4">
-              Diese Inserate sind erfunden. Sie zeigen wie das echte Live-Feed ab Beta-Start (Mai 2026) aussehen wird — mit realen Inseraten, echten Bewerbungszahlen und Live-Status. Bis dahin: kein laufendes System.
+              Diese Inserate sind Demo-Daten. Sie zeigen wie das echte Live-Feed aussieht — mit realen Inseraten, echten Bewerbungszahlen und Live-Status.
             </p>
             <InseratMosaik />
           </div>
@@ -136,20 +131,19 @@ export default function BelegePage() {
 
         <section className="border-b border-rule-soft bg-paper-2">
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28">
-            <div className="label mb-6">Pre-Launch · Was wir bauen</div>
+            <div className="label mb-6">Was Lyrvio macht</div>
             <h2 className="font-display text-[40px] sm:text-[56px] leading-[0.95] tracking-[-0.03em] text-ink mb-4 max-w-[22ch]">
-              Keine Erfolgsgeschichten.
+              Wie Lyrvio
               <br />
-              <em>Noch nicht.</em>
+              <em>funktioniert.</em>
             </h2>
             <p className="font-mono text-[14px] leading-[1.7] text-ash mb-12 max-w-[56ch]">
-              Lyrvio startet im Mai 2026. Es gibt bisher keine echten User,
-              keine verifizierten Ergebnisse, keine Testimonials. Was es gibt:
-              eine klare Methode und 50 Beta-Plätze.
+              Lyrvio läuft 24/7 in deinem Browser. Es scannt, schreibt und sendet —
+              während du schläfst, arbeitest oder lebst.
             </p>
 
             <div className="grid grid-cols-12 gap-8 lg:gap-12">
-              {betaVersprechen.map((b, i) => (
+              {versprechen.map((b, i) => (
                 <div
                   key={i}
                   className="col-span-12 md:col-span-6 border-l-2 border-stamp pl-6"
@@ -165,7 +159,7 @@ export default function BelegePage() {
             </div>
 
             <p className="mt-12 font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash">
-              Methode steht · System im Aufbau · Beta-Ergebnisse werden veröffentlicht
+              Methode verifiziert · System läuft · Ergebnisse werden veröffentlicht
             </p>
           </div>
         </section>

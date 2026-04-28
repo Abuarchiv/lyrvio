@@ -1,10 +1,6 @@
 import Link from "next/link";
-import { cityList } from "@/lib/cities";
 
 export function Footer() {
-  const sortedCities = [...cityList].sort(
-    (a, b) => b.population - a.population,
-  );
 
   return (
     <footer className="border-t-2 border-ink bg-paper">
@@ -75,29 +71,6 @@ export function Footer() {
               { href: "/presse", label: "Presse" },
             ]}
           />
-        </div>
-
-        {/* Städte als Akten-Index */}
-        <div className="mt-16 pt-8 border-t border-rule-soft">
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ash mb-4">
-            Aktiv in
-          </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 font-display text-[18px] tracking-[-0.01em] text-ink">
-            {sortedCities.map((city, i) => (
-              <span key={city.slug} className="contents">
-                <Link
-                  href={`/wohnung-finden/${city.slug}`}
-                  prefetch={false}
-                  className="hover:text-stamp transition-colors"
-                >
-                  {city.name}
-                </Link>
-                {i < sortedCities.length - 1 && (
-                  <span className="text-ash select-none">·</span>
-                )}
-              </span>
-            ))}
-          </div>
         </div>
 
         {/* Schlussstrich */}

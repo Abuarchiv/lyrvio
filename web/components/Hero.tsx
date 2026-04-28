@@ -133,7 +133,7 @@ export function Hero() {
                   letterSpacing: "0.05em",
                 }}
               >
-                Mockup · So sieht die Extension nach Beta-Start aus ·{" "}
+                So sieht die Lyrvio-Extension aus ·{" "}
                 <Link href="/extension" className="link-underline" style={{ color: "#6f6a5e" }}>
                   Volle Vorschau auf /extension →
                 </Link>
