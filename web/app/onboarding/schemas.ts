@@ -1,11 +1,15 @@
 import { z } from "zod";
 
-// Step 1 — Account (Magic-Link)
+// Step 1 — Account (Email + Passwort)
 export const step1Schema = z.object({
   email: z
     .string()
     .min(1, "E-Mail ist Pflicht")
     .email("Bitte gültige E-Mail eingeben"),
+  password: z
+    .string()
+    .min(8, "Mindestens 8 Zeichen")
+    .max(128, "Maximal 128 Zeichen"),
 });
 export type Step1Data = z.infer<typeof step1Schema>;
 

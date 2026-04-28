@@ -1,22 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Mail, CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, Eye, EyeOff } from "lucide-react";
 import { step1Schema, type Step1Data } from "@/app/onboarding/schemas";
 import { StepProgress } from "@/components/onboarding/StepProgress";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.lyrvio.workers.dev";
 const LS_KEY = "lyrvio_onboarding";
 
 export default function Step1Page() {
   const router = useRouter();
   const [submitted, setSubmitted] = useState(false);
-  const [countdown, setCountdown] = useState(0);
+  const [submittedEmail, setSubmittedEmail] = useState("");
   const [serverError, setServerError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -29,58 +32,53 @@ export default function Step1Page() {
       if (typeof window !== "undefined") {
         try {
           const saved = JSON.parse(localStorage.getItem(LS_KEY) ?? "{}");
-          return { email: saved.step1?.email ?? "" };
+          return { email: saved.step1?.email ?? "", password: "" };
         } catch {
-          return { email: "" };
+          return { email: "", password: "" };
         }
       }
-      return { email: "" };
+      return { email: "", password: "" };
     })(),
   });
 
   const email = watch("email");
 
-  // Auto-save to localStorage
-  useEffect(() => {
-    if (email) {
-      try {
-        const saved = JSON.parse(localStorage.getItem(LS_KEY) ?? "{}");
-        localStorage.setItem(LS_KEY, JSON.stringify({ ...saved, step1: { email } }));
-      } catch {}
-    }
-  }, [email]);
-
-  // Countdown for "resend" link
-  useEffect(() => {
-    if (!submitted || countdown <= 0) return;
-    const t = setTimeout(() => setCountdown((c) => c - 1), 1000);
-    return () => clearTimeout(t);
-  }, [submitted, countdown]);
-
   const onSubmit = async (data: Step1Data) => {
     setServerError(null);
     try {
-      const res = await fetch("/api/auth/magic-link", {
+      const res = await fetch(`${API_URL}/auth/sign-up/email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: data.email, callbackUrl: "/onboarding/2" }),
+        credentials: "include",
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          callbackURL: `${window.location.origin}/onboarding/2`,
+        }),
       });
+
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        throw new Error(err.message ?? "Unbekannter Fehler");
+        const msg = err.message ?? err.error ?? "Fehler beim Registrieren";
+        if (msg.toLowerCase().includes("exist") || msg.toLowerCase().includes("already")) {
+          throw new Error("Diese E-Mail ist bereits registriert. Bitte einloggen.");
+        }
+        throw new Error(msg);
       }
+
+      // Save email to localStorage for later steps
+      try {
+        const saved = JSON.parse(localStorage.getItem(LS_KEY) ?? "{}");
+        localStorage.setItem(LS_KEY, JSON.stringify({ ...saved, step1: { email: data.email } }));
+      } catch {}
+
+      setSubmittedEmail(data.email);
       setSubmitted(true);
-      setCountdown(60);
     } catch (e) {
       setServerError(
-        e instanceof Error ? e.message : "Fehler beim Senden. Bitte erneut versuchen."
+        e instanceof Error ? e.message : "Fehler beim Registrieren. Bitte erneut versuchen."
       );
     }
-  };
-
-  const resend = async () => {
-    if (countdown > 0) return;
-    setSubmitted(false);
   };
 
   return (
@@ -93,7 +91,7 @@ export default function Step1Page() {
           Konto erstellen
         </h1>
         <p className="font-mono text-[13px] text-ash">
-          Kein Passwort nötig — wir senden dir einen Magic-Link.
+          E-Mail und Passwort — alles läuft auf unserer Seite.
         </p>
       </div>
 
@@ -101,7 +99,7 @@ export default function Step1Page() {
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          aria-label="E-Mail für Magic-Link eingeben"
+          aria-label="Konto erstellen"
         >
           <div className="space-y-4">
             <div className="space-y-1.5">
@@ -133,9 +131,52 @@ export default function Step1Page() {
               )}
             </div>
 
+            <div className="space-y-1.5">
+              <label
+                htmlFor="password"
+                className="font-mono text-[13px] font-medium text-ink-2"
+              >
+                Passwort
+              </label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Mindestens 8 Zeichen"
+                  autoComplete="new-password"
+                  aria-required="true"
+                  aria-invalid={!!errors.password}
+                  aria-describedby={errors.password ? "password-error" : undefined}
+                  {...register("password")}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-ash hover:text-ink"
+                  aria-label={showPassword ? "Passwort verbergen" : "Passwort anzeigen"}
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+              {errors.password && (
+                <p
+                  id="password-error"
+                  role="alert"
+                  className="font-mono text-[12px] text-stamp mt-0.5"
+                >
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+
             {serverError && (
               <p role="alert" className="font-mono text-[12px] text-stamp border-2 border-stamp/40 bg-stamp/5 px-3 py-2">
-                {serverError}
+                {serverError}{" "}
+                {serverError.includes("einloggen") && (
+                  <Link href="/login" className="underline">
+                    Zum Login →
+                  </Link>
+                )}
               </p>
             )}
 
@@ -148,18 +189,22 @@ export default function Step1Page() {
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-                  Sende Link…
+                  Konto wird erstellt…
                 </>
               ) : (
-                <>
-                  <Mail className="w-4 h-4" aria-hidden="true" />
-                  Magic-Link senden
-                </>
+                "Konto erstellen"
               )}
             </Button>
 
             <p className="font-mono text-[11px] text-ash text-center">
-              Mit dem Login stimmst du unseren{" "}
+              Bereits ein Konto?{" "}
+              <Link href="/login" className="text-ink underline">
+                Einloggen
+              </Link>
+            </p>
+
+            <p className="font-mono text-[11px] text-ash text-center">
+              Mit der Registrierung stimmst du unseren{" "}
               <a href="/legal/agb" className="text-stamp hover:underline">
                 AGB
               </a>{" "}
@@ -179,30 +224,18 @@ export default function Step1Page() {
         >
           <CheckCircle2 className="w-10 h-10 text-sage mx-auto" aria-hidden="true" />
           <h2 className="font-display text-[20px] text-ink">
-            Link gesendet!
+            Konto erstellt!
           </h2>
           <p className="font-mono text-[13px] text-ash">
-            Wir haben einen Magic-Link an{" "}
-            <span className="text-ink font-semibold">{email}</span> gesendet.
-            <br />
-            Klick auf den Link um fortzufahren.
+            Wir haben eine Bestätigungs-E-Mail an{" "}
+            <span className="text-ink font-semibold">{submittedEmail}</span> gesendet.
           </p>
-          <p className="font-mono text-[11px] text-ash">
-            Link kommt in &lt;5 Sekunden. Spam-Ordner prüfen falls nötig.
+          <p className="font-mono text-[12px] text-ash">
+            Klick auf den Link in der E-Mail — danach bist du automatisch eingeloggt.
           </p>
-          {countdown > 0 ? (
-            <p className="font-mono text-[11px] text-dust">
-              Erneut senden in {countdown}s
-            </p>
-          ) : (
-            <button
-              type="button"
-              onClick={resend}
-              className="font-mono text-[11px] text-stamp hover:underline"
-            >
-              Link erneut senden
-            </button>
-          )}
+          <p className="font-mono text-[11px] text-dust">
+            E-Mail nicht angekommen? Spam-Ordner prüfen.
+          </p>
         </div>
       )}
     </div>
